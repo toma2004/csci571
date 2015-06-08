@@ -64,7 +64,7 @@
 <div id="form1" style="position:absolute; top: 190px;">
     <h1 id="header_1">Sign up</h1>
     <p id="error_msg" style="color: red"></p>
-    <form>
+    <form id="myform1">
         <!-- FIRST NAME, LAST NAME, MI-->
         <label for="fname">First Name</label>
         <label for="lname" style="position:relative; left: 100px;">Last Name</label>
@@ -103,8 +103,8 @@
         <label for="username">User name</label>
         <label for="pwd" style="position:relative; left: 105px;">Password</label><br>
 
-        <input type="text" id="username" name="usr" maxlength="40"/>
-        <input type="password" id="pwd" name="pass" maxlength="20"/>
+        <input type="text" id="username" name="usr" maxlength="40" required />
+        <input type="password" id="pwd" name="pass" maxlength="20" required />
 
         <!-- SELECTION LIST -->
         <p>Please enter your input here: </p>
@@ -120,10 +120,10 @@
         <label>
             <select id="sel_text2" name="list2" size="5" multiple>
                 <option value="1">1 option</option>
-                <option value="1">2 option</option>
-                <option value="1">3 option</option>
-                <option value="1">4 option</option>
-                <option value="1">5 option</option>
+                <option value="2">2 option</option>
+                <option value="3">3 option</option>
+                <option value="4">4 option</option>
+                <option value="5">5 option</option>
             </select>
         </label>
 
@@ -157,14 +157,10 @@
             <input type="checkbox" id="cb6" name="checkbox2" value="3"/>python<br/>
         </label>
 
-        <br><button type="submit" onclick="return switch_form()">
-        Continue
-        </button>
+        <!-- Buttons -->
+        <br><button type="button" onclick="return switch_form('form1','form2');">Continue</button>
 
-
-        <button type="button">
-            Go to report 1
-        </button>
+        <button type="button" onclick="switch_form('form1','report1');">Go to report 1</button>
 
     </form>
 </div>
@@ -172,13 +168,79 @@
 <div id="form2" style="position:absolute; top: 190px; display: none;">
     <h1 id="header_2">More Info</h1>
     <p id="error_msg2" style="color: red"></p>
-    <form>
-        <!-- FIRST NAME, LAST NAME, MI-->
-        <label for="test">Form 2</label>
+    <form id="myform2">
+        <!-- SELECTION LIST -->
+        <p>Please enter your input here: </p>
+        <input type="text" id="form2_sel_text" onChange="createOption_form2(document.getElementById('form2_sel_text'))"/>
+        <p>Please select on of the followings: </p>
+        <label>
+            <select id="form2_items" size="5">
+                <option value="1">1 option</option>
+            </select>
+        </label>
 
-        <input type="text" id="test" name="test" maxlength="30" pattern="\D+" required/>
+        <p>LIST 2 on form2: Please select on of the followings (multiple choices): </p>
+        <label>
+            <select id="form2_sel_text2" name="form2_list2" size="5" multiple>
+                <option value="1">1 option</option>
+                <option value="2">2 option</option>
+                <option value="3">3 option</option>
+                <option value="4">4 option</option>
+                <option value="5">5 option</option>
+            </select>
+        </label>
 
+        <!-- RADIO ELEMENT -->
+        <p>Radio button set 1 form 2</p>
+        <label>
+            <input type="radio" id="form2_id1" name="form2_radio1" value="1"/>samsung<br/>
+            <input type="radio" id="form2_id2" name="form2_radio1" value="2"/>apple<br/>
+            <input type="radio" id="form2_id3" name="form2_radio1" value="3"/>microsoft<br/>
+        </label>
+
+        <p>Radio button set 2 form 2</p>
+        <label>
+            <input type="radio" id="form2_id4" name="form2_radio2" value="1" checked/>fashion<br/>
+            <input type="radio" id="form2_id5" name="form2_radio2" value="2"/>food<br/>
+            <input type="radio" id="form2_id6" name="form2_radio2" value="3"/>photography<br/>
+        </label>
+
+        <!-- CHECKBOX ELEMENT -->
+        <p>Checkbox set 1 form 2</p>
+        <label>
+            <input type="checkbox" id="form2_cb1" name="form2_checkbox1" value="1"/>tv<br/>
+            <input type="checkbox" id="form2_cb2" name="form2_checkbox1" value="2"/>netflix<br/>
+            <input type="checkbox" id="form2_cb3" name="form2_checkbox1" value="3"/>amazon stream<br/>
+        </label>
+
+        <p>Checkbox set 2 form 2</p>
+        <label>
+            <input type="checkbox" id="form2_cb4" name="form2_checkbox2" value="1"/>Perl<br/>
+            <input type="checkbox" id="form2_cb5" name="form2_checkbox2" value="2"/>node.js<br/>
+            <input type="checkbox" id="form2_cb6" name="form2_checkbox2" value="3"/>mysql<br/>
+        </label>
+
+        <!-- TEXT AREA -->
+        <br>
+        <textarea name="comment" id="mycomment" rows="10" cols="30" onfocus="clearText()">Comments</textarea>
+
+        <!-- BUTTON -->
+        <br>
+        <button type="button" onclick="return switch_form_form2('form2','report1')">Submit</button>
+
+        <button type="button" onclick="switch_form('form2','form1')">Go back form 1</button>
+
+        <button type="button" onclick="switch_form('form2','report1')">Go to report 1</button>
     </form>
+</div>
+
+<div id="report1" style="position:absolute; top: 190px; display: none;">
+    <h1 id="header_3">Display Info for report 1</h1>
+
+    <p id="info"></p>
+
+    <button type="button" onclick="switch_form('report1', 'form1')">Go back form 1</button>
+
 </div>
 
 </body>
