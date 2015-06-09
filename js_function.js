@@ -3,10 +3,10 @@
  */
 
 /*Function to add option based on user's input on form 1*/
-var val = 1;
 var usr_arr = [];
 var myindex;
 /*Variable from form1*/
+var food_checkbox = document.getElementsByName('food_day');
 var radio_element = document.getElementsByName('radio1');
 var radio_element2 = document.getElementsByName('radio2');
 var checkbox_element = document.getElementsByName('checkbox1');
@@ -28,7 +28,7 @@ var user_name = document.getElementById('username');
 var pass_word = document.getElementById('pwd');
 /*********************************************************************/
 /*variable from form 2*/
-var mysel_list1_form2 = document.getElementById('form2_sel_text');
+var mysel_list1_form2 = document.getElementById('form2_items');
 var mysel_list_form2 = document.getElementById('form2_sel_text2');
 var myradio_form2 = document.getElementsByName('form2_radio1');
 var myradio2_form2 = document.getElementsByName('form2_radio2');
@@ -42,8 +42,7 @@ function createOption( usr_text )
     var optElement = document.createElement( "option" );
     optElement.text = usr_text.value;
     /*set value for option, just like when we have it in HTML*/
-    val += 1;
-    optElement.value = val;
+    optElement.value = usr_text.value;
     myselect_list.add(optElement);
 }
 
@@ -51,26 +50,23 @@ function createOption( usr_text )
 function removeOption()
 {
     var myselect_list = document.getElementById('items');
-    while(myselect_list.length > 1)
+    while(myselect_list.length > 5)
     {
-        if(myselect_list[myselect_list.length-1] != 1)
+        if((myselect_list[myselect_list.length-1] != "Chinese cuisine") && (myselect_list[myselect_list.length-1] != "Southeast Asian cuisine") && (myselect_list[myselect_list.length-1] != "Arab cuisine") && (myselect_list[myselect_list.length-1] != "American cuisine") && (myselect_list[myselect_list.length-1] != "European cuisine"))
         {
             myselect_list.remove(myselect_list.length-1);
         }
     }
-    val = 1;
 }
 
 /*Function to add option based on user's input on form 2*/
-var val_form2 = 1;
 function createOption_form2( usr_text )
 {
     var myselect_list = document.getElementById('form2_items');
     var optElement = document.createElement( "option" );
     optElement.text = usr_text.value;
     /*set value for option, just like when we have it in HTML*/
-    val_form2 += 1;
-    optElement.value = val_form2;
+    optElement.value = usr_text.value;
     myselect_list.add(optElement);
 }
 
@@ -78,14 +74,13 @@ function createOption_form2( usr_text )
 function removeOption_form2()
 {
     var myselect_list = document.getElementById('form2_items');
-    while(myselect_list.length > 1)
+    while(myselect_list.length > 5)
     {
-        if(myselect_list[myselect_list.length-1] != 1)
+        if((myselect_list[myselect_list.length-1] != "DIY") && (myselect_list[myselect_list.length-1] != "Lifegraphy") && (myselect_list[myselect_list.length-1] != "Fashion") && (myselect_list[myselect_list.length-1] != "Studio Arts") && (myselect_list[myselect_list.length-1] != "Fine Art"))
         {
             myselect_list.remove(myselect_list.length-1);
         }
     }
-    val_form2 = 1;
 }
 
 /*Switch between forms and reports*/
@@ -171,7 +166,7 @@ function validate_second_form()
     myradio_form2 = document.getElementsByName('form2_radio1');
     mycheckbox_form2 = document.getElementsByName('form2_checkbox1');
 
-    mysel_list1_form2 = document.getElementById('form2_sel_text');
+    mysel_list1_form2 = document.getElementById('form2_items');
 
     myradio2_form2 = document.getElementsByName('form2_radio2');
 
@@ -186,32 +181,32 @@ function validate_second_form()
 
     if(validate_checkbox(mycheckbox_form2) == false)
     {
-        myerror.innerHTML += "Please select at least 1 checkbox in checkbox1." + "<br/>";
+        myerror.innerHTML += "Please select at least 1 checkbox in Home Decor section." + "<br/>";
         isTrue = false;
     }
     if(validate_checkbox(mycheckbox2_form2) == false)
     {
-        myerror.innerHTML += "Please select at least 1 checkbox in checkbox2." + "<br/>";
+        myerror.innerHTML += "Please select at least 1 checkbox in Fashion section." + "<br/>";
         isTrue = false;
     }
     if(validate_radio(myradio_form2) == false)
     {
-        myerror.innerHTML += "Please select at least 1 radio in radio1." + "<br/>";
+        myerror.innerHTML += "Please select at least 1 radio in DIY projects." + "<br/>";
         isTrue = false;
     }
     if(validate_radio(myradio2_form2) == false)
     {
-        myerror.innerHTML += "Please select at least 1 radio in radio2." + "<br/>";
+        myerror.innerHTML += "Please select at least 1 radio in Photography section." + "<br/>";
         isTrue = false;
     }
     if(validate_selectionList(mysel_list_form2) == false)
     {
-        myerror.innerHTML += "Please select at least 1 item in selection list2." + "<br/>";
+        myerror.innerHTML += "Please select at least 1 item in selection list Life-graphy section." + "<br/>";
         isTrue = false;
     }
     if(validate_selectionList(mysel_list1_form2) == false)
     {
-        myerror.innerHTML += "Please select at least 1 item in selection list1." + "<br/>";
+        myerror.innerHTML += "Please select at least 1 item in selection list design interest." + "<br/>";
         isTrue = false;
     }
     return isTrue;
@@ -220,6 +215,7 @@ function validate_second_form()
 /*Function called on the Continue button to validate all user's input in first form*/
 function validate_all()
 {
+     food_checkbox = document.getElementsByName('food_day');
      radio_element = document.getElementsByName('radio1');
      radio_element2 = document.getElementsByName('radio2');
      checkbox_element = document.getElementsByName('checkbox1');
@@ -244,9 +240,13 @@ function validate_all()
     myerror.innerHTML = "";
     var isTrue = true;
     var radio_check = validate_radio(radio_element);
+    var radio_check2 = validate_radio(radio_element2);
     var checkbox_check = validate_checkbox(checkbox_element);
+    var checkbox_check2 = validate_checkbox(checkbox_element2);
     var selList_check = validate_selectionList(selList_element);
+    var selList_check2 = validate_selectionList(selList_element2);
     var dob_check = validate_dob(mydob);
+    var myfood_checkbox = validate_radio(food_checkbox);
 
     if ((user_name.checkValidity() == false) || (pass_word.checkValidity() == false))
     {
@@ -256,7 +256,7 @@ function validate_all()
 
     if((fname_element.checkValidity() == false) || (lname_element.checkValidity() == false) || (mi_element.checkValidity() == false) || (mycity.checkValidity() == false) || (mystate.checkValidity() == false))
     {
-        myerror.innerHTML += "First name/Last name/Middle initial/City/State can't contain number" + "<br/>";
+        myerror.innerHTML += "First name/Last name/Middle initial/City/State can't contain number or State needs to be 2 characters" + "<br/>";
         isTrue = false;
     }
 
@@ -284,24 +284,52 @@ function validate_all()
         isTrue = false;
     }
 
-    /*Check radio button of radio1 */
+    /*Check radio button of radio1 - Foodgraphy */
     if (radio_check == false)
     {
-        myerror.innerHTML += "Please select at least 1 radio button in radio1." + "<br/>";
+        myerror.innerHTML += "Please select at least 1 radio button in Foodgraphy section." + "<br/>";
         isTrue = false;
     }
 
-    /*Check checkbox of checkbox1 */
+    /*Check radio button of radio2 - Cuisines */
+    if (radio_check2 == false)
+    {
+        myerror.innerHTML += "Please select at least 1 radio button in Cuisines section." + "<br/>";
+        isTrue = false;
+    }
+
+    /*Check checkbox of checkbox1 - Desert */
     if (checkbox_check == false)
     {
-        myerror.innerHTML += "Please select at least 1 checkbox in checkbox1." + "<br/>";
+        myerror.innerHTML += "Please select at least 1 checkbox in Desert section." + "<br/>";
         isTrue = false;
     }
 
-    /*Check selection list of list 1 */
+    /*Check checkbox of checkbox1 - Desert */
+    if (checkbox_check2 == false)
+    {
+        myerror.innerHTML += "Please select at least 1 checkbox in Dishes section." + "<br/>";
+        isTrue = false;
+    }
+
+    /*Check selection list of list 1 - culture cuisine*/
     if (selList_check == false)
     {
-        myerror.innerHTML += "Please select at least 1 element in the selection list 1." + "<br/>";
+        myerror.innerHTML += "Please select at least 1 element in culture cuisines." + "<br/>";
+        isTrue = false;
+    }
+
+    /*Check selection list of list 2 - interest*/
+    if (selList_check2 == false)
+    {
+        myerror.innerHTML += "Please select at least 1 element in interest list section." + "<br/>";
+        isTrue = false;
+    }
+
+    /*Check selection list of list 2 - interest*/
+    if (myfood_checkbox == false)
+    {
+        myerror.innerHTML += "Please select at least 1 element in food-of-the-day section." + "<br/>";
         isTrue = false;
     }
 
@@ -401,8 +429,9 @@ function clearText()
 }
 
 /*Constructor for every new user*/
-function User(fn,ln,mi,street,apt,city,state,zip,dob,phone,email_addr,usr,pass,list1,list2,radio1,radio2,check1,check2,list1_form2,list2_form2,radio1_form2,radio2_form2,check1_form2,check2_form2,textarea_form2)
+function User(fn,ln,mi,street,apt,city,state,zip,dob,phone,email_addr,usr,pass,list1,list2,radio1,radio2,check1,check2,list1_form2,list2_form2,radio1_form2,radio2_form2,check1_form2,check2_form2,textarea_form2,food_of_day)
 {
+    this.food_of_day = value_radio(food_of_day);
     this.fn = fn;
     this.ln = ln;
     this.mi = mi;
@@ -442,7 +471,7 @@ function print_info_report1()
         myindex = usr_arr.length - 1;
         var usr_obj = usr_arr[myindex];
         myp.innerHTML += usr_obj.fn + " " + usr_obj.ln + ", " + usr_obj.usr + "... ";
-        myp.innerHTML += '<input type="button" value="Click here for more info" onClick="print_all_info(' + myindex + ')"/>' + '<br/>';
+        myp.innerHTML += '<input type="button" value="Click here for more info" onClick="print_all_info(' + myindex + ')"/>' + '<br/><br/>';
     }
 }
 
@@ -481,37 +510,49 @@ function print_all_info( index )
 
     myp.innerHTML += "Username: " + myusr_obj.usr + "  | Password: " + myusr_obj.pass + "<br/>";
 
-    /*Getting values for select lists, radio, and checkboxes*/
+    /*Display food of day image*/
+    if (myusr_obj.food_of_day == "tofu")
+    {
+        myp.innerHTML += 'Your chosen food of the day: ' + '<img src="tofu.JPG" style="width: 200px; height: 200px;"/>' + '<br/><br/>';
+    }
+    else if (myusr_obj.food_of_day == "seafood")
+    {
+        myp.innerHTML += 'Your chosen food of the day: ' + '<img src="seafood.JPG" style="width: 200px; height: 200px;"/>' + '<br/><br/>';
+    }
+    else if (myusr_obj.food_of_day == "vegetable")
+    {
+        myp.innerHTML += 'Your chosen food of the day: ' + '<img src="vegetable.JPG" style="width: 200px; height: 200px;"/>' + '<br/><br/>';
+    }
 
     /*Display*/
-    print_to_html(myp,myusr_obj.list1,'select list 1');
-    print_to_html(myp,myusr_obj.list2,'select list 2');
+    print_to_html(myp,myusr_obj.list1,'Culture Cuisines');
+    print_to_html(myp,myusr_obj.list2,'Interest');
 
     if (myusr_obj.radio1 != 'none')
     {
-        myp.innerHTML += "Your selects for radio 1: " + myusr_obj.radio1 + "<br/>";
+        myp.innerHTML += "Your selects for Foodgraphy: " + myusr_obj.radio1 + "<br/>";
     }
     if (myusr_obj.radio2 != 'none')
     {
-        myp.innerHTML += "Your selects for radio 2: " + myusr_obj.radio2 + "<br/>";
+        myp.innerHTML += "Your selects for Cuisines: " + myusr_obj.radio2 + "<br/>";
     }
 
-    print_to_html(myp,myusr_obj.check1,'checkbox 1');
-    print_to_html(myp,myusr_obj.check2,'checkbox 2');
+    print_to_html(myp,myusr_obj.check1,'Desert');
+    print_to_html(myp,myusr_obj.check2,'Dishes');
 
     /*Start to display info from form 2*/
-    print_to_html(myp,myusr_obj.list1_form2,'select list 1 form 2: ');
-    print_to_html(myp,myusr_obj.list2_form2,'select list 2 form 2: ');
+    print_to_html(myp,myusr_obj.list1_form2,'Design Interest');
+    print_to_html(myp,myusr_obj.list2_form2,'Life-graphy');
     if (myusr_obj.radio1_form2 != 'none')
     {
-        myp.innerHTML += "Your selects for radio 1 form 2: " + myusr_obj.radio1_form2 + "<br/>";
+        myp.innerHTML += "Your selects for DIY Projects: " + myusr_obj.radio1_form2 + "<br/>";
     }
     if (myusr_obj.radio2_form2 != 'none')
     {
-        myp.innerHTML += "Your selects for radio 2 form 2: " + myusr_obj.radio2_form2 + "<br/>";
+        myp.innerHTML += "Your selects for Photography: " + myusr_obj.radio2_form2 + "<br/>";
     }
-    print_to_html(myp,myusr_obj.check1_form2,'checkbox 1 form 2');
-    print_to_html(myp,myusr_obj.check2_form2,'checkbox 2 form 2');
+    print_to_html(myp,myusr_obj.check1_form2,'Home Decor');
+    print_to_html(myp,myusr_obj.check2_form2,'Fashion');
 
     if (myusr_obj.textarea_form2 != "Comments")
     {
@@ -526,7 +567,7 @@ function print_all_info( index )
 /*Function to add new user object to my global array*/
 function addNewUser()
 {
-    var new_user = new User(fname_element.value,lname_element.value,mi_element.value,myaddr.value,myapt.value,mycity.value,mystate.value,myzip.value,mydob.value,myphone.value,myemail.value,user_name.value,pass_word.value,selList_element2,selList_element,radio_element,radio_element2,checkbox_element,checkbox_element2,mysel_list1_form2,mysel_list_form2,myradio_form2,myradio2_form2,mycheckbox_form2,mycheckbox2_form2,mytextarea.value);
+    var new_user = new User(fname_element.value,lname_element.value,mi_element.value,myaddr.value,myapt.value,mycity.value,mystate.value,myzip.value,mydob.value,myphone.value,myemail.value,user_name.value,pass_word.value,selList_element2,selList_element,radio_element,radio_element2,checkbox_element,checkbox_element2,mysel_list1_form2,mysel_list_form2,myradio_form2,myradio2_form2,mycheckbox_form2,mycheckbox2_form2,mytextarea.value,food_checkbox);
     usr_arr.push(new_user);
 }
 

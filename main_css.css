@@ -1,7 +1,9 @@
 body, html
 {
-    background-color: #ededed;
-    font-family: 'Trebuchet MS';
+    font-family: "Trebuchet MS",Georgia,Serif;
+    color: #eeeeee;
+    background: url("background_image.JPG") no-repeat fixed center;
+    background-size: cover;
 }
 
 header
@@ -17,7 +19,6 @@ header
 /**************************************************************************************************
 *My navigation bar style starts here
 ***************************************************************************************************/
-
 
 #nav_bar *
 {
@@ -76,6 +77,19 @@ header
 }
 
 /**************************************************************************************************
-*My first form starts here
+*Food of the day
 ***************************************************************************************************/
-
+.food_container
+{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin-left: 10px;
+}
+.food_checkbox
+{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}

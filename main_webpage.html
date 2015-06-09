@@ -16,7 +16,7 @@
 
 <div class="container">
     <header>
-        <h1 id="main_header">Welcome to NelTouch's shop</h1>
+        <h1 id="main_header">Nelly's Food Blog and Design</h1>
     </header>
     <nav id="nav_bar">
         <ul>
@@ -84,7 +84,7 @@
         <input type="text" id="myaddr" name="addr" maxlength="50" pattern="([0-9])+\s+([A-Za-z])+.*" required/>
         <input type="text" id="myapt" name="apt" maxlength="5" size="10"/>
         <input type="text" id="mycity" name="city" maxlength="20" pattern="\D+" required/>
-        <input type="text" id="mystate" name="state" maxlength="2" size="2" pattern="\D+" required/>
+        <input type="text" id="mystate" name="state" maxlength="2" size="2" pattern="[A-Za-z]{2}" required/>
         <input type="text" id="myzip" name="zip" maxlength="5" size="5" pattern="(\d+){5}" required/><br><br>
 
         <!-- DOB -->
@@ -106,64 +106,85 @@
         <input type="text" id="username" name="usr" maxlength="40" required />
         <input type="password" id="pwd" name="pass" maxlength="20" required />
 
+        <!--Choose food of the date -->
+       <br/><br/>
+        <p>Select your favorite food of today!</p>
+        <div class="food_container">
+            <img src="tofu.JPG" style="width: 200px; height: 200px;"/>
+            <input type="radio" class="food_checkbox" id="food_id1" name="food_day" value="tofu"/>
+        </div>
+        <div class="food_container">
+            <img src="seafood.JPG" style="width: 200px; height: 200px;"/>
+            <input type="radio" class="food_checkbox" id="food_id2" name="food_day" value="seafood"/>
+        </div>
+        <div class="food_container">
+            <img src="vegetable.JPG" style="width: 200px; height: 200px;"/>
+            <input type="radio" class="food_checkbox" id="food_id3" name="food_day" value="vegetable"/>
+        </div>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
         <!-- SELECTION LIST -->
-        <p>Please tell us what kind do you want to see on our blog.<br/>
+        <p>Please tell us what kind of food do you want to see on our blog.<br/>
            You can either select from our list and/or add your own favorite
         </p>
         <input type="text" id="sel_text" onChange="createOption(document.getElementById('sel_text'))"/><br/><br/>
         <label>
             <select id="items" name="list1" size="10" multiple>
-                <option value="1">Chinese cuisine</option>
-                <option value="2">Southeast Asian cuisine</option>
-                <option value="3">Arab cuisine</option>
-                <option value="4">American cuisine</option>
-                <option value="5">European cuisine</option>
+                <option value="Chinese cuisine">Chinese cuisine</option>
+                <option value="Southeast Asian cuisine">Southeast Asian cuisine</option>
+                <option value="Arab cuisine">Arab cuisine</option>
+                <option value="American cuisine">American cuisine</option>
+                <option value="European cuisine">European cuisine</option>
             </select>
         </label>
 
-        <p>LIST 2: Please select on of the followings (multiple choices): </p>
+        <p>Please select your interest <br/>
+            (you can select more than one by holding Ctrl on your keyboard): </p>
         <label>
             <select id="sel_text2" name="list2" size="5" multiple>
-                <option value="1">1 option</option>
-                <option value="2">2 option</option>
-                <option value="3">3 option</option>
-                <option value="4">4 option</option>
-                <option value="5">5 option</option>
+                <option value="Photography">Photography</option>
+                <option value="Foodgraphy">Foodgraphy</option>
+                <option value="Cuisines">Cuisines</option>
+                <option value="Fashion">Fashion</option>
+                <option value="DIY (Do It Yourself)">DIY (Do It Yourself)</option>
             </select>
         </label>
 
         <!-- RADIO ELEMENT -->
-        <p>Radio button set 1</p>
+        <p>Foodgraphy</p>
         <label>
-            <input type="radio" id="id1" name="radio1" value="1"/>1-10<br/>
-            <input type="radio" id="id2" name="radio1" value="2"/>11-19<br/>
-            <input type="radio" id="id3" name="radio1" value="3"/>20-29<br/>
+            <input type="radio" id="id1" name="radio1" value="Homemade"/>Homemade<br/>
+            <input type="radio" id="id2" name="radio1" value="Food discover"/>Food discover<br/>
+            <input type="radio" id="id3" name="radio1" value="Drinks"/>Drinks<br/>
         </label>
 
-        <p>Radio button set 2</p>
+        <p>Cuisines</p>
         <label>
-            <input type="radio" id="id4" name="radio2" value="1" checked/>flower<br/>
-            <input type="radio" id="id5" name="radio2" value="2"/>cake<br/>
-            <input type="radio" id="id6" name="radio2" value="3"/>beef<br/>
+            <input type="radio" id="id4" name="radio2" value="Vietnamese"/>Vietnamese<br/>
+            <input type="radio" id="id5" name="radio2" value="Thailand"/>Thailand<br/>
+            <input type="radio" id="id6" name="radio2" value="Chinese"/>Chinese<br/>
+            <input type="radio" id="id7" name="radio2" value="American"/>American<br/>
+            <input type="radio" id="id8" name="radio2" value="Italian"/>Italian<br/>
+            <input type="radio" id="id9" name="radio2" value="French"/>French<br/>
         </label>
 
         <!-- CHECKBOX ELEMENT -->
-        <p>Checkbox set 1</p>
+        <p>Deserts</p>
         <label>
-            <input type="checkbox" id="cb1" name="checkbox1" value="1"/>html<br/>
-            <input type="checkbox" id="cb2" name="checkbox1" value="2"/>css<br/>
-            <input type="checkbox" id="cb3" name="checkbox1" value="3"/>javascript<br/>
+            <input type="checkbox" id="cb1" name="checkbox1" value="Smoothies"/>Smoothies<br/>
+            <input type="checkbox" id="cb2" name="checkbox1" value="Cakes"/>Cakes<br/>
+            <input type="checkbox" id="cb3" name="checkbox1" value="Fruits"/>Fruits<br/>
         </label>
 
-        <p>Checkbox set 2</p>
+        <p>Dishes</p>
         <label>
-            <input type="checkbox" id="cb4" name="checkbox2" value="1"/>C++<br/>
-            <input type="checkbox" id="cb5" name="checkbox2" value="2"/>java<br/>
-            <input type="checkbox" id="cb6" name="checkbox2" value="3"/>python<br/>
+            <input type="checkbox" id="cb4" name="checkbox2" value="Appetizer"/>Appetizer<br/>
+            <input type="checkbox" id="cb5" name="checkbox2" value="Main Course"/>Main Course<br/>
+            <input type="checkbox" id="cb6" name="checkbox2" value="Desert"/>Desert<br/>
         </label>
 
         <!-- Buttons -->
-        <br><button type="button" onclick="return switch_form('form1','form2');">Continue</button>
+        <br><button type="button" onclick="switch_form('form1','form2');">Continue</button>
 
         <button type="button" onclick="switch_form('form1','report1');">Go to report 1</button>
 
@@ -177,52 +198,60 @@
         <!-- SELECTION LIST -->
         <p>Please enter your input here: </p>
         <input type="text" id="form2_sel_text" onChange="createOption_form2(document.getElementById('form2_sel_text'))"/>
-        <p>Please select on of the followings: </p>
+        <p>Please select your design interest. <br/>
+            You can either select from our list and/or add your own favorite
+        </p>
         <label>
             <select id="form2_items" size="10" multiple>
-                <option value="1">1 option</option>
+                <option value="DIY">DIY</option>
+                <option value="Lifegraphy">Lifegraphy</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Studio Arts">Studio Arts</option>
+                <option value="Fine Art">Fine Arts</option>
             </select>
         </label>
 
-        <p>LIST 2 on form2: Please select on of the followings (multiple choices): </p>
+        <p>Life-graphy<br/>
+            (you can select more than one by holding Ctrl on your keyboard):</p>
         <label>
             <select id="form2_sel_text2" name="form2_list2" size="5" multiple>
-                <option value="1">1 option</option>
-                <option value="2">2 option</option>
-                <option value="3">3 option</option>
-                <option value="4">4 option</option>
-                <option value="5">5 option</option>
+                <option value="Portrait">Portrait</option>
+                <option value="Engagement">Engagement</option>
+                <option value="Wedding">Wedding</option>
+                <option value="Street life">Street life</option>
+                <option value="Graduation">Graduation</option>
             </select>
         </label>
 
         <!-- RADIO ELEMENT -->
-        <p>Radio button set 1 form 2</p>
+        <p>Do-It-Yourself projects:</p>
         <label>
-            <input type="radio" id="form2_id1" name="form2_radio1" value="1"/>samsung<br/>
-            <input type="radio" id="form2_id2" name="form2_radio1" value="2"/>apple<br/>
-            <input type="radio" id="form2_id3" name="form2_radio1" value="3"/>microsoft<br/>
+            <input type="radio" id="form2_id1" name="form2_radio1" value="Home Decor"/>Home Decor<br/>
+            <input type="radio" id="form2_id2" name="form2_radio1" value="Flower Crown"/>Flower Crown<br/>
+            <input type="radio" id="form2_id3" name="form2_radio1" value="Wearable Accessories"/>Wearable Accessories<br/>
         </label>
 
-        <p>Radio button set 2 form 2</p>
+        <p>Photography: </p>
         <label>
-            <input type="radio" id="form2_id4" name="form2_radio2" value="1" checked/>fashion<br/>
-            <input type="radio" id="form2_id5" name="form2_radio2" value="2"/>food<br/>
-            <input type="radio" id="form2_id6" name="form2_radio2" value="3"/>photography<br/>
+            <input type="radio" id="form2_id4" name="form2_radio2" value="Spring"/>Spring<br/>
+            <input type="radio" id="form2_id5" name="form2_radio2" value="Summer"/>Summer<br/>
+            <input type="radio" id="form2_id6" name="form2_radio2" value="Fall"/>Fall<br/>
+            <input type="radio" id="form2_id7" name="form2_radio2" value="Winter"/>Winter<br/>
         </label>
 
         <!-- CHECKBOX ELEMENT -->
-        <p>Checkbox set 1 form 2</p>
+        <p>Home Decor</p>
         <label>
-            <input type="checkbox" id="form2_cb1" name="form2_checkbox1" value="1"/>tv<br/>
-            <input type="checkbox" id="form2_cb2" name="form2_checkbox1" value="2"/>netflix<br/>
-            <input type="checkbox" id="form2_cb3" name="form2_checkbox1" value="3"/>amazon stream<br/>
+            <input type="checkbox" id="form2_cb1" name="form2_checkbox1" value="Wall Decor"/>Wall Decor<br/>
+            <input type="checkbox" id="form2_cb2" name="form2_checkbox1" value="Table Decor"/>Table Decor<br/>
+            <input type="checkbox" id="form2_cb3" name="form2_checkbox1" value="Door Decor"/>Door Decor<br/>
         </label>
 
-        <p>Checkbox set 2 form 2</p>
+        <p>Fashion</p>
         <label>
-            <input type="checkbox" id="form2_cb4" name="form2_checkbox2" value="1"/>Perl<br/>
-            <input type="checkbox" id="form2_cb5" name="form2_checkbox2" value="2"/>node.js<br/>
-            <input type="checkbox" id="form2_cb6" name="form2_checkbox2" value="3"/>mysql<br/>
+            <input type="checkbox" id="form2_cb4" name="form2_checkbox2" value="Business Appropriate"/>Business Appropriate<br/>
+            <input type="checkbox" id="form2_cb5" name="form2_checkbox2" value="Casual Look"/>Casual Look<br/>
+            <input type="checkbox" id="form2_cb6" name="form2_checkbox2" value="Sport"/>Sport<br/>
         </label>
 
         <!-- TEXT AREA -->
@@ -231,7 +260,7 @@
 
         <!-- BUTTON -->
         <br>
-        <button type="button" onclick="return switch_form_form2('form2','report1')">Submit</button>
+        <button type="button" onclick="switch_form_form2('form2','report1')">Submit</button>
 
         <button type="button" onclick="switch_form('form2','form1')">Go back form 1</button>
 
@@ -240,7 +269,7 @@
 </div>
 
 <div id="report1" style="position:absolute; top: 190px; display: none;">
-    <h1 id="header_3">Summary of user information</h1>
+    <h1 id="header_3">Short summary of user information</h1>
 
     <p id="info"></p>
 
