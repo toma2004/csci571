@@ -20,8 +20,8 @@
     </header>
     <nav id="nav_bar">
         <ul>
-            <li><a href="#">Home &#9662;</a></li>
-            <li><a href="#">Products &#9662;</a>
+            <li class="first_tier"><a href="#">Home &#9662;</a></li>
+            <li class="first_tier"><a href="#">Products &#9662;</a>
                 <ul>
                     <li><a href="#">Hair Accessories</a> </li>
                     <li><a href="#">Crowns</a></li>
@@ -41,14 +41,14 @@
                     <li><a href="#">Hand-made cards</a></li>
                 </ul>
             </li>
-            <li><a href="#">Photo Services &#9662;</a>
+            <li class="first_tier"><a href="#">Photo Services &#9662;</a>
                 <ul>
                     <li><a href="#">Graduation</a></li>
                     <li><a href="#">Family</a></li>
                     <li><a href="#">Single Portrait</a></li>
                 </ul>
             </li>
-            <li><a href="#">Gallery &#9662;</a>
+            <li class="first_tier"><a href="#">Gallery &#9662;</a>
                 <ul>
                     <li><a href="#">Spring</a></li>
                     <li><a href="#">Summer</a></li>
@@ -56,7 +56,7 @@
                     <li><a href="#">Winter</a></li>
                 </ul>
             </li>
-            <li><a href="#">Contact Us &#9662;</a></li>
+            <li class="first_tier"><a href="#">Contact Us &#9662;</a></li>
         </ul>
     </nav>
 </div>
@@ -81,7 +81,7 @@
         <label for="mystate" style="position:relative; left: 235px;">State</label>
         <label for="myzip" style="position:relative; left: 245px;">Zip Code</label><br>
 
-        <input type="text" id="myaddr" name="addr" maxlength="50" pattern="([0-9])+\s+([A-Za-z])+" required/>
+        <input type="text" id="myaddr" name="addr" maxlength="50" pattern="([0-9])+\s+([A-Za-z])+.*" required/>
         <input type="text" id="myapt" name="apt" maxlength="5" size="10"/>
         <input type="text" id="mycity" name="city" maxlength="20" pattern="\D+" required/>
         <input type="text" id="mystate" name="state" maxlength="2" size="2" pattern="\D+" required/>
@@ -107,12 +107,17 @@
         <input type="password" id="pwd" name="pass" maxlength="20" required />
 
         <!-- SELECTION LIST -->
-        <p>Please enter your input here: </p>
-        <input type="text" id="sel_text" onChange="createOption(document.getElementById('sel_text'))"/>
-        <p>Please select on of the followings: </p>
+        <p>Please tell us what kind do you want to see on our blog.<br/>
+           You can either select from our list and/or add your own favorite
+        </p>
+        <input type="text" id="sel_text" onChange="createOption(document.getElementById('sel_text'))"/><br/><br/>
         <label>
-            <select id="items" size="5">
-                <option value="1">1 option</option>
+            <select id="items" name="list1" size="10" multiple>
+                <option value="1">Chinese cuisine</option>
+                <option value="2">Southeast Asian cuisine</option>
+                <option value="3">Arab cuisine</option>
+                <option value="4">American cuisine</option>
+                <option value="5">European cuisine</option>
             </select>
         </label>
 
@@ -174,7 +179,7 @@
         <input type="text" id="form2_sel_text" onChange="createOption_form2(document.getElementById('form2_sel_text'))"/>
         <p>Please select on of the followings: </p>
         <label>
-            <select id="form2_items" size="5">
+            <select id="form2_items" size="10" multiple>
                 <option value="1">1 option</option>
             </select>
         </label>
@@ -235,11 +240,21 @@
 </div>
 
 <div id="report1" style="position:absolute; top: 190px; display: none;">
-    <h1 id="header_3">Display Info for report 1</h1>
+    <h1 id="header_3">Summary of user information</h1>
 
     <p id="info"></p>
 
     <button type="button" onclick="switch_form('report1', 'form1')">Go back form 1</button>
+
+</div>
+
+<div id="report2" style="position:absolute; top: 190px; display: none;">
+    <h1 id="header_4"></h1>
+
+    <p id="all_info"></p>
+
+    <button type="button" onclick="switch_form('report2', 'form1')">Go to form 1</button>
+    <button type="button" onclick="switch_form('report2', 'report1')">Go back report 1</button>
 
 </div>
 
