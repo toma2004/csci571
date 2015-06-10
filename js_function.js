@@ -531,15 +531,15 @@ function print_all_info( index )
     /*Display food of day image*/
     if (myusr_obj.food_of_day == "tofu")
     {
-        myp.innerHTML += 'Your chosen food of the day: ' + '<img src="tofu.JPG" style="width: 200px; height: 200px;"/>' + '<br/><br/>';
+        myp.innerHTML += 'Your chosen food of the day: ' + '<img src="tofu_resize.jpg" style="width: 200px; height: 200px;"/>' + '<br/><br/>';
     }
     else if (myusr_obj.food_of_day == "seafood")
     {
-        myp.innerHTML += 'Your chosen food of the day: ' + '<img src="seafood.JPG" style="width: 200px; height: 200px;"/>' + '<br/><br/>';
+        myp.innerHTML += 'Your chosen food of the day: ' + '<img src="seafood_resize.jpg" style="width: 200px; height: 200px;"/>' + '<br/><br/>';
     }
     else if (myusr_obj.food_of_day == "vegetable")
     {
-        myp.innerHTML += 'Your chosen food of the day: ' + '<img src="vegetable.JPG" style="width: 200px; height: 200px;"/>' + '<br/><br/>';
+        myp.innerHTML += 'Your chosen food of the day: ' + '<img src="vegetable_resize.jpg" style="width: 200px; height: 200px;"/>' + '<br/><br/>';
     }
 
     /*Display*/

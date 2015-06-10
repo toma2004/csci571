@@ -66,20 +66,20 @@
     <p id="error_msg" style="color: red"></p>
     <form id="myform1">
         <!-- FIRST NAME, LAST NAME, MI-->
-        <label for="fname">First Name</label>
-        <label for="lname" style="position:relative; left: 100px;">Last Name</label>
-        <label for="mi" style="position:relative; left: 200px;">MI</label><br>
+        <label for="fname">First Name</label><span class="asterisk_red">*</span>
+        <label for="lname" style="position:relative; left: 100px;">Last Name</label><span style="position:relative; left: 100px;" class="asterisk_red">*</span>
+        <label for="mi" style="position:relative; left: 200px;">MI</label><span style="position:relative; left: 200px;" class="asterisk_red">*</span><br>
 
         <input type="text" id="fname" name="first_name" maxlength="30" pattern="\D+" required/>
         <input type="text" id="lname" name="last_name" maxlength="30" pattern="\D+" required/>
-        <input type="text" id="mi" name="initial" maxlength="1" pattern="\D+" size="1"/><br><br>
+        <input type="text" id="mi" name="initial" maxlength="1" pattern="\D+" size="1" required/><br><br>
 
         <!--ADDRESS INFO-->
-        <label for="myaddr">Street address</label>
-        <label for="myapt" style="position:relative; left: 75px;">APT/Suite #</label>
-        <label for="mycity" style="position:relative; left: 95px;">City</label>
-        <label for="mystate" style="position:relative; left: 235px;">State</label>
-        <label for="myzip" style="position:relative; left: 245px;">Zip Code</label><br>
+        <label for="myaddr">Street address</label><span class="asterisk_red">*</span>
+        <label for="myapt" style="position:relative; left: 70px;">APT/Suite #</label>
+        <label for="mycity" style="position:relative; left: 90px;">City</label><span style="position:relative; left: 90px;" class="asterisk_red">*</span>
+        <label for="mystate" style="position:relative; left: 220px;">State</label><span style="position:relative; left: 220px;" class="asterisk_red">*</span>
+        <label for="myzip" style="position:relative; left: 230px;">Zip Code</label><span style="position:relative; left: 230px;" class="asterisk_red">*</span><br>
 
         <input type="text" id="myaddr" name="addr" maxlength="50" pattern="([0-9])+\s+([A-Za-z])+.*" required/>
         <input type="text" id="myapt" name="apt" maxlength="5" size="10"/>
@@ -88,44 +88,44 @@
         <input type="text" id="myzip" name="zip" maxlength="5" size="5" pattern="(\d+){5}" required/><br><br>
 
         <!-- DOB -->
-        <label for="mydob">Date of birth</label><br>
+        <label for="mydob">Date of birth</label><span class="asterisk_red">*</span><br>
         <input type="date" id="mydob" name="dob" required/><br><br>
 
 
         <!--PHONE AND EMAIL -->
-        <label for="myphone">Phone number (all numbers please)</label>
-        <label for="myemail" style="position:relative; left: 20px;">Email</label><br>
+        <label for="myphone">Phone number (all numbers please)</label><span class="asterisk_red">*</span>
+        <label for="myemail" style="position:relative; left: 20px;">Email</label><span style="position:relative; left: 20px;" class="asterisk_red">*</span><br>
 
-        <input type="tel" id="myphone" name="phone" maxlength="20" pattern="[0-9]+"/>
+        <input type="tel" id="myphone" name="phone" maxlength="20" pattern="[0-9]+" required/>
         <input type="email" id="myemail" name="email_addr" maxlength="40" style="position:relative; left: 100px;" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[a-z]{2,3}$" required/><br><br>
 
         <!-- USER NAME AND PASSWORD -->
-        <label for="username">User name</label>
-        <label for="pwd" style="position:relative; left: 105px;">Password</label><br>
+        <label for="username">User name</label><span class="asterisk_red">*</span>
+        <label for="pwd" style="position:relative; left: 105px;">Password</label><span style="position:relative; left: 105px;" class="asterisk_red">*</span><br>
 
         <input type="text" id="username" name="usr" maxlength="40" required />
         <input type="password" id="pwd" name="pass" maxlength="20" required />
 
         <!--Choose food of the date -->
        <br/><br/>
-        <p>Select your favorite food of today!</p>
+        <p>Select your favorite food of today!<span class="asterisk_red">*</span></p>
         <div class="food_container">
-            <img src="tofu.JPG" style="width: 200px; height: 200px;"/>
+            <img src="tofu_resize.jpg" style="width: 200px; height: 200px;"/>
             <input type="radio" class="food_checkbox" id="food_id1" name="food_day" value="tofu"/>
         </div>
         <div class="food_container">
-            <img src="seafood.JPG" style="width: 200px; height: 200px;"/>
+            <img src="seafood_resize.jpg" style="width: 200px; height: 200px;"/>
             <input type="radio" class="food_checkbox" id="food_id2" name="food_day" value="seafood"/>
         </div>
         <div class="food_container">
-            <img src="vegetable.JPG" style="width: 200px; height: 200px;"/>
+            <img src="vegetable_resize.jpg" style="width: 200px; height: 200px;"/>
             <input type="radio" class="food_checkbox" id="food_id3" name="food_day" value="vegetable"/>
         </div>
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
         <!-- SELECTION LIST -->
-        <p>Please tell us what kind of food do you want to see on our blog.<br/>
-           You can either select from our list and/or add your own favorite
+        <p>Please tell us what kind of food do you want to see on our blog.<span class="asterisk_red">*</span><br/>
+           You can either select from our list and/or add your own favorite in the empty box below
         </p>
         <input type="text" id="sel_text" onChange="createOption(document.getElementById('sel_text'))"/><br/><br/>
         <label>
@@ -138,7 +138,7 @@
             </select>
         </label>
 
-        <p>Please select your interest <br/>
+        <p>Please select your interest<span class="asterisk_red">*</span> <br/>
             (you can select more than one by holding Ctrl on your keyboard): </p>
         <label>
             <select id="sel_text2" name="list2" size="5" multiple>
@@ -151,14 +151,14 @@
         </label>
 
         <!-- RADIO ELEMENT -->
-        <p>Foodgraphy</p>
+        <p>Foodgraphy<span class="asterisk_red">*</span></p>
         <label>
             <input type="radio" id="id1" name="radio1" value="Homemade"/>Homemade<br/>
             <input type="radio" id="id2" name="radio1" value="Food discover"/>Food discover<br/>
             <input type="radio" id="id3" name="radio1" value="Drinks"/>Drinks<br/>
         </label>
 
-        <p>Cuisines</p>
+        <p>Cuisines<span class="asterisk_red">*</span></p>
         <label>
             <input type="radio" id="id4" name="radio2" value="Vietnamese"/>Vietnamese<br/>
             <input type="radio" id="id5" name="radio2" value="Thailand"/>Thailand<br/>
@@ -169,14 +169,14 @@
         </label>
 
         <!-- CHECKBOX ELEMENT -->
-        <p>Deserts</p>
+        <p>Deserts<span class="asterisk_red">*</span></p>
         <label>
             <input type="checkbox" id="cb1" name="checkbox1" value="Smoothies"/>Smoothies<br/>
             <input type="checkbox" id="cb2" name="checkbox1" value="Cakes"/>Cakes<br/>
             <input type="checkbox" id="cb3" name="checkbox1" value="Fruits"/>Fruits<br/>
         </label>
 
-        <p>Dishes</p>
+        <p>Dishes<span class="asterisk_red">*</span></p>
         <label>
             <input type="checkbox" id="cb4" name="checkbox2" value="Appetizer"/>Appetizer<br/>
             <input type="checkbox" id="cb5" name="checkbox2" value="Main Course"/>Main Course<br/>
@@ -196,11 +196,10 @@
     <p id="error_msg2" style="color: red"></p>
     <form id="myform2">
         <!-- SELECTION LIST -->
-        <p>Please enter your input here: </p>
-        <input type="text" id="form2_sel_text" onChange="createOption_form2(document.getElementById('form2_sel_text'))"/>
-        <p>Please select your design interest. <br/>
-            You can either select from our list and/or add your own favorite
+        <p>Please select your design interest.<span class="asterisk_red">*</span> <br/>
+            You can either select from our list and/or add your own favorite in the empty box below
         </p>
+        <input type="text" id="form2_sel_text" onChange="createOption_form2(document.getElementById('form2_sel_text'))"/><br/><br/>
         <label>
             <select id="form2_items" size="10" multiple>
                 <option value="DIY">DIY</option>
@@ -211,7 +210,7 @@
             </select>
         </label>
 
-        <p>Life-graphy<br/>
+        <p>Life-graphy<span class="asterisk_red">*</span><br/>
             (you can select more than one by holding Ctrl on your keyboard):</p>
         <label>
             <select id="form2_sel_text2" name="form2_list2" size="5" multiple>
@@ -224,14 +223,14 @@
         </label>
 
         <!-- RADIO ELEMENT -->
-        <p>Do-It-Yourself projects:</p>
+        <p>Do-It-Yourself projects:<span class="asterisk_red">*</span></p>
         <label>
             <input type="radio" id="form2_id1" name="form2_radio1" value="Home Decor"/>Home Decor<br/>
             <input type="radio" id="form2_id2" name="form2_radio1" value="Flower Crown"/>Flower Crown<br/>
             <input type="radio" id="form2_id3" name="form2_radio1" value="Wearable Accessories"/>Wearable Accessories<br/>
         </label>
 
-        <p>Photography: </p>
+        <p>Photography:<span class="asterisk_red">*</span> </p>
         <label>
             <input type="radio" id="form2_id4" name="form2_radio2" value="Spring"/>Spring<br/>
             <input type="radio" id="form2_id5" name="form2_radio2" value="Summer"/>Summer<br/>
@@ -240,14 +239,14 @@
         </label>
 
         <!-- CHECKBOX ELEMENT -->
-        <p>Home Decor</p>
+        <p>Home Decor<span class="asterisk_red">*</span></p>
         <label>
             <input type="checkbox" id="form2_cb1" name="form2_checkbox1" value="Wall Decor"/>Wall Decor<br/>
             <input type="checkbox" id="form2_cb2" name="form2_checkbox1" value="Table Decor"/>Table Decor<br/>
             <input type="checkbox" id="form2_cb3" name="form2_checkbox1" value="Door Decor"/>Door Decor<br/>
         </label>
 
-        <p>Fashion</p>
+        <p>Fashion<span class="asterisk_red">*</span></p>
         <label>
             <input type="checkbox" id="form2_cb4" name="form2_checkbox2" value="Business Appropriate"/>Business Appropriate<br/>
             <input type="checkbox" id="form2_cb5" name="form2_checkbox2" value="Casual Look"/>Casual Look<br/>

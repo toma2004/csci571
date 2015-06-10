@@ -1,8 +1,8 @@
 body, html
 {
-    font-family: "Trebuchet MS",Georgia,Serif;
+    font-family: "Trebuchet MS","Georgia","Serif";
     color: #eeeeee;
-    background: url("background_image.JPG") no-repeat fixed center;
+    background: url("background_image_resize.jpg") no-repeat fixed center;
     background-size: cover;
 }
 
@@ -92,4 +92,9 @@ header
     position: absolute;
     bottom: 0px;
     right: 0px;
+}
+
+.asterisk_red
+{
+    color: red;
 }
