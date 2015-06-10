@@ -248,9 +248,9 @@ function validate_all()
     var dob_check = validate_dob(mydob);
     var myfood_checkbox = validate_radio(food_checkbox);
 
-    if ((user_name.checkValidity() == false) || (pass_word.checkValidity() == false))
+    if ((user_name.checkValidity() == false) || (pass_word.checkValidity() == false) || (check_dup_username(user_name) == false))
     {
-        myerror.innerHTML += "Please enter an user name and/or password" + "<br/>";
+        myerror.innerHTML += "Please enter an user name and/or password or please enter a different user name as the one you just entered has already been used" + "<br/>";
         isTrue = false;
     }
 
@@ -390,32 +390,50 @@ function validate_selectionList( selList_element )
 /*Function to check date of birth*/
 function validate_dob( mydob )
 {
-    var isOk = true;
+    /*Check if user has entered a date*/
+    if (mydob.value == '')
+    {
+        return false;
+    }
+    
     var today = new Date();
+    var birthday_str = (mydob.value.replace(/(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/, "$2/$3/$1")).split('/');
+
+    var user_bd_yy = parseInt(birthday_str[2]);
+    var user_bd_mm = parseInt(birthday_str[0]);
+    var user_bd_dd = parseInt(birthday_str[1]);
+
     var user_birthday = new Date(mydob.value.replace(/(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/, "$2/$3/$1"));
     var y = today.getYear() - user_birthday.getYear();
     var m = today.getMonth() - user_birthday.getMonth();
     var d = today.getDate() - user_birthday.getDate();
 
+
+    /*Check if user has entered valid values for date, month, year*/
+    if ((user_bd_yy < 1900) || (user_bd_mm < 1 || user_bd_mm > 12) || (user_bd_dd < 1 || user_bd_dd > 31) )
+    {
+        return false;
+    }
+    /*Check to see if DOB is valid, no later than today date*/
     if(y < 0)
     {
-        isOk = false;
+        return false;
     }
     else if (y == 0)
     {
         if (m < 0)
         {
-            isOk = false;
+            return false;
         }
         else if (m == 0)
         {
             if (d < 0)
             {
-                isOk = false;
+                return false;
             }
         }
     }
-    return isOk;
+    return true;
 }
 
 /*Clear default text in textarea when user focus cursor*/
@@ -635,4 +653,21 @@ function print_to_html( innerHTML_element, arr, name_display )
             }
         }
     }
+}
+
+function check_dup_username( entered_username )
+{
+    var isOk = true;
+    if (usr_arr.length > 0)
+    {
+        for (var i = 0; i < usr_arr.length; i++)
+        {
+            if (usr_arr[i].usr == entered_username.value)
+            {
+                isOk = false;
+                break;
+            }
+        }
+    }
+    return isOk;
 }
