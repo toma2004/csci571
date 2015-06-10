@@ -395,7 +395,7 @@ function validate_dob( mydob )
     {
         return false;
     }
-    
+
     var today = new Date();
     var birthday_str = (mydob.value.replace(/(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/, "$2/$3/$1")).split('/');
 
