@@ -2,7 +2,6 @@
  * Created by NguyenTran on 6/6/2015.
  */
 
-/*Function to add option based on user's input on form 1*/
 var usr_arr = [];
 var myindex;
 /*Variable from form1*/
@@ -36,6 +35,8 @@ var mycheckbox_form2 = document.getElementsByName('form2_checkbox1');
 var mycheckbox2_form2 = document.getElementsByName('form2_checkbox2');
 var mytextarea = document.getElementById('mycomment');
 /*********************************************************************/
+
+/*Function to add option based on user's input on form 1*/
 function createOption( usr_text )
 {
     var myselect_list = document.getElementById('items');
