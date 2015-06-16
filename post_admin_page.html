@@ -1,0 +1,128 @@
+</p>
+<p>Please select action you want to perform below:</p>
+
+<form id="myadmin_page_form1" action="logout.php">
+    <button type="button" onclick="admin_transform('admin_page_form1','admin_page_add1')">Add</button>
+    <button type="button">Modify</button>
+    <button type="button">Delete</button>
+    <button type="submit">Logout</button>
+</form>
+</div>
+
+<!-- Add new employee or new role to an existing employee page -->
+<div id="admin_page_add1" style="display:none;">
+    <h1>Add more user</h1>
+    <p id="err_msg" style="color: red"></p>
+    <form id="myadmin_page_add1">
+        <input type="radio" id="add1_id1" name="add1_radio1" value="newrole"/>New Role<br/>
+        <input type="radio" id="add1_id2" name="add1_radio1" value="newemployee"/>New Employee<br/><br/>
+
+        <button type="button" onclick="admin_transform('admin_page_add1','admin_page_form1')">Back</button>
+        <button type="button" onclick="validate_add1_transform()">Continue</button>
+    </form>
+</div>
+
+<!-- New Role add page -->
+<div id="admin_page_add2_role" style="display:none;">
+    <h1>Add new role</h1>
+    <p id="err_msg_add_role" style="color:red"></p>
+
+    <form id="admin_page_add_role" action="admin_check.php" method="POST">
+
+        <p>Please type in user id that you want to add new role (numbers only)</p>
+        <label for="usr_id_add_role">User id</label>
+        <input type="text" id="usr_id_add_role" name="user_id_role" pattern="\d+" required/><br/> <!--need validate -->
+
+        <p>What role do you want to add to this user id?</p>
+        <input type="radio" id="role1_id1" name="role1_radio1" value="admin"/>admin<br/>
+        <input type="radio" id="role1_id2" name="role1_radio1" value="manager"/>manager<br/>
+        <input type="radio" id="role1_id3" name="role1_radio1" value="employee"/>employee<br/><br/>
+
+        <button type="button" onclick="admin_transform('admin_page_add2_role','admin_page_add1')">Back</button>
+        <button type="button" onclick="admin_transform('admin_page_add2_role','admin_page_form1')">Home</button>
+        <button type="submit" onclick="return validate_add_role_page()">Submit</button>
+
+    </form>
+
+</div>
+
+<!-- New Employee add page -->
+<div id="admin_page_add2_employee" style="display:none;">
+    <h1>Add new employee</h1>
+    <p id="err_msg_add_employee" style="color: red"></p>
+
+    <form id="admin_page_add_employee" action="admin_check.php" method="POST">
+        <!-- FIRST NAME, LAST NAME, MI-->
+        <label for="fname">First Name</label><span class="asterisk_red">*</span>
+        <label for="lname" style="position:relative; left: 100px;">Last Name</label><span style="position:relative; left: 100px;" class="asterisk_red">*</span><br/>
+
+        <input type="text" id="fname" name="first_name" maxlength="30" pattern="\D+" required/>
+        <input type="text" id="lname" name="last_name" maxlength="30" pattern="\D+" required/> <br/><br/>
+
+        <!--ADDRESS INFO-->
+        <label for="myaddr">Street address</label><span class="asterisk_red">*</span>
+        <label for="mycity" style="position:relative; left: 80px;">City</label><span style="position:relative; left: 80px;" class="asterisk_red">*</span>
+        <label for="mystate" style="position:relative; left: 220px;">State</label><span style="position:relative; left: 220px;" class="asterisk_red">*</span>
+        <label for="mycountry" style="position:relative; left: 230px;">Country</label><span style="position:relative; left: 230px;" class="asterisk_red">*</span><br>
+
+        <input type="text" id="myaddr" name="addr" maxlength="50" pattern="([0-9])+\s+([A-Za-z])+.*" required/>
+        <input type="text" id="mycity" name="city" maxlength="20" pattern="\D+" required/>
+        <input type="text" id="mystate" name="state" maxlength="2" size="2" pattern="[A-Za-z]{2}" required/>
+        <input type="text" id="mycountry" name="country" maxlength="50" pattern="\D+" required/><br><br>
+
+        <!-- DOB -->
+        <label for="mydob">Date of birth</label><span class="asterisk_red">*</span><br>
+        <input type="date" id="mydob" name="dob" required/><br><br>
+
+        <!-- Salary -->
+        <label for="mysalary">Salary</label><span class="asterisk_red">*</span><br>
+        <input type="text" id="mysalary" name="salary" pattern ="[0-9]+" required/><br><br>
+
+        <!-- RADIO ELEMENT -->
+        <p>Marriage Status<span class="asterisk_red">*</span></p>
+        <label>
+            <input type="radio" id="admin_add_id1" name="admin_add_radio1" value="single"/>Single<br/>
+            <input type="radio" id="admin_add_id2" name="admin_add_radio1" value="married"/>Married<br/>
+            <input type="radio" id="admin_add_id3" name="admin_add_radio1" value="widow"/>Widow<br/>
+        </label>
+
+        <p>Gender<span class="asterisk_red">*</span></p>
+        <label>
+            <input type="radio" id="admin_add_id4" name="admin_add_radio2" value="male"/>Male<br/>
+            <input type="radio" id="admin_add_id5" name="admin_add_radio2" value="female"/>Female<br/>
+            <input type="radio" id="admin_add_id6" name="admin_add_radio2" value="notdeclared"/>Not declared<br/>
+        </label>
+
+        <br/><br/>
+        <!--PHONE AND EMAIL -->
+        <label for="myphone">Phone number (all numbers please)</label><span class="asterisk_red">*</span>
+        <label for="myemail" style="position:relative; left: 40px;">Email</label><span style="position:relative; left: 40px;" class="asterisk_red">*</span><br>
+
+        <input type="tel" id="myphone" name="phone" maxlength="20" pattern="[0-9]+" required/>
+        <input type="email" id="myemail" name="email_addr" maxlength="40" style="position:relative; left: 100px;" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[a-z]{2,3}$" required/><br><br>
+
+        <!-- USER NAME AND PASSWORD -->
+        <label for="username">User name</label><span class="asterisk_red">*</span>
+        <label for="pwd" style="position:relative; left: 100px;">Password</label><span style="position:relative; left: 100px;" class="asterisk_red">*</span><br>
+
+        <input type="text" id="username" name="usr" maxlength="40" required />
+        <input type="password" id="pwd" name="pass" maxlength="20" required />
+
+        <!-- CHECKBOX ELEMENT -->
+        <p>User type<span class="asterisk_red">*</span></p>
+        <label>
+            <input type="checkbox" id="admin_add_cb1" name="admin_add_checkbox1[]" value="admin"/>Admin<br/>
+            <input type="checkbox" id="admin_add_cb2" name="admin_add_checkbox1[]" value="manager"/>Manager<br/>
+            <input type="checkbox" id="admin_add_cb3" name="admin_add_checkbox1[]" value="employee"/>Employee<br/>
+        </label> <br/>
+
+        <button type="button" onclick="admin_transform('admin_page_add2_employee','admin_page_add1')">Back</button>
+        <button type="button" onclick="admin_transform('admin_page_add2_employee','admin_page_form1')">Home</button>
+        <button type="submit" onclick="return validate_add_employee_page()">Submit</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
