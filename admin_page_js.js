@@ -339,3 +339,156 @@ function validate_modify_page_1()
         return true;
     }
 }
+
+/*Function to validate form data in modify*/
+function validate_modify_page2()
+{
+    var fname_element = document.getElementById('modified_fname');
+    var lname_element = document.getElementById('modified_lname');
+
+    var myaddr = document.getElementById('modified_myaddr');
+    var mycity = document.getElementById('modified_mycity');
+    var mystate = document.getElementById('modified_mystate');
+    var mycountry = document.getElementById('modified_mycountry');
+
+    var mydob = document.getElementById('modified_mydob');
+    var mysalary = document.getElementById('modified_mysalary');
+
+
+    var myphone = document.getElementById('modified_myphone');
+    var myemail = document.getElementById('modified_myemail');
+
+    var user_name = document.getElementById('modified_myusername');
+    var pass_word = document.getElementById('modified_mypwd');
+
+    var marriage_status = document.getElementsByName('admin_modified_radio1');
+    var mygender = document.getElementsByName('admin_modified_radio2');
+    var usertype = document.getElementsByName('admin_modified_cb1[]');
+
+    var marriage_status_check = validate_radio(marriage_status);
+    var mygender_check = validate_radio(mygender);
+
+    var usertype_check = validate_checkbox(usertype);
+
+    var myerror = document.getElementById('modified_page2_errmsg');
+    myerror.innerHTML = "";
+    var isTrue = true;
+
+    if(mydob.value == '' && fname_element.value == '' && lname_element.value == '' && mycity.value == '' && mystate.value == '' && user_name.value == '' && pass_word.value == '' && mysalary.value == '' && myaddr.value == '' && mycountry.value == '' && myphone.value == '' && myemail.value == '')
+    {
+        if(!marriage_status_check && !mygender_check && !usertype_check)
+        {
+            /*Admin did not make any changes. Don't submit the form*/
+            myerror.innerHTML += "You have not made any changes" + "<br/>";
+            isTrue = false;
+        }
+    }
+
+    if(mydob.value != '')
+    {
+        var dob_check = validate_dob(mydob);
+        /*Check date of birth*/
+        if (dob_check == false)
+        {
+            myerror.innerHTML += "Please enter a correct date of birth" + "<br/>";
+            isTrue = false;
+        }
+    }
+
+    if(fname_element.value != '')
+    {
+        if(fname_element.checkValidity() == false)
+        {
+            myerror.innerHTML += "First name can't contain number" + "<br/>";
+            isTrue = false;
+        }
+    }
+    if(lname_element.value != '')
+    {
+        if(lname_element.checkValidity() == false)
+        {
+            myerror.innerHTML += "Last name can't contain number" + "<br/>";
+            isTrue = false;
+        }
+    }
+    if(mycity.value != '')
+    {
+        if(mycity.checkValidity() == false)
+        {
+            myerror.innerHTML += "City can't contain number" + "<br/>";
+            isTrue = false;
+        }
+    }
+
+    if(mystate.value != '')
+    {
+        if(mystate.checkValidity() == false)
+        {
+            myerror.innerHTML += "State must be a two-characters abbreviation" + "<br/>";
+            isTrue = false;
+        }
+    }
+
+    if(user_name.value != '')
+    {
+        if(user_name.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct user name which can't contain any special characters" + "<br/>";
+            isTrue = false;
+        }
+    }
+    if(pass_word.value != '')
+    {
+        if(pass_word.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct password format which can't contain any special characters" + "<br/>";
+            isTrue = false;
+        }
+    }
+
+    if(mysalary.value != '')
+    {
+        if(mysalary.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct salary" + "<br/>";
+            isTrue = false;
+        }
+    }
+    if(myaddr.value != '')
+    {
+        if(myaddr.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct street address format. Street number followed by a space and then street name" + "<br/>";
+            isTrue = false;
+        }
+    }
+
+
+    if(mycountry.value != '')
+    {
+        if(mycountry.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct country name" + "<br/>";
+            isTrue = false;
+        }
+    }
+    if(myphone.value != '')
+    {
+        if(myphone.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct phone number" + "<br/>";
+            isTrue = false;
+        }
+    }
+
+    if(myemail.value != '')
+    {
+        if(myemail.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct email address" + "<br/>";
+            isTrue = false;
+        }
+    }
+
+    return isTrue;
+}
