@@ -121,6 +121,7 @@ function admin_transform( wherefrom, whereto )
     var d3 = document.getElementById('admin_page_add2_role');
     var d4 = document.getElementById('admin_page_add2_employee');
     var d5 = document.getElementById('admin_page_modify1');
+    var d6 = document.getElementById('admin_page_delete1');
 
     if ((wherefrom == "admin_page_form1" && whereto == "admin_page_add1") || (wherefrom == "admin_page_add2_role" && whereto == "admin_page_add1") || (wherefrom == "admin_page_add2_employee" && whereto == "admin_page_add1"))
     {
@@ -128,6 +129,7 @@ function admin_transform( wherefrom, whereto )
         d3.style.display = "none";
         d4.style.display = "none";
         d5.style.display = "none";
+        d6.style.display = "none";
         d2.style.display = "block";
     }
 
@@ -137,6 +139,7 @@ function admin_transform( wherefrom, whereto )
         d2.style.display = "none";
         d4.style.display = "none";
         d5.style.display = "none";
+        d6.style.display = "none";
         d3.style.display = "block";
     }
     else if((wherefrom == "admin_page_add1" && whereto == "admin_page_add2_employee"))
@@ -145,14 +148,16 @@ function admin_transform( wherefrom, whereto )
         d3.style.display = "none";
         d1.style.display = "none";
         d5.style.display = "none";
+        d6.style.display = "none";
         d4.style.display = "block";
     }
-    else if(wherefrom == "admin_page_add1" && whereto == "admin_page_form1" || (wherefrom == "admin_page_add2_role" && whereto == "admin_page_form1") || (wherefrom == "admin_page_add2_employee" && whereto == "admin_page_form1") || (wherefrom == "admin_page_modify1" && whereto == "admin_page_form1"))
+    else if(wherefrom == "admin_page_add1" && whereto == "admin_page_form1" || (wherefrom == "admin_page_add2_role" && whereto == "admin_page_form1") || (wherefrom == "admin_page_add2_employee" && whereto == "admin_page_form1") || (wherefrom == "admin_page_modify1" && whereto == "admin_page_form1") || (wherefrom == "admin_page_delete1" && whereto == "admin_page_form1"))
     {
         d2.style.display = "none";
         d3.style.display = "none";
         d4.style.display = "none";
         d5.style.display = "none";
+        d6.style.display = "none";
         d1.style.display = "block";
     }
     else if(wherefrom == "admin_page_form1" && whereto == "admin_page_modify1")
@@ -161,7 +166,17 @@ function admin_transform( wherefrom, whereto )
         d3.style.display = "none";
         d4.style.display = "none";
         d1.style.display = "none";
+        d6.style.display = "none";
         d5.style.display = "block";
+    }
+    else if(wherefrom == "admin_page_form1" && whereto == "admin_page_delete1")
+    {
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d1.style.display = "none";
+        d5.style.display = "none";
+        d6.style.display = "block";
     }
 }
 
@@ -328,6 +343,23 @@ function validate_modify_page_1()
 {
     var employee_id = document.getElementById('employee_id_modify_1');
     var errmsg = document.getElementById('err_msg_modify1');
+    errmsg.innerHTML = '';
+    if (employee_id.checkValidity() == false)
+    {
+        errmsg.innerHTML += "Please enter a valid employee id" + "<br/>";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+/*Function to validate employee id to be modified*/
+function validate_delete_page_1()
+{
+    var employee_id = document.getElementById('employee_id_delete_1');
+    var errmsg = document.getElementById('err_msg_delete1');
     errmsg.innerHTML = '';
     if (employee_id.checkValidity() == false)
     {

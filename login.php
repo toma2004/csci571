@@ -67,12 +67,12 @@ else if(!$res)
 }
 else
 {
-    echo "Correct login";
     #store session info
     $_SESSION['username'] = $un;
     $_SESSION['password'] = $pwd;
     $_SESSION['usertype'] = $usertype;
     $_SESSION['last_activity'] = time();
+    $_SESSION['timeout'] = 0;
 
     if($usertype == "admin")
     {

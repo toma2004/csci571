@@ -7,6 +7,23 @@
 
 session_start();
 
+$errmsg = '';
+if (isset($_SESSION['timeout']))
+{
+    if ($_SESSION['timeout'] == "1")
+    {
+        $errmsg .= "Your session is timeout. Please log back in";
+    }
+    else
+    {
+        $errmsg .= "You have successfully logged out";
+    }
+}
+else
+{
+    $errmsg .= "You have successfully logged out";
+}
+
 // Unset all of the session variables.
 $_SESSION = array();
 
@@ -23,8 +40,8 @@ if (ini_get("session.use_cookies")) {
 
 session_destroy();
 
-echo"LOGOUT";
 require "prelogin.html";
+echo '<p style="color:red">'.$errmsg.'</p>';
 require 'postlogin.html';
 
 ?>

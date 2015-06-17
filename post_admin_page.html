@@ -3,7 +3,7 @@
 <form id="myadmin_page_form1" action="logout.php">
     <button type="button" onclick="admin_transform('admin_page_form1','admin_page_add1')">Add</button>
     <button type="button" onclick="admin_transform('admin_page_form1','admin_page_modify1')">Modify</button>
-    <button type="button">Delete</button>
+    <button type="button" onclick="admin_transform('admin_page_form1','admin_page_delete1')">Delete</button>
     <button type="submit">Logout</button>
 </form>
 </div>
@@ -133,6 +133,21 @@
 
         <button type="button" onclick="admin_transform('admin_page_modify1','admin_page_form1')">Back</button>
         <button type="submit" onclick="return validate_modify_page_1()">Submit</button>
+
+    </form>
+
+</div>
+
+<div id="admin_page_delete1" style="display:none;">
+    <h1>Remove an employee from database</h1>
+    <p id="err_msg_delete1" style="color:red"></p>
+    <form id="myadmin_page_delete1" action="admin_check.php" method="POST">
+        <p>Please type in employee id that you want to remove (numbers only)</p>
+        <label for="employee_id_delete_1">Employee id</label>
+        <input type="text" id="employee_id_delete_1" name="employee_id_delete_1" pattern="\d+" required/><br/><br/> <!--need validate -->
+
+        <button type="button" onclick="admin_transform('admin_page_delete1','admin_page_form1')">Back</button>
+        <button type="submit" onclick="return validate_delete_page_1()">Submit</button>
 
     </form>
 

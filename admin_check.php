@@ -13,9 +13,8 @@ if(!isset($_SESSION))
 $t = time();
 if (($t - $_SESSION['last_activity']) > 1800)
 {
-    require "prelogin.html";
-    echo 'Your session is timeout. Please log back in';
-    require 'postlogin.html';
+    $_SESSION['timeout'] = 1;
+    require "logout.php";
 }
 else
 {
@@ -23,40 +22,56 @@ else
     $_SESSION['last_activity'] = time();
 }
 
+#Get user type from SESSION array
+$check_types = explode(',', $_SESSION["usertype"]);
 
+#Check if user log in correctly
 if(!(isset($_SESSION['username'])) || !(isset($_SESSION['password'])) || !(isset($_SESSION['usertype'])))
 {
     require "prelogin.html";
     require 'postlogin.html';
 }
-elseif ($_SESSION['usertype'] != "admin")
+#Check if user is an admin
+elseif (!in_array("admin", $check_types ))
 {
     require "prelogin.html";
     require 'postlogin.html';
 }
+#Add new role
 elseif (isset($_POST["user_id_role"]))
 {
     addNewRole();
 }
+#Add new employee
 elseif (isset($_POST["usr"]))
 {
     addNewEmployee();
 }
+#Display employee info given employee id
 elseif (isset($_POST["employee_id_modify_1"]))
 {
     display_info_for_modify();
 }
+#Change employee info based on admin's change
 elseif (isset($_POST["mysubmit_modified_form"]))
 {
     if($_POST["modified_fname"] != '' || $_POST["modified_lname"] != '' || $_POST["modified_myaddr"] != '' || $_POST["modified_mycity"] != '' || $_POST["modified_mystate"] != '' || $_POST["modified_mycountry"] != '' || $_POST["modified_mydob"] != '' || $_POST["modified_mysalary"] != '' || isset($_POST["admin_modified_radio1"]) || isset($_POST["admin_modified_radio2"]) || $_POST["modified_myphone"] != '' || $_POST["modified_myemail"] != '' || $_POST["modified_myusername"] != '' || $_POST["modified_mypwd"] != '' || isset($_POST["admin_modified_cb1"]))
     {
-        echo "ONE OF THEM IS CHECKED";
+        modify_employee_info();
     }
     else
     {
-        echo "None is checked";
+        require "pre_admin_page.html";
+        echo '<p style="color:blue">No employee info has been changed since you did not select anything'.'</p>';
+        require "post_admin_page.html";
     }
 }
+#Delete an employee from database
+elseif (isset($_POST["employee_id_delete_1"]))
+{
+    delete_employee();
+}
+#For any thing else, back to Home admin page
 else
 {
     require "pre_admin_page.html";
@@ -317,6 +332,9 @@ function display_info_for_modify()
             <span style="font-weight: bold">Current Value</span>
             <span style="font-weight: bold; position:relative; left: 200px">Change to value</span><br/><br/>
             <form id="modified_employee_info" action="admin_check.php" method="POST">
+                <!--hidden input to send server the employee id that needs to be modified -->
+                <input type="hidden" name="hidden_employee_id" value="<?php echo $employee_id; ?>"/>
+
             <?php
             #first and last name
             echo 'Employee first name: '.$row["e_first_name"];
@@ -399,10 +417,346 @@ function display_info_for_modify()
     else
     {
         require "pre_admin_page.html";
-        echo '<p style="color:red">ERROR: Employee id '.$employee_id.' is not found in not an integer'.'</p>';
+        echo '<p style="color:red">ERROR: Employee id '.$employee_id.' is not an integer'.'</p>';
         require "post_admin_page.html";
     }
 
+}
+
+/*Function to modify info of employee*/
+function modify_employee_info()
+{
+    /*Check if we have a correct employee id*/
+    $employee_id = validate_data($_POST['hidden_employee_id']);
+    if(filter_input(INPUT_POST,"hidden_employee_id",FILTER_VALIDATE_INT) && strlen($employee_id) > 0)
+    {
+        /*Connect to our db*/
+        $conn = connectDB();
+        $errmsg = "";
+
+        /*First and Last name*/
+        if($_POST['modified_fname'] != '')
+        {
+            $fname_element = validate_data($_POST['modified_fname']);
+            $sql = "update employees set e_first_name='".$fname_element."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update first name.\r\n";
+            }
+        }
+        if($_POST['modified_lname'] != '')
+        {
+            $lname_element = validate_data($_POST['modified_lname']);
+            $sql = "update employees set e_last_name='".$lname_element."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update last name.\r\n";
+            }
+        }
+
+        /*Address info*/
+        if($_POST['modified_myaddr'] != '')
+        {
+            $myaddr = validate_data($_POST['modified_myaddr']);
+            $sql = "update employees set e_street_addr='".$myaddr."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update street address.\r\n";
+            }
+        }
+        if($_POST['modified_mycity'] != '')
+        {
+            $mycity = validate_data($_POST['modified_mycity']);
+            $sql = "update employees set e_city='".$mycity."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update city.\r\n";
+            }
+        }
+        if($_POST['modified_mystate'] != '')
+        {
+            $mystate = validate_data($_POST['modified_mystate']);
+            $sql = "update employees set e_state='".$mystate."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update state.\r\n";
+            }
+        }
+        if($_POST['modified_mycountry'] != '')
+        {
+            $mycountry = validate_data($_POST['modified_mycountry']);
+            $sql = "update employees set e_country='".$mycountry."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update country.\r\n";
+            }
+        }
+        /*DOB and Salary*/
+        if($_POST['modified_mydob'] != '')
+        {
+            $mydob = validate_data($_POST['modified_mydob']);
+            $sql = "update employees set e_dob='".$mydob."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+            }
+        }
+        if($_POST['modified_mysalary'] != '')
+        {
+            $mysalary = validate_data($_POST['modified_mysalary']);
+            $sql = "update employees set e_salary='".$mysalary."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update salary.\r\n";
+            }
+        }
+
+        /*Marriage Status and Gender*/
+        if(isset($_POST['admin_modified_radio1']))
+        {
+            $marriage_status = validate_data($_POST['admin_modified_radio1']);
+            $sql = "update employees set e_marriage_status='".$marriage_status."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update marriage status.\r\n";
+            }
+        }
+        if(isset($_POST['admin_modified_radio2']))
+        {
+            $mygender = validate_data($_POST['admin_modified_radio2']);
+            $sql = "update employees set e_gender='".$mygender."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update gender info.\r\n";
+            }
+        }
+
+        /*Phone and Email*/
+        if($_POST['modified_myphone'] != '')
+        {
+            $myphone = validate_data($_POST['modified_myphone']);
+            $sql = "update employees set e_phone='".$myphone."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update phone number.\r\n";
+            }
+        }
+        if($_POST['modified_myemail'] != '')
+        {
+            $myemail = validate_data($_POST['modified_myemail']);
+            $sql = "update employees set e_email='".$myemail."' where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update email address.\r\n";
+            }
+        }
+
+        /*User name and password*/
+        if($_POST['modified_myusername'] != '')
+        {
+            $myusrname = validate_data($_POST['modified_myusername']);
+            $sql = "select userid from employees where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!($row = mysql_fetch_assoc($res)))
+            {
+                #Failed to update
+                $errmsg .= "Fatal error: there is no user id found for this employee id ".$employee_id."\r\n";
+            }
+            else
+            {
+                $myuser_id = $row["userid"];
+
+                #Do another sql to ensure that the username is unique
+                $sql = "select * from users where username='".$myusrname."'";
+                $res = mysql_query($sql);
+                if (!($row = mysql_fetch_assoc($res)))
+                {
+                    #If nothing return, then we might have a valid username
+                    $sql = "update users set username='".$myusrname."' where userid='".$myuser_id."'";
+                    $res = mysql_query($sql);
+                    if (!$res)
+                    {
+                        #Failed to update
+                        $errmsg .= "Failed to update user name.\r\n";
+                    }
+                }
+                else
+                {
+                    #this username has been used. Return error
+                    $errmsg .= "The user name you tried to update has been used. Please try again with different username.\r\n";
+                }
+            }
+        }
+        if($_POST['modified_mypwd'] != '')
+        {
+            $mypwd = validate_data($_POST['modified_mypwd']);
+            $sql = "select userid from employees where employee_id='".$employee_id."'";
+            $res = mysql_query($sql);
+            if (!($row = mysql_fetch_assoc($res)))
+            {
+                #Failed to update
+                $errmsg .= "Fatal error: there is no user id found for this employee id ".$employee_id."\r\n";
+            }
+            else
+            {
+                $myuser_id = $row["userid"];
+
+                $sql = "update users set password=password('".$mypwd."') where userid='".$myuser_id."'";
+                $res = mysql_query($sql);
+                if (!$res)
+                {
+                    #Failed to update
+                    $errmsg .= "Failed to update password.\r\n";
+                }
+            }
+        }
+
+        /*User type*/
+        if(isset($_POST['admin_modified_cb1']))
+        {
+            $usertype = validate_data_checkbox($_POST['admin_modified_cb1']);
+            if ($usertype == '')
+            {
+                #invalid user type
+                $errmsg .= "You have tried to add an invalid user type.\r\n";
+            }
+            else
+            {
+                $sql = "select userid from employees where employee_id='".$employee_id."'";
+                $res = mysql_query($sql);
+                if (!($row = mysql_fetch_assoc($res)))
+                {
+                    #Failed to update
+                    $errmsg .= "Fatal error: there is no user id found for this employee id ".$employee_id."\r\n";
+                }
+                else
+                {
+                    $myuser_id = $row["userid"];
+
+                    $sql = "update users set usertype='".$usertype."' where userid='".$myuser_id."'";
+                    $res = mysql_query($sql);
+                    if (!$res)
+                    {
+                        #Failed to update
+                        $errmsg .= "Failed to update user type.\r\n";
+                    }
+                }
+            }
+        }
+        disconnectDB($conn);
+        if ($errmsg == '')
+        {
+            #No Error, woohoo!
+            require "pre_admin_page.html";
+            echo '<p style="color:blue">All employee info has been updated per your request!'.'</p>';
+            require "post_admin_page.html";
+        }
+        else
+        {
+            require "pre_admin_page.html";
+            echo '<p style="color:red">'.$errmsg.'</p>';
+            require "post_admin_page.html";
+        }
+    }
+    else
+    {
+        #Error employee id is not an integer
+        require "pre_admin_page.html";
+        echo '<p style="color:red">ERROR: Employee id '.$employee_id.' is not an integer'.'</p>';
+        require "post_admin_page.html";
+    }
+}
+
+/*Function to delete an employee*/
+function delete_employee()
+{
+    #Validate the input once again
+    $employee_id = validate_data($_POST['employee_id_delete_1']);
+    $errmsg = "";
+    if(filter_input(INPUT_POST,"employee_id_delete_1",FILTER_VALIDATE_INT) && strlen($employee_id) > 0)
+    {
+        $conn = connectDB();
+
+        #Find the employee id in our database
+        $sql = "select * from employees where employee_id = '" . $employee_id . "'";
+
+        $res = mysql_query($sql);
+
+        #Check if it exists
+        if (!($row = mysql_fetch_assoc($res))) {
+            require "pre_admin_page.html";
+            echo '<p style="color:red">ERROR: Employee id ' . $employee_id . ' is not found in our database. Please double check your value' . '</p>';
+            require "post_admin_page.html";
+            disconnectDB($conn);
+            return;
+        }
+        #save user id to delete it in users table
+        $userid = $row["userid"];
+
+        $sql = "delete from employees where employee_id = '" . $employee_id . "'";
+        $res = mysql_query($sql);
+        if(!$res)
+        {
+            #Failed to delete employee
+            $errmsg .= "Failed to remove this employee id ".$employee_id."\r\n";
+        }
+        else
+        {
+            #Go on to delete the user id associate with this employee in users table
+            $sql = "delete from users where userid = '".$userid."'";
+            $res = mysql_query($sql);
+            if(!$res)
+            {
+                #Failed to delete user id
+                $errmsg .= "Fatal error: removed employee id ".$employee_id." from employee table, but can't remove the user id associated with this employee in users table"."\r\n";
+            }
+        }
+        disconnectDB($conn);
+        #Check for error message
+        if ($errmsg == '')
+        {
+            #No Error, woohoo!
+            require "pre_admin_page.html";
+            echo '<p style="color:blue">The employee id '.$employee_id.' has been successfully removed from our database'.'</p>';
+            require "post_admin_page.html";
+        }
+        else
+        {
+            require "pre_admin_page.html";
+            echo '<p style="color:red">'.$errmsg.'</p>';
+            require "post_admin_page.html";
+        }
+    }
+    else
+    {
+        #Error employee id is not an integer
+        require "pre_admin_page.html";
+        echo '<p style="color:red">ERROR: Employee id '.$employee_id.' is not an integer'.'</p>';
+        require "post_admin_page.html";
+    }
 }
 ?>
 
