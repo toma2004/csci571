@@ -28,7 +28,7 @@ if(strlen($un) == 0 && strlen($pwd) == 0) #First time to the page
 #validate log in with our database
 if(strlen($un) > 0 && strlen($pwd) > 0)
 {
-    $sql = "select usertype from users where username='".$un."' and password='".$pwd."'";
+    $sql = "select usertype from users where username='".$un."' and password=password('".$pwd."')";
     $host = 'localhost';
     $user = 'root';
     $pass = 'ntcsci571hw2';

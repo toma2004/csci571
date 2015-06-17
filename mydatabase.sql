@@ -8,34 +8,34 @@ USE N2_internal_db;
 
 CREATE TABLE IF NOT EXISTS `Users` (
 	`userid` INT(6) UNSIGNED AUTO_INCREMENT,
-	`username`	VARCHAR(30) NOT NULL UNIQUE,
-	`password`	VARCHAR(30) NOT NULL,
+	`username`	VARCHAR(50) NOT NULL UNIQUE,
+	`password`	VARCHAR(100) NOT NULL,
 	`usertype`	VARCHAR(30) NOT NULL,
 	PRIMARY KEY (`userid`)
 );
 
-INSERT INTO `Users` (`username`,`password`,`usertype`) VALUES ('christ','12345','admin');
-INSERT INTO `Users` (`username`,`password`,`usertype`) VALUES ('nellyp','1234','manager');
-INSERT INTO `Users` (`username`,`password`,`usertype`) VALUES ('nguyen','1234','employee');
+INSERT INTO `Users` (`username`,`password`,`usertype`) VALUES ('christ',password('12345'),'admin');
+INSERT INTO `Users` (`username`,`password`,`usertype`) VALUES ('nellyp',password('1234'),'manager');
+INSERT INTO `Users` (`username`,`password`,`usertype`) VALUES ('nguyen',password('1234'),'employee');
 
 
 CREATE TABLE IF NOT EXISTS `Employees` (
 	`employee_id` INT(6) UNSIGNED AUTO_INCREMENT,
 	`userid` INT(6) UNSIGNED NOT NULL,
-	`e_first_name` VARCHAR(20) NOT NULL,
-	`e_last_name` VARCHAR(20) NOT NULL,
-	`e_street_addr` VARCHAR(30) NOT NULL,
-	`e_city` VARCHAR(20) NOT NULL,
-	`e_state` VARCHAR(15) NOT NULL,
-	`e_country` VARCHAR(20) NOT NULL,
+	`e_first_name` VARCHAR(30) NOT NULL,
+	`e_last_name` VARCHAR(30) NOT NULL,
+	`e_street_addr` VARCHAR(50) NOT NULL,
+	`e_city` VARCHAR(30) NOT NULL,
+	`e_state` VARCHAR(30) NOT NULL,
+	`e_country` VARCHAR(30) NOT NULL,
 	`e_marriage_status` VARCHAR(10) NOT NULL,
 	`e_gender` VARCHAR(10) NOT NULL,
 	`e_dob` DATE NOT NULL,
-	`e_phone` VARCHAR(30) NOT NULL,
-	`e_salary` VARCHAR(30) NOT NULL,
-	`e_email` VARCHAR(30) NOT NULL UNIQUE,
+	`e_phone` VARCHAR(40) NOT NULL,
+	`e_salary` VARCHAR(50) NOT NULL,
+	`e_email` VARCHAR(50) NOT NULL UNIQUE,
 	PRIMARY KEY (`employee_id`),
-	FOREIGN KEY (`userid`) REFERENCES Users
+	FOREIGN KEY (`userid`) REFERENCES Users(`userid`)
 );
 
 INSERT INTO `Employees` (`userid`,`e_first_name`,`e_last_name`,`e_street_addr`,`e_city`,`e_state`,`e_country`,`e_marriage_status`,`e_gender`,`e_dob`,`e_phone`,`e_salary`,`e_email`) 

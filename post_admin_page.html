@@ -1,9 +1,8 @@
-</p>
 <p>Please select action you want to perform below:</p>
 
 <form id="myadmin_page_form1" action="logout.php">
     <button type="button" onclick="admin_transform('admin_page_form1','admin_page_add1')">Add</button>
-    <button type="button">Modify</button>
+    <button type="button" onclick="admin_transform('admin_page_form1','admin_page_modify1')">Modify</button>
     <button type="button">Delete</button>
     <button type="submit">Logout</button>
 </form>
@@ -46,7 +45,7 @@
 
 </div>
 
-<!-- New Employee add page -->
+<!-- Modify Employee page 1. Selecting employee id to be modified -->
 <div id="admin_page_add2_employee" style="display:none;">
     <h1>Add new employee</h1>
     <p id="err_msg_add_employee" style="color: red"></p>
@@ -119,6 +118,21 @@
         <button type="button" onclick="admin_transform('admin_page_add2_employee','admin_page_add1')">Back</button>
         <button type="button" onclick="admin_transform('admin_page_add2_employee','admin_page_form1')">Home</button>
         <button type="submit" onclick="return validate_add_employee_page()">Submit</button>
+
+    </form>
+
+</div>
+
+<div id="admin_page_modify1" style="display:none;">
+    <h1>Modify Employee Info</h1>
+    <p id="err_msg_modify1" style="color:red"></p>
+    <form id="myadmin_page_modify1" action="admin_check.php" method="POST">
+        <p>Please type in employee id that you want to modify info (numbers only)</p>
+        <label for="employee_id_modify_1">Employee id</label>
+        <input type="text" id="employee_id_modify_1" name="employee_id_modify_1" pattern="\d+" required/><br/><br/> <!--need validate -->
+
+        <button type="button" onclick="admin_transform('admin_page_modify1','admin_page_form1')">Back</button>
+        <button type="submit" onclick="return validate_modify_page_1()">Submit</button>
 
     </form>
 

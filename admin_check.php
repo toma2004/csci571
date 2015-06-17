@@ -10,6 +10,19 @@ if(!isset($_SESSION))
     session_start();
 }
 
+$t = time();
+if (($t - $_SESSION['last_activity']) > 1800)
+{
+    require "prelogin.html";
+    echo 'Your session is timeout. Please log back in';
+    require 'postlogin.html';
+}
+else
+{
+    #session is not yet timeout. Reset time to give users another 30 mins
+    $_SESSION['last_activity'] = time();
+}
+
 
 if(!(isset($_SESSION['username'])) || !(isset($_SESSION['password'])) || !(isset($_SESSION['usertype'])))
 {
@@ -28,6 +41,10 @@ elseif (isset($_POST["user_id_role"]))
 elseif (isset($_POST["usr"]))
 {
     addNewEmployee();
+}
+elseif (isset($_POST["employee_id_modify_1"]))
+{
+    display_info_for_modify();
 }
 else
 {
@@ -58,6 +75,7 @@ function disconnectDB($myconn)
     mysql_close($myconn);
 }
 
+/*Function to add new role to an existing userid*/
 function addNewRole()
 {
     #Validate the input once again
@@ -76,16 +94,20 @@ function addNewRole()
             if(!($row = mysql_fetch_assoc($res)))
             {
                 require "pre_admin_page.html";
-                echo "Could not find userid = ".$usr_id;
+                echo '<p style="color:red">ERROR: Could not find userid '.$usr_id.'</p>';
                 require "post_admin_page.html";
+                disconnectDB($conn);
+                return;
             }
             $types = explode(',', $row["usertype"]);
             if ( in_array($type, $types ))
             {
                 #Try to add the same type with existing user
                 require "pre_admin_page.html";
-                echo "ERROR: This usertype: ".$type." is already assigned to this userid:  ".$usr_id;
+                echo '<p style="color:red">ERROR: This usertype: '.$type.' is already assigned to this userid:  '.$usr_id.'</p>';
                 require "post_admin_page.html";
+                disconnectDB($conn);
+                return;
             }
             else
             {
@@ -96,7 +118,7 @@ function addNewRole()
                 if($res)
                 {
                     require "pre_admin_page.html";
-                    echo "User type ".$type." is successfully added to user_id ".$usr_id;
+                    echo '<p style="color:blue">User type '.$type.' is successfully added to user_id '.$usr_id.'</p>';
                     require "post_admin_page.html";
                 }
             }
@@ -105,18 +127,19 @@ function addNewRole()
         else
         {
             require "pre_admin_page.html";
-            echo "You have tried to add an invalid type!";
+            echo '<p style="color:red">ERROR: You have tried to add an invalid type!'.'</p>';
             require "post_admin_page.html";
         }
     }
     else
     {
         require "pre_admin_page.html";
-        echo "One of the field is empty. Please check";
+        echo '<p style="color:red">ERROR: One of the field is empty. Please check'.'</p>';
         require "post_admin_page.html";
     }
 }
 
+/*Function to add new employee*/
 function addNewEmployee()
 {
     $fname_element = validate_data($_POST['first_name']);
@@ -150,15 +173,17 @@ function addNewEmployee()
             $conn = connectDB();
 
             #Add this new employee to Users table first to get userid and check if username already used
-            $sql = "insert into users (username,password,usertype) values ('".$user_name."','".$pass_word."','".$usertype."')";
+            $sql = "insert into users (username,password,usertype) values ('".$user_name."',password('".$pass_word."'),'".$usertype."')";
 
             $res = mysql_query($sql);
 
             if (!$res)
             {
                 require "pre_admin_page.html";
-                echo "ERROR: inserting new employee. It might be due to user name has been used. User name must be unique for every employee";
+                echo '<p style="color:red">ERROR: inserting new employee. It might be due to user name has been used. User name must be unique for every employee'.'</p>';
                 require "post_admin_page.html";
+                disconnectDB($conn);
+                return;
             }
             #Continue if added to users table successfully
             $sql = "select userid from users order by userid DESC limit 1";
@@ -166,8 +191,10 @@ function addNewEmployee()
             if (!($row = mysql_fetch_assoc($res)))
             {
                 require "pre_admin_page.html";
-                echo "ERROR: inserting new employee";
+                echo '<p style="color:red">ERROR: inserting new employee'.'</p>';
                 require "post_admin_page.html";
+                disconnectDB($conn);
+                return;
             }
 
             #Now add to employee table
@@ -176,7 +203,13 @@ function addNewEmployee()
             if (!$res)
             {
                 require "pre_admin_page.html";
-                echo "ERROR: inserting new employee.";
+                echo '<p style="color:red">ERROR: inserting new employee.'.'</p>';
+                require "post_admin_page.html";
+            }
+            else
+            {
+                require "pre_admin_page.html";
+                echo '<p style="color:blue">Employee '.$fname_element.' '.$lname_element.' is added successfully to our database'.'</p>';
                 require "post_admin_page.html";
             }
 
@@ -185,14 +218,14 @@ function addNewEmployee()
         else
         {
             require "pre_admin_page.html";
-            echo "You have tried to add an invalid type!";
+            echo '<p style="color:red">You have tried to add an invalid type!'.'</p>';
             require "post_admin_page.html";
         }
     }
     else
     {
         require "pre_admin_page.html";
-        echo "One of the field is empty. Please check";
+        echo '<p style="color:red">One of the field is empty. Please check'.'</p>';
         require "post_admin_page.html";
     }
 }
@@ -228,5 +261,58 @@ function validate_data_checkbox($data_arr)
     return implode(',',$arr);
 }
 
+function display_info_for_modify()
+{
+    #Validate the input once again
+    $employee_id = validate_data($_POST['employee_id_modify_1']);
+    if(filter_input(INPUT_POST,"employee_id_modify_1",FILTER_VALIDATE_INT) && strlen($employee_id) > 0)
+    {
+        $conn = connectDB();
+
+        #Find the employee id in our database
+        $sql = "select * from employees where employee_id = '".$employee_id."'";
+
+        $res = mysql_query($sql);
+
+        #Check if it exists
+        if (!($row = mysql_fetch_assoc($res)))
+        {
+            require "pre_admin_page.html";
+            echo '<p style="color:red">ERROR: Employee id '.$employee_id.' is not found in our database. Please double check your value'.'</p>';
+            require "post_admin_page.html";
+            disconnectDB($conn);
+            return;
+        }
+        ?>
+        <!-- End php and display html -->
+        <!DOCTYPE html>
+        <html>
+        <head lang="en">
+            <meta charset="UTF-8"/>
+            <meta name="author" content="Nguyen Tran"/>
+
+           <!-- <link rel="stylesheet" type="text/css" href="main_css.css"/> <!-- link to external css file -->
+            <!--<link rel="shortcut icon" type="image/jpg" href="flower_crown1.jpg"></link> -->
+            <script src="admin_page_js.js"></script>
+            <title>Employee info</title>
+        </head>
+        <body>
+            <h1><?php echo 'Employee '.$row["e_first_name"].' '.$row["e_last_name"].' info (employee id '.$row["employee_id"].')';
+                ?></h1>
+            <!-- need to create div here -->
+            <button type="button" onclick="admin_transform('admin_page_modify1','admin_page_form1')">Home</button>
+        </body>
+
+    <?php
+        disconnectDB($conn);
+    }
+    else
+    {
+        require "pre_admin_page.html";
+        echo '<p style="color:red">ERROR: Employee id '.$employee_id.' is not found in not an integer'.'</p>';
+        require "post_admin_page.html";
+    }
+
+}
 ?>
 
