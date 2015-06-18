@@ -5,7 +5,10 @@
  * Time: 2:03 PM
  */
 
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 $errmsg = '';
 if (isset($_SESSION['timeout']))

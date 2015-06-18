@@ -26,7 +26,7 @@
     <h1>Add new role</h1>
     <p id="err_msg_add_role" style="color:red"></p>
 
-    <form id="admin_page_add_role" action="admin_check.php" method="POST">
+    <form id="admin_page_add_role" action="admin_page.php" method="POST">
 
         <p>Please type in user id that you want to add new role (numbers only)</p>
         <label for="usr_id_add_role">User id</label>
@@ -50,7 +50,7 @@
     <h1>Add new employee</h1>
     <p id="err_msg_add_employee" style="color: red"></p>
 
-    <form id="admin_page_add_employee" action="admin_check.php" method="POST">
+    <form id="admin_page_add_employee" action="admin_page.php" method="POST">
         <!-- FIRST NAME, LAST NAME, MI-->
         <label for="fname">First Name</label><span class="asterisk_red">*</span>
         <label for="lname" style="position:relative; left: 100px;">Last Name</label><span style="position:relative; left: 100px;" class="asterisk_red">*</span><br/>
@@ -126,7 +126,7 @@
 <div id="admin_page_modify1" style="display:none;">
     <h1>Modify Employee Info</h1>
     <p id="err_msg_modify1" style="color:red"></p>
-    <form id="myadmin_page_modify1" action="admin_check.php" method="POST">
+    <form id="myadmin_page_modify1" action="admin_page.php" method="POST">
         <p>Please type in employee id that you want to modify info (numbers only)</p>
         <label for="employee_id_modify_1">Employee id</label>
         <input type="text" id="employee_id_modify_1" name="employee_id_modify_1" pattern="\d+" required/><br/><br/> <!--need validate -->
@@ -141,7 +141,7 @@
 <div id="admin_page_delete1" style="display:none;">
     <h1>Remove an employee from database</h1>
     <p id="err_msg_delete1" style="color:red"></p>
-    <form id="myadmin_page_delete1" action="admin_check.php" method="POST">
+    <form id="myadmin_page_delete1" action="admin_page.php" method="POST">
         <p>Please type in employee id that you want to remove (numbers only)</p>
         <label for="employee_id_delete_1">Employee id</label>
         <input type="text" id="employee_id_delete_1" name="employee_id_delete_1" pattern="\d+" required/><br/><br/> <!--need validate -->

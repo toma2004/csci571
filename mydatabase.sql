@@ -47,7 +47,58 @@ INSERT INTO `Employees` (`userid`,`e_first_name`,`e_last_name`,`e_street_addr`,`
 INSERT INTO `Employees` (`userid`,`e_first_name`,`e_last_name`,`e_street_addr`,`e_city`,`e_state`,`e_country`,`e_marriage_status`,`e_gender`,`e_dob`,`e_phone`,`e_salary`,`e_email`) 
 			VALUES ('1','Chris','Tran','323 WA','san jose','CA','US','single','male','1991-04-15','99999999','70000','ct@nelshop.com');
 
+	
+CREATE TABLE IF NOT EXISTS `Products` (
+	`product_id` INT(10) UNSIGNED AUTO_INCREMENT,
+	`product_name` VARCHAR(100) NOT NULL,
+	`product_price` DECIMAL(10,2) NOT NULL,
+	`product_description` VARCHAR(1000) NOT NULL,
+	`ingredients` VARCHAR(500) NOT NULL,
+	`recipe` VARCHAR(10000) NOT NULL,
+	PRIMARY KEY (`product_id`)
+);
+
+INSERT INTO `Products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
+			VALUES ('chicken gizzard','8.5','chicken gizzard roasted','chicken gizzard,pepper','will be added');
+
+INSERT INTO `Products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
+			VALUES ('spaghetti','10.5','Italian spaghetti','spaghetti squash,lean ground pork,cheese,pepper','will be added');
+
+			
+CREATE TABLE IF NOT EXISTS `Product_categories` (
+	`category_id` INT(10) UNSIGNED AUTO_INCREMENT,
+	`category_name` VARCHAR(100) NOT NULL,
+	`category_description` VARCHAR(1000) NOT NULL,
+	PRIMARY KEY (`category_id`)
+);
+
+INSERT INTO `Product_categories` (`category_name`,`category_description`) VALUES ('SouthEast Asia','Vietnam, Thailand,...');
+INSERT INTO `Product_categories` (`category_name`,`category_description`) VALUES ('Europe','Italy, England, Germany');
+INSERT INTO `Product_categories` (`category_name`,`category_description`) VALUES ('America','United States, Canada,...');
+
+CREATE TABLE IF NOT EXISTS `Product_and_Category` (
+	`product_id` INT(10) UNSIGNED NOT NULL,
+	`category_id` INT(10) UNSIGNED NOT NULL,
+	PRIMARY KEY (`product_id`,`category_id`),
+	FOREIGN KEY (`product_id`) REFERENCES Products(`product_id`),
+	FOREIGN KEY (`category_id`) REFERENCES Product_categories(`category_id`)
+);
 
 
+CREATE TABLE IF NOT EXISTS `Special_Sales` (
+	`special_sale_id` INT(10) UNSIGNED AUTO_INCREMENT,
+	`product_id` INT(10) UNSIGNED NOT NULL,
+	`start_date` DATE NOT NULL,
+	`end_date` DATE NOT NULL,
+	`percentage_discount` DECIMAL(4,2) NOT NULL,
+	PRIMARY KEY (`special_sale_id`),
+	FOREIGN KEY (`product_id`) REFERENCES Products(`product_id`)
+);
+
+INSERT INTO `Special_Sales` (`product_id`,`start_date`,`end_date`,`percentage_discount`)
+			VALUES ('1','2015-06-10','2015-06-17','5');
+
+INSERT INTO `Special_Sales` (`product_id`,`start_date`,`end_date`,`percentage_discount`)
+			VALUES ('2','2015-01-11','2015-02-20','10');
 
 

@@ -20,64 +20,63 @@ else
 {
     #session is not yet timeout. Reset time to give users another 30 mins
     $_SESSION['last_activity'] = time();
-}
 
-#Get user type from SESSION array
-$check_types = explode(',', $_SESSION["usertype"]);
+    #Get user type from SESSION array
+    $check_types = explode(',', $_SESSION["usertype"]);
 
-#Check if user log in correctly
-if(!(isset($_SESSION['username'])) || !(isset($_SESSION['password'])) || !(isset($_SESSION['usertype'])))
-{
-    require "prelogin.html";
-    require 'postlogin.html';
-}
-#Check if user is an admin
-elseif (!in_array("admin", $check_types ))
-{
-    require "prelogin.html";
-    require 'postlogin.html';
-}
-#Add new role
-elseif (isset($_POST["user_id_role"]))
-{
-    addNewRole();
-}
-#Add new employee
-elseif (isset($_POST["usr"]))
-{
-    addNewEmployee();
-}
-#Display employee info given employee id
-elseif (isset($_POST["employee_id_modify_1"]))
-{
-    display_info_for_modify();
-}
-#Change employee info based on admin's change
-elseif (isset($_POST["mysubmit_modified_form"]))
-{
-    if($_POST["modified_fname"] != '' || $_POST["modified_lname"] != '' || $_POST["modified_myaddr"] != '' || $_POST["modified_mycity"] != '' || $_POST["modified_mystate"] != '' || $_POST["modified_mycountry"] != '' || $_POST["modified_mydob"] != '' || $_POST["modified_mysalary"] != '' || isset($_POST["admin_modified_radio1"]) || isset($_POST["admin_modified_radio2"]) || $_POST["modified_myphone"] != '' || $_POST["modified_myemail"] != '' || $_POST["modified_myusername"] != '' || $_POST["modified_mypwd"] != '' || isset($_POST["admin_modified_cb1"]))
+    #Check if user log in correctly
+    if(!(isset($_SESSION['username'])) || !(isset($_SESSION['password'])) || !(isset($_SESSION['usertype'])))
     {
-        modify_employee_info();
+        require "prelogin.html";
+        require 'postlogin.html';
     }
+    #Check if user is an admin
+    elseif (!in_array("admin", $check_types ))
+    {
+        require "prelogin.html";
+        require 'postlogin.html';
+    }
+    #Add new role
+    elseif (isset($_POST["user_id_role"]))
+    {
+        addNewRole();
+    }
+    #Add new employee
+    elseif (isset($_POST["usr"]))
+    {
+        addNewEmployee();
+    }
+    #Display employee info given employee id
+    elseif (isset($_POST["employee_id_modify_1"]))
+    {
+        display_info_for_modify();
+    }
+    #Change employee info based on admin's change
+    elseif (isset($_POST["mysubmit_modified_form"]))
+    {
+        if($_POST["modified_fname"] != '' || $_POST["modified_lname"] != '' || $_POST["modified_myaddr"] != '' || $_POST["modified_mycity"] != '' || $_POST["modified_mystate"] != '' || $_POST["modified_mycountry"] != '' || $_POST["modified_mydob"] != '' || $_POST["modified_mysalary"] != '' || isset($_POST["admin_modified_radio1"]) || isset($_POST["admin_modified_radio2"]) || $_POST["modified_myphone"] != '' || $_POST["modified_myemail"] != '' || $_POST["modified_myusername"] != '' || $_POST["modified_mypwd"] != '' || isset($_POST["admin_modified_cb1"]))
+        {
+            modify_employee_info();
+        }
+        else
+        {
+            require "pre_admin_page.html";
+            echo '<p style="color:blue">No employee info has been changed since you did not select anything'.'</p>';
+            require "post_admin_page.html";
+        }
+    }
+    #Delete an employee from database
+    elseif (isset($_POST["employee_id_delete_1"]))
+    {
+        delete_employee();
+    }
+    #For any thing else, back to Home admin page
     else
     {
         require "pre_admin_page.html";
-        echo '<p style="color:blue">No employee info has been changed since you did not select anything'.'</p>';
         require "post_admin_page.html";
     }
 }
-#Delete an employee from database
-elseif (isset($_POST["employee_id_delete_1"]))
-{
-    delete_employee();
-}
-#For any thing else, back to Home admin page
-else
-{
-    require "pre_admin_page.html";
-    require "post_admin_page.html";
-}
-
 
 /*Function to connect to DB*/
 function connectDB()
@@ -331,7 +330,7 @@ function display_info_for_modify()
 
             <span style="font-weight: bold">Current Value</span>
             <span style="font-weight: bold; position:relative; left: 200px">Change to value</span><br/><br/>
-            <form id="modified_employee_info" action="admin_check.php" method="POST">
+            <form id="modified_employee_info" action="admin_page.php" method="POST">
                 <!--hidden input to send server the employee id that needs to be modified -->
                 <input type="hidden" name="hidden_employee_id" value="<?php echo $employee_id; ?>"/>
 

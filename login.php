@@ -70,13 +70,46 @@ else
     #store session info
     $_SESSION['username'] = $un;
     $_SESSION['password'] = $pwd;
-    $_SESSION['usertype'] = $usertype;
     $_SESSION['last_activity'] = time();
     $_SESSION['timeout'] = 0;
 
-    if($usertype == "admin")
+    $_SESSION['usertype'] = $usertype;
+    #check to see how many user type this employee has
+    $check_types = explode(',', $_SESSION["usertype"]);
+    $mycount = count($check_types);
+
+    if($mycount == 1)
     {
-        require "admin_check.php";
+        if($usertype == "admin")
+        {
+            require "admin_page.php";
+        }
+    }
+    elseif ($mycount == 2 || $mycount == 3)
+    {
+        echo '<h1>Please select which user type you want to proceed:</h1>';
+        echo '<form id="redirect_login_page" action="redirect_login_page.php" method="POST">';
+        foreach ($check_types as $mytype)
+        {
+            if ($mytype == "admin")
+            {
+                echo '<button type="submit" name="admin_clicked" value="admin">Admin</button><br/><br/>';
+            }
+            elseif ($mytype == "employee")
+            {
+                echo '<button type="submit" name="employee_clicked" value="employee">Employee</button><br/><br/>';
+            }
+            elseif ($mytype == "manager")
+            {
+                echo '<button type="manager" name="manager_clicked" value="manager">Manager</button><br/><br/>';
+            }
+        }
+        echo '</form>';
+
+    }
+    else
+    {
+        #error
     }
 }
 
