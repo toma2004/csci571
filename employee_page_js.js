@@ -87,7 +87,7 @@ function validate_dob( mydob )
 
 
     /*Check if user has entered valid values for date, month, year*/
-    if ((user_bd_yy < 1900) || (user_bd_mm < 1 || user_bd_mm > 12) || (user_bd_dd < 1 || user_bd_dd > 31) )
+    if ((user_bd_yy < 1900 || (today.getYear()-user_bd_yy > 0) ) || (user_bd_mm < 1 || user_bd_mm > 12) || (user_bd_dd < 1 || user_bd_dd > 31) )
     {
         return false;
     }
@@ -113,6 +113,58 @@ function validate_dob( mydob )
     return true;
 }
 
+/*Function to check if start date is before end date*/
+function check_date_before (date1,date2)
+{
+    /*Check if user has enter a value for either of the date*/
+    if (date1.value == '' || date2.value == '')
+    {
+        return false;
+    }
+    var today = new Date();
+
+    var date1_arr = (date1.value.replace(/(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/, "$2/$3/$1")).split('/');
+    var date2_arr = (date2.value.replace(/(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/, "$2/$3/$1")).split('/');
+
+    var date1_yy = parseInt(date1_arr[2]);
+    var date1_mm = parseInt(date1_arr[0]);
+    var date1_dd = parseInt(date1_arr[1]);
+
+    var date2_yy = parseInt(date2_arr[2]);
+    var date2_mm = parseInt(date2_arr[0]);
+    var date2_dd = parseInt(date2_arr[1]);
+
+    /*Check if user has entered valid values for date, month, year*/
+    if ((date1_yy < 1900 || (today.getYear() - date1_yy > 5)) || (date1_mm < 1 || date1_mm > 12) || (date1_dd < 1 || date1_dd > 31) )
+    {
+        return false;
+    }
+
+    /*Check if start date is before end date*/
+    if (date1_yy - date2_yy > 0) /*start date year is more than end date year*/
+    {
+        return false;
+    }
+    else
+    {
+        if(date1_mm - date2_mm > 0) /*start date month is more than end date month*/
+        {
+            return false;
+        }
+        else
+        {
+            if (date1_dd - date2_dd > 0) /*start date is more than end date*/
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
+}
+
 /*Switch between forms and reports*/
 function employee_transform( wherefrom, whereto )
 {
@@ -120,13 +172,13 @@ function employee_transform( wherefrom, whereto )
     var d2 = document.getElementById('employee_page_add1');
     var d3 = document.getElementById('employee_page_add2_productCategory');
     var d4 = document.getElementById('employee_page_add2_products');
+    var d5 = document.getElementById('employee_page_add3_specialsales');
 
 
 
-    var d5 = document.getElementById('admin_page_modify1');
     var d6 = document.getElementById('admin_page_delete1');
 
-    if ((wherefrom == "employee_page_form1" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_add1"))
+    if ((wherefrom == "employee_page_form1" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_add1"))
     {
         d1.style.display = "none";
         d3.style.display = "none";
@@ -145,7 +197,7 @@ function employee_transform( wherefrom, whereto )
         d6.style.display = "none";
         d3.style.display = "block";
     }
-    else if((wherefrom == "admin_page_add1" && whereto == "employee_page_add2_products"))
+    else if((wherefrom == "employee_page_add1" && whereto == "employee_page_add2_products"))
     {
         d2.style.display = "none";
         d3.style.display = "none";
@@ -154,7 +206,7 @@ function employee_transform( wherefrom, whereto )
         d6.style.display = "none";
         d4.style.display = "block";
     }
-    else if(wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_form1" || (wherefrom == "employee_page_add1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_form1") || (wherefrom == "admin_page_modify1" && whereto == "admin_page_form1") || (wherefrom == "admin_page_delete1" && whereto == "admin_page_form1"))
+    else if(wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_form1" || (wherefrom == "employee_page_add1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_form1") || (wherefrom == "admin_page_delete1" && whereto == "admin_page_form1"))
     {
         d2.style.display = "none";
         d3.style.display = "none";
@@ -163,7 +215,7 @@ function employee_transform( wherefrom, whereto )
         d6.style.display = "none";
         d1.style.display = "block";
     }
-    else if(wherefrom == "employee_page_form1" && whereto == "admin_page_modify1")
+    else if(wherefrom == "employee_page_add1" && whereto == "employee_page_add3_specialsales")
     {
         d2.style.display = "none";
         d3.style.display = "none";
@@ -195,7 +247,7 @@ function validate_add1_transform()
         var value_checked = value_radio(radio_element);
         if (value_checked == "newproduct")
         {
-            employee_transform('admin_page_add1','employee_page_add2_products');
+            employee_transform('employee_page_add1','employee_page_add2_products');
         }
         else if(value_checked == "newcategory")
         {
@@ -203,7 +255,7 @@ function validate_add1_transform()
         }
         else if(value_checked == "newspecialsales")
         {
-            //admin_transform('admin_page_add1','admin_page_add2_employee');
+            employee_transform('employee_page_add1','employee_page_add3_specialsales');
         }
     }
     else
@@ -515,4 +567,40 @@ function clearText(page,text_num)
             }
         }
     }
+}
+
+/*Function to validate form data for special sales*/
+function validate_add_special_sales_page()
+{
+    var product_id = document.getElementById('product_specialsales_id');
+
+    var start_date = document.getElementById('mystart_date_id');
+
+    var end_date = document.getElementById('myend_date_id');
+
+    var percentage_discount = document.getElementById('percentage_discount_id');
+
+    var myerror = document.getElementById('err_msg_add_specialsales');
+    myerror.innerHTML = "";
+    var isTrue = true;
+
+    /*validate dates*/
+    if (!check_date_before(start_date,end_date)) /*start date is after end date*/
+    {
+        myerror.innerHTML += "Start date can't be after end date. Please change start date to a different value" + "<br/>";
+        isTrue = false;
+    }
+
+    if(product_id.checkValidity() == false)
+    {
+        myerror.innerHTML += "Please enter only integer number for product id" + "<br/>";
+        isTrue = false;
+    }
+
+    if(percentage_discount.checkValidity() == false)
+    {
+        myerror.innerHTML += "Please enter a correct format for percentage discount (no % sign at the end and only 2 digits after decimal point. Also the percentage needs to be in range between 0-100 inclusive)" + "<br/>";
+        isTrue = false;
+    }
+    return isTrue;
 }

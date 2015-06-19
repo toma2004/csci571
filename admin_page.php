@@ -176,6 +176,16 @@ function addNewEmployee()
     $mycountry = validate_data($_POST['country']);
 
     $mydob = validate_data($_POST['dob']);
+    /*validate date*/
+    $dob_arr = explode('-',$mydob);
+    if (!checkdate($dob_arr[1],$dob_arr[2],$dob_arr[0]))
+    {
+        #Wrong date
+        require "pre_admin_page.html";
+        echo '<p style="color:red">ERROR: The date of birth format is not correct'.'</p>';
+        require "post_admin_page.html";
+        return;
+    }
 
     $mysalary = validate_data($_POST['salary']);
 

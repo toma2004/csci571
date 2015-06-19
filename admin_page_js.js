@@ -87,7 +87,7 @@ function validate_dob( mydob )
 
 
     /*Check if user has entered valid values for date, month, year*/
-    if ((user_bd_yy < 1900) || (user_bd_mm < 1 || user_bd_mm > 12) || (user_bd_dd < 1 || user_bd_dd > 31) )
+    if ((user_bd_yy < 1900 || (today.getYear()-user_bd_yy > 0) ) || (user_bd_mm < 1 || user_bd_mm > 12) || (user_bd_dd < 1 || user_bd_dd > 31) )
     {
         return false;
     }

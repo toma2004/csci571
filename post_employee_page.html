@@ -84,6 +84,37 @@
 
 </div>
 
+<!-- Add new special sales -->
+<div id="employee_page_add3_specialsales" style="display:none;">
+    <h1>Add new special sale</h1>
+    <p id="err_msg_add_specialsales" style="color: red"></p>
+
+    <form id="employee_page_add_specialsales" action="employee_page.php" method="POST">
+        <!-- Product id-->
+        <label for="product_specialsales_id">Product id for special sale event</label>
+        <input type="text" id="product_specialsales_id" name="product_specialsales" pattern="\d+" required/> <br/><br/>
+
+        <!-- start and end dates -->
+        <label for="mystart_date_id">Start Date</label><br>
+        <input type="date" id="mystart_date_id" name="mystart_date" required/><br><br>
+
+        <label for="myend_date_id">End Date</label><br>
+        <input type="date" id="myend_date_id" name="myend_date" required/><br><br>
+
+
+        <!-- Percentage discount -->
+        <label for="percentage_discount_id">Percentage discount of original price</label>
+        <input type="number" id="percentage_discount_id" name="percentage_discount" pattern="(^\d*(?:\.\d{0,2})?$)" step="0.01" min="0" max="100" required/><br/><br/> <!--need validate -->
+
+
+        <button type="button" onclick="employee_transform('employee_page_add3_specialsales','employee_page_add1')">Back</button>
+        <button type="button" onclick="employee_transform('employee_page_add3_specialsales','employee_page_form1')">Home</button>
+        <button type="submit" onclick="return validate_add_special_sales_page()">Submit</button>
+
+    </form>
+
+</div>
+
 <div id="admin_page_modify1" style="display:none;">
     <h1>Modify Employee Info</h1>
     <p id="err_msg_modify1" style="color:red"></p>
