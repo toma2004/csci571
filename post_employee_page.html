@@ -1,0 +1,118 @@
+<p>Please select action you want to perform below:</p>
+
+<form id="myemployee_page_form1" action="logout.php">
+    <button type="button" onclick="employee_transform('employee_page_form1','employee_page_add1')">Add</button>
+    <button type="button" onclick="employee_transform('employee_page_form1','employee_page_modify1')">Modify</button>
+    <button type="button" onclick="employee_transform('employee_page_form1','employee_page_delete1')">Delete</button>
+    <button type="submit">Logout</button>
+</form>
+</div>
+
+<!-- Add new employee or new role to an existing employee page -->
+<div id="employee_page_add1" style="display:none;">
+    <h1>Please select what do you want to add:</h1>
+    <p id="err_msg" style="color: red"></p>
+    <form id="myemployee_page_add1">
+        <input type="radio" id="add1_id1" name="add1_radio1" value="newproduct"/>New Product<br/>
+        <input type="radio" id="add1_id2" name="add1_radio1" value="newcategory"/>New Category<br/>
+        <input type="radio" id="add1_id3" name="add1_radio1" value="newspecialsales"/>New Special Sales<br/><br/>
+
+        <button type="button" onclick="employee_transform('employee_page_add1','employee_page_form1')">Back</button>
+        <button type="button" onclick="validate_add1_transform()">Continue</button>
+    </form>
+</div>
+
+<!-- New Product Category add page -->
+<div id="employee_page_add2_productCategory" style="display:none;">
+    <h1>Add new product category</h1>
+    <p id="err_msg_add_productCategory" style="color:red"></p>
+
+    <form id="employee_page_add_productCategory" action="employee_page.php" method="POST">
+
+        <p>Please provide category name:</p>
+        <label for="category_name_id">Category name</label>
+        <input type="text" id="category_name_id" name="category_name" pattern="([a-zA-Z0-9]+)\s*([a-zA-Z0-9])*" maxlength="255" required/><br/> <!--need validate -->
+
+        <p>Please type in category description below:</p>
+        <textarea name="category_description" id="category_description_id" rows="50" cols="100" onfocus="clearText('product_category_page','text1')">Describe category here</textarea><br/><br/>
+
+        <button type="button" onclick="employee_transform('employee_page_add2_productCategory','employee_page_add1')">Back</button>
+        <button type="button" onclick="employee_transform('employee_page_add2_productCategory','employee_page_form1')">Home</button>
+        <button type="submit" onclick="return validate_add_productCategory_page()">Submit</button>
+
+    </form>
+
+</div>
+
+<!-- Add new product -->
+<div id="employee_page_add2_products" style="display:none;">
+    <h1>Add new product</h1>
+    <p id="err_msg_add_product" style="color: red"></p>
+
+    <form id="employee_page_add_product" action="employee_page.php" method="POST">
+        <!-- Product name & Price-->
+        <label for="product_name_id">Product name</label>
+        <input type="text" id="product_name_id" name="product_name" pattern="([a-zA-Z0-9]+)\s*([a-zA-Z0-9])*" maxlength="255" required/>
+
+        <label for="product_price_id" style="position:relative; left: 80px;">Product price (in dollars)</label>
+        <input type="number" id="product_price_id" name="product_price" pattern="(^\d*(?:\.\d{0,2})?$)" step="0.01" min="0" max="9999" required style="position:relative; left: 80px;"/><br/> <!--need validate -->
+
+        <!-- product category id that the product belongs to-->
+        <p>Please type in the category id that this product belongs to (To add a new product, it needs to be in an existing category)</p>
+        <label for="product_category_add_id">Category id</label>
+        <input type="text" id="product_category_add_id" name="product_category_add" pattern="\d+" required/><br/><br/> <!--need validate -->
+
+
+        <!-- PRODUCT DESCRIPTION -->
+        <label for="product_description_id" style="display:block">Product description:</label>
+        <textarea name="product_description" id="product_description_id" rows="30" cols="50" onfocus="clearText('product_page','text1')" style="display:block">Describe product here</textarea><br/><br/>
+
+        <!-- INGREDIENTS -->
+        <label for="ingredient_id" style="display:block;">Ingredients:</label>
+        <textarea name="ingredient" id="ingredient_id" rows="30" cols="50" onfocus="clearText('product_page','text2')" style="display:block">Enter ingredients info here</textarea><br/><br/>
+
+        <!-- RECIPE -->
+        <label for="recipe_id" style="display:block;">Recipe:</label>
+        <textarea name="recipe" id="recipe_id" rows="30" cols="50" onfocus="clearText('product_page','text3')" style="display:block;">Enter recipe here</textarea><br/><br/>
+
+
+        <button type="button" onclick="employee_transform('employee_page_add2_products','employee_page_add1')">Back</button>
+        <button type="button" onclick="employee_transform('employee_page_add2_products','employee_page_form1')">Home</button>
+        <button type="submit" onclick="return validate_add_product_page()">Submit</button>
+
+    </form>
+
+</div>
+
+<div id="admin_page_modify1" style="display:none;">
+    <h1>Modify Employee Info</h1>
+    <p id="err_msg_modify1" style="color:red"></p>
+    <form id="myadmin_page_modify1" action="admin_page.php" method="POST">
+        <p>Please type in employee id that you want to modify info (numbers only)</p>
+        <label for="employee_id_modify_1">Employee id</label>
+        <input type="text" id="employee_id_modify_1" name="employee_id_modify_1" pattern="\d+" required/><br/><br/> <!--need validate -->
+
+        <button type="button" onclick="admin_transform('admin_page_modify1','admin_page_form1')">Back</button>
+        <button type="submit" onclick="return validate_modify_page_1()">Submit</button>
+
+    </form>
+
+</div>
+
+<div id="admin_page_delete1" style="display:none;">
+    <h1>Remove an employee from database</h1>
+    <p id="err_msg_delete1" style="color:red"></p>
+    <form id="myadmin_page_delete1" action="admin_page.php" method="POST">
+        <p>Please type in employee id that you want to remove (numbers only)</p>
+        <label for="employee_id_delete_1">Employee id</label>
+        <input type="text" id="employee_id_delete_1" name="employee_id_delete_1" pattern="\d+" required/><br/><br/> <!--need validate -->
+
+        <button type="button" onclick="admin_transform('admin_page_delete1','admin_page_form1')">Back</button>
+        <button type="submit" onclick="return validate_delete_page_1()">Submit</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

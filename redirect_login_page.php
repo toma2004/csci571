@@ -56,7 +56,7 @@ elseif(isset($_POST["employee_clicked"]))
     }
     else
     {
-        #require "admin_page.php";
+        require "employee_page.php";
     }
 }
 elseif(isset($_POST["manager_clicked"]))

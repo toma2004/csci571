@@ -84,6 +84,10 @@ else
         {
             require "admin_page.php";
         }
+        elseif($usertype == "employee")
+        {
+            require "employee_page.php";
+        }
     }
     elseif ($mycount == 2 || $mycount == 3)
     {
