@@ -6,8 +6,18 @@
  */
 session_start();
 
-$un = $_POST['user_name']; #Need to validate input in php
-$pwd = $_POST['pass_word'];#Need to validate input in php
+$un = '';
+$pwd = '';
+if (isset($_POST['user_name']))
+{
+    $un = $_POST['user_name']; #Need to validate input in php
+}
+
+if (isset($_POST['pass_word']))
+{
+    $pwd = $_POST['pass_word'];#Need to validate input in php
+}
+
 $errmsg = '';
 
 if(strlen($un) == 0)
@@ -60,11 +70,6 @@ if(strlen($errmsg) > 0)
     echo"Invalid login";
     require 'postlogin.html';
 }
-else if(!$res)
-{
-    require "prelogin.html";
-    require 'postlogin.html';
-}
 else
 {
     #store session info
@@ -113,7 +118,10 @@ else
     }
     else
     {
-        #error
+        #error - more type than what we allow
+        require "prelogin.html";
+        echo "This user has more roles than what we allow in our company";
+        require 'postlogin.html';
     }
 }
 

@@ -87,18 +87,23 @@ CREATE TABLE IF NOT EXISTS `Product_and_Category` (
 
 CREATE TABLE IF NOT EXISTS `Special_Sales` (
 	`special_sale_id` INT(10) UNSIGNED AUTO_INCREMENT,
-	`product_id` INT(10) UNSIGNED NOT NULL,
 	`start_date` DATE NOT NULL,
 	`end_date` DATE NOT NULL,
 	`percentage_discount` DECIMAL(4,2) NOT NULL,
-	PRIMARY KEY (`special_sale_id`),
-	FOREIGN KEY (`product_id`) REFERENCES Products(`product_id`)
+	PRIMARY KEY (`special_sale_id`)
 );
 
-INSERT INTO `Special_Sales` (`product_id`,`start_date`,`end_date`,`percentage_discount`)
-			VALUES ('1','2015-06-10','2015-06-17','5');
+INSERT INTO `Special_Sales` (`start_date`,`end_date`,`percentage_discount`)
+			VALUES ('2015-06-10','2015-06-17','5');
 
-INSERT INTO `Special_Sales` (`product_id`,`start_date`,`end_date`,`percentage_discount`)
-			VALUES ('2','2015-01-11','2015-02-20','10');
+INSERT INTO `Special_Sales` (`start_date`,`end_date`,`percentage_discount`)
+			VALUES ('2015-01-11','2015-02-20','10');
+
+CREATE TABLE IF NOT EXISTS `Special_Sales_and_product` (
+	`special_sale_id` INT(10) UNSIGNED NOT NULL,
+	`product_id` INT(10) UNSIGNED NOT NULL UNIQUE,
+	PRIMARY KEY (`special_sale_id`,`product_id`),
+	FOREIGN KEY (`product_id`) REFERENCES Products(`product_id`)
+);
 
 

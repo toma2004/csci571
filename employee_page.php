@@ -10,74 +10,105 @@ if(!isset($_SESSION))
     session_start();
 }
 
-$t = time();
-if (($t - $_SESSION['last_activity']) > 1800)
+if (!isset($_SESSION['last_activity']) || !isset($_SESSION['usertype']) || !isset($_SESSION['username']) || !isset($_SESSION['password']) || !isset($_SESSION['timeout']))
 {
-    $_SESSION['timeout'] = 1;
-    require "logout.php";
+    require "prelogin.html";
+    require "postlogin.html";
 }
 else
 {
-    #session is not yet timeout. Reset time to give users another 30 mins
-    $_SESSION['last_activity'] = time();
+    $t = time();
+    if (($t - $_SESSION['last_activity']) > 1800)
+    {
+        $_SESSION['timeout'] = 1;
+        require "logout.php";
+    } else
+    {
+        #session is not yet timeout. Reset time to give users another 30 mins
+        $_SESSION['last_activity'] = time();
 
-    #Get user type from SESSION array
-    $check_types = explode(',', $_SESSION["usertype"]);
+        #Get user type from SESSION array
+        $check_types = explode(',', $_SESSION["usertype"]);
 
-    #Check if user log in correctly
-    if(!(isset($_SESSION['username'])) || !(isset($_SESSION['password'])) || !(isset($_SESSION['usertype'])))
-    {
-        require "prelogin.html";
-        require 'postlogin.html';
-    }
-    #Check if user is an employee
-    elseif (!in_array("employee", $check_types ))
-    {
-        require "prelogin.html";
-        require 'postlogin.html';
-    }
-    #Add new product category
-    elseif (isset($_POST["category_name"]))
-    {
-        add_product_category();
-    }
-    #Add new product
-    elseif (isset($_POST["product_name"]))
-    {
-        add_product();
-    }
-    #Add special sales
-    elseif (isset($_POST["product_specialsales"]))
-    {
-        add_special_sale();
-    }
-    #display product being chosen for modified
-    elseif (isset($_POST["product_modified"]))
-    {
-        display_product_info_to_modify();
-    }
-    #Modify product based on employee's changes
-    elseif (isset($_POST["mysubmit_modified2_product"]))
-    {
-        if($_POST["modified_product_name"] != '' || $_POST["modified_product_price"] != '' || $_POST["modified_product_description"] != '' || $_POST["modified_ingredients"] != '' || $_POST["modified_recipe"] != '' || isset($_POST["employee_modified2_product_cb1"]))
+        #Check if user log in correctly
+        if (!(isset($_SESSION['username'])) || !(isset($_SESSION['password'])) || !(isset($_SESSION['usertype'])))
         {
-            modify_product_info();
+            require "prelogin.html";
+            require 'postlogin.html';
         }
+        #Check if user is an employee
+        elseif (!in_array("employee", $check_types))
+        {
+            require "prelogin.html";
+            require 'postlogin.html';
+        }
+        #Add new product category
+        elseif (isset($_POST["category_name"]))
+        {
+            add_product_category();
+        }
+        #Add new product
+        elseif (isset($_POST["product_name"]))
+        {
+            add_product();
+        }
+        #Add special sales
+        elseif (isset($_POST["product_specialsales"]))
+        {
+            add_special_sale();
+        }
+        #display product being chosen for modified
+        elseif (isset($_POST["product_modified"]))
+        {
+            display_product_info_to_modify();
+        }
+        #Modify product based on employee's changes
+        elseif (isset($_POST["mysubmit_modified2_product"]))
+        {
+            if ($_POST["modified_product_name"] != '' || $_POST["modified_product_price"] != '' || $_POST["modified_product_description"] != '' || $_POST["modified_ingredients"] != '' || $_POST["modified_recipe"] != '' || isset($_POST["employee_modified2_product_cb1"]) || isset($_POST["employee_modified2_product_radio1"]))
+            {
+                modify_product_info();
+            }
+            else
+            {
+                require "pre_employee_page.html";
+                echo '<p style="color:blue">No product info has been changed since you did not select anything' . '</p>';
+                require "post_employee_page.html";
+            }
+        }
+        #display category being chosen for modified
+        elseif (isset($_POST["category_modified"]))
+        {
+            display_category_info_to_modify();
+        }
+        #modify category based on employee's changes
+        elseif (isset($_POST["mysubmit_modify3_category"]))
+        {
+            if ($_POST["modified_category_name"] != '' || $_POST["modified_category_description"] != '')
+            {
+                modify_category_info();
+            }
+            else
+            {
+                require "pre_employee_page.html";
+                echo '<p style="color:blue">No category info has been changed since you did not select anything' . '</p>';
+                require "post_employee_page.html";
+            }
+
+        }
+        #display special sale being chosen for modified
+        elseif (isset($_POST["specialsale_modified"]))
+        {
+            display_special_sale_info_to_modify();
+        }
+        #For any thing else, back to Home employee page
         else
         {
             require "pre_employee_page.html";
-            echo '<p style="color:blue">No product info has been changed since you did not select anything'.'</p>';
             require "post_employee_page.html";
         }
     }
-    #For any thing else, back to Home employee page
-    else
-    {
-        require "pre_employee_page.html";
-        require "post_employee_page.html";
-    }
 }
-
 /*Function to connect to DB*/
 function connectDB()
 {
@@ -303,13 +334,39 @@ function add_special_sale()
         disconnectDB($conn);
         return;
     }
-    $sql = "insert into special_sales (product_id,start_date,end_date,percentage_discount) values ('".$product_id."','".$start_date."','".$end_date."','".$percentage_discount."')";
+    $sql = "insert into special_sales (start_date,end_date,percentage_discount) values ('".$start_date."','".$end_date."','".$percentage_discount."')";
     $res = mysql_query($sql);
     if (!$res)
     {
         #Failed to insert
         require "pre_employee_page.html";
         echo '<p style="color:red">ERROR: failed to insert data to special sale database'.'</p>';
+        require "post_employee_page.html";
+        disconnectDB($conn);
+        return;
+    }
+    #Everything good, continue
+    #Get the newest special sale id
+    $sql = "select special_sale_id from special_sales order by special_sale_id DESC limit 1";
+    $res = mysql_query($sql);
+    if (!($row = mysql_fetch_assoc($res)))
+    {
+        #Failed to insert
+        require "pre_employee_page.html";
+        echo '<p style="color:red">ERROR: failed to insert data to special sale database'.'</p>';
+        require "post_employee_page.html";
+        disconnectDB($conn);
+        return;
+    }
+    $special_sale_id = $row["special_sale_id"];
+    #Try to associate this special sale id with product id. Could fail if product id is already associated with another special sale
+    $sql = "insert into special_sales_and_product values ('".$special_sale_id."','".$product_id."')";
+    $res = mysql_query($sql);
+    if(!$res)
+    {
+        #Error inserting or product id is already associated with another special sale
+        require "pre_employee_page.html";
+        echo '<p style="color:red">Special sale is added to our database, BUT the product id '.$product_id.' can NOT be associated with this special sale since it is already associated with another special sale event. You can always modify the association of product and special sale event by going to Modify option'.'</p>';
         require "post_employee_page.html";
     }
     else
@@ -459,6 +516,49 @@ function display_product_info_to_modify()
                 return;
             }
 
+            #Retrieve special sale event
+            $sql = "select * from special_sales_and_product where product_id ='".$product_id."'";
+            $res = mysql_query($sql);
+
+            $counter = 0; //This is used to check if mysql_fetch_assoc return false
+            $special_sale_id = '';
+            #Store returned category id into an array in case this product belongs to more than 1 category
+            while ($row = mysql_fetch_assoc($res))
+            {
+                $counter += 1;
+                $special_sale_id = $row["special_sale_id"];
+            }
+            if ($counter == 0)
+            {
+                $special_sale_id = 'No special sale id is associated with this product';
+            }
+
+            #Special sale that this product belongs to
+            echo '<p class=formfield>';
+            echo 'Product belongs to the'.'<br/>'.'following special sale id: ';
+            echo '<textarea rows="5" cols="20" readonly style="position:relative; left: 3%">'.$special_sale_id.'</textarea>';
+
+            #Print out radio buttons of all available special sale in database
+            $sql = "select * from special_sales";
+            $res = mysql_query($sql);
+
+            $radio_id = "employee_modified2_product_radio_id";
+            $myindex = 1;
+            $initial_px = 50;
+            $second_initial_px = 51;
+            while($row = mysql_fetch_assoc($res))
+            {
+                $rd_id = $radio_id.$myindex;
+                echo '<input type="radio" id='.$rd_id.' name="employee_modified2_product_radio1" value='.$row["special_sale_id"].' style="position:absolute; left:'.$initial_px.'%"/><span style="position:absolute; left:'.$second_initial_px.'%">'.$row["special_sale_id"].'</span>';
+                $initial_px += 5;
+                $second_initial_px += 5;
+                $myindex += 1;
+            }
+            if ($myindex == 1)
+            {
+                echo '<span style="position:absolute; left: 50%">There is no available special sale in our database</span>';
+            }
+            echo '</p><br/><br/>';
 
             echo '<button type="submit" value="go_homepage_employee">Home</button>';
             echo '<button type="submit" onclick="return validate_modify2_product()" name="mysubmit_modified2_product" value="mysubmit_modified2_product" style="position:relative; left:15px;">Submit</button>';
@@ -581,7 +681,7 @@ function modify_product_info()
             if(!check_subset($_POST['employee_modified2_product_cb1'],$category_id_arr))
             {
                 require "pre_employee_page.html";
-                echo '<p style="color:red">ERROR: modifying product info1'.'</p>';
+                echo '<p style="color:red">ERROR: modifying product info'.'</p>';
                 require "post_employee_page.html";
                 disconnectDB($conn);
                 return;
@@ -592,7 +692,7 @@ function modify_product_info()
             if(!$res)
             {
                 require "pre_employee_page.html";
-                echo '<p style="color:red">ERROR: modifying product info2'.'</p>';
+                echo '<p style="color:red">ERROR: modifying product info'.'</p>';
                 require "post_employee_page.html";
                 disconnectDB($conn);
                 return;
@@ -606,10 +706,63 @@ function modify_product_info()
                 if(!$res)
                 {
                     require "pre_employee_page.html";
-                    echo '<p style="color:red">ERROR: modifying product info3'.'</p>';
+                    echo '<p style="color:red">ERROR: modifying product info'.'</p>';
                     require "post_employee_page.html";
                     disconnectDB($conn);
                     return;
+                }
+            }
+        }
+        /*Change special sale event*/
+        if (isset($_POST["employee_modified2_product_radio1"]))
+        {
+            #Check to see if the special sale employee wants to change it actually exists in our database
+            $sql = "select special_sale_id from special_sales";
+            $res = mysql_query($sql);
+            $counter = 0;
+            $isExisted = false;
+            while ($row = mysql_fetch_assoc($res))
+            {
+                if($_POST["employee_modified2_product_radio1"] == $row["special_sale_id"])
+                {
+                    $isExisted = true;
+                }
+                $counter += 1;
+            }
+            if ($counter == 0 || $isExisted == false)
+            {
+                $errmsg .= "Failed to modify special sale for product id ".$product_id."\r\n";
+            }
+            else
+            {
+                #all good, continue
+                #If this product is already associated with a special sale event, do an update
+                #else do a new insert
+                $sql = "select special_sale_id from special_sales_and_product where product_id = '".$product_id."'";
+                $res = mysql_query($sql);
+                if (! ($row = mysql_fetch_assoc($res)))
+                {
+                    #do an insert
+                    $sql = "insert into special_sales_and_product values ('".$_POST["employee_modified2_product_radio1"]."','".$product_id."')";
+                    $res = mysql_query($sql);
+                    if (!$res)
+                    {
+                        $errmsg .= "Failed to modify special sale for product id ".$product_id."\r\n";
+                    }
+                }
+                else
+                {
+                    #do an update only if 2 special sale events are different
+                    if($_POST["employee_modified2_product_radio1"] != $row["special_sale_id"])
+                    {
+                        $sql = "update special_sales_and_product set special_sale_id = '".$_POST["employee_modified2_product_radio1"]."' where product_id = '".$product_id."'";
+                        $res = mysql_query($sql);
+                        if (!$res)
+                        {
+                            $errmsg .= "Failed to modify special sale for product id ".$product_id."\r\n";
+                        }
+                    }
+
                 }
             }
         }
@@ -618,15 +771,15 @@ function modify_product_info()
         if ($errmsg == '')
         {
             #No Error, woohoo!
-            require "pre_admin_page.html";
+            require "pre_employee_page.html";
             echo '<p style="color:blue">Successfully modified info for product id '.$product_id.'</p>';
-            require "post_admin_page.html";
+            require "post_employee_page.html";
         }
         else
         {
-            require "pre_admin_page.html";
+            require "pre_employee_page.html";
             echo '<p style="color:red">'.$errmsg.'</p>';
-            require "post_admin_page.html";
+            require "post_employee_page.html";
         }
     }
 }
@@ -637,27 +790,27 @@ function check_subset($arr,$sorted_larger_arr)
     $total_element = count($sorted_larger_arr);
     foreach ($arr as $arr_val)
     {
-        if(!binarySearch($sorted_larger_arr,0,$total_element-1,$arr_val))
+        $temp = binarySearch($sorted_larger_arr,0,$total_element-1,$arr_val);
+        if ($temp == false)
         {
             return false;
-            break;
         }
     }
+    return true;
 }
 /*binary search*/
 function binarySearch($arr,$first,$last,$val)
 {
-    if ($first >= $last)
+    if ($first > $last)
     {
-        return 0;
+        return false;
     }
     $mid = floor(($first+$last)/2);
-    echo $arr[$mid];
-    if ($arr[$mid] == $val)
+    if ($arr[(int)$mid] == $val)
     {
-        return 1;
+        return true;
     }
-    elseif ($arr[$mid] > $val)
+    elseif ($arr[(int)$mid] > $val)
     {
         return binarySearch($arr,$first,$mid-1,$val);
     }
@@ -666,4 +819,286 @@ function binarySearch($arr,$first,$last,$val)
         return binarySearch($arr,$mid+1,$last,$val);
     }
 }
+
+/*Function to display category info to be modified*/
+function display_category_info_to_modify()
+{
+    #Validate the input once again
+    $category_id = validate_data($_POST['category_modified']);
+    $validate_category_id = filter_input(INPUT_POST,"category_modified",FILTER_VALIDATE_INT);
+    if ($category_id == '' || $validate_category_id == NULL || $validate_category_id == false)
+    {
+        #Input error
+        require "pre_employee_page.html";
+        echo '<p style="color:red">ERROR: category id is not valid'.'</p>';
+        require "post_employee_page.html";
+    }
+    else
+    {
+        $conn = connectDB();
+        #Check if we have this category id in our database
+        $sql = "select * from product_categories where category_id = '".$category_id."'";
+        $res = mysql_query($sql);
+        if (!($row = mysql_fetch_assoc($res)))
+        {
+            require "pre_employee_page.html";
+            echo '<p style="color:red">ERROR: Could not find category id '.$category_id.' in our database.'.'</p>';
+            require "post_employee_page.html";
+            disconnectDB($conn);
+            return;
+        }
+        #continue if we have product id
+        ?>
+
+             <!-- End php and display html -->
+        <!DOCTYPE html>
+        <html>
+        <head lang="en">
+            <meta charset="UTF-8"/>
+            <meta name="author" content="Nguyen Tran"/>
+
+           <link rel="stylesheet" type="text/css" href="employee_page_style.css"/> <!-- link to external css file
+            <!--<link rel="shortcut icon" type="image/jpg" href="flower_crown1.jpg"></link> -->
+            <script src="employee_page_js.js"></script>
+            <title>Product info</title>
+        </head>
+        <body>
+        <div id="employee_page_modify3_category">
+            <h1><?php echo 'Catergory '.$row["category_name"].' info (category id '.$category_id.')';
+        ?></h1>
+
+            <p id="employee_page_modify3_category_errmsg" style="color:red"></p>
+
+            <span style="font-weight: bold;position:absolute; left: 13%">Current Value</span>
+            <span style="font-weight: bold; position:absolute; left: 50%">Change to value</span><br/><br/>
+
+            <form id="modified_category_info" action="employee_page.php" method="POST">
+                <!--hidden input to send server the product id that needs to be modified -->
+                <input type="hidden" name="hidden_category_id" value="<?php echo $category_id; ?>"/>
+
+            <?php
+        #Category name
+        echo 'Category name: ';
+        echo '<span style="position:absolute; left: 13%">'.$row["category_name"].'</span>';
+        echo '<input type="text" id="modified_category_name" name="modified_category_name" pattern="([a-zA-Z0-9]+)\s*([a-zA-Z0-9])*" maxlength="255" style="position:absolute; left: 50%"/><br/><br/>';
+
+        #Category description
+        echo '<p class=formfield>';
+        echo 'Category description: ';
+        echo '<textarea rows="30" cols="50" readonly style="position:relative; left: 5%">'.$row["category_description"].'</textarea>';
+        echo '<textarea id="modified_category_description" name="modified_category_description" rows="30" cols="50" style="position:absolute; left: 50%"></textarea></p><br/>';
+
+
+        echo '<button type="submit" value="go_homepage_employee">Home</button>';
+        echo '<button type="submit" onclick="return validate_modify3_category()" name="mysubmit_modify3_category" value="mysubmit_modify3_category" style="position:relative; left:15px;">Submit</button>';
+
+        ?>
+            </form>
+        </div>
+        </body>
+        </html>
+
+        <?php
+        disconnectDB($conn);
+    }
+}
+
+/*Function to modify category info*/
+function modify_category_info()
+{
+    #Validate the input once again
+    $category_id = validate_data($_POST['hidden_category_id']);
+    $validate_category_id = filter_input(INPUT_POST,"hidden_category_id",FILTER_VALIDATE_INT);
+    if ($category_id == '' || $validate_category_id == NULL || $validate_category_id == false)
+    {
+        #Input error
+        require "pre_employee_page.html";
+        echo '<p style="color:red">ERROR: category id is not valid'.'</p>';
+        require "post_employee_page.html";
+    }
+    else
+    {
+        /*Connect to our db*/
+        $conn = connectDB();
+        $errmsg = "";
+
+        if($_POST['modified_category_name'] != '')
+        {
+            $category_name = validate_data($_POST["modified_category_name"]);
+            $sql = "update product_categories set category_name='".$category_name."' where category_id='".$category_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update category name.\r\n";
+            }
+        }
+
+        if($_POST['modified_category_description'] != '')
+        {
+            $category_description = validate_data($_POST["modified_category_description"]);
+            $sql = "update product_categories set category_description='".$category_description."' where category_id='".$category_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                #Failed to update
+                $errmsg .= "Failed to update category description.\r\n";
+            }
+        }
+
+        disconnectDB($conn);
+        #Check for error message
+        if ($errmsg == '')
+        {
+            #No Error, woohoo!
+            require "pre_employee_page.html";
+            echo '<p style="color:blue">Successfully modified info for category id '.$category_id.'</p>';
+            require "post_employee_page.html";
+        }
+        else
+        {
+            require "pre_employee_page.html";
+            echo '<p style="color:red">'.$errmsg.'</p>';
+            require "post_employee_page.html";
+        }
+    }
+}
+
+/*Function to display special sale for modification*/
+function display_special_sale_info_to_modify()
+{
+    #Validate the input once again
+    $specialsale_id = validate_data($_POST['specialsale_modified']);
+    $validate_specialsale_id = filter_input(INPUT_POST,"specialsale_modified",FILTER_VALIDATE_INT);
+    if ($specialsale_id == '' || $validate_specialsale_id == NULL || $validate_specialsale_id == false)
+    {
+        #Input error
+        require "pre_employee_page.html";
+        echo '<p style="color:red">ERROR: special sale id is not valid'.'</p>';
+        require "post_employee_page.html";
+    }
+    else
+    {
+        $conn = connectDB();
+        #Check if we have this product id in our database
+        $sql = "select * from special_sales where special_sale_id = '".$specialsale_id."'";
+        $res = mysql_query($sql);
+        if (!($row = mysql_fetch_assoc($res)))
+        {
+            require "pre_employee_page.html";
+            echo '<p style="color:red">ERROR: Could not find special sale id '.$specialsale_id.' in our database.'.'</p>';
+            require "post_employee_page.html";
+            disconnectDB($conn);
+            return;
+        }
+        #continue if we have valid special sale id
+        ?>
+
+             <!-- End php and display html -->
+        <!DOCTYPE html>
+        <html>
+        <head lang="en">
+            <meta charset="UTF-8"/>
+            <meta name="author" content="Nguyen Tran"/>
+
+           <link rel="stylesheet" type="text/css" href="employee_page_style.css"/> <!-- link to external css file
+            <!--<link rel="shortcut icon" type="image/jpg" href="flower_crown1.jpg"></link> -->
+            <script src="employee_page_js.js"></script>
+            <title>Special Sale info</title>
+        </head>
+        <body>
+        <div id="employee_page_modify4_specialsale">
+            <h1><?php echo 'Special sale id '.$specialsale_id.' info';
+        ?></h1>
+
+            <p id="employee_page_modify4_specialsale_errmsg" style="color:red"></p>
+
+            <span style="font-weight: bold;position:absolute; left: 9%">Current Value</span>
+            <span style="font-weight: bold; position:absolute; left: 30%">Change to value</span><br/><br/>
+
+            <form id="modified_specialsale_info" action="employee_page.php" method="POST">
+                <!--hidden input to send server the product id that needs to be modified -->
+                <input type="hidden" name="hidden_specialsale_id" value="<?php echo $specialsale_id; ?>"/>
+
+            <?php
+
+        #Start Date
+        echo 'Start date: ';
+        echo '<span style="position:absolute; left: 9%">'.$row["start_date"].'</span>';
+        echo '<input type="date" id="modified_specialsale_start_date" name="modified_specialsale_start_date" style="position:absolute; left: 30%"/><br/><br/>';
+
+        #End Date
+        echo 'End date: ';
+        echo '<span style="position:absolute; left: 9%">'.$row["end_date"].'</span>';
+        echo '<input type="date" id="modified_specialsale_end_date" name="modified_specialsale_end_date" style="position:absolute; left: 30%"/><br/><br/>';
+
+        #Percentage discount
+        echo 'Percentage discount: ';
+        echo '<span style="position:absolute; left: 9%">'.$row["percentage_discount"].'</span>';
+        echo '<input type="number" id="modified_specialsale_percentage_discount" name="modified_specialsale_percentage_discount" pattern="(^\d*(?:\.\d{0,2})?$)" step="0.01" min="0" max="9999" style="position:absolute; left: 30%"/><br/><br/>';
+
+        $sql = "select product_id from special_sales_and_product where special_sale_id = '".$specialsale_id."'";
+        $res = mysql_query($sql);
+        $product_id_arr = array();
+        $counter = 0; //This is used to check if mysql_fetch_assoc return false
+        #Store returned product id into an array in case this special sale event applies to more than 1 product
+        while ($row = mysql_fetch_assoc($res))
+        {
+            $counter += 1;
+            array_push($product_id_arr,$row["product_id"]);
+        }
+        if ($counter == 0)
+        {
+            #this special sale event does not associate with any product yet
+            $associated_product = "this special sale event does not associate with any product yet";
+        }
+        else
+        {
+            $associated_product = implode(',',$product_id_arr);
+        }
+
+        #Product id
+        echo '<p class=formfield>';
+        echo 'Product id associated'.'<br/>'.'with this special sale: ';
+        echo '<textarea rows="10" cols="30" readonly style="position:relative; left: 1%">'.$associated_product.'</textarea>';
+
+        #Now print out all products in our database for user to choose from
+        $sql = "select product_id from products";
+        $res = mysql_query($sql);
+        if (!$res)
+        {
+            #database has no products
+            echo '<textarea id="modified_special_sale_product" name="modified_special_sale_product" rows="30" cols="50" style="position:absolute; left: 50%">Database has no products</textarea></p><br/>';
+        }
+        else
+        {
+            $checkbox_id = "employee_modified4_special_sale_cb";
+            $myindex = 1;
+            $initial_px = 30;
+            $second_initial_px = 31;
+            while($row = mysql_fetch_assoc($res))
+            {
+                $cb_id = $checkbox_id.$myindex;
+                echo '<input type="checkbox" id='.$cb_id.' name="employee_modified4_special_sale_cb1[]" value='.$row["product_id"].' style="position:absolute; left:'.$initial_px.'%"/><span style="position:absolute; left:'.$second_initial_px.'%">'.$row["product_id"].'</span>';
+                $initial_px += 5;
+                $second_initial_px += 5;
+                $myindex += 1;
+            }
+            echo '</p><br/><br/>';
+        }
+
+        echo '<button type="submit" value="go_homepage_employee">Home</button>';
+        echo '<button type="submit" onclick="return validate_modify4_specialsale()" name="mysubmit_modified4_specialsale" value="mysubmit_modified4_specialsale" style="position:relative; left:15px;">Submit</button>';
+
+        ?>
+            </form>
+        </div>
+        </body>
+        </html>
+
+        <?php
+        disconnectDB($conn);
+    }
+}
+
 ?>

@@ -750,8 +750,10 @@ function validate_modify2_product()
     var recipe = document.getElementById('modified_recipe');
 
     var category_id_product_belong_to = document.getElementsByName('employee_modified2_product_cb1[]');
-
     var category_id_product_belong_to_check = validate_checkbox(category_id_product_belong_to);
+
+    var specialsale_id_product_belong_to = document.getElementsByName('employee_modified2_product_radio1');
+    var specialsale_id_product_belong_to_check = validate_radio(specialsale_id_product_belong_to);
 
     var myerror = document.getElementById('employee_page_modify2_product_errmsg');
     myerror.innerHTML = "";
@@ -759,7 +761,7 @@ function validate_modify2_product()
 
     if(product_name.value == '' && product_price.value == '' && produce_description.value == '' && ingredient.value == '' && recipe.value == '')
     {
-        if(!category_id_product_belong_to_check)
+        if(!category_id_product_belong_to_check && !specialsale_id_product_belong_to_check)
         {
             /*Employee did not make any changes. Don't submit the form*/
             myerror.innerHTML += "You have not made any changes" + "<br/>";
@@ -782,6 +784,64 @@ function validate_modify2_product()
             myerror.innerHTML += "Please enter a valid product price (no $ sign in the beginning and only 2 digits after decimal point. Also price needs to be in range between 0-9999 inclusive)" + "<br/>";
             isTrue = false;
         }
+    }
+    return isTrue;
+}
+
+/*Function to validate form data for category modification*/
+function validate_modify3_category()
+{
+    var category_name = document.getElementById('modified_category_name');
+
+    var category_description = document.getElementById('modified_category_description');
+
+    var myerror = document.getElementById('employee_page_modify3_category_errmsg');
+    myerror.innerHTML = "";
+    var isTrue = true;
+
+    if(category_name.value == '' && category_description.value == '')
+    {
+        /*Employee did not make any changes. Don't submit the form*/
+        myerror.innerHTML += "You have not made any changes" + "<br/>";
+        isTrue = false;
+    }
+
+    if(category_name.value != '')
+    {
+        if(category_name.checkValidity() == false)
+        {
+            myerror.innerHTML += "Category name can't contain special characters" + "<br/>";
+            isTrue = false;
+        }
+    }
+    return isTrue;
+}
+
+/*Function to validate form data for special sale modification*/
+function validate_modify4_specialsale()
+{
+    var start_date = document.getElementById('modified_specialsale_start_date');
+
+    var end_date = document.getElementById('modified_specialsale_end_date');
+
+    var percentage_discount = document.getElementById('modified_specialsale_percentage_discount');
+
+    var product_id_checkbox = document.getElementsByName('employee_modified4_special_sale_cb1[]');
+    var product_id_checkbox_to_check = validate_checkbox(product_id_checkbox);
+
+
+    var myerror = document.getElementById('employee_page_modify4_specialsale_errmsg');
+    myerror.innerHTML = "";
+    var isTrue = true;
+
+
+    /*They can just change either start or end date. Need to check with original values to ensure correctness*/
+
+
+    if(percentage_discount.checkValidity() == false)
+    {
+        myerror.innerHTML += "Please enter a correct format for percentage discount (no % sign at the end and only 2 digits after decimal point. Also the percentage needs to be in range between 0-100 inclusive)" + "<br/>";
+        isTrue = false;
     }
     return isTrue;
 }
