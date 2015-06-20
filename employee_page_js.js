@@ -173,10 +173,10 @@ function employee_transform( wherefrom, whereto )
     var d3 = document.getElementById('employee_page_add2_productCategory');
     var d4 = document.getElementById('employee_page_add2_products');
     var d5 = document.getElementById('employee_page_add3_specialsales');
-
-
-
-    var d6 = document.getElementById('admin_page_delete1');
+    var d6 = document.getElementById('employee_page_modify1');
+    var d7 = document.getElementById('employee_page_modify2');
+    var d8 = document.getElementById('employee_page_modify3');
+    var d9 = document.getElementById('employee_page_modify4');
 
     if ((wherefrom == "employee_page_form1" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_add1"))
     {
@@ -185,6 +185,9 @@ function employee_transform( wherefrom, whereto )
         d4.style.display = "none";
         d5.style.display = "none";
         d6.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d9.style.display = "none";
         d2.style.display = "block";
     }
 
@@ -195,6 +198,9 @@ function employee_transform( wherefrom, whereto )
         d4.style.display = "none";
         d5.style.display = "none";
         d6.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d9.style.display = "none";
         d3.style.display = "block";
     }
     else if((wherefrom == "employee_page_add1" && whereto == "employee_page_add2_products"))
@@ -204,15 +210,21 @@ function employee_transform( wherefrom, whereto )
         d1.style.display = "none";
         d5.style.display = "none";
         d6.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d9.style.display = "none";
         d4.style.display = "block";
     }
-    else if(wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_form1" || (wherefrom == "employee_page_add1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_form1") || (wherefrom == "admin_page_delete1" && whereto == "admin_page_form1"))
+    else if(wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_form1" || (wherefrom == "employee_page_add1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify2" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify3" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify4" && whereto == "employee_page_form1"))
     {
         d2.style.display = "none";
         d3.style.display = "none";
         d4.style.display = "none";
         d5.style.display = "none";
         d6.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d9.style.display = "none";
         d1.style.display = "block";
     }
     else if(wherefrom == "employee_page_add1" && whereto == "employee_page_add3_specialsales")
@@ -222,23 +234,65 @@ function employee_transform( wherefrom, whereto )
         d4.style.display = "none";
         d1.style.display = "none";
         d6.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d9.style.display = "none";
         d5.style.display = "block";
     }
-    else if(wherefrom == "employee_page_form1" && whereto == "admin_page_delete1")
+    else if(wherefrom == "employee_page_form1" && whereto == "employee_page_modify1" || (wherefrom == "employee_page_modify2" && whereto == "employee_page_modify1") || (wherefrom == "employee_page_modify3" && whereto == "employee_page_modify1") || (wherefrom == "employee_page_modify4" && whereto == "employee_page_modify1"))
     {
         d2.style.display = "none";
         d3.style.display = "none";
         d4.style.display = "none";
         d1.style.display = "none";
         d5.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d9.style.display = "none";
         d6.style.display = "block";
+    }
+    else if(wherefrom == "employee_page_modify1" && whereto == "employee_page_modify2")
+    {
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d1.style.display = "none";
+        d5.style.display = "none";
+        d6.style.display = "none";
+        d8.style.display = "none";
+        d9.style.display = "none";
+        d7.style.display = "block";
+    }
+    else if(wherefrom == "employee_page_modify1" && whereto == "employee_page_modify3")
+    {
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d1.style.display = "none";
+        d5.style.display = "none";
+        d7.style.display = "none";
+        d6.style.display = "none";
+        d9.style.display = "none";
+        d8.style.display = "block";
+    }
+    else if(wherefrom == "employee_page_modify1" && whereto == "employee_page_modify4")
+    {
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d1.style.display = "none";
+        d5.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d6.style.display = "none";
+        d9.style.display = "block";
     }
 }
 
 /*Func to validate and transform page admin add1*/
 function validate_add1_transform()
 {
-    var radio_element = document.getElementsByName('add1_radio1')
+    var radio_element = document.getElementsByName('add1_radio1');
     var check_radio = validate_radio(radio_element);
     var errmsg = document.getElementById('err_msg');
     errmsg.innerHTML = '';
@@ -601,6 +655,133 @@ function validate_add_special_sales_page()
     {
         myerror.innerHTML += "Please enter a correct format for percentage discount (no % sign at the end and only 2 digits after decimal point. Also the percentage needs to be in range between 0-100 inclusive)" + "<br/>";
         isTrue = false;
+    }
+    return isTrue;
+}
+
+/*Function to validate modify page 1. Ensure user select 1 radio button before continue*/
+function validate_modified1_transform()
+{
+    var radio_element = document.getElementsByName('modify1_radio1');
+    var check_radio = validate_radio(radio_element);
+    var errmsg = document.getElementById('err_msg_modify1');
+    errmsg.innerHTML = '';
+    if(check_radio)
+    {
+        var value_checked = value_radio(radio_element);
+        if (value_checked == "product")
+        {
+            employee_transform('employee_page_modify1','employee_page_modify2');
+        }
+        else if(value_checked == "category")
+        {
+            employee_transform('employee_page_modify1','employee_page_modify3');
+        }
+        else if(value_checked == "specialsales")
+        {
+            employee_transform('employee_page_modify1','employee_page_modify4');
+        }
+    }
+    else
+    {
+        errmsg.innerHTML += "Please select one option before continue" + "<br/>";
+    }
+}
+
+/*Function to validate product id to be modified*/
+function validate_modified2_productID()
+{
+    var product_id = document.getElementById('product_modified_id');
+    var errmsg = document.getElementById('err_msg_modify2');
+    errmsg.innerHTML = '';
+    if (product_id.checkValidity() == false)
+    {
+        errmsg.innerHTML += "Please enter a valid product id" + "<br/>";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+/*Function to validate category id to be modified*/
+function validate_modified3_categoryID()
+{
+    var category_id = document.getElementById('category_modified_id');
+    var errmsg = document.getElementById('err_msg_modify3');
+    errmsg.innerHTML = '';
+    if (category_id.checkValidity() == false)
+    {
+        errmsg.innerHTML += "Please enter a valid category id" + "<br/>";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+/*Function to validate special sale id to be modified*/
+function validate_modified4_specialsaleID()
+{
+    var specialsale_id = document.getElementById('specialsale_modified_id');
+    var errmsg = document.getElementById('err_msg_modify4');
+    errmsg.innerHTML = '';
+    if (specialsale_id.checkValidity() == false)
+    {
+        errmsg.innerHTML += "Please enter a valid special sale id" + "<br/>";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+/*Function to validate form data in modify*/
+function validate_modify2_product()
+{
+    var product_name = document.getElementById('modified_product_name');
+    var product_price = document.getElementById('modified_product_price');
+
+    var produce_description = document.getElementById('modified_product_description');
+    var ingredient = document.getElementById('modified_ingredients');
+    var recipe = document.getElementById('modified_recipe');
+
+    var category_id_product_belong_to = document.getElementsByName('employee_modified2_product_cb1[]');
+
+    var category_id_product_belong_to_check = validate_checkbox(category_id_product_belong_to);
+
+    var myerror = document.getElementById('employee_page_modify2_product_errmsg');
+    myerror.innerHTML = "";
+    var isTrue = true;
+
+    if(product_name.value == '' && product_price.value == '' && produce_description.value == '' && ingredient.value == '' && recipe.value == '')
+    {
+        if(!category_id_product_belong_to_check)
+        {
+            /*Employee did not make any changes. Don't submit the form*/
+            myerror.innerHTML += "You have not made any changes" + "<br/>";
+            isTrue = false;
+        }
+    }
+
+    if(product_name.value != '')
+    {
+        if(product_name.checkValidity() == false)
+        {
+            myerror.innerHTML += "Product name can't contain special characters" + "<br/>";
+            isTrue = false;
+        }
+    }
+    if(product_price.value != '')
+    {
+        if(product_price.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a valid product price (no $ sign in the beginning and only 2 digits after decimal point. Also price needs to be in range between 0-9999 inclusive)" + "<br/>";
+            isTrue = false;
+        }
     }
     return isTrue;
 }
