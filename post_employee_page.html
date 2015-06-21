@@ -129,7 +129,6 @@
         <button type="button" onclick="validate_modified1_transform()">Continue</button>
     </form>
 
-    </form>
 
 </div>
 
@@ -184,20 +183,56 @@
 
 </div>
 
-<div id="admin_page_delete1" style="display:none;">
-    <h1>Remove an employee from database</h1>
+<!-- Employee delete page 1 - Navigate -->
+<div id="employee_page_delete1" style="display:none;">
+    <h1>Please select which item you want to remove</h1>
     <p id="err_msg_delete1" style="color:red"></p>
-    <form id="myadmin_page_delete1" action="admin_page.php" method="POST">
-        <p>Please type in employee id that you want to remove (numbers only)</p>
-        <label for="employee_id_delete_1">Employee id</label>
-        <input type="text" id="employee_id_delete_1" name="employee_id_delete_1" pattern="\d+" required/><br/><br/> <!--need validate -->
 
-        <button type="button" onclick="admin_transform('admin_page_delete1','admin_page_form1')">Back</button>
-        <button type="submit" onclick="return validate_delete_page_1()">Submit</button>
+    <form id="myemployee_page_delete1">
+        <input type="radio" id="delete1_id1" name="delete1_radio1" value="product"/>Product<br/>
+        <input type="radio" id="delete1_id2" name="delete1_radio1" value="category"/>Category<br/>
+        <input type="radio" id="delete1_id3" name="delete1_radio1" value="specialsales"/>Special Sales<br/><br/>
 
+        <button type="button" onclick="employee_transform('employee_page_delete1','employee_page_form1')">Back</button>
+        <button type="button" onclick="validate_delete1_transform()">Continue</button>
     </form>
 
 </div>
+
+<!-- Employee delete page 2 - Delete product -->
+<div id="employee_page_delete2" style="display:none;">
+    <h1>Please type in the product id that you want to remove</h1>
+    <p id="err_msg_delete2_product" style="color:red"></p>
+
+    <form id="myemployee_page_delete2_prodcut" action="employee_page.php" method="POST">
+        <label for="delete_product_id">Product id</label>
+        <input type="text" id="delete_product_id" name="delete_product" pattern="\d+" required/><br/><br/>
+
+
+        <button type="button" onclick="employee_transform('employee_page_delete2','employee_page_delete1')">Back</button>
+        <button type="button" onclick="employee_transform('employee_page_delete2','employee_page_form1')">Home</button>
+        <button type="submit" onclick=" return validate_delete2_productID()">Submit</button>
+    </form>
+
+</div>
+
+<!-- Employee delete page 3 - Delete category -->
+<div id="employee_page_delete3" style="display:none;">
+    <h1>Please type in the category id that you want to remove</h1>
+    <p id="err_msg_delete3_category" style="color:red"></p>
+
+    <form id="myemployee_page_delete3_category" action="employee_page.php" method="POST">
+        <label for="delete_category_id">Category id</label>
+        <input type="text" id="delete_category_id" name="delete_category" pattern="\d+" required/><br/><br/>
+
+
+        <button type="button" onclick="employee_transform('employee_page_delete3','employee_page_delete1')">Back</button>
+        <button type="button" onclick="employee_transform('employee_page_delete3','employee_page_form1')">Home</button>
+        <button type="submit" onclick=" return validate_delete3_productID()">Submit</button>
+    </form>
+
+</div>
+
 
 </body>
 </html>

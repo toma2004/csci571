@@ -94,14 +94,42 @@ else
                 echo '<p style="color:blue">No category info has been changed since you did not select anything' . '</p>';
                 require "post_employee_page.html";
             }
-
         }
         #display special sale being chosen for modified
         elseif (isset($_POST["specialsale_modified"]))
         {
             display_special_sale_info_to_modify();
         }
+        #Modify special sale based on employee's changes
+        elseif (isset($_POST["mysubmit_modified4_specialsale"]))
+        {
+            if ($_POST["modified_specialsale_start_date"] != '' || $_POST["modified_specialsale_end_date"] != '' || $_POST["modified_specialsale_percentage_discount"] != '' || isset($_POST["employee_modified4_special_sale_cb1"]))
+            {
+                modify_special_sale_info();
+            }
+            else
+            {
+                require "pre_employee_page.html";
+                echo '<p style="color:blue">No special sale info has been changed since you did not select anything' . '</p>';
+                require "post_employee_page.html";
+            }
+        }
+        #Delete product
+        elseif (isset($_POST["delete_product"]))
+        {
+            delete_product();
+        }
+        #Delete category
+        elseif (isset($_POST["delete_category"]))
+        {
+            delete_category();
+        }
+        #Determine if employee wants to remove all products before removing the category
         #For any thing else, back to Home employee page
+        elseif (isset($_POST["delete_products_from_category_yes"]))
+        {
+            delete_all_product_delete_category();
+        }
         else
         {
             require "pre_employee_page.html";
@@ -1032,6 +1060,7 @@ function display_special_sale_info_to_modify()
         echo '<span style="position:absolute; left: 9%">'.$row["end_date"].'</span>';
         echo '<input type="date" id="modified_specialsale_end_date" name="modified_specialsale_end_date" style="position:absolute; left: 30%"/><br/><br/>';
 
+
         #Percentage discount
         echo 'Percentage discount: ';
         echo '<span style="position:absolute; left: 9%">'.$row["percentage_discount"].'</span>';
@@ -1068,7 +1097,7 @@ function display_special_sale_info_to_modify()
         if (!$res)
         {
             #database has no products
-            echo '<textarea id="modified_special_sale_product" name="modified_special_sale_product" rows="30" cols="50" style="position:absolute; left: 50%">Database has no products</textarea></p><br/>';
+            echo '<textarea id="modified_special_sale_product" name="modified_special_sale_product" rows="30" cols="50" readonly style="position:absolute; left: 50%">Database has no products</textarea></p><br/>';
         }
         else
         {
@@ -1098,6 +1127,588 @@ function display_special_sale_info_to_modify()
 
         <?php
         disconnectDB($conn);
+    }
+}
+
+/*Function to modify special sale*/
+function modify_special_sale_info()
+{
+    #Validate the input once again
+    $specialsale_id = validate_data($_POST['hidden_specialsale_id']);
+    $validate_specialsale_id = filter_input(INPUT_POST,"hidden_specialsale_id",FILTER_VALIDATE_INT);
+    if ($specialsale_id == '' || $validate_specialsale_id == NULL || $validate_specialsale_id == false)
+    {
+        #Input error
+        require "pre_employee_page.html";
+        echo '<p style="color:red">ERROR: special sale id is not valid'.'</p>';
+        require "post_employee_page.html";
+    }
+    else
+    {
+        /*Connect to our db*/
+        $conn = connectDB();
+        $errmsg = "";
+
+        $sql = "select * from special_sales where special_sale_id='".$specialsale_id."'";
+        $res = mysql_query($sql);
+        if (!($row = mysql_fetch_assoc($res)))
+        {
+            require "pre_employee_page.html";
+            echo '<p style="color:red">ERROR: the special sale id '.$specialsale_id.' is not found in our database'.'</p>';
+            require "post_employee_page.html";
+            disconnectDB($conn);
+            return;
+        }
+        #Store original start and end date
+        $orig_start_date = $row["start_date"];
+        $orig_end_date = $row["end_date"];
+
+        #Both date are modified
+        if($_POST['modified_specialsale_start_date'] != '' && $_POST["modified_specialsale_end_date"] != '')
+        {
+            $start_date = validate_data($_POST["modified_specialsale_start_date"]);
+            $end_date = validate_data($_POST["modified_specialsale_end_date"]);
+            if (!check_date_before($start_date,$end_date))
+            {
+                #Something is wrong with either date or start date is later than end date, produce error and don't update this info
+                $errmsg .= "Either start date or end date is not valid or start date is later than end date. Please double check your value\r\n";
+            }
+            else
+            {
+                $sql = "update special_sales set start_date='".$start_date."',end_date='".$end_date."' where special_sale_id='".$specialsale_id."'";
+                $res = mysql_query($sql);
+                if (!$res)
+                {
+                    #Failed to update
+                    $errmsg .= "Failed to update start and end date.\r\n";
+                }
+            }
+        }
+        #Only end date is modified
+        elseif($_POST['modified_specialsale_start_date'] == '' && $_POST["modified_specialsale_end_date"] != '')
+        {
+            #employee only modifies end date
+            $end_date = validate_data($_POST["modified_specialsale_end_date"]);
+            if (!check_date_before($orig_start_date,$end_date))
+            {
+                #Something is wrong with either date or start date is later than end date, produce error and don't update this info
+                $errmsg .= "Either end date is not valid or your modified end date is before the original start date of this special sale. Please double check your value\r\n";
+            }
+            else
+            {
+                $sql = "update special_sales set end_date='".$end_date."' where special_sale_id='".$specialsale_id."'";
+                $res = mysql_query($sql);
+                if (!$res)
+                {
+                    #Failed to update
+                    $errmsg .= "Failed to update end date.\r\n";
+                }
+            }
+        }
+        #Only start date is modified
+        elseif($_POST['modified_specialsale_start_date'] != '' && $_POST["modified_specialsale_end_date"] == '')
+        {
+            #employee only modifies start date
+            $start_date = validate_data($_POST["modified_specialsale_start_date"]);
+            if (!check_date_before($start_date,$orig_end_date))
+            {
+                #Something is wrong with either date or start date is later than end date, produce error and don't update this info
+                $errmsg .= "Either start date is not valid or your modified start date is after the original end date of this special sale. Please double check your value\r\n";
+            }
+            else
+            {
+                $sql = "update special_sales set start_date='".$start_date."' where special_sale_id='".$specialsale_id."'";
+                $res = mysql_query($sql);
+                if (!$res)
+                {
+                    #Failed to update
+                    $errmsg .= "Failed to update start date.\r\n";
+                }
+            }
+        }
+
+        #Modify percentage discount
+        if($_POST['modified_specialsale_percentage_discount'] != '')
+        {
+            $percentage_discount = validate_data_price($_POST["modified_specialsale_percentage_discount"]);
+            if($percentage_discount == false)
+            {
+                #invalid percentage discount
+                $errmsg .= "Invalid percentage discount.\r\n";
+            }
+            else
+            {
+                $sql = "update special_sales set percentage_discount='".$percentage_discount."' where special_sale_id='".$specialsale_id."'";
+                $res = mysql_query($sql);
+                if(!$res)
+                {
+                    #Error updating percentage discount
+                    $errmsg .= "Failed to update percentage discount.\r\n";
+                }
+            }
+        }
+
+        #Modify products that are associated with this special sale
+        if(isset($_POST["employee_modified4_special_sale_cb1"]))
+        {
+            #Check to see if the product employee wants to change actually exists in our database
+            $sql = "select product_id from products";
+            $res = mysql_query($sql);
+            $counter = 0;
+            $product_id_arr = array();
+            while ($row = mysql_fetch_assoc($res))
+            {
+                $counter += 1;
+                array_push($product_id_arr,$row["product_id"]);
+            }
+            if($counter == 0)
+            {
+                require "pre_employee_page.html";
+                echo '<p style="color:red">ERROR: cannot change products associated with this special sale'.'</p>';
+                require "post_employee_page.html";
+                disconnectDB($conn);
+                return;
+            }
+            #check if the input of product is actually in our database
+            sort($product_id_arr);
+            if(!check_subset($_POST['employee_modified4_special_sale_cb1'],$product_id_arr))
+            {
+                require "pre_employee_page.html";
+                echo '<p style="color:red">ERROR: modifying products associated with this special sale'.'</p>';
+                require "post_employee_page.html";
+                disconnectDB($conn);
+                return;
+            }
+            #Check if the employee tries to associate the products that are associating with another special sale event with this special sale
+            $sql = "select product_id from special_sales_and_product where special_sale_id != '".$specialsale_id."'";
+            $res = mysql_query($sql);
+            $counter = 0;
+            $isIn = false;
+            while ($row = mysql_fetch_assoc($res))
+            {
+                $counter += 1;
+                #Check if this value is in our product id array
+                if(in_array($row["product_id"],$_POST['employee_modified4_special_sale_cb1']))
+                {
+                    $isIn = true;
+                    break;
+                }
+            }
+            if ($counter == 0 || $isIn == false)
+            {
+                #Delete the old record
+                $sql = "delete from special_sales_and_product where special_sale_id ='".$specialsale_id."'";
+                $res = mysql_query($sql);
+                if(!$res)
+                {
+                    require "pre_employee_page.html";
+                    echo '<p style="color:red">ERROR: modifying products associated with this special sale'.'</p>';
+                    require "post_employee_page.html";
+                    disconnectDB($conn);
+                    return;
+                }
+
+                #Everything good, continue
+                foreach ($_POST['employee_modified4_special_sale_cb1'] as $val)
+                {
+                    $sql = "insert into special_sales_and_product values ('".$specialsale_id."','".$val."')";
+                    $res = mysql_query($sql);
+                    if(!$res)
+                    {
+                        $errmsg .= "Error in associating product id ".$val." with this special sale. It might be due to that this product id has been associated with another special sale event. Please note that a product can only have 1 special sale event at a time\r\n";
+                    }
+                }
+            }
+            else
+            {
+                #Error
+                $errmsg .= "ERROR: at least one of the product id that you tried to associate with special sale id ".$specialsale_id." is associated with another special sale id. Please note that a product can only be in 1 special sale at a time.\r\n";
+            }
+        }
+
+        disconnectDB($conn);
+        #Check for error message
+        if ($errmsg == '')
+        {
+            #No Error, woohoo!
+            require "pre_employee_page.html";
+            echo '<p style="color:blue">Successfully modified info for special sale id '.$specialsale_id.'</p>';
+            require "post_employee_page.html";
+        }
+        else
+        {
+            require "pre_employee_page.html";
+            echo '<p style="color:red">'.$errmsg.'</p>';
+            require "post_employee_page.html";
+        }
+    }
+}
+
+/*Function to determine if a date is before another date*/
+function check_date_before ($date1, $date2)
+{
+    #Need to split date string into arr
+    $date1_arr = explode('-',$date1);
+    $date2_arr = explode('-',$date2);
+    if (!checkdate($date1_arr[1],$date1_arr[2],$date1_arr[0]) || !checkdate($date2_arr[1],$date2_arr[2],$date2_arr[0]))
+    {
+        return false;
+    }
+
+    if($date1_arr[0] - $date2_arr[0] > 0) #Start date year is more than end date year
+    {
+        return false;
+    }
+    elseif ($date1_arr[0] - $date2_arr[0] == 0)
+    {
+        if ($date1_arr[1] - $date2_arr[1] > 0) #Start date month is more than end date month
+        {
+            return false;
+        }
+        elseif ($date1_arr[1] - $date2_arr[1] == 0)
+        {
+            if ($date1_arr[2] - $date2_arr[2] > 0) #Start date is more than end date
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return true;
+        }
+    }
+    else
+    {
+        return true;
+    }
+}
+
+/*Function to delete a product from our database*/
+function delete_product()
+{
+    #Validate the input once again
+    $product_id = validate_data($_POST['delete_product']);
+    $errmsg = "";
+    if(filter_input(INPUT_POST,"delete_product",FILTER_VALIDATE_INT) && strlen($product_id) > 0)
+    {
+        $conn = connectDB();
+
+        #Delete all the association with this product first if it exists
+        #Start to remove this product from any special sale
+        $sql = "delete from special_sales_and_product where product_id='".$product_id."'";
+        mysql_query($sql); #Does not matter if it fails or pass since if fails, this product id is not associated with any special sale.
+
+        #Then remove this product from any category it's in
+        $sql = "delete from product_and_category where product_id='".$product_id."'";
+        mysql_query($sql);
+
+        #Now we delete the product in our database
+        $sql = "delete from products where product_id='".$product_id."'";
+        $res = mysql_query($sql);
+        if (!$res)
+        {
+            $errmsg .= "Failed to delete product id ".$product_id." from our database.\r\n";
+        }
+        disconnectDB($conn);
+    }
+    else
+    {
+        #error
+        $errmsg .= "Product id is not an integer\r\n";
+    }
+
+    if ($errmsg == '')
+    {
+        #No Error, woohoo!
+        require "pre_employee_page.html";
+        echo '<p style="color:blue">Successfully deleted product id '.$product_id.' from our database'.'</p>';
+        require "post_employee_page.html";
+    }
+    else
+    {
+        require "pre_employee_page.html";
+        echo '<p style="color:red">'.$errmsg.'</p>';
+        require "post_employee_page.html";
+    }
+}
+
+/*Function to delete category*/
+function delete_category()
+{
+    #Validate the input once again
+    $category_id = validate_data($_POST['delete_category']);
+
+    #Make sure this category id exists
+    $conn = connectDB();
+    $sql = "select * from product_categories where category_id='".$category_id."'";
+    $res = mysql_query($sql);
+    if(!$res || !($row = mysql_fetch_assoc($res)))
+    {
+        require "pre_employee_page.html";
+        echo '<p style="color:red">ERROR: The category id '.$category_id.' that you want to delete is not found in our database'.'</p>';
+        require "post_employee_page.html";
+        disconnectDB($conn);
+        return;
+    }
+
+    if(filter_input(INPUT_POST,"delete_category",FILTER_VALIDATE_INT) && strlen($category_id) > 0)
+    {
+
+        #Check to see if there is any products belonging to this category
+        $sql = "select product_id from product_and_category where category_id='".$category_id."'";
+        $res = mysql_query($sql);
+        $product_id_arr = array();
+        $counter = 0;
+        while($row = mysql_fetch_assoc($res))
+        {
+            $counter += 1;
+            array_push($product_id_arr,$row["product_id"]);
+        }
+        if($counter == 0)
+        {
+            #There is no product belonging to this category or this category id is not in our database
+            #Make a delete anyway.
+            $sql = "delete from product_categories where category_id='".$category_id."'";
+            $res = mysql_query($sql);
+            if(!$res)
+            {
+                #error
+                require "pre_employee_page.html";
+                echo '<p style="color:red">Category id '.$category_id.' is not found in our database'.'</p>';
+                require "post_employee_page.html";
+            }
+            else
+            {
+                #No Error, woohoo!
+                require "pre_employee_page.html";
+                echo '<p style="color:blue">Successfully deleted category id '.$category_id.' from our database'.'</p>';
+                require "post_employee_page.html";
+            }
+        }
+        else
+        {
+            $str_product_id = implode(',',$product_id_arr);
+            ?>
+            <!-- End php and display html -->
+            <!DOCTYPE html>
+            <html>
+            <head lang="en">
+                <meta charset="UTF-8"/>
+                <meta name="author" content="Nguyen Tran"/>
+
+                <link rel="stylesheet" type="text/css" href="employee_page_style.css"/> <!-- link to external css file
+                        <!--<link rel="shortcut icon" type="image/jpg" href="flower_crown1.jpg"></link> -->
+                <script src="employee_page_js.js"></script>
+                <title>Product id(s) in category</title>
+            </head>
+            <body>
+            <div id="employee_page_delete3_product_id_category">
+                <h1><?php echo 'Product id(s) belonging to category id '.$category_id;
+                    ?></h1>
+
+                <p id="employee_page_delete3_product_id_category_errmsg" style="color:red"></p>
+
+                <form id="employee_page_delete3_product_id_category_form_id" action="employee_page.php" method="POST">
+                    <!--hidden input to send server the product id that needs to be modified -->
+                    <input type="hidden" name="hidden_product_id_arr" value="<?php echo $str_product_id; ?>"/>
+                    <input type="hidden" name="hidden_category_id_to_delete" value="<?php echo $category_id; ?>"/>
+
+
+            <?php
+            echo '<p class=formfield>';
+            echo 'Product id(s) belonging to this category is: ';
+            echo '<textarea rows="10" cols="30" readonly style="position:relative; left: 1%">'.$str_product_id.'</textarea></p><br/>';
+            echo 'You have to remove all these products from our database before you can delete this category id. (exceptions is when the product id(s) belong to other category, then you do not need to remove it. We will handle this automatically in our system)<br/>Do you want to continue? NOTE: this step will remove all products in this category and then remove this category from our database.<br/>';
+
+            echo '<button type="submit" name="delete_products_from_category_yes" value="delete_products_from_category_yes">Yes</button>';
+            echo '<button type="submit" name="delete_products_from_category_no" value="delete_products_from_category_no" style="position:relative; left:15px;">No</button>';
+
+            ?>
+                </form>
+            </div>
+            </body>
+            </html>
+
+        <?php
+        }
+    }
+    else
+    {
+        require "pre_employee_page.html";
+        echo '<p style="color:red">Category id '.$category_id.' is not an integer'.'</p>';
+        require "post_employee_page.html";
+    }
+    disconnectDB($conn);
+}
+
+/*Function to delete all products in a category before deleting the category itself*/
+function delete_all_product_delete_category()
+{
+    $category_id = validate_data($_POST["hidden_category_id_to_delete"]);
+    $errmsg = '';
+
+    #Make sure this category id exists
+    $conn = connectDB();
+    $sql = "select * from product_categories where category_id='".$category_id."'";
+    $res = mysql_query($sql);
+    if(!$res || !($row = mysql_fetch_assoc($res)))
+    {
+        require "pre_employee_page.html";
+        echo '<p style="color:red">ERROR: The category id '.$category_id.' that you want to delete is not found in our database'.'</p>';
+        require "post_employee_page.html";
+        disconnectDB($conn);
+        return;
+    }
+
+    if(($_POST["hidden_product_id_arr"]) != '')
+    {
+        $product_id_arr = explode(',',$_POST["hidden_product_id_arr"]);
+        #Check if these product id exists in our database
+        $sql = "select product_id from products";
+        $res = mysql_query($sql);
+        $counter = 0;
+        $all_product_id_arr = array();
+        while($row = mysql_fetch_assoc($res))
+        {
+            $counter += 1;
+            array_push($all_product_id_arr,$row["product_id"]);
+        }
+        if($counter == 0)
+        {
+            #return error
+            require "pre_employee_page.html";
+            echo '<p style="color:red">Fatal error: Cannot retrieve any product id from our database'.'</p>';
+            require "post_employee_page.html";
+            disconnectDB($conn);
+            return;
+        }
+        sort($all_product_id_arr);
+        if(!check_subset($product_id_arr,$all_product_id_arr))
+        {
+            #return error
+            require "pre_employee_page.html";
+            echo '<p style="color:red">Fatal error: at least one product id reported to be in the category id '.$category_id.' is not found in our product table'.'</p>';
+            require "post_employee_page.html";
+            disconnectDB($conn);
+            return;
+        }
+        #everything good, continue
+        #Only delete product that ONLY belongs to this category id. If the product belong to this category and
+        #some other category id(s), leave this product alone since it won't create NULL enties in our table
+        $arr_product_id_not_in_this_category = array();
+        $sql = "select product_id from product_and_category where category_id != '".$category_id."'";
+        $res = mysql_query($sql);
+        $counter = 0;
+        while ($row = mysql_fetch_assoc($res))
+        {
+            $counter += 1;
+            array_push($arr_product_id_not_in_this_category,$row["product_id"]);
+        }
+
+        #This mean product_and_category table is either empty or only has this category id
+        #Start to delete all products before delete category
+        foreach($product_id_arr as $val)
+        {
+            if($counter != 0)
+            {
+                if(!in_array($val,$arr_product_id_not_in_this_category))
+                {
+                    if (!delete_product_basedOn_productID($val))
+                    {
+                        $errmsg .= "Cannot remove this product id".$val." from our database\r\n";
+                    }
+                }
+            }
+            else
+            {
+                if (!delete_product_basedOn_productID($val))
+                {
+                    $errmsg .= "Cannot remove this product id".$val." from our database\r\n";
+                }
+            }
+        }
+        if ($errmsg == '')
+        {
+            #Call to delete product-category relationship in product_and_category
+            $sql = "delete from product_and_category where category_id='".$category_id."'";
+            mysql_query($sql); #Does not matter it fails or not. If it fails, means that this action is already taken care of in previous step.
+
+            #remove the category itself
+            $sql = "delete from product_categories where category_id='".$category_id."'";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                $errmsg .= "1Failed to delete category id ".$category_id;
+            }
+        }
+    }
+    else
+    {
+        #error
+        $errmsg .= "2Failed to delete category id ".$category_id;
+    }
+
+    disconnectDB($conn);
+    if ($errmsg == '')
+    {
+        #No Error, woohoo!
+        require "pre_employee_page.html";
+        echo '<p style="color:blue">Successfully deleted category id '.$category_id.' from our database'.'</p>';
+        require "post_employee_page.html";
+    }
+    else
+    {
+        require "pre_employee_page.html";
+        echo '<p style="color:red">'.$errmsg.'</p>';
+        require "post_employee_page.html";
+    }
+}
+
+/*Delete product based on product id*/
+function delete_product_basedOn_productID( $pid )
+{
+    #Validate the input once again
+    $product_id = validate_data($pid);
+    $errmsg = "";
+    if(strlen($product_id) > 0)
+    {
+        /*Don't need to connect db since we already did that in original function call*/
+
+        #Delete all the association with this product first if it exists
+        #Start to remove this product from any special sale
+        $sql = "delete from special_sales_and_product where product_id='".$product_id."'";
+        mysql_query($sql); #Does not matter if it fails or pass since if fails, this product id is not associated with any special sale.
+
+        #Then remove this product from any category it's in
+        $sql = "delete from product_and_category where product_id='".$product_id."'";
+        mysql_query($sql);
+
+        #Now we delete the product in our database
+        $sql = "delete from products where product_id='".$product_id."'";
+        $res = mysql_query($sql);
+        if (!$res)
+        {
+            $errmsg .= "Failed to delete product id ".$product_id." from our database.\r\n";
+        }
+    }
+    else
+    {
+        #error
+        $errmsg .= "Product id is not an integer\r\n";
+    }
+
+    if ($errmsg == '')
+    {
+        #No Error, woohoo!
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 

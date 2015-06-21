@@ -145,13 +145,13 @@ function check_date_before (date1,date2)
     {
         return false;
     }
-    else
+    else if(date1_yy - date2_yy == 0)
     {
         if(date1_mm - date2_mm > 0) /*start date month is more than end date month*/
         {
             return false;
         }
-        else
+        else if(date1_mm - date2_mm == 0)
         {
             if (date1_dd - date2_dd > 0) /*start date is more than end date*/
             {
@@ -162,6 +162,14 @@ function check_date_before (date1,date2)
                 return true;
             }
         }
+        else
+        {
+            return true;
+        }
+    }
+    else
+    {
+        return true;
     }
 }
 
@@ -177,6 +185,9 @@ function employee_transform( wherefrom, whereto )
     var d7 = document.getElementById('employee_page_modify2');
     var d8 = document.getElementById('employee_page_modify3');
     var d9 = document.getElementById('employee_page_modify4');
+    var d10 = document.getElementById('employee_page_delete1');
+    var d11 = document.getElementById('employee_page_delete2');
+    var d12 = document.getElementById('employee_page_delete3');
 
     if ((wherefrom == "employee_page_form1" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_add1"))
     {
@@ -188,6 +199,9 @@ function employee_transform( wherefrom, whereto )
         d7.style.display = "none";
         d8.style.display = "none";
         d9.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
         d2.style.display = "block";
     }
 
@@ -201,6 +215,9 @@ function employee_transform( wherefrom, whereto )
         d7.style.display = "none";
         d8.style.display = "none";
         d9.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
         d3.style.display = "block";
     }
     else if((wherefrom == "employee_page_add1" && whereto == "employee_page_add2_products"))
@@ -213,9 +230,12 @@ function employee_transform( wherefrom, whereto )
         d7.style.display = "none";
         d8.style.display = "none";
         d9.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
         d4.style.display = "block";
     }
-    else if(wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_form1" || (wherefrom == "employee_page_add1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify2" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify3" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify4" && whereto == "employee_page_form1"))
+    else if(wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_form1" || (wherefrom == "employee_page_add1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify2" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify3" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify4" && whereto == "employee_page_form1") || (wherefrom == "employee_page_delete1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_delete2" && whereto == "employee_page_form1") || (wherefrom == "employee_page_delete3" && whereto == "employee_page_form1"))
     {
         d2.style.display = "none";
         d3.style.display = "none";
@@ -225,6 +245,9 @@ function employee_transform( wherefrom, whereto )
         d7.style.display = "none";
         d8.style.display = "none";
         d9.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
         d1.style.display = "block";
     }
     else if(wherefrom == "employee_page_add1" && whereto == "employee_page_add3_specialsales")
@@ -237,6 +260,9 @@ function employee_transform( wherefrom, whereto )
         d7.style.display = "none";
         d8.style.display = "none";
         d9.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
         d5.style.display = "block";
     }
     else if(wherefrom == "employee_page_form1" && whereto == "employee_page_modify1" || (wherefrom == "employee_page_modify2" && whereto == "employee_page_modify1") || (wherefrom == "employee_page_modify3" && whereto == "employee_page_modify1") || (wherefrom == "employee_page_modify4" && whereto == "employee_page_modify1"))
@@ -249,6 +275,9 @@ function employee_transform( wherefrom, whereto )
         d7.style.display = "none";
         d8.style.display = "none";
         d9.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
         d6.style.display = "block";
     }
     else if(wherefrom == "employee_page_modify1" && whereto == "employee_page_modify2")
@@ -261,6 +290,9 @@ function employee_transform( wherefrom, whereto )
         d6.style.display = "none";
         d8.style.display = "none";
         d9.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
         d7.style.display = "block";
     }
     else if(wherefrom == "employee_page_modify1" && whereto == "employee_page_modify3")
@@ -273,6 +305,9 @@ function employee_transform( wherefrom, whereto )
         d7.style.display = "none";
         d6.style.display = "none";
         d9.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
         d8.style.display = "block";
     }
     else if(wherefrom == "employee_page_modify1" && whereto == "employee_page_modify4")
@@ -285,7 +320,55 @@ function employee_transform( wherefrom, whereto )
         d7.style.display = "none";
         d8.style.display = "none";
         d6.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
         d9.style.display = "block";
+    }
+    else if(wherefrom == "employee_page_form1" && whereto == "employee_page_delete1" || wherefrom == "employee_page_delete2" && whereto == "employee_page_delete1" || (wherefrom == "employee_page_delete3" && whereto == "employee_page_delete1"))
+    {
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d1.style.display = "none";
+        d5.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d6.style.display = "none";
+        d9.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
+        d10.style.display = "block";
+    }
+    else if(wherefrom == "employee_page_delete1" && whereto == "employee_page_delete2")
+    {
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d1.style.display = "none";
+        d5.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d6.style.display = "none";
+        d9.style.display = "none";
+        d10.style.display = "none";
+        d12.style.display = "none";
+        d11.style.display = "block";
+    }
+    else if(wherefrom == "employee_page_delete1" && whereto == "employee_page_delete3")
+    {
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d1.style.display = "none";
+        d5.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d6.style.display = "none";
+        d9.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "block";
     }
 }
 
@@ -835,13 +918,94 @@ function validate_modify4_specialsale()
     var isTrue = true;
 
 
-    /*They can just change either start or end date. Need to check with original values to ensure correctness*/
-
-
-    if(percentage_discount.checkValidity() == false)
+    if (start_date.value == '' && end_date.value == '' && percentage_discount.value == '' && product_id_checkbox_to_check == false)
     {
-        myerror.innerHTML += "Please enter a correct format for percentage discount (no % sign at the end and only 2 digits after decimal point. Also the percentage needs to be in range between 0-100 inclusive)" + "<br/>";
+        /*Employee did not make any changes. Don't submit the form*/
+        myerror.innerHTML += "You have not made any changes" + "<br/>";
         isTrue = false;
     }
+    /*They can just change either start or end date. Need to check with original values to ensure correctness*/
+    /*If the employee changes both dates*/
+    if (start_date.value != '' && end_date.value != '')
+    {
+        if (!check_date_before(start_date,end_date)) /*start date is after end date*/
+        {
+            myerror.innerHTML += "Start date can't be after end date. Please change start date to a different value" + "<br/>";
+            isTrue = false;
+        }
+    }
+
+
+    if(percentage_discount.value != '')
+    {
+        if(percentage_discount.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct format for percentage discount (no % sign at the end and only 2 digits after decimal point. Also the percentage needs to be in range between 0-100 inclusive)" + "<br/>";
+            isTrue = false;
+        }
+    }
     return isTrue;
+}
+
+/*Function to validate employee delete page 1*/
+function validate_delete1_transform()
+{
+    var radio_element = document.getElementsByName('delete1_radio1');
+    var check_radio = validate_radio(radio_element);
+    var errmsg = document.getElementById('err_msg_delete1');
+    errmsg.innerHTML = '';
+    if(check_radio)
+    {
+        var value_checked = value_radio(radio_element);
+        if (value_checked == "product")
+        {
+            employee_transform('employee_page_delete1','employee_page_delete2');
+        }
+        else if(value_checked == "category")
+        {
+            employee_transform('employee_page_delete1','employee_page_delete3');
+        }
+        else if(value_checked == "specialsales")
+        {
+            //employee_transform('employee_page_modify1','employee_page_modify4');
+        }
+    }
+    else
+    {
+        errmsg.innerHTML += "Please select one option before continue" + "<br/>";
+    }
+}
+
+/*Function to validate employee delete page 2 - deleting product*/
+function validate_delete2_productID()
+{
+    var product_id = document.getElementById('delete_product_id');
+    var errmsg = document.getElementById('err_msg_delete2_product');
+    errmsg.innerHTML = '';
+    if (product_id.checkValidity() == false)
+    {
+        errmsg.innerHTML += "Please enter a valid product id" + "<br/>";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+/*Function to validate employee delete page 3 - deleting category*/
+function validate_delete3_productID()
+{
+    var category_id = document.getElementById('delete_category_id');
+    var errmsg = document.getElementById('err_msg_delete3_category');
+    errmsg.innerHTML = '';
+    if (category_id.checkValidity() == false)
+    {
+        errmsg.innerHTML += "Please enter a valid category id" + "<br/>";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
