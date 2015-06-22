@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript"/>
+    <meta name="author" content="Nguyen Tran"/>
+
+    <link rel="stylesheet" type="text/css" href="manager_page_style.css"/> <!-- link to external css file -->
+    <script src="jquery-1.11.3.min.js"></script>
+    <script src="manager_page_js.js"></script>
+    <title>N2 internal manager page</title>
+</head>
+<body>
+
+<!-- Home page of manager page -->
+<div id="manager_homepage">
+    <h1>Hello manager!</h1>
+
+<p>Please selection which report you want to see or you can select "search" option to find your specific need</p>
+
+<form id="mymanager_page_form1" action="logout.php">
+    <button type="button" id="manager_homepage_product_search_clicked">Product Search</button>
+    <button type="button" id="manager_homepage_employee_search_clicked">Employee Search</button>
+    <button type="button" id="manager_homepage_special_sale_search_clicked">Special Sale Search</button>
+    <button type="button" id="manager_homepage_logout">Logout</button>
+</form>
+</div>
+
+<div id="manager_page_employee_search" style="display:none;">
+    <h1>Please specify what you want to search in employee database by making selections or filling in the blanks</h1>
+    <p id="err_msg_employee_search" style="color:red"></p>
+
+    <form id="mymanager_page_employee_search">
+        <span>Pay range: </span>
+        <input type="number" name="employee_pay_range_low" id="employee_pay_range_low" pattern="\d+(\.\d+)?$" min="0" max="1000000"/>
+        <span style="position:absolute; left: 200px">-</span>
+        <input type="number" name="employee_pay_range_high" id="employee_pay_range_high" pattern="\d+(\.\d+)?$" min="0" max="1000000" style="position:absolute; left: 230px"/><br/><br/>
+
+        <p>User type</p>
+        <label>
+            <input type="checkbox" id="manager_employee_cb1" name="manager_employee_checkbox1[]" value="admin"/>Admin<br/>
+            <input type="checkbox" id="manager_employee_cb2" name="manager_employee_checkbox1[]" value="manager"/>Manager<br/>
+            <input type="checkbox" id="manager_employee_cb3" name="manager_employee_checkbox1[]" value="employee"/>Employee<br/>
+        </label> <br/>
+
+        <button type="button" id="back_homepage_from_employee_search">Back</button>
+        <button type="submit" id="submit_employee_search">Search</button>
+
+    </form>
+
+</div>
+
+
+</body>
+</html>

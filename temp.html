@@ -1,0 +1,37 @@
+<html>
+<head>
+    <style>
+        .redbox {border: red 4px solid}
+
+    </style>
+
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        //Other JS here
+        $(document).ready(doReady);
+
+        function doReady()
+        {
+            //$("#p1").mouseleave( function() {$(this).removeClass( "redbox" );} );
+            //$("#p1").mouseenter( function() {$(this).addClass( "redbox" );} );
+            $("#b1").click(doit);
+        }
+
+        function doit()
+        {
+            $("#p1").hide().fadeIn(2000);
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+<p id="p1" style="display:none">This is my paragraph</p>
+This is my content
+<form>
+    <input type="button" id="b1" value="click me"/>
+</form>
+</body>
+</html>

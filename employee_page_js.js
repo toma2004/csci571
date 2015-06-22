@@ -188,6 +188,7 @@ function employee_transform( wherefrom, whereto )
     var d10 = document.getElementById('employee_page_delete1');
     var d11 = document.getElementById('employee_page_delete2');
     var d12 = document.getElementById('employee_page_delete3');
+    var d13 = document.getElementById('employee_page_delete4')
 
     if ((wherefrom == "employee_page_form1" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_add1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_add1"))
     {
@@ -202,6 +203,7 @@ function employee_transform( wherefrom, whereto )
         d10.style.display = "none";
         d11.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d2.style.display = "block";
     }
 
@@ -218,6 +220,7 @@ function employee_transform( wherefrom, whereto )
         d10.style.display = "none";
         d11.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d3.style.display = "block";
     }
     else if((wherefrom == "employee_page_add1" && whereto == "employee_page_add2_products"))
@@ -233,9 +236,10 @@ function employee_transform( wherefrom, whereto )
         d10.style.display = "none";
         d11.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d4.style.display = "block";
     }
-    else if(wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_form1" || (wherefrom == "employee_page_add1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify2" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify3" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify4" && whereto == "employee_page_form1") || (wherefrom == "employee_page_delete1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_delete2" && whereto == "employee_page_form1") || (wherefrom == "employee_page_delete3" && whereto == "employee_page_form1"))
+    else if(wherefrom == "employee_page_add2_productCategory" && whereto == "employee_page_form1" || (wherefrom == "employee_page_add1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add2_products" && whereto == "employee_page_form1") || (wherefrom == "employee_page_add3_specialsales" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify2" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify3" && whereto == "employee_page_form1") || (wherefrom == "employee_page_modify4" && whereto == "employee_page_form1") || (wherefrom == "employee_page_delete1" && whereto == "employee_page_form1") || (wherefrom == "employee_page_delete2" && whereto == "employee_page_form1") || (wherefrom == "employee_page_delete3" && whereto == "employee_page_form1") || (wherefrom == "employee_page_delete4" && whereto == "employee_page_form1"))
     {
         d2.style.display = "none";
         d3.style.display = "none";
@@ -248,6 +252,7 @@ function employee_transform( wherefrom, whereto )
         d10.style.display = "none";
         d11.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d1.style.display = "block";
     }
     else if(wherefrom == "employee_page_add1" && whereto == "employee_page_add3_specialsales")
@@ -263,6 +268,7 @@ function employee_transform( wherefrom, whereto )
         d10.style.display = "none";
         d11.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d5.style.display = "block";
     }
     else if(wherefrom == "employee_page_form1" && whereto == "employee_page_modify1" || (wherefrom == "employee_page_modify2" && whereto == "employee_page_modify1") || (wherefrom == "employee_page_modify3" && whereto == "employee_page_modify1") || (wherefrom == "employee_page_modify4" && whereto == "employee_page_modify1"))
@@ -278,6 +284,7 @@ function employee_transform( wherefrom, whereto )
         d10.style.display = "none";
         d11.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d6.style.display = "block";
     }
     else if(wherefrom == "employee_page_modify1" && whereto == "employee_page_modify2")
@@ -293,6 +300,7 @@ function employee_transform( wherefrom, whereto )
         d10.style.display = "none";
         d11.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d7.style.display = "block";
     }
     else if(wherefrom == "employee_page_modify1" && whereto == "employee_page_modify3")
@@ -308,6 +316,7 @@ function employee_transform( wherefrom, whereto )
         d10.style.display = "none";
         d11.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d8.style.display = "block";
     }
     else if(wherefrom == "employee_page_modify1" && whereto == "employee_page_modify4")
@@ -323,9 +332,10 @@ function employee_transform( wherefrom, whereto )
         d10.style.display = "none";
         d11.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d9.style.display = "block";
     }
-    else if(wherefrom == "employee_page_form1" && whereto == "employee_page_delete1" || wherefrom == "employee_page_delete2" && whereto == "employee_page_delete1" || (wherefrom == "employee_page_delete3" && whereto == "employee_page_delete1"))
+    else if(wherefrom == "employee_page_form1" && whereto == "employee_page_delete1" || wherefrom == "employee_page_delete2" && whereto == "employee_page_delete1" || (wherefrom == "employee_page_delete3" && whereto == "employee_page_delete1") || (wherefrom == "employee_page_delete4" && whereto == "employee_page_delete1"))
     {
         d2.style.display = "none";
         d3.style.display = "none";
@@ -338,6 +348,7 @@ function employee_transform( wherefrom, whereto )
         d9.style.display = "none";
         d11.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d10.style.display = "block";
     }
     else if(wherefrom == "employee_page_delete1" && whereto == "employee_page_delete2")
@@ -353,6 +364,7 @@ function employee_transform( wherefrom, whereto )
         d9.style.display = "none";
         d10.style.display = "none";
         d12.style.display = "none";
+        d13.style.display = "none";
         d11.style.display = "block";
     }
     else if(wherefrom == "employee_page_delete1" && whereto == "employee_page_delete3")
@@ -368,7 +380,24 @@ function employee_transform( wherefrom, whereto )
         d9.style.display = "none";
         d10.style.display = "none";
         d11.style.display = "none";
+        d13.style.display = "none";
         d12.style.display = "block";
+    }
+    else if(wherefrom == "employee_page_delete1" && whereto == "employee_page_delete4")
+    {
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d1.style.display = "none";
+        d5.style.display = "none";
+        d7.style.display = "none";
+        d8.style.display = "none";
+        d6.style.display = "none";
+        d9.style.display = "none";
+        d10.style.display = "none";
+        d11.style.display = "none";
+        d12.style.display = "none";
+        d13.style.display = "block";
     }
 }
 
@@ -967,7 +996,7 @@ function validate_delete1_transform()
         }
         else if(value_checked == "specialsales")
         {
-            //employee_transform('employee_page_modify1','employee_page_modify4');
+            employee_transform('employee_page_delete1','employee_page_delete4');
         }
     }
     else
@@ -994,7 +1023,7 @@ function validate_delete2_productID()
 }
 
 /*Function to validate employee delete page 3 - deleting category*/
-function validate_delete3_productID()
+function validate_delete3_categoryID()
 {
     var category_id = document.getElementById('delete_category_id');
     var errmsg = document.getElementById('err_msg_delete3_category');
@@ -1002,6 +1031,23 @@ function validate_delete3_productID()
     if (category_id.checkValidity() == false)
     {
         errmsg.innerHTML += "Please enter a valid category id" + "<br/>";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+/*Function to validate employee delete page 4 - deleting special sale*/
+function validate_delete4_specialsaleID()
+{
+    var specialsale_id = document.getElementById('delete_specialsale_id');
+    var errmsg = document.getElementById('err_msg_delete4_specialsale');
+    errmsg.innerHTML = '';
+    if (specialsale_id.checkValidity() == false)
+    {
+        errmsg.innerHTML += "Please enter a valid specials sale id" + "<br/>";
         return false;
     }
     else

@@ -228,11 +228,27 @@
 
         <button type="button" onclick="employee_transform('employee_page_delete3','employee_page_delete1')">Back</button>
         <button type="button" onclick="employee_transform('employee_page_delete3','employee_page_form1')">Home</button>
-        <button type="submit" onclick=" return validate_delete3_productID()">Submit</button>
+        <button type="submit" onclick=" return validate_delete3_categoryID()">Submit</button>
     </form>
 
 </div>
 
+<!-- Employee delete page 4 - Delete special sale -->
+<div id="employee_page_delete4" style="display:none;">
+    <h1>Please type in the category id that you want to remove</h1>
+    <p id="err_msg_delete4_specialsale" style="color:red"></p>
+
+    <form id="myemployee_page_delete4_specialsale" action="employee_page.php" method="POST">
+        <label for="delete_specialsale_id">Special Sale id</label>
+        <input type="text" id="delete_specialsale_id" name="delete_specialsale" pattern="\d+" required/><br/><br/>
+
+
+        <button type="button" onclick="employee_transform('employee_page_delete4','employee_page_delete1')">Back</button>
+        <button type="button" onclick="employee_transform('employee_page_delete4','employee_page_form1')">Home</button>
+        <button type="submit" onclick=" return validate_delete4_specialsaleID()">Submit</button>
+    </form>
+
+</div>
 
 </body>
 </html>

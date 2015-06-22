@@ -93,6 +93,11 @@ else
         {
             require "employee_page.php";
         }
+        elseif($usertype == "manager")
+        {
+            //require "manager_page.php";
+            require "manager_page.html";
+        }
     }
     elseif ($mycount == 2 || $mycount == 3)
     {

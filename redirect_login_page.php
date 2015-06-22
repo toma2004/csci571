@@ -55,7 +55,7 @@ else
     }
     elseif (isset($_POST["employee_clicked"]))
     {
-        #If button admin is clicked, check again to see if user really has admin type
+        #If button employee is clicked, check again to see if user really has employee type
         if (!in_array("employee", $check_types))
         {
             require "prelogin.html";
@@ -68,7 +68,7 @@ else
     }
     elseif (isset($_POST["manager_clicked"]))
     {
-        #If button admin is clicked, check again to see if user really has admin type
+        #If button manager is clicked, check again to see if user really has manager type
         if (!in_array("manager", $check_types))
         {
             require "prelogin.html";
@@ -76,7 +76,7 @@ else
         }
         else
         {
-            #require "admin_page.php";
+            require "manager_page.php";
         }
     }
 }

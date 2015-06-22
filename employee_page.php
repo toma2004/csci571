@@ -125,11 +125,17 @@ else
             delete_category();
         }
         #Determine if employee wants to remove all products before removing the category
-        #For any thing else, back to Home employee page
+        #This is a second part of delete category
         elseif (isset($_POST["delete_products_from_category_yes"]))
         {
             delete_all_product_delete_category();
         }
+        #delete special sale
+        elseif (isset($_POST["delete_specialsale"]))
+        {
+            delete_special_sale();
+        }
+        #For any thing else, back to Home employee page
         else
         {
             require "pre_employee_page.html";
@@ -1709,6 +1715,61 @@ function delete_product_basedOn_productID( $pid )
     else
     {
         return false;
+    }
+}
+
+/*Function to delete special sale*/
+function delete_special_sale()
+{
+    #Validate the input once again
+    $specialsale_id = validate_data($_POST['delete_specialsale']);
+    $errmsg = "";
+
+    #Make sure this special sale id exists
+    $conn = connectDB();
+    $sql = "select * from special_sales where special_sale_id='".$specialsale_id."'";
+    $res = mysql_query($sql);
+    if(!$res || !($row = mysql_fetch_assoc($res)))
+    {
+        require "pre_employee_page.html";
+        echo '<p style="color:red">ERROR: The special sale id '.$specialsale_id.' that you want to delete is not found in our database'.'</p>';
+        require "post_employee_page.html";
+        disconnectDB($conn);
+        return;
+    }
+
+    if(filter_input(INPUT_POST,"delete_specialsale",FILTER_VALIDATE_INT) && strlen($specialsale_id) > 0)
+    {
+        #Delete the special sale - product relationship in special_sales_and_product table
+        $sql = "delete from special_sales_and_product where special_sale_id='".$specialsale_id."'";
+        mysql_query($sql); #Does not matter if this function return true or false. If false, it means that the special sale we are trying to delete does not associate with any product
+
+        #Delete the special sale id itself in the table
+        $sql = "delete from special_sales where special_sale_id='".$specialsale_id."'";
+        $res = mysql_query($sql);
+        if(!$res)
+        {
+            $errmsg .= "Failed to delete special sale id ".$specialsale_id." from our database.\r\n";
+        }
+    }
+    else
+    {
+        $errmsg .= "Special sale id ".$specialsale_id." is not an integer.\r\n";
+    }
+
+    disconnectDB($conn);
+    if ($errmsg == '')
+    {
+        #No Error, woohoo!
+        require "pre_employee_page.html";
+        echo '<p style="color:blue">Successfully deleted special sale id '.$specialsale_id.' from our database'.'</p>';
+        require "post_employee_page.html";
+    }
+    else
+    {
+        require "pre_employee_page.html";
+        echo '<p style="color:red">'.$errmsg.'</p>';
+        require "post_employee_page.html";
     }
 }
 
