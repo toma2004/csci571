@@ -77,6 +77,38 @@
 
 </div>
 
+<div id="manager_page_special_sale_search" style="display:none;">
+    <h1>Please specify what you want to search in product database by making selections or filling in the blanks</h1>
+    <p id="err_msg_special_sale_search" style="color:red"></p>
+
+    <form id="mymanager_page_special_sale_search">
+        <span>Product price range: </span>
+        <input type="number" name="product_price_range_low_special_sale" id="product_price_range_low_special_sale" style="position:absolute; left: 150px" pattern="(^\d*(?:\.\d{0,2})?$)" step="0.01" min="0" max="9999"/>
+        <span style="position:absolute; left: 250px">-</span>
+        <input type="number" name="product_price_range_high_special_sale" id="product_price_range_high_special_sale" pattern="(^\d*(?:\.\d{0,2})?$)" step="0.01" min="0" max="9999" style="position:absolute; left: 260px"/><br/><br/>
+
+        <span>Product name</span>
+        <input type="text" id="special_sale_search_product_name" name="special_sale_search_product_name" style="position:absolute; left: 150px" pattern="([a-zA-Z0-9]+)\s*([a-zA-Z0-9])*" maxlength="255"/><br/><br/>
+
+        <span>Product category</span>
+        <input type="text" id="special_sale_search_product_category" name="special_sale_search_product_category" style="position:absolute; left: 150px" pattern="([a-zA-Z0-9]+)\s*([a-zA-Z0-9])*" maxlength="255"/><br/><br/>
+
+        <!-- start and end dates -->
+        <label for="special_sale_mystart_date">Start Date</label><br>
+        <input type="date" id="special_sale_mystart_date" name="special_sale_mystart_date"/><br><br>
+
+        <label for="special_sale_myend_date">End Date</label><br>
+        <input type="date" id="special_sale_myend_date" name="special_sale_myend_date"/><br><br>
+
+
+        <button type="button" id="back_homepage_from_special_sale_search">Back</button>
+        <button type="button" id="submit_special_sale_search">Search</button><br/><br/>
+
+    </form>
+
+    <div id="manager_page_special_sale_search_display_search_result"></div>
+
+</div>
 
 </body>
 </html>

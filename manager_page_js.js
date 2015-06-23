@@ -133,7 +133,7 @@ function checkAll()
     /*All events in manager homepage*/
     $("#manager_homepage_product_search_clicked").click(transform_managerHomePage_productSearchPage);
     $("#manager_homepage_employee_search_clicked").click(transform_managerHomePage_employeeSearchPage);
-    // $("#manager_homepage_special_sale_search_clicked").click(transform_managerHomePage_specialsaleSearchPage);
+    $("#manager_homepage_special_sale_search_clicked").click(transform_managerHomePage_specialsaleSearchPage);
 
     /*All events in employee search homepage*/
     $("#back_homepage_from_employee_search").click(back_homepage);
@@ -142,6 +142,11 @@ function checkAll()
     /*All events in product search homepage*/
     $("#back_homepage_from_product_search").click(back_homepage);
     $("#submit_product_search").click(send_product_search_data_to_server);
+
+    /*All events in special sale search homepage*/
+    $("#back_homepage_from_special_sale_search").click(back_homepage);
+    $("#submit_special_sale_search").click(send_special_sale_search_data_to_server);
+
 }
 
 /*Function to handle transform from manager homepage to employee search page*/
@@ -156,6 +161,12 @@ function transform_managerHomePage_productSearchPage()
     manager_transform('manager_homepage','manager_page_product_search');
 }
 
+/*Function to handle transform from manager homepage to special sale search page*/
+function transform_managerHomePage_specialsaleSearchPage()
+{
+    manager_transform('manager_homepage','manager_page_special_sale_search');
+}
+
 /*Back to manager home page function*/
 function back_homepage()
 {
@@ -168,23 +179,34 @@ function manager_transform( wherefrom, whereto )
     var d1 = document.getElementById('manager_homepage');
     var d2 = document.getElementById('manager_page_employee_search');
     var d3 = document.getElementById('manager_page_product_search');
+    var d4 = document.getElementById('manager_page_special_sale_search');
 
     if (wherefrom == 'manager_homepage' && whereto == "manager_page_employee_search")
     {
         d1.style.display = "none";
         d3.style.display = "none";
+        d4.style.display = "none";
         d2.style.display = "block";
     }
     else if(wherefrom == "manager_homepage" && whereto == "manager_page_product_search")
     {
         d1.style.display = "none";
         d2.style.display = "none";
+        d4.style.display = "none";
         d3.style.display = "block";
+    }
+    else if(wherefrom == "manager_homepage" && whereto == "manager_page_special_sale_search")
+    {
+        d1.style.display = "none";
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "block";
     }
     else if(whereto == "manager_homepage")
     {
         d2.style.display = "none";
         d3.style.display = "none";
+        d4.style.display = "none";
         d1.style.display = "block";
     }
 }
@@ -207,14 +229,14 @@ function validate_employee_search()
 
     if(pay_range_high.checkValidity() == false)
     {
-        err_msg.innerHTML += "Higher pay range is not in the right format. Please enter numbers only and in range between 0-1000000 (inclusive)<br/>";
+        err_msg.innerHTML += "Higher pay range is not in the right format. Please enter numbers only and in range between 0-1000000 (inclusive). If there is a decimal point, please only 2 digits after the decimal point<br/>";
         isTrue = false;
     }
 
 
     if(pay_range_low.checkValidity() == false)
     {
-        err_msg.innerHTML += "Lower pay range is not in the right format. Please enter numbers only and in range between 0-1000000 (inclusive)<br/>";
+        err_msg.innerHTML += "Lower pay range is not in the right format. Please enter numbers only and in range between 0-1000000 (inclusive). If there is a decimal point, please only 2 digits after the decimal point<br/>";
         isTrue = false;
     }
     if (!isTrue)
@@ -316,13 +338,13 @@ function validate_product_search()
 
     if(price_range_high.checkValidity() == false)
     {
-        err_msg.innerHTML += "Higher price range is not in the right format. Please enter numbers only and in range between 0-9999 (inclusive)<br/>";
+        err_msg.innerHTML += "Higher price range is not in the right format. Please enter numbers only and in range between 0-9999 (inclusive). If there is a decimal point, please only 2 digits after the decimal point<br/>";
         isTrue = false;
     }
 
     if(price_range_low.checkValidity() == false)
     {
-        err_msg.innerHTML += "Lower price range is not in the right format. Please enter numbers only and in range between 0-9999 (inclusive)<br/>";
+        err_msg.innerHTML += "Lower price range is not in the right format. Please enter numbers only and in range between 0-9999 (inclusive). If there is a decimal point, please only 2 digits after the decimal point<br/>";
         isTrue = false;
     }
     if(product_name.checkValidity() == false)
@@ -411,5 +433,137 @@ function display_result_product_search()
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
     {
         document.getElementById('manager_page_product_search_display_search_result').innerHTML = xmlhttp.responseText;
+    }
+}
+
+/*Function to validate form data in special sale search*/
+function validate_special_sale_search()
+{
+    var price_range_low = document.getElementById('product_price_range_low_special_sale');
+    var price_range_high = document.getElementById('product_price_range_high_special_sale');
+
+    var product_name = document.getElementById('special_sale_search_product_name');
+    var product_category = document.getElementById('special_sale_search_product_category');
+
+    var start_date = document.getElementById('special_sale_mystart_date');
+    var end_date = document.getElementById('special_sale_myend_date');
+
+    var err_msg = document.getElementById('err_msg_special_sale_search');
+    err_msg.innerHTML = '';
+    var isTrue = true;
+
+    var int_price_low = parseFloat(price_range_low.value);
+    var int_price_high = parseFloat(price_range_high.value);
+
+
+    if(price_range_high.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Higher price range is not in the right format. Please enter numbers only and in range between 0-9999 (inclusive). If there is a decimal point, please only 2 digits after the decimal point<br/>";
+        isTrue = false;
+    }
+
+    if(price_range_low.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Lower price range is not in the right format. Please enter numbers only and in range between 0-9999 (inclusive). If there is a decimal point, please only 2 digits after the decimal point<br/>";
+        isTrue = false;
+    }
+    if(product_name.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Please enter a correct product name (no special characters)<br/>";
+        isTrue = false;
+    }
+    if(product_category.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Please enter a correct product category (no special characters)<br/>";
+        isTrue = false;
+    }
+    if (!isTrue)
+    {
+        return false;
+    }
+
+
+    if(price_range_high.value == '' && price_range_low.value == '' && product_category.value == '' && product_name.value == '' && start_date.value == '' && end_date.value == '')
+    {
+        err_msg.innerHTML += "Please make a least 1 search criteria<br/>";
+        return false;
+    }
+
+
+    if(price_range_high.value == '' && price_range_low.value == '' && start_date.value == '' && end_date.value == '' && (product_category.value != '' || product_name.value != ''))
+    {
+        isTrue = true;
+    }
+    else if (start_date.value != '' || end_date.value != '')
+    {
+        /*validate dates*/
+        if (!check_date_before(start_date,end_date)) /*start date is after end date*/
+        {
+            err_msg.innerHTML += "Either start date can't be after end date or one of the dates you entered is invalid. Please double check your values<br/>";
+            return false;
+        }
+    }
+    else
+    {
+        if(price_range_high.value != '' && price_range_low.value != '')
+        {
+            if(int_price_high < int_price_low)
+            {
+                err_msg.innerHTML += "ERROR: Higher price range is less than lower price range<br/>";
+                isTrue = false;
+            }
+        }
+        else
+        {
+            err_msg.innerHTML += "Please select the lower/higher price range<br/>";
+            isTrue = false;
+        }
+    }
+    return isTrue;
+}
+
+/*Function to send special sale search request to server*/
+function send_special_sale_search_data_to_server()
+{
+    if(validate_special_sale_search())
+    {
+        var price_range_low = document.getElementById('product_price_range_low_special_sale');
+        var price_range_high = document.getElementById('product_price_range_high_special_sale');
+
+        var product_name = document.getElementById('special_sale_search_product_name');
+        var product_category = document.getElementById('special_sale_search_product_category');
+
+        var start_date = document.getElementById('special_sale_mystart_date');
+        var end_date = document.getElementById('special_sale_myend_date');
+
+        var data_send = "";
+
+
+        /*Create AJAX XMLHttpRequest object*/
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = display_result_special_sale_search;
+        xmlhttp.open("POST","manager_page.php",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+        /*Send data*/
+        data_send += "product_price_range_low_special_sale="+price_range_low.value+"&product_price_range_high_special_sale="+price_range_high.value+"&special_sale_search_product_name="+product_name.value+"&special_sale_search_product_category="+product_category.value+"&special_sale_start_date="+start_date.value+"&special_sale_end_date="+end_date.value;
+        xmlhttp.send(data_send);
+    }
+}
+
+/*Function to display employee search result*/
+function display_result_special_sale_search()
+{
+    /*Check status of responded data */
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('manager_page_special_sale_search_display_search_result').innerHTML = xmlhttp.responseText;
     }
 }

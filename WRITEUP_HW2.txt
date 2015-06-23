@@ -1,0 +1,40 @@
+Website desciption:
+This website is supposed for user internally by employees. The main purpose is to manager employee, products, and special sale events.
+
+My company's products are homemade food. I'm planning to run a service where people can order online through my site and pick up their order later or have it delivered for extra charge.
+
+There are 3 types of employees: admin, manager and regular employee. Each has his/her own capabilities as specified in the HW2 description
+
+
+How my website works:
+1/ Initial login page - each user needs to log in. Upon successfully log in, if a user has more than 1 user type, he/she will be presented with a page to choose which type he/she wants to continue.
+2/ After step 1, user will be presented 3 types of page depending on his/her user type
+   a) Admin Page - can add new user, delete an existing user, or modify an existing user's information such as username, password, first & last name, so on...
+   b) Manager Page - have 3 options for search. Manager can search for a product based on price range, name, and/or category. He can also search for an employee based on user type and pay range. Lastly, he can also search for special sale event based on product price range, category, product name, sale start and/or end dates
+   c) Employee page - can add new products, new category, and new special sale event. He/she can modify or delete existing product, category, and special sale events
+3/ Log out. User can always log out at their homepage. In addition, the server will log an user out after a timeout period which is 30 mins
+
+
+Database:
+I have included the mydatabase.sql file along with HW2 submission that shows clearly field names, types, and sizes. Please refer to that file for database
+
+Database notes:
+I have decided that in my database, a product can be in multiple categories and a category can have multiple products (that's why I created an extra table product_and_category).
+Also, I decided to have a special sale event can be applied to multiple products, but a product can have ONLY 1 special sale event (UNIQUE constrain in database). 
+
+
+Include names and descriptions of each HTML page and PHP script:
+admin_page.php - handle all server action for admin page (add, modify, delete users and employees tables)
+employee_page.php - handle all server action for employee page (add, modify, delete products, product categories, and product_and_category table)
+manager_page.php - handle all server action for manager page (search and display report for product, employee, and special sale)
+login.php - handle log in and ensure that user has the right user name, password and user type before continue
+logout.php - handle log out action (destroy session and remove cookies)
+redirect_login_page.php - This PHP script is used when a user has more than 1 type and it will re-direct the user to his/her homepage corresponding to his/her choice after log in
+prelogin.html & postlogin.html - construct log in page for user interface
+pre_admin_page.html & post_admin_page.html - construct admin page for user interface
+pre_employee_page.html & post_employee_page.html - construct employee page for user interface
+manager_page.html - construct manager page for user interface
+
+
+
+All testing is on Chrome browser version: 43.0.2357.124 m

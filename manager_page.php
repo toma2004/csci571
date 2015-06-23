@@ -59,6 +59,14 @@ else
                 display_result_product_search();
             }
         }
+        #Check if manager send request for special sale search
+        elseif (isset($_POST["product_price_range_low_special_sale"]) || isset($_POST["product_price_range_high_special_sale"]) || isset($_POST["special_sale_search_product_name"]) || isset($_POST["special_sale_search_product_category"]) || isset($_POST["special_sale_start_date"]) || isset($_POST["special_sale_end_date"]))
+        {
+            if($_POST["product_price_range_low_special_sale"] != '' || $_POST["product_price_range_high_special_sale"] != '' || $_POST["special_sale_search_product_name"] != '' || $_POST["special_sale_search_product_category"] != '' || $_POST["special_sale_start_date"] != '' || $_POST["special_sale_end_date"] != '')
+            {
+                display_result_special_sale_search();
+            }
+        }
         #For any thing else, back to Home employee page
         else
         {
@@ -360,7 +368,7 @@ function display_result_product_search()
             {
                 $counter = 0;
                 echo '<table id="table_product_category_search_name_price">';
-                echo '<tr><th>Product id</th><th>Product name</th><th>Product price</th><th>Category_id</th><th>Category_name</th></tr>';
+                echo '<tr><th>Product id</th><th>Product name</th><th>Product price</th><th>Category id</th><th>Category name</th></tr>';
                 while($row = mysql_fetch_assoc($res))
                 {
                     $counter += 1;
@@ -411,6 +419,193 @@ function display_result_product_search()
                 {
                     echo '<p style="color:red">There is no product category matching your specified category name string</p><br/>';
                 }
+            }
+        }
+    }
+    disconnectDB($conn);
+}
+
+/*Function to display search result for special sale search*/
+function display_result_special_sale_search()
+{
+    $conn = connectDB();
+    /*Search special sale which associates with products that has these names*/
+    if ($_POST["special_sale_search_product_category"] == '' && ($_POST["special_sale_search_product_name"] != '' || ($_POST["product_price_range_low_special_sale"] != '' && $_POST["product_price_range_high_special_sale"] != '')))
+    {
+        if($_POST["special_sale_search_product_name"] != '' && $_POST["product_price_range_low_special_sale"] == '' && $_POST["product_price_range_high_special_sale"] == '')
+        {
+            $sql = "select product_id, product_name, product_price from products where product_name like '%".$_POST["special_sale_search_product_name"]."%'";
+        }
+        else if($_POST["special_sale_search_product_name"] == '' && $_POST["product_price_range_low_special_sale"] != '' && $_POST["product_price_range_high_special_sale"] != '')
+        {
+            $sql = "select product_id, product_name, product_price from products where product_price >= '".$_POST["product_price_range_low_special_sale"]."' and product_price <= '".$_POST["product_price_range_high_special_sale"]."'";
+        }
+        else
+        {
+            $sql = "select product_id, product_name, product_price from products where product_name like '%".$_POST["special_sale_search_product_name"]."%' and product_price >= '".$_POST["product_price_range_low_special_sale"]."' and product_price <= '".$_POST["product_price_range_high_special_sale"]."'";
+        }
+        $res = mysql_query($sql);
+        if (!$res)
+        {
+            #query failed
+            echo '<p style="color:red">Failed to retrieve special sale data</p><br/>';
+        }
+        else
+        {
+            $counter = 0;
+            echo '<table id="table_special_sale_search_product_name">';
+            echo '<tr><th>Product id</th><th>Product name</th><th>Product price</th><th>Special sale id</th><th>Start date</th><th>End date</th><th>Percentage discount</th></tr>';
+            while ($row = mysql_fetch_assoc($res))
+            {
+                $counter += 1;
+                $sql = "select special_sale_id from special_sales_and_product where product_id='".$row["product_id"]."'";
+                $res_specialsale_product = mysql_query($sql);
+
+                while ($row_specialsale_product = mysql_fetch_assoc($res_specialsale_product))
+                {
+                    if ($_POST["special_sale_start_date"] != '' && $_POST["special_sale_end_date"] != '')
+                    {
+                        $sql = "select special_sale_id, start_date, end_date, percentage_discount from special_sales where special_sale_id='".$row_specialsale_product["special_sale_id"]."' and start_date >= '".$_POST["special_sale_start_date"]."' and end_date <= '".$_POST["special_sale_end_date"]."'";
+                    }
+                    else
+                    {
+                        $sql = "select special_sale_id, start_date, end_date, percentage_discount from special_sales where special_sale_id='".$row_specialsale_product["special_sale_id"]."'";
+                    }
+                    $res_final = mysql_query($sql);
+                    while ($row_final = mysql_fetch_assoc($res_final))
+                    {
+                        echo '<tr><td>'.$row["product_id"].'</td>';
+                        echo '<td>'.$row["product_name"].'</td>';
+                        echo '<td>'.$row["product_price"].'</td>';
+                        echo '<td>'.$row_final["special_sale_id"].'</td>';
+                        echo '<td>'.$row_final["start_date"].'</td>';
+                        echo '<td>'.$row_final["end_date"].'</td>';
+                        echo '<td>'.$row_final["percentage_discount"].'</td></tr>';
+                    }
+
+                }
+            }
+            echo '</table>';
+            if ($counter == 0)
+            {
+                #no product has these names
+                echo '<p style="color:red">There is no product matching your search criteria</p><br/>';
+            }
+        }
+    }
+    /*Select all special sale that is within these dates*/
+    else if($_POST["special_sale_start_date"] != '' && $_POST["special_sale_end_date"] != '' && $_POST["special_sale_search_product_category"] == '' && $_POST["special_sale_search_product_name"] == '' && $_POST["product_price_range_low_special_sale"] == '' && $_POST["product_price_range_high_special_sale"] == '')
+    {
+        $sql = "select special_sale_id, start_date, end_date, percentage_discount from special_sales where start_date >= '".$_POST["special_sale_start_date"]."' and end_date <= '".$_POST["special_sale_end_date"]."'";
+        $res = mysql_query($sql);
+        if(!$res)
+        {
+            #query failed
+            echo '<p style="color:red">Failed to retrieve special sale data</p><br/>';
+        }
+        else
+        {
+            $counter = 0;
+            echo '<table id="table_special_sale_search_start_end_date">';
+            echo '<tr><th>Special sale id</th><th>Start date</th><th>End date</th><th>Percentage discount</th></tr>';
+
+            while ($row = mysql_fetch_assoc($res))
+            {
+                $counter += 1;
+                echo '<tr><td>'.$row["special_sale_id"].'</td>';
+                echo '<td>'.$row["start_date"].'</td>';
+                echo '<td>'.$row["end_date"].'</td>';
+                echo '<td>'.$row["percentage_discount"].'</td></tr>';
+            }
+            echo '</table>';
+            if ($counter == 0)
+            {
+                #no special sale within these dates
+                echo '<p style="color:red">There is no special sale that has start date on or after '.$_POST["special_sale_start_date"].' and before or on '.$_POST["special_sale_end_date"].'</p><br/>';
+            }
+        }
+    }
+    /*Select special sales that associate with products in these categories*/
+    else if ($_POST["special_sale_search_product_category"] != '')
+    {
+        $sql = "select category_id, category_name from product_categories where category_name like '%".$_POST["special_sale_search_product_category"]."%'";
+        $res = mysql_query($sql);
+        if (!$res)
+        {
+            #query failed
+            echo '<p style="color:red">Failed to retrieve special sale data</p><br/>';
+        }
+        else
+        {
+            $counter = 0;
+            echo '<table id="table_special_sale_search_category_name">';
+            echo '<tr><th>Product id</th><th>Product name</th><th>Product price</th><th>Category id</th><th>Category name</th><th>Special sale id</th><th>Start date</th><th>End date</th><th>Percentage discount</th></tr>';
+
+            while ($row = mysql_fetch_assoc($res))
+            {
+                #Check what product belong to this category
+                $sql = "select product_id from product_and_category where category_id='".$row["category_id"]."'";
+                $res_product_id = mysql_query($sql);
+
+                #select product name and other info
+                #also use this product id to check if it associates with any special sale
+                while ($row_product_id = mysql_fetch_assoc($res_product_id))
+                {
+                    if ($_POST["special_sale_search_product_name"] != '' && $_POST["product_price_range_low_special_sale"] == '' && $_POST["product_price_range_high_special_sale"] == '')
+                    {
+                        $sql = "select product_id, product_name, product_price from products where product_id='".$row_product_id["product_id"]."' and product_name like '%".$_POST["special_sale_search_product_name"]."%'";
+                    }
+                    else if ($_POST["special_sale_search_product_name"] == '' && $_POST["product_price_range_low_special_sale"] != '' && $_POST["product_price_range_high_special_sale"] != '')
+                    {
+                        $sql = "select product_id, product_name, product_price from products where product_id='".$row_product_id["product_id"]."' and product_price >= '".$_POST["product_price_range_low_special_sale"]."' and product_price <= '".$_POST["product_price_range_high_special_sale"]."'";
+                    }
+                    else if ($_POST["special_sale_search_product_name"] != '' && $_POST["product_price_range_low_special_sale"] != '' && $_POST["product_price_range_high_special_sale"] != '')
+                    {
+                        $sql = "select product_id, product_name, product_price from products where product_id='".$row_product_id["product_id"]."' and product_name like '%".$_POST["special_sale_search_product_name"]."%' and product_price >= '".$_POST["product_price_range_low_special_sale"]."' and product_price <= '".$_POST["product_price_range_high_special_sale"]."'";
+                    }
+                    else
+                    {
+                        $sql = "select product_id, product_name, product_price from products where product_id='".$row_product_id["product_id"]."'";
+                    }
+                    $res_product_info = mysql_query($sql);
+                    if ($row_product_info = mysql_fetch_assoc($res_product_info))
+                    {
+                        $sql = "select special_sale_id from special_sales_and_product where product_id='".$row_product_id["product_id"]."'";
+                        $res_special_sale_id = mysql_query($sql);
+                        if ($row_special_sale_id = mysql_fetch_assoc($res_special_sale_id))
+                        {
+                            if ($_POST["special_sale_start_date"] != '' and $_POST["special_sale_end_date"] != '')
+                            {
+                                $sql = "select special_sale_id, start_date, end_date, percentage_discount from special_sales where special_sale_id='".$row_special_sale_id["special_sale_id"]."' and start_date >= '".$_POST["special_sale_start_date"]."' and end_date <= '".$_POST["special_sale_end_date"]."'";
+                            }
+                            else
+                            {
+                                $sql = "select special_sale_id, start_date, end_date, percentage_discount from special_sales where special_sale_id='".$row_special_sale_id["special_sale_id"]."'";
+                            }
+                            $res_final = mysql_query($sql);
+                            if ($row_final = mysql_fetch_assoc($res_final))
+                            {
+                                $counter += 1;
+                                echo '<tr><td>'.$row_product_info["product_id"].'</td>';
+                                echo '<td>'.$row_product_info["product_name"].'</td>';
+                                echo '<td>'.$row_product_info["product_price"].'</td>';
+                                echo '<td>'.$row["category_id"].'</td>';
+                                echo '<td>'.$row["category_name"].'</td>';
+                                echo '<td>'.$row_final["special_sale_id"].'</td>';
+                                echo '<td>'.$row_final["start_date"].'</td>';
+                                echo '<td>'.$row_final["end_date"].'</td>';
+                                echo '<td>'.$row_final["percentage_discount"].'</td></tr>';
+                            }
+                        }
+                    }
+                }
+            }
+
+            echo '</table>';
+            if ($counter == 0)
+            {
+                #no category name found
+                echo '<p style="color:red">There is no product matching your search criteria</p><br/>';
             }
         }
     }
