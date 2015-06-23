@@ -22,7 +22,8 @@ else
     {
         $_SESSION['timeout'] = 1;
         require "logout.php";
-    } else
+    }
+    else
     {
         #session is not yet timeout. Reset time to give users another 30 mins
         $_SESSION['last_activity'] = time();

@@ -4,7 +4,7 @@
 
 /*jQuery ready function to be run when browser load the page*/
 $(document).ready(checkAll);
-
+var xmlhttp;
 
 /*Function to validate radio button to at least 1 checked */
 function validate_radio( radio_element )
@@ -131,14 +131,17 @@ function check_date_before (date1,date2)
 function checkAll()
 {
     /*All events in manager homepage*/
-    // $("#manager_homepage_product_search_clicked").click(transform_managerHomePage_productSearchPage);
+    $("#manager_homepage_product_search_clicked").click(transform_managerHomePage_productSearchPage);
     $("#manager_homepage_employee_search_clicked").click(transform_managerHomePage_employeeSearchPage);
     // $("#manager_homepage_special_sale_search_clicked").click(transform_managerHomePage_specialsaleSearchPage);
-    // $("#manager_homepage_logout").click(manager_homepage_logout);
 
     /*All events in employee search homepage*/
     $("#back_homepage_from_employee_search").click(back_homepage);
     $("#submit_employee_search").click(send_employee_search_data_to_server);
+
+    /*All events in product search homepage*/
+    $("#back_homepage_from_product_search").click(back_homepage);
+    $("#submit_product_search").click(send_product_search_data_to_server);
 }
 
 /*Function to handle transform from manager homepage to employee search page*/
@@ -147,6 +150,13 @@ function transform_managerHomePage_employeeSearchPage()
     manager_transform('manager_homepage','manager_page_employee_search');
 }
 
+/*Function to handle transform from manager homepage to product search page*/
+function transform_managerHomePage_productSearchPage()
+{
+    manager_transform('manager_homepage','manager_page_product_search');
+}
+
+/*Back to manager home page function*/
 function back_homepage()
 {
     manager_transform('not matter','manager_homepage');
@@ -157,14 +167,24 @@ function manager_transform( wherefrom, whereto )
 {
     var d1 = document.getElementById('manager_homepage');
     var d2 = document.getElementById('manager_page_employee_search');
+    var d3 = document.getElementById('manager_page_product_search');
+
     if (wherefrom == 'manager_homepage' && whereto == "manager_page_employee_search")
     {
         d1.style.display = "none";
+        d3.style.display = "none";
         d2.style.display = "block";
+    }
+    else if(wherefrom == "manager_homepage" && whereto == "manager_page_product_search")
+    {
+        d1.style.display = "none";
+        d2.style.display = "none";
+        d3.style.display = "block";
     }
     else if(whereto == "manager_homepage")
     {
         d2.style.display = "none";
+        d3.style.display = "none";
         d1.style.display = "block";
     }
 }
@@ -175,60 +195,59 @@ function validate_employee_search()
     var pay_range_low = document.getElementById('employee_pay_range_low');
     var pay_range_high = document.getElementById('employee_pay_range_high');
 
-    var user_type_cb = document.getElementsByName('manager_employee_checkbox1');
+    var user_type_cb = document.getElementsByName('manager_employee_checkbox1[]');
     var user_type_cb_check = validate_checkbox(user_type_cb);
 
     var err_msg = document.getElementById('err_msg_employee_search');
     err_msg.innerHTML = '';
     var isTrue = true;
 
-    if(pay_range_high.value == '' && pay_range_low.value =='' && user_type_cb_check == false)
+    var int_pay_low = parseInt(pay_range_low.value);
+    var int_pay_high = parseInt(pay_range_high.value);
+
+    if(pay_range_high.checkValidity() == false)
     {
-        err_msg.innerHTML += "Please make a least 1 search criteria<br/>";
+        err_msg.innerHTML += "Higher pay range is not in the right format. Please enter numbers only and in range between 0-1000000 (inclusive)<br/>";
         isTrue = false;
     }
 
-    if(pay_range_high.value != '')
+
+    if(pay_range_low.checkValidity() == false)
     {
-        if (pay_range_low.value == '')
-        {
-            err_msg.innerHTML += "Please select the lower pay range<br/>";
-            isTrue = false;
-        }
-        else
-        {
-            if(pay_range_high.checkValidity() == false)
-            {
-                err_msg.innerHTML += "Higher pay range is not in the right format. Please enter numbers only and in range between 0-1000000 (inclusive)<br/>";
-                isTrue = false;
-            }
-            else if(pay_range_high.value < pay_range_low.value)
-            {
-                err_msg.innerHTML += "Higher pay range is less than lower pay range<br/>";
-                isTrue = false;
-            }
-        }
+        err_msg.innerHTML += "Lower pay range is not in the right format. Please enter numbers only and in range between 0-1000000 (inclusive)<br/>";
+        isTrue = false;
+    }
+    if (!isTrue)
+    {
+        return false;
     }
 
-    if(pay_range_low.value != '')
+
+    if(pay_range_high.value == '' && pay_range_low.value == '' && !user_type_cb_check)
     {
-        if (pay_range_high.value == '')
+        err_msg.innerHTML += "Please make a least 1 search criteria<br/>";
+        return false;
+    }
+
+
+    if(pay_range_high.value == '' && pay_range_low.value == '' && user_type_cb_check)
+    {
+        isTrue = true;
+    }
+    else
+    {
+        if(pay_range_high.value != '' && pay_range_low.value != '')
         {
-            err_msg.innerHTML += "Please select the higher pay range<br/>";
-            isTrue = false;
-        }
-        else
-        {
-            if(pay_range_low.checkValidity() == false)
-            {
-                err_msg.innerHTML += "Lower pay range is not in the right format. Please enter numbers only and in range between 0-1000000 (inclusive)<br/>";
-                isTrue = false;
-            }
-            else if(pay_range_low.value > pay_range_high.value)
+            if(int_pay_high < int_pay_low)
             {
                 err_msg.innerHTML += "Higher pay range is less than lower pay range<br/>";
                 isTrue = false;
             }
+        }
+        else
+        {
+            err_msg.innerHTML += "Please select the lower/higher pay range<br/>";
+            isTrue = false;
         }
     }
     return isTrue;
@@ -242,14 +261,14 @@ function send_employee_search_data_to_server()
         var pay_range_low = document.getElementById('employee_pay_range_low');
         var pay_range_high = document.getElementById('employee_pay_range_high');
 
-        var user_type_cb = document.getElementsByName('manager_employee_checkbox1');
-        var user_type_cb_check = validate_checkbox(user_type_cb);
-        var name_val_pay = "";
-        var name_user_type = "";
+        var user_type_cb = document.getElementsByName('manager_employee_checkbox1[]');
+
         var data_send = "";
 
+        var arr_user_type = value_checkboxes(user_type_cb);
+        var str_user_type = arr_user_type.join();
+
         /*Create AJAX XMLHttpRequest object*/
-        var xmlhttp;
         if (window.XMLHttpRequest)
         {// code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp=new XMLHttpRequest();
@@ -262,38 +281,135 @@ function send_employee_search_data_to_server()
         xmlhttp.open("POST","manager_page.php",true);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
-        /*See what data to send to server*/
-        if (pay_range_high.value != '' && pay_range_low.value != '')
-        {
-            name_val_pay += "employee_pay_range_low="+pay_range_low.value+"&employee_pay_range_high="+pay_range_high.value;
-        }
+        /*Send data*/
+        data_send += "employee_pay_range_low="+pay_range_low.value+"&employee_pay_range_high="+pay_range_high.value+"&manager_employee_user_type="+str_user_type;
+        xmlhttp.send(data_send);
 
-        if(!user_type_cb_check)
-        {
-            var arr_user_type = value_checkboxes(user_type_cb);
-            var str_user_type = arr_user_type.join();
-            name_user_type += "manager_employee_user_type="+str_user_type;
-        }
-
-        if(name_val_pay != "" && name_user_type != "")
-        {
-            /*Concatenate and send both info to server*/
-            data_send += name_val_pay+"&"+name_user_type;
-            xmlhttp.send(data_send);
-        }
-        else if(name_val_pay == '')
-        {
-            xmlhttp.send(name_user_type);
-        }
-        else
-        {
-            xmlhttp.send(name_val_pay);
-        }
     }
 }
 
 /*Function to display employee search result*/
 function display_result_employee_search()
 {
+    /*Check status of responded data */
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('manager_page_employee_search_display_search_result').innerHTML = xmlhttp.responseText;
+    }
+}
 
+/*Function to validate form data in product search*/
+function validate_product_search()
+{
+    var price_range_low = document.getElementById('product_price_range_low');
+    var price_range_high = document.getElementById('product_price_range_high');
+
+    var product_name = document.getElementById('product_search_name');
+    var product_category = document.getElementById('product_search_category');
+
+    var err_msg = document.getElementById('err_msg_product_search');
+    err_msg.innerHTML = '';
+    var isTrue = true;
+
+    var int_price_low = parseFloat(price_range_low.value);
+    var int_price_high = parseFloat(price_range_high.value);
+
+    if(price_range_high.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Higher price range is not in the right format. Please enter numbers only and in range between 0-9999 (inclusive)<br/>";
+        isTrue = false;
+    }
+
+    if(price_range_low.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Lower price range is not in the right format. Please enter numbers only and in range between 0-9999 (inclusive)<br/>";
+        isTrue = false;
+    }
+    if(product_name.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Please enter a correct product name (no special characters)<br/>";
+        isTrue = false;
+    }
+    if(product_category.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Please enter a correct product category (no special characters)<br/>";
+        isTrue = false;
+    }
+    if (!isTrue)
+    {
+        return false;
+    }
+
+
+    if(price_range_high.value == '' && price_range_low.value == '' && product_category.value == '' && product_name.value == '')
+    {
+        err_msg.innerHTML += "Please make a least 1 search criteria<br/>";
+        return false;
+    }
+
+
+    if(price_range_high.value == '' && price_range_low.value == '' && (product_category.value != '' || product_name.value != ''))
+    {
+        isTrue = true;
+    }
+    else
+    {
+        if(price_range_high.value != '' && price_range_low.value != '')
+        {
+            if(int_price_high < int_price_low)
+            {
+                err_msg.innerHTML += "ERROR: Higher price range is less than lower price range<br/>";
+                isTrue = false;
+            }
+        }
+        else
+        {
+            err_msg.innerHTML += "Please select the lower/higher price range<br/>";
+            isTrue = false;
+        }
+    }
+    return isTrue;
+}
+
+/*Function to send product search data to web server*/
+function send_product_search_data_to_server()
+{
+    if(validate_product_search())
+    {
+        var price_range_low = document.getElementById('product_price_range_low');
+        var price_range_high = document.getElementById('product_price_range_high');
+
+        var product_name = document.getElementById('product_search_name');
+        var product_category = document.getElementById('product_search_category');
+
+        var data_send = "";
+
+
+        /*Create AJAX XMLHttpRequest object*/
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = display_result_product_search;
+        xmlhttp.open("POST","manager_page.php",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+        /*Send data*/
+        data_send += "product_price_range_low="+price_range_low.value+"&product_price_range_high="+price_range_high.value+"&product_search_name="+product_name.value+"&product_search_category="+product_category.value;
+        xmlhttp.send(data_send);
+    }
+}
+
+/*Function to display employee search result*/
+function display_result_product_search()
+{
+    /*Check status of responded data */
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('manager_page_product_search_display_search_result').innerHTML = xmlhttp.responseText;
+    }
 }

@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `Employees` (
 	`e_gender` VARCHAR(30) NOT NULL,
 	`e_dob` DATE NOT NULL,
 	`e_phone` VARCHAR(40) NOT NULL,
-	`e_salary` VARCHAR(50) NOT NULL,
+	`e_salary` INT(6) NOT NULL,
 	`e_email` VARCHAR(50) NOT NULL UNIQUE,
 	PRIMARY KEY (`employee_id`),
 	FOREIGN KEY (`userid`) REFERENCES Users(`userid`)
@@ -182,4 +182,3 @@ INSERT INTO `Special_Sales_and_product` VALUES ('5','10');
 INSERT INTO `Special_Sales_and_product` VALUES ('7','5');
 INSERT INTO `Special_Sales_and_product` VALUES ('3','14');
 INSERT INTO `Special_Sales_and_product` VALUES ('1','19');
-
