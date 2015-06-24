@@ -1,0 +1,25 @@
+body, html
+{
+    font-family: "Trebuchet MS",Georgia,serif;
+    color: #ffffff;
+    background: url("login_background.jpg") no-repeat fixed center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.outer_box_login
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    background-color: #313131;
+}
+
+.login_form1
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 90%;
+}

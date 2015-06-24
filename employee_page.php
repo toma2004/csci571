@@ -521,9 +521,9 @@ function display_product_info_to_modify()
             $category_str = implode(',',$category_id_arr);
 
             #Category that this product belongs to
-            echo '<p class=formfield>';
-            echo 'Product belongs to the'.'<br/>'.'following category id(s): ';
-            echo '<textarea rows="5" cols="20" readonly style="position:relative; left: 3%">'.$category_str.'</textarea>';
+            echo '<span class=formfield_float_cb>';
+            echo 'Product belongs to the'.'<br/>'.'following category id(s): '.'<br/>';
+            echo '<textarea rows="5" cols="20" readonly style="position:relative; left: 12%">'.$category_str.'</textarea></span>';
 
             #Print out checkboxes of all available category in database
             $sql = "select * from product_categories";
@@ -533,15 +533,27 @@ function display_product_info_to_modify()
             $myindex = 1;
             $initial_px = 50;
             $second_initial_px = 51;
+            $down_row = false;
             while($row = mysql_fetch_assoc($res))
             {
                $cb_id = $checkbox_id.$myindex;
                 echo '<input type="checkbox" id='.$cb_id.' name="employee_modified2_product_cb1[]" value='.$row["category_id"].' style="position:absolute; left:'.$initial_px.'%"/><span style="position:absolute; left:'.$second_initial_px.'%">'.$row["category_id"].'</span>';
                 $initial_px += 5;
                 $second_initial_px += 5;
+                if ($down_row)
+                {
+                    echo '<br/>';
+                    $initial_px = 50;
+                    $second_initial_px = 51;
+                    $down_row = false;
+                }
                 $myindex += 1;
+                if ($myindex % 5 == 0)
+                {
+                    $down_row = true;
+                }
             }
-            echo '</p><br/><br/>';
+            echo '<br/><br/><br/><br/><br/><br/>';
             if ($myindex == 1)
             {
                 require "pre_employee_page.html";
@@ -569,9 +581,9 @@ function display_product_info_to_modify()
             }
 
             #Special sale that this product belongs to
-            echo '<p class=formfield>';
-            echo 'Product belongs to the'.'<br/>'.'following special sale id: ';
-            echo '<textarea rows="5" cols="20" readonly style="position:relative; left: 3%">'.$special_sale_id.'</textarea>';
+            echo '<span class=formfield_float_cb>';
+            echo 'Product belongs to the'.'<br/>'.'following special sale id: '.'<br/>';
+            echo '<textarea rows="5" cols="20" readonly style="position:relative; left: 12%">'.$special_sale_id.'</textarea></span>';
 
             #Print out radio buttons of all available special sale in database
             $sql = "select * from special_sales";
@@ -581,19 +593,32 @@ function display_product_info_to_modify()
             $myindex = 1;
             $initial_px = 50;
             $second_initial_px = 51;
+            $down_row = false;
             while($row = mysql_fetch_assoc($res))
             {
                 $rd_id = $radio_id.$myindex;
                 echo '<input type="radio" id='.$rd_id.' name="employee_modified2_product_radio1" value='.$row["special_sale_id"].' style="position:absolute; left:'.$initial_px.'%"/><span style="position:absolute; left:'.$second_initial_px.'%">'.$row["special_sale_id"].'</span>';
                 $initial_px += 5;
                 $second_initial_px += 5;
+                if ($down_row)
+                {
+                    echo '<br/>';
+                    $initial_px = 50;
+                    $second_initial_px = 51;
+                    $down_row = false;
+                }
+
                 $myindex += 1;
+                if ($myindex % 5 == 0)
+                {
+                   $down_row = true;
+                }
             }
             if ($myindex == 1)
             {
                 echo '<span style="position:absolute; left: 50%">There is no available special sale in our database</span>';
             }
-            echo '</p><br/><br/>';
+            echo '<br/><br/><br/><br/><br/><br/>';
 
             echo '<button type="submit" value="go_homepage_employee">Home</button>';
             echo '<button type="submit" onclick="return validate_modify2_product()" name="mysubmit_modified2_product" value="mysubmit_modified2_product" style="position:relative; left:15px;">Submit</button>';
@@ -920,8 +945,8 @@ function display_category_info_to_modify()
         #Category description
         echo '<p class=formfield>';
         echo 'Category description: ';
-        echo '<textarea rows="30" cols="50" readonly style="position:relative; left: 5%">'.$row["category_description"].'</textarea>';
-        echo '<textarea id="modified_category_description" name="modified_category_description" rows="30" cols="50" style="position:absolute; left: 50%"></textarea></p><br/>';
+        echo '<textarea rows="30" cols="40" readonly style="position:relative; left: 5%">'.$row["category_description"].'</textarea>';
+        echo '<textarea id="modified_category_description" name="modified_category_description" rows="30" cols="40" style="position:absolute; left: 50%"></textarea></p><br/>';
 
 
         echo '<button type="submit" value="go_homepage_employee">Home</button>';
@@ -1094,9 +1119,9 @@ function display_special_sale_info_to_modify()
         }
 
         #Product id
-        echo '<p class=formfield>';
-        echo 'Product id associated'.'<br/>'.'with this special sale: ';
-        echo '<textarea rows="10" cols="30" readonly style="position:relative; left: 1%">'.$associated_product.'</textarea>';
+        echo '<span class=formfield_float_cb>';
+        echo 'Product id associated'.'<br/>'.'with this special sale: '.'<br/>';
+        echo '<textarea rows="10" cols="30" readonly style="position:relative; left: 9%">'.$associated_product.'</textarea></span>';
 
         #Now print out all products in our database for user to choose from
         $sql = "select product_id from products";
@@ -1112,15 +1137,27 @@ function display_special_sale_info_to_modify()
             $myindex = 1;
             $initial_px = 30;
             $second_initial_px = 31;
+            $down_row = false;
             while($row = mysql_fetch_assoc($res))
             {
                 $cb_id = $checkbox_id.$myindex;
                 echo '<input type="checkbox" id='.$cb_id.' name="employee_modified4_special_sale_cb1[]" value='.$row["product_id"].' style="position:absolute; left:'.$initial_px.'%"/><span style="position:absolute; left:'.$second_initial_px.'%">'.$row["product_id"].'</span>';
                 $initial_px += 5;
                 $second_initial_px += 5;
+                if ($down_row)
+                {
+                    echo '<br/>';
+                    $initial_px = 30;
+                    $second_initial_px = 31;
+                    $down_row = false;
+                }
                 $myindex += 1;
+                if($myindex % 5 == 0)
+                {
+                    $down_row = true;
+                }
             }
-            echo '</p><br/><br/>';
+            echo '<br/><br/><br/><br/><br/><br/>';
         }
 
         echo '<button type="submit" value="go_homepage_employee">Home</button>';

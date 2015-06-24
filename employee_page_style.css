@@ -1,3 +1,31 @@
+body, html
+{
+    font-family: "Trebuchet MS",Georgia,serif;
+    color: #313131;
+    background: url("tomato.jpg") no-repeat fixed center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.employee_homepage_div
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+    position:absolute;
+    left: 20%;
+}
+
 .formfield * {
     vertical-align: top;
+}
+
+.formfield_float_cb * {
+     float: left;
+ }
+
+.asterisk_red
+{
+    color: red;
 }

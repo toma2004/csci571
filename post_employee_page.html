@@ -6,9 +6,10 @@
     <button type="button" onclick="employee_transform('employee_page_form1','employee_page_delete1')">Delete</button>
     <button type="submit">Logout</button>
 </form>
+</fieldset>
 </div>
 
-<!-- Add new employee or new role to an existing employee page -->
+<!-- Add new product, category, or special sale -->
 <div id="employee_page_add1" style="display:none;">
     <h1>Please select what do you want to add:</h1>
     <p id="err_msg" style="color: red"></p>
@@ -30,10 +31,10 @@
     <form id="employee_page_add_productCategory" action="employee_page.php" method="POST">
 
         <p>Please provide category name:</p>
-        <label for="category_name_id">Category name</label>
+        <label for="category_name_id">Category name</label><span class="asterisk_red">*</span>
         <input type="text" id="category_name_id" name="category_name" pattern="([a-zA-Z0-9]+)\s*([a-zA-Z0-9])*" maxlength="255" required/><br/> <!--need validate -->
 
-        <p>Please type in category description below:</p>
+        <p>Please type in category description below:<span class="asterisk_red">*</span></p>
         <textarea name="category_description" id="category_description_id" rows="50" cols="100" onfocus="clearText('product_category_page','text1')">Describe category here</textarea><br/><br/>
 
         <button type="button" onclick="employee_transform('employee_page_add2_productCategory','employee_page_add1')">Back</button>
@@ -51,28 +52,28 @@
 
     <form id="employee_page_add_product" action="employee_page.php" method="POST">
         <!-- Product name & Price-->
-        <label for="product_name_id">Product name</label>
+        <label for="product_name_id">Product name</label><span class="asterisk_red">*</span>
         <input type="text" id="product_name_id" name="product_name" pattern="([a-zA-Z0-9]+)\s*([a-zA-Z0-9])*" maxlength="255" required/>
 
-        <label for="product_price_id" style="position:relative; left: 80px;">Product price (in dollars)</label>
+        <label for="product_price_id" style="position:relative; left: 80px;">Product price (in dollars)</label><span style="position:relative; left: 80px;" class="asterisk_red">*</span>
         <input type="number" id="product_price_id" name="product_price" pattern="(^\d*(?:\.\d{0,2})?$)" step="0.01" min="0" max="9999" required style="position:relative; left: 80px;"/><br/> <!--need validate -->
 
         <!-- product category id that the product belongs to-->
         <p>Please type in the category id that this product belongs to (To add a new product, it needs to be in an existing category)</p>
-        <label for="product_category_add_id">Category id</label>
+        <label for="product_category_add_id">Category id</label><span class="asterisk_red">*</span>
         <input type="text" id="product_category_add_id" name="product_category_add" pattern="\d+" required/><br/><br/> <!--need validate -->
 
 
         <!-- PRODUCT DESCRIPTION -->
-        <label for="product_description_id" style="display:block">Product description:</label>
+        <label for="product_description_id">Product description:</label><span class="asterisk_red">*</span><br/>
         <textarea name="product_description" id="product_description_id" rows="30" cols="50" onfocus="clearText('product_page','text1')" style="display:block">Describe product here</textarea><br/><br/>
 
         <!-- INGREDIENTS -->
-        <label for="ingredient_id" style="display:block;">Ingredients:</label>
+        <label for="ingredient_id">Ingredients:</label><span class="asterisk_red">*</span><br/>
         <textarea name="ingredient" id="ingredient_id" rows="30" cols="50" onfocus="clearText('product_page','text2')" style="display:block">Enter ingredients info here</textarea><br/><br/>
 
         <!-- RECIPE -->
-        <label for="recipe_id" style="display:block;">Recipe:</label>
+        <label for="recipe_id">Recipe:</label><span class="asterisk_red">*</span><br/>
         <textarea name="recipe" id="recipe_id" rows="30" cols="50" onfocus="clearText('product_page','text3')" style="display:block;">Enter recipe here</textarea><br/><br/>
 
 
@@ -91,19 +92,19 @@
 
     <form id="employee_page_add_specialsales" action="employee_page.php" method="POST">
         <!-- Product id-->
-        <label for="product_specialsales_id">Product id for special sale event</label>
+        <label for="product_specialsales_id">Product id for special sale event</label><span class="asterisk_red">*</span>
         <input type="text" id="product_specialsales_id" name="product_specialsales" pattern="\d+" required/> <br/><br/>
 
         <!-- start and end dates -->
-        <label for="mystart_date_id">Start Date</label><br>
+        <label for="mystart_date_id">Start Date</label><span class="asterisk_red">*</span><br>
         <input type="date" id="mystart_date_id" name="mystart_date" required/><br><br>
 
-        <label for="myend_date_id">End Date</label><br>
+        <label for="myend_date_id">End Date</label><span class="asterisk_red">*</span><br>
         <input type="date" id="myend_date_id" name="myend_date" required/><br><br>
 
 
         <!-- Percentage discount -->
-        <label for="percentage_discount_id">Percentage discount of original price</label>
+        <label for="percentage_discount_id">Percentage discount of original price</label><span class="asterisk_red">*</span>
         <input type="number" id="percentage_discount_id" name="percentage_discount" pattern="(^\d*(?:\.\d{0,2})?$)" step="0.01" min="0" max="100" required/><br/><br/> <!--need validate -->
 
 
@@ -138,7 +139,7 @@
     <p id="err_msg_modify2" style="color:red"></p>
 
     <form id="myemployee_page_modify2" action="employee_page.php" method="POST">
-        <label for="product_modified_id">Product id</label>
+        <label for="product_modified_id">Product id</label><span class="asterisk_red">*</span>
         <input type="text" id="product_modified_id" name="product_modified" pattern="\d+" required/> <br/><br/>
 
 
@@ -155,7 +156,7 @@
     <p id="err_msg_modify3" style="color:red"></p>
 
     <form id="myemployee_page_modify3" action="employee_page.php" method="POST">
-        <label for="category_modified_id">Category id</label>
+        <label for="category_modified_id">Category id</label><span class="asterisk_red">*</span>
         <input type="text" id="category_modified_id" name="category_modified" pattern="\d+" required/><br/><br/>
 
 
@@ -172,7 +173,7 @@
     <p id="err_msg_modify4" style="color:red"></p>
 
     <form id="myemployee_page_modify4" action="employee_page.php" method="POST">
-        <label for="specialsale_modified_id">Special Sale id</label>
+        <label for="specialsale_modified_id">Special Sale id</label><span class="asterisk_red">*</span>
         <input type="text" id="specialsale_modified_id" name="specialsale_modified" pattern="\d+" required/><br/><br/>
 
 
@@ -205,7 +206,7 @@
     <p id="err_msg_delete2_product" style="color:red"></p>
 
     <form id="myemployee_page_delete2_prodcut" action="employee_page.php" method="POST">
-        <label for="delete_product_id">Product id</label>
+        <label for="delete_product_id">Product id</label><span class="asterisk_red">*</span>
         <input type="text" id="delete_product_id" name="delete_product" pattern="\d+" required/><br/><br/>
 
 
@@ -222,7 +223,7 @@
     <p id="err_msg_delete3_category" style="color:red"></p>
 
     <form id="myemployee_page_delete3_category" action="employee_page.php" method="POST">
-        <label for="delete_category_id">Category id</label>
+        <label for="delete_category_id">Category id</label><span class="asterisk_red">*</span>
         <input type="text" id="delete_category_id" name="delete_category" pattern="\d+" required/><br/><br/>
 
 
@@ -239,7 +240,7 @@
     <p id="err_msg_delete4_specialsale" style="color:red"></p>
 
     <form id="myemployee_page_delete4_specialsale" action="employee_page.php" method="POST">
-        <label for="delete_specialsale_id">Special Sale id</label>
+        <label for="delete_specialsale_id">Special Sale id</label><span class="asterisk_red">*</span>
         <input type="text" id="delete_specialsale_id" name="delete_specialsale" pattern="\d+" required/><br/><br/>
 
 

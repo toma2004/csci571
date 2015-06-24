@@ -1,12 +1,15 @@
 <p>Please select action you want to perform below:</p>
 
 <form id="myadmin_page_form1" action="logout.php">
+
     <button type="button" onclick="admin_transform('admin_page_form1','admin_page_add1')">Add</button>
     <button type="button" onclick="admin_transform('admin_page_form1','admin_page_modify1')">Modify</button>
     <button type="button" onclick="admin_transform('admin_page_form1','admin_page_delete1')">Delete</button>
     <button type="submit">Logout</button>
 </form>
+</fieldset>
 </div>
+
 
 <!-- Add new employee or new role to an existing employee page -->
 <div id="admin_page_add1" style="display:none;">
@@ -29,10 +32,10 @@
     <form id="admin_page_add_role" action="admin_page.php" method="POST">
 
         <p>Please type in user id that you want to add new role (numbers only)</p>
-        <label for="usr_id_add_role">User id</label>
+        <label for="usr_id_add_role">User id</label><span class="asterisk_red">*</span>
         <input type="text" id="usr_id_add_role" name="user_id_role" pattern="\d+" required/><br/> <!--need validate -->
 
-        <p>What role do you want to add to this user id?</p>
+        <p>What role do you want to add to this user id?<span class="asterisk_red">*</span></p>
         <input type="radio" id="role1_id1" name="role1_radio1" value="admin"/>admin<br/>
         <input type="radio" id="role1_id2" name="role1_radio1" value="manager"/>manager<br/>
         <input type="radio" id="role1_id3" name="role1_radio1" value="employee"/>employee<br/><br/>
@@ -128,7 +131,7 @@
     <p id="err_msg_modify1" style="color:red"></p>
     <form id="myadmin_page_modify1" action="admin_page.php" method="POST">
         <p>Please type in employee id that you want to modify info (numbers only)</p>
-        <label for="employee_id_modify_1">Employee id</label>
+        <label for="employee_id_modify_1">Employee id</label><span class="asterisk_red">*</span>
         <input type="text" id="employee_id_modify_1" name="employee_id_modify_1" pattern="\d+" required/><br/><br/> <!--need validate -->
 
         <button type="button" onclick="admin_transform('admin_page_modify1','admin_page_form1')">Back</button>
@@ -143,7 +146,7 @@
     <p id="err_msg_delete1" style="color:red"></p>
     <form id="myadmin_page_delete1" action="admin_page.php" method="POST">
         <p>Please type in employee id that you want to remove (numbers only)</p>
-        <label for="employee_id_delete_1">Employee id</label>
+        <label for="employee_id_delete_1">Employee id</label><span class="asterisk_red">*</span>
         <input type="text" id="employee_id_delete_1" name="employee_id_delete_1" pattern="\d+" required/><br/><br/> <!--need validate -->
 
         <button type="button" onclick="admin_transform('admin_page_delete1','admin_page_form1')">Back</button>

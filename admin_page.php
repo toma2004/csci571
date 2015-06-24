@@ -333,8 +333,7 @@ function display_info_for_modify()
             <meta charset="UTF-8"/>
             <meta name="author" content="Nguyen Tran"/>
 
-           <!-- <link rel="stylesheet" type="text/css" href="main_css.css"/> <!-- link to external css file -->
-            <!--<link rel="shortcut icon" type="image/jpg" href="flower_crown1.jpg"></link> -->
+            <link rel="stylesheet" type="text/css" href="admin_page_style.css"/> <!-- link to external css file -->
             <script src="admin_page_js.js"></script>
             <title>Employee info</title>
         </head>

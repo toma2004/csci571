@@ -124,7 +124,12 @@ function display_result_employee_search()
     {
         #Return all employees that have the selected type
         $arr_user_type = explode(',',$_POST["manager_employee_user_type"]);
-        sort($arr_user_type);
+        $isCheckSubset = false;
+        if (count($arr_user_type) > 1)
+        {
+            $isCheckSubset = true;
+            sort($arr_user_type);
+        }
         $userid_arr = array();
         $assoc_arr_userid_usertype = array();
 
@@ -135,11 +140,23 @@ function display_result_employee_search()
         {
             $counter += 1;
             $arr_temp_user_type = explode(',',$row["usertype"]);
-            if(check_subset($arr_temp_user_type,$arr_user_type))
+            if ($isCheckSubset)
             {
-                array_push($userid_arr,$row["userid"]);
-                $assoc_arr_userid_usertype[$row["userid"]] = $row["usertype"];
+                if(check_subset($arr_temp_user_type,$arr_user_type))
+                {
+                    array_push($userid_arr,$row["userid"]);
+                    $assoc_arr_userid_usertype[$row["userid"]] = $row["usertype"];
+                }
             }
+            else
+            {
+                if (check_element_in_array($arr_temp_user_type,$arr_user_type))
+                {
+                    array_push($userid_arr,$row["userid"]);
+                    $assoc_arr_userid_usertype[$row["userid"]] = $row["usertype"];
+                }
+            }
+
         }
         if($counter == 0)
         {
@@ -241,9 +258,26 @@ function display_result_employee_search()
     disconnectDB($conn);
 }
 
+/*Function to check if an element of an array is in another array*/
+function check_element_in_array($arr,$arr_checked)
+{
+    foreach ($arr as $arr_val)
+    {
+        if (in_array($arr_val, $arr_checked))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 /*Function to check if an array is a subset of another larger array*/
 function check_subset($arr,$sorted_larger_arr)
 {
+    if (count($arr) != count($sorted_larger_arr))
+    {
+        return false;
+    }
     $total_element = count($sorted_larger_arr);
     foreach ($arr as $arr_val)
     {
@@ -255,6 +289,7 @@ function check_subset($arr,$sorted_larger_arr)
     }
     return true;
 }
+
 /*binary search*/
 function binarySearch($arr,$first,$last,$val)
 {
