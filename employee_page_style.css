@@ -2,10 +2,8 @@ body, html
 {
     font-family: "Trebuchet MS",Georgia,serif;
     color: #313131;
-    background: url("tomato.jpg") no-repeat fixed center;
+    background: url("tomato_employee_background.jpg") no-repeat fixed center;
     background-size: cover;
-    margin: 0;
-    padding: 0;
 }
 
 .employee_homepage_div
