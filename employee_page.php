@@ -232,6 +232,35 @@ function add_product()
     $ingredient = validate_data($_POST["ingredient"]);
     $recipe = validate_data($_POST["recipe"]);
 
+    $file_upload = uploadImage();
+    if ($file_upload == 1 || $file_upload == 2 || $file_upload == 3 || $file_upload == 4 || $file_upload == 5)
+    {
+        #Failed
+        require "pre_employee_page.html";
+        if ($file_upload == 1)
+        {
+            echo '<p style="color:red">ERROR: File is not an image.'.'</p>';
+        }
+        else if($file_upload == 2)
+        {
+            echo '<p style="color:red">ERROR: File already exists.'.'</p>';
+        }
+        else if($file_upload == 3)
+        {
+            echo '<p style="color:red">ERROR: File is too large.'.'</p>';
+        }
+        else if($file_upload == 4)
+        {
+            echo '<p style="color:red">ERROR: Only JPEG, PNG, JPG and GIF files are supported.'.'</p>';
+        }
+        else if($file_upload == 5)
+        {
+            echo '<p style="color:red">ERROR: uploading file.'.'</p>';
+        }
+        require "post_employee_page.html";
+        return;
+    }
+
     #double check to see if anything is unexpected
     if ($product_name == '' || $price == false || $product_category_id == false || $product_category_id == NULL || $product_description == '' || $ingredient == '' || $recipe == '')
     {
@@ -258,7 +287,7 @@ function add_product()
     }
 
     #continue if everything is good
-    $sql = "insert into products (product_name,product_price,product_description,ingredients,recipe) values ('".$product_name."','".$price."','".$product_description."','".$ingredient."','".$recipe."')";
+    $sql = "insert into products (product_name,product_price,product_description,ingredients,recipe,product_image) values ('".$product_name."','".$price."','".$product_description."','".$ingredient."','".$recipe."','".$file_upload."')";
     $res = mysql_query($sql);
     if (!$res)
     {
@@ -1450,6 +1479,24 @@ function delete_product()
         $sql = "delete from product_and_category where product_id='".$product_id."'";
         mysql_query($sql);
 
+        #remove the image associated with this product
+        $sql = "select product_image from products where product_id='".$product_id."'";
+        $res = mysql_query($sql);
+        if (!$res)
+        {
+            $errmsg .= "Failed to delete product image associated with product id ".$product_id."\r\n";
+        }
+        else
+        {
+            if (!($row = mysql_fetch_assoc($res)))
+            {
+                $errmsg .= "Failed to delete product image associated with product id ".$product_id."\r\n";
+            }
+            else
+            {
+                unlink($row["product_image"]);
+            }
+        }
         #Now we delete the product in our database
         $sql = "delete from products where product_id='".$product_id."'";
         $res = mysql_query($sql);
@@ -1809,6 +1856,51 @@ function delete_special_sale()
         echo '<p style="color:red">'.$errmsg.'</p>';
         require "post_employee_page.html";
     }
+}
+
+/*Function to upload file*/
+function uploadImage()
+{
+    $save_dir = "product_images/";
+    $target_file = $save_dir . basename($_FILES["product_image"]["name"]);
+    $errCode = 0;
+    $image_type = pathinfo($target_file,PATHINFO_EXTENSION);
+    /*Check if file is an actual image*/
+    $check = getimagesize($_FILES["product_image"]["tmp_name"]);
+    if (!$check)
+    {
+        $errCode = 1;
+    }
+
+    if(file_exists($target_file))
+    {
+        $errCode = 2;
+    }
+
+    if($_FILES["product_image"]["size"] > 500000)
+    {
+        $errCode = 3;
+    }
+
+    if($image_type != "jpg" && $image_type != "png" && $image_type != "jpeg" && $image_type != "gif")
+    {
+        $errCode = 4;
+    }
+
+    /*If everything is fine, upload the image and store in server*/
+    if ($errCode == 0)
+    {
+        if(move_uploaded_file($_FILES["product_image"]["tmp_name"],$target_file))
+        {
+
+            return $target_file;
+        }
+        else
+        {
+            $errCode = 5;
+        }
+    }
+    return $errCode;
 }
 
 ?>

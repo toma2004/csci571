@@ -59,52 +59,54 @@ CREATE TABLE IF NOT EXISTS `products` (
 	`product_description` VARCHAR(1000) NOT NULL,
 	`ingredients` VARCHAR(500) NOT NULL,
 	`recipe` VARCHAR(10000) NOT NULL,
+	`product_image` VARCHAR(10000) NOT NULL,
 	PRIMARY KEY (`product_id`)
 );
 
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('chicken gizzard','8.5','chicken gizzard roasted','chicken gizzard,pepper','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Pho','7.5','Famous Vietnamese soup noodle','White noodle, beef,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Pad Thai','9.5','Spicy Thai food','thin noodle, beef/chicken/shrimp/tofu,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('beef satay','8.0','Indonesian spicy beef skewers','beef, chilly, peanut,...','will be added');			
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Khnoer red curry','8.0','Cambodian curry','beef/chicken, chilly, coconut,...','will be added');			
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('chicken gizzard','8.5','chicken gizzard roasted','chicken gizzard,pepper','will be added','product_images/chicken_gizzard.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Pho','7.5','Famous Vietnamese soup noodle','White noodle, beef,...','will be added','product_images/Pho.JPG');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Pad Thai','9.5','Spicy Thai food','thin noodle, beef/chicken/shrimp/tofu,...','will be added','product_images/pad_thai.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('beef satay','8.0','Indonesian spicy beef skewers','beef, chilly, peanut,...','will be added','product_images/beef_satay.jpg');			
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Khnoer red curry','8.0','Cambodian curry','beef/chicken, chilly, coconut,...','will be added','product_images/khnoer_red_curry.jpg');			
 		
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Spaghetti','10.5','Italian spaghetti','spaghetti squash,lean ground pork, cheese, pepper','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Pasta','9.5','Italian pasta','pasta,lean ground pork, eggs, flour,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Macarons','11.5','French desert','almond, egg whites, sugar, flour,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Yorkshire Pudding','8.5','English desert','eggs, flour, milk, sugar,...','will be added');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Spaghetti','10.5','Italian spaghetti','spaghetti squash,lean ground pork, cheese, pepper','will be added','product_images/spaghetti.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Pasta','9.5','Italian pasta','pasta,lean ground pork, eggs, flour,...','will be added','product_images/pasta.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Macarons','11.5','French desert','almond, egg whites, sugar, flour,...','will be added','product_images/macaron.jpeg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Yorkshire Pudding','8.5','English desert','eggs, flour, milk, sugar,...','will be added','product_images/yorkshire_pudding.jpg');
 
 
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Hamburger','8.0','Classic American hamburger','burger bun, round beef, vegetables, cheese,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Hot dog','6.5','American hot dog','pork/beef/chicken, bread, sausage,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Beef steak','11.5','Beef Steak','beef, onion, sauce,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Cinnamon roll','8.5','American desert','yearst, milk, egg, butter, milk,...','will be added');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Hamburger','8.0','Classic American hamburger','burger bun, round beef, vegetables, cheese,...','will be added','product_images/hamburger.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Hot dog','2.99','American hot dog','pork/beef/chicken, bread, sausage,...','will be added','product_images/hot_dog.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Beef steak','11.5','Beef Steak','beef, onion, sauce,...','will be added','product_images/beef_steak.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Cinnamon roll','8.5','American desert','yearst, milk, egg, butter, milk,...','will be added','product_images/cinnamon_roll.jpg');
 	
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Wonton noodle','8.0','Classic Chinese soup','egg noodle,pork/shrimp, flour, eggs,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Kimchi','6.0','Korean tradional dish','lettuce, cucumber, chilly sauce,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Bibimbap','9.5','Korean mixed rice','beef/pork/shrimp, rice, vegetables, bean sprout, carrot, eggs,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Topokki','7.0','Korean street food','rice cake, fish cake, onion, soy sauce, eggs,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Sushi','10.5','Japanese world famous food','rice, fish, seaweed, vegetables, alvocado,...','will be added');
-INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`) 
-			VALUES ('Yakisoba','9.0','Japanese egg noodle','yellow noodle, carrot, onion, cabbage, scallion, oyster sauce,...','will be added');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Wonton noodle','8.0','Classic Chinese soup','egg noodle,pork/shrimp, flour, eggs,...','will be added','product_images/wonton_noodle.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Kimchi','6.0','Korean tradional dish','lettuce, cucumber, chilly sauce,...','will be added','product_images/kimchi.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Bibimbap','9.5','Korean mixed rice','beef/pork/shrimp, rice, vegetables, bean sprout, carrot, eggs,...','will be added','product_images/bibimbap.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Topokki','7.0','Korean street food','rice cake, fish cake, onion, soy sauce, eggs,...','will be added','product_images/topokki.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Sushi','10.5','Japanese world famous food','rice, fish, seaweed, vegetables, alvocado,...','will be added','product_images/sushi.jpg');
+INSERT INTO `products` (`product_name`,`product_price`,`product_description`,`ingredients`,`recipe`,`product_image`) 
+			VALUES ('Yakisoba','9.0','Japanese egg noodle','yellow noodle, carrot, onion, cabbage, scallion, oyster sauce,...','will be added','product_images/yakisoba.jpg');
 			
+
 CREATE TABLE IF NOT EXISTS `product_categories` (
 	`category_id` INT(10) UNSIGNED AUTO_INCREMENT,
 	`category_name` VARCHAR(100) NOT NULL,
@@ -125,6 +127,7 @@ CREATE TABLE IF NOT EXISTS `product_and_category` (
 	FOREIGN KEY (`product_id`) REFERENCES Products(`product_id`),
 	FOREIGN KEY (`category_id`) REFERENCES Product_categories(`category_id`)
 );
+
 INSERT INTO `product_and_category` VALUES ('1','1');
 INSERT INTO `product_and_category` VALUES ('2','1');
 INSERT INTO `product_and_category` VALUES ('3','1');
@@ -181,6 +184,7 @@ CREATE TABLE IF NOT EXISTS `special_sales_and_product` (
 	PRIMARY KEY (`special_sale_id`,`product_id`),
 	FOREIGN KEY (`product_id`) REFERENCES Products(`product_id`)
 );
+
 INSERT INTO `special_sales_and_product` VALUES ('1','1');
 INSERT INTO `special_sales_and_product` VALUES ('5','10');
 INSERT INTO `special_sales_and_product` VALUES ('7','5');

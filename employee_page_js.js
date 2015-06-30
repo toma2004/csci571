@@ -461,6 +461,7 @@ function validate_add_product_page()
 
     var category_id = document.getElementById('product_category_add_id');
 
+
     var product_description = document.getElementById('product_description_id');
     var ingredient = document.getElementById('ingredient_id');
     var recipe = document.getElementById('recipe_id');
@@ -469,6 +470,7 @@ function validate_add_product_page()
     myerror.innerHTML = "";
     var isTrue = true;
 
+    var image_upload = document.getElementById('product_image');
 
     if (product_name.checkValidity() == false)
     {
@@ -485,6 +487,12 @@ function validate_add_product_page()
     if(category_id.checkValidity() == false)
     {
         myerror.innerHTML += "Please enter a valid category id (number only)" + "<br/>";
+        isTrue = false;
+    }
+
+    if(image_upload.checkValidity() == false)
+    {
+        myerror.innerHTML += "Please select an image to upload" + "<br/>";
         isTrue = false;
     }
 

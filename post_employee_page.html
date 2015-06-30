@@ -50,7 +50,7 @@
     <h1>Add new product</h1>
     <p id="err_msg_add_product" style="color: red"></p>
 
-    <form id="employee_page_add_product" action="employee_page.php" method="POST">
+    <form id="employee_page_add_product" action="employee_page.php" method="POST" enctype="multipart/form-data">
         <!-- Product name & Price-->
         <label for="product_name_id">Product name</label><span class="asterisk_red">*</span>
         <input type="text" id="product_name_id" name="product_name" pattern="([a-zA-Z0-9]+)\s*([a-zA-Z0-9])*" maxlength="255" required/>
@@ -61,8 +61,11 @@
         <!-- product category id that the product belongs to-->
         <p>Please type in the category id that this product belongs to (To add a new product, it needs to be in an existing category)</p>
         <label for="product_category_add_id">Category id</label><span class="asterisk_red">*</span>
-        <input type="text" id="product_category_add_id" name="product_category_add" pattern="\d+" required/><br/><br/> <!--need validate -->
+        <input type="text" id="product_category_add_id" name="product_category_add" pattern="\d+" required/>
 
+        <!-- Upload product image -->
+        <label for="product_image" style="position:relative; left: 85px;">Select image for this product to upload:</label><span style="position:relative; left: 85px;" class="asterisk_red">*</span>
+        <input type="file" name="product_image" id="product_image" style="position:relative; left: 85px;" required><br/><br/> <!--need validate -->
 
         <!-- PRODUCT DESCRIPTION -->
         <label for="product_description_id">Product description:</label><span class="asterisk_red">*</span><br/>
@@ -75,6 +78,7 @@
         <!-- RECIPE -->
         <label for="recipe_id">Recipe:</label><span class="asterisk_red">*</span><br/>
         <textarea name="recipe" id="recipe_id" rows="30" cols="50" onfocus="clearText('product_page','text3')" style="display:block;">Enter recipe here</textarea><br/><br/>
+
 
 
         <button type="button" onclick="employee_transform('employee_page_add2_products','employee_page_add1')">Back</button>
