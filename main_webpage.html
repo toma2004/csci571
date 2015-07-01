@@ -8,7 +8,8 @@
 
     <link rel="stylesheet" type="text/css" href="main_css.css"/> <!-- link to external css file -->
     <!--<link rel="shortcut icon" type="image/jpg" href="flower_crown1.jpg"></link> -->
-    <script src="js_function.js"></script>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script src="main_page_js.js"></script>
     <title>N2 Food</title>
 </head>
 <body>
@@ -28,10 +29,10 @@
                     <li><a href="#">NorthEast Asian Cuisine</a></li>
                 </ul>
             </li>
-            <li class="first_tier"><a href="#">Your Account &#9662;</a>
+            <li class="first_tier"><a href="#">Log in/Sign up &#9662;</a>
                 <ul>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Past Order</a></li>
+                    <li><a href="sign_up.html">Sign up</a></li>
+                    <li><a href="#">Log in</a></li>
                 </ul>
             </li>
             <li class="first_tier"><a href="#">Shopping Cart &#9662;</a>
@@ -42,229 +43,12 @@
 </div>
 
 <div id="form1" style="position:absolute; top: 190px;">
-    <h1 id="header_1">Sign up</h1>
+    <h1 id="header_1" style="color: red">Special Sale Event!</h1>
     <p id="error_msg" style="color: red"></p>
-    <form id="myform1">
-        <!-- FIRST NAME, LAST NAME, MI-->
-        <label for="fname">First Name</label><span class="asterisk_red">*</span>
-        <label for="lname" style="position:relative; left: 100px;">Last Name</label><span style="position:relative; left: 100px;" class="asterisk_red">*</span>
-        <label for="mi" style="position:relative; left: 200px;">MI</label><span style="position:relative; left: 200px;" class="asterisk_red">*</span><br>
-
-        <input type="text" id="fname" name="first_name" maxlength="30" pattern="\D+" required/>
-        <input type="text" id="lname" name="last_name" maxlength="30" pattern="\D+" required/>
-        <input type="text" id="mi" name="initial" maxlength="1" pattern="\D+" size="1" required/><br><br>
-
-        <!--ADDRESS INFO-->
-        <label for="myaddr">Street address</label><span class="asterisk_red">*</span>
-        <label for="myapt" style="position:relative; left: 70px;">APT/Suite #</label>
-        <label for="mycity" style="position:relative; left: 90px;">City</label><span style="position:relative; left: 90px;" class="asterisk_red">*</span>
-        <label for="mystate" style="position:relative; left: 220px;">State</label><span style="position:relative; left: 220px;" class="asterisk_red">*</span>
-        <label for="myzip" style="position:relative; left: 230px;">Zip Code</label><span style="position:relative; left: 230px;" class="asterisk_red">*</span><br>
-
-        <input type="text" id="myaddr" name="addr" maxlength="50" pattern="([0-9])+\s+([A-Za-z])+.*" required/>
-        <input type="text" id="myapt" name="apt" maxlength="5" size="10"/>
-        <input type="text" id="mycity" name="city" maxlength="20" pattern="\D+" required/>
-        <input type="text" id="mystate" name="state" maxlength="2" size="2" pattern="[A-Za-z]{2}" required/>
-        <input type="text" id="myzip" name="zip" maxlength="5" size="5" pattern="(\d+){5}" required/><br><br>
-
-        <!-- DOB -->
-        <label for="mydob">Date of birth</label><span class="asterisk_red">*</span><br>
-        <input type="date" id="mydob" name="dob" required/><br><br>
-
-
-        <!--PHONE AND EMAIL -->
-        <label for="myphone">Phone number (all numbers please)</label><span class="asterisk_red">*</span>
-        <label for="myemail" style="position:relative; left: 20px;">Email</label><span style="position:relative; left: 20px;" class="asterisk_red">*</span><br>
-
-        <input type="tel" id="myphone" name="phone" maxlength="20" pattern="[0-9]+" required/>
-        <input type="email" id="myemail" name="email_addr" maxlength="40" style="position:relative; left: 100px;" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[a-z]{2,3}$" required/><br><br>
-
-        <!-- USER NAME AND PASSWORD -->
-        <label for="username">User name</label><span class="asterisk_red">*</span>
-        <label for="pwd" style="position:relative; left: 105px;">Password</label><span style="position:relative; left: 105px;" class="asterisk_red">*</span><br>
-
-        <input type="text" id="username" name="usr" maxlength="40" required />
-        <input type="password" id="pwd" name="pass" maxlength="20" required />
-
-        <!--Choose food of the date -->
-       <br/><br/>
-        <p>Select your favorite food of today!<span class="asterisk_red">*</span></p>
-        <div class="food_container">
-            <img src="tofu_resize.jpg" style="width: 200px; height: 200px;"/>
-            <input type="radio" class="food_checkbox" id="food_id1" name="food_day" value="tofu"/>
-        </div>
-        <div class="food_container">
-            <img src="seafood_resize.jpg" style="width: 200px; height: 200px;"/>
-            <input type="radio" class="food_checkbox" id="food_id2" name="food_day" value="seafood"/>
-        </div>
-        <div class="food_container">
-            <img src="vegetable_resize.jpg" style="width: 200px; height: 200px;"/>
-            <input type="radio" class="food_checkbox" id="food_id3" name="food_day" value="vegetable"/>
-        </div>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
-        <!-- SELECTION LIST -->
-        <p>Please tell us what kind of food do you want to see on our blog.<span class="asterisk_red">*</span><br/>
-           You can either select from our list and/or add your own favorite in the empty box below
-        </p>
-        <input type="text" id="sel_text" onChange="createOption(document.getElementById('sel_text'))"/><br/><br/>
-        <label>
-            <select id="items" name="list1" size="10" multiple>
-                <option value="Chinese cuisine">Chinese cuisine</option>
-                <option value="Southeast Asian cuisine">Southeast Asian cuisine</option>
-                <option value="Arab cuisine">Arab cuisine</option>
-                <option value="American cuisine">American cuisine</option>
-                <option value="European cuisine">European cuisine</option>
-            </select>
-        </label>
-
-        <p>Please select your interest<span class="asterisk_red">*</span> <br/>
-            (you can select more than one by holding Ctrl on your keyboard): </p>
-        <label>
-            <select id="sel_text2" name="list2" size="5" multiple>
-                <option value="Photography">Photography</option>
-                <option value="Foodgraphy">Foodgraphy</option>
-                <option value="Cuisines">Cuisines</option>
-                <option value="Fashion">Fashion</option>
-                <option value="DIY (Do It Yourself)">DIY (Do It Yourself)</option>
-            </select>
-        </label>
-
-        <!-- RADIO ELEMENT -->
-        <p>Foodgraphy<span class="asterisk_red">*</span></p>
-        <label>
-            <input type="radio" id="id1" name="radio1" value="Homemade"/>Homemade<br/>
-            <input type="radio" id="id2" name="radio1" value="Food discover"/>Food discover<br/>
-            <input type="radio" id="id3" name="radio1" value="Drinks"/>Drinks<br/>
-        </label>
-
-        <p>Cuisines<span class="asterisk_red">*</span></p>
-        <label>
-            <input type="radio" id="id4" name="radio2" value="Vietnamese"/>Vietnamese<br/>
-            <input type="radio" id="id5" name="radio2" value="Thailand"/>Thailand<br/>
-            <input type="radio" id="id6" name="radio2" value="Chinese"/>Chinese<br/>
-            <input type="radio" id="id7" name="radio2" value="American"/>American<br/>
-            <input type="radio" id="id8" name="radio2" value="Italian"/>Italian<br/>
-            <input type="radio" id="id9" name="radio2" value="French"/>French<br/>
-        </label>
-
-        <!-- CHECKBOX ELEMENT -->
-        <p>Deserts<span class="asterisk_red">*</span></p>
-        <label>
-            <input type="checkbox" id="cb1" name="checkbox1" value="Smoothies"/>Smoothies<br/>
-            <input type="checkbox" id="cb2" name="checkbox1" value="Cakes"/>Cakes<br/>
-            <input type="checkbox" id="cb3" name="checkbox1" value="Fruits"/>Fruits<br/>
-        </label>
-
-        <p>Dishes<span class="asterisk_red">*</span></p>
-        <label>
-            <input type="checkbox" id="cb4" name="checkbox2" value="Appetizer"/>Appetizer<br/>
-            <input type="checkbox" id="cb5" name="checkbox2" value="Main Course"/>Main Course<br/>
-            <input type="checkbox" id="cb6" name="checkbox2" value="Desert"/>Desert<br/>
-        </label>
-
-        <!-- Buttons -->
-        <br><button type="button" onclick="switch_form('form1','form2');">Continue</button>
-
-        <button type="button" onclick="switch_form('form1','report1');">Go to report 1</button>
-
+    <form id="main_page_form" action="main_page.php" method="POST">
     </form>
 </div>
 
-<div id="form2" style="position:absolute; top: 190px; display: none;">
-    <h1 id="header_2">More Info</h1>
-    <p id="error_msg2" style="color: red"></p>
-    <form id="myform2">
-        <!-- SELECTION LIST -->
-        <p>Please select your design interest.<span class="asterisk_red">*</span> <br/>
-            You can either select from our list and/or add your own favorite in the empty box below
-        </p>
-        <input type="text" id="form2_sel_text" onChange="createOption_form2(document.getElementById('form2_sel_text'))"/><br/><br/>
-        <label>
-            <select id="form2_items" size="10" multiple>
-                <option value="DIY">DIY</option>
-                <option value="Lifegraphy">Lifegraphy</option>
-                <option value="Fashion">Fashion</option>
-                <option value="Studio Arts">Studio Arts</option>
-                <option value="Fine Art">Fine Arts</option>
-            </select>
-        </label>
-
-        <p>Life-graphy<span class="asterisk_red">*</span><br/>
-            (you can select more than one by holding Ctrl on your keyboard):</p>
-        <label>
-            <select id="form2_sel_text2" name="form2_list2" size="5" multiple>
-                <option value="Portrait">Portrait</option>
-                <option value="Engagement">Engagement</option>
-                <option value="Wedding">Wedding</option>
-                <option value="Street life">Street life</option>
-                <option value="Graduation">Graduation</option>
-            </select>
-        </label>
-
-        <!-- RADIO ELEMENT -->
-        <p>Do-It-Yourself projects:<span class="asterisk_red">*</span></p>
-        <label>
-            <input type="radio" id="form2_id1" name="form2_radio1" value="Home Decor"/>Home Decor<br/>
-            <input type="radio" id="form2_id2" name="form2_radio1" value="Flower Crown"/>Flower Crown<br/>
-            <input type="radio" id="form2_id3" name="form2_radio1" value="Wearable Accessories"/>Wearable Accessories<br/>
-        </label>
-
-        <p>Photography:<span class="asterisk_red">*</span> </p>
-        <label>
-            <input type="radio" id="form2_id4" name="form2_radio2" value="Spring"/>Spring<br/>
-            <input type="radio" id="form2_id5" name="form2_radio2" value="Summer"/>Summer<br/>
-            <input type="radio" id="form2_id6" name="form2_radio2" value="Fall"/>Fall<br/>
-            <input type="radio" id="form2_id7" name="form2_radio2" value="Winter"/>Winter<br/>
-        </label>
-
-        <!-- CHECKBOX ELEMENT -->
-        <p>Home Decor<span class="asterisk_red">*</span></p>
-        <label>
-            <input type="checkbox" id="form2_cb1" name="form2_checkbox1" value="Wall Decor"/>Wall Decor<br/>
-            <input type="checkbox" id="form2_cb2" name="form2_checkbox1" value="Table Decor"/>Table Decor<br/>
-            <input type="checkbox" id="form2_cb3" name="form2_checkbox1" value="Door Decor"/>Door Decor<br/>
-        </label>
-
-        <p>Fashion<span class="asterisk_red">*</span></p>
-        <label>
-            <input type="checkbox" id="form2_cb4" name="form2_checkbox2" value="Business Appropriate"/>Business Appropriate<br/>
-            <input type="checkbox" id="form2_cb5" name="form2_checkbox2" value="Casual Look"/>Casual Look<br/>
-            <input type="checkbox" id="form2_cb6" name="form2_checkbox2" value="Sport"/>Sport<br/>
-        </label>
-
-        <!-- TEXT AREA -->
-        <br>
-        <textarea name="comment" id="mycomment" rows="10" cols="30" onfocus="clearText()">Comments</textarea>
-
-        <!-- BUTTON -->
-        <br>
-        <button type="button" onclick="switch_form_form2('form2','report1')">Submit</button>
-
-        <button type="button" onclick="switch_form('form2','form1')">Go back form 1</button>
-
-        <button type="button" onclick="switch_form('form2','report1')">Go to report 1</button>
-    </form>
-</div>
-
-<div id="report1" style="position:absolute; top: 190px; display: none;">
-    <h1 id="header_3">Short summary of user information</h1>
-
-    <p id="info"></p>
-
-    <button type="button" onclick="switch_form('report1', 'form1')">Go back form 1</button>
-
-</div>
-
-<div id="report2" style="position:absolute; top: 190px; display: none;">
-    <h1 id="header_4"></h1>
-
-    <p id="all_info"></p>
-
-    <button type="button" onclick="switch_form('report2', 'form1')">Go to form 1</button>
-    <button type="button" onclick="switch_form('report2', 'report1')">Go back report 1</button>
-
-</div>
 
 </body>
 </html>

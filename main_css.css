@@ -98,3 +98,20 @@ header
 {
     color: red;
 }
+
+.image_block
+{
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 220px;
+}
+
+.caption
+{
+    display: block;
+}
+
+.display_product_info * {
+    vertical-align: top;
+}
