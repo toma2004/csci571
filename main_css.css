@@ -77,23 +77,8 @@ header
 }
 
 /**************************************************************************************************
-*Food of the day
+*Displaying special sale on main web page
 ***************************************************************************************************/
-.food_container
-{
-    position: relative;
-    width: 200px;
-    height: 200px;
-    float: left;
-    margin-left: 10px;
-}
-.food_checkbox
-{
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-}
-
 .asterisk_red
 {
     color: red;
@@ -114,4 +99,23 @@ header
 
 .display_product_info * {
     vertical-align: top;
+}
+
+/**************************************************************************************************
+*Log in page style
+***************************************************************************************************/
+.outer_box_login
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    background-color: #313131;
+}
+
+.login_form1
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 90%;
 }

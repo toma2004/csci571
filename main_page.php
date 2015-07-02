@@ -6,6 +6,13 @@
  * Time: 9:39 PM
  */
 
+/*Establish my session array*/
+if(!isset($_SESSION))
+{
+    session_start();
+}
+
+
 if (isset($_POST["special_sale_display"]))
 {
     display_special_sale_main_page();
@@ -14,9 +21,42 @@ else if (isset($_POST["product_name_clicked"]))
 {
     display_detail_product($_POST["product_name_clicked"]);
 }
+else if (isset($_POST["sign_up_user_name"]))
+{
+    checkUnique('user_name');
+}
+else if (isset($_POST["sign_up_email"]))
+{
+    checkUnique('email');
+}
+else if (isset($_POST["dob"]))
+{
+    /*Signal to add new customer to our database*/
+    add_new_customer();
+}
 else
 {
-    require "main_webpage.html";
+    /*If user log in, launch main_webpage_logged_in.html*/
+    if (!isset($_SESSION['last_activity']) || !isset($_SESSION['username']) || !isset($_SESSION['password']) || !isset($_SESSION['timeout']))
+    {
+        require "main_webpage.html";
+    }
+    else
+    {
+        $t = time();
+        if (($t - $_SESSION['last_activity']) > 1800)
+        {
+            $_SESSION['timeout'] = 1;
+            require "customer_logout.php";
+        }
+        else
+        {
+            #session is not yet timeout. Reset time to give customer another 30 mins
+            $_SESSION['last_activity'] = time();
+            require "main_webpage_logged_in.html";
+        }
+    }
+
 }
 
 
@@ -212,4 +252,155 @@ function display_detail_product( $product_id )
     disconnectDB($conn);
 }
 
+
+/*Function return true if a given argument is unique in the database. Else return false*/
+function checkUnique( $val )
+{
+    $conn = connectDB();
+    $isUnique = 'true';
+    if ($val == "user_name")
+    {
+        $sql = "select * from customers where c_username='".$_POST["sign_up_user_name"]."' ";
+        $res = mysql_query($sql);
+        if ($res)
+        {
+            if ($row = mysql_fetch_assoc($res))
+            {
+
+                $isUnique =  'false';
+            }
+        }
+    }
+    else if ($val == "email")
+    {
+        $sql = "select * from customers where c_email='".$_POST["sign_up_email"]."' ";
+        $res = mysql_query($sql);
+        if ($res)
+        {
+            if ($row = mysql_fetch_assoc($res))
+            {
+                $isUnique = 'false';
+            }
+        }
+    }
+    echo $isUnique;
+    disconnectDB($conn);
+}
+
+/*Function to add new customer to our database*/
+function add_new_customer()
+{
+    $conn = connectDB();
+    if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["addr_shipping"]) && isset($_POST["city_shipping"]) && isset($_POST["state_shipping"]) && isset($_POST["country_shipping"]) && isset($_POST["dob"]) && isset($_POST["mycreditcard"]) && isset($_POST["mysecuritycode"]) && isset($_POST["myexpiredate_month"]) && isset($_POST["myexpiredate_year"]) && isset($_POST["addr_billing"]) && isset($_POST["city_billing"]) && isset($_POST["state_billing"]) && isset($_POST["country_billing"]) && isset($_POST["phone"]) && isset($_POST["email_addr"]) && isset($_POST["usr"]) && isset($_POST["pass"]))
+    {
+        $fname = validate_data($_POST["first_name"],"first_name");
+        $lname = validate_data($_POST["last_name"],"last_name");
+        $addr_shipping = validate_data($_POST["addr_shipping"],"address");
+        $city_shipping = validate_data($_POST["city_shipping"],"city");
+        $state_shipping = validate_data($_POST["state_shipping"],"state");
+        $country_shipping = validate_data($_POST["country_shipping"],"country");
+        $dob = validate_data($_POST["dob"],"dob");
+        $credit_card = validate_data($_POST["mycreditcard"],"credit_card");
+        $security_code = validate_data($_POST["mysecuritycode"],"security_code");
+        $exp_month = validate_data($_POST["myexpiredate_month"],"exp_month");
+        $exp_year = validate_data($_POST["myexpiredate_year"],"exp_year");
+        $addr_billing = validate_data($_POST["addr_billing"],"address");
+        $city_billing = validate_data($_POST["city_billing"],"city");
+        $state_billing = validate_data($_POST["state_billing"],"state");
+        $country_billing = validate_data($_POST["country_billing"],"country");
+        $phone = validate_data($_POST["phone"],"phone");
+        $email = validate_data($_POST["email_addr"],"email");
+        $username = validate_data($_POST["usr"],"username");
+        $password = validate_data($_POST["pass"],"password");
+
+        /*validate date*/
+        $dob_arr = explode('-',$dob);
+
+        if ($fname == false || $lname == false || $addr_shipping == false || $city_shipping == false || $state_shipping == false || $country_shipping == false || $dob == false || $credit_card == false || $security_code == false || $exp_month == false || $exp_year == false || $addr_billing == false || $city_billing == false || $state_billing == false || $country_billing == false || $phone == false || $email == false || $username == false || $password == false)
+        {
+            #error in one of the entries
+            require "pre_sign_up_page.html";
+            echo "ERROR: one of the entries is not valid";
+            require "post_sign_up_page.html";
+        }
+        else if (!checkdate($dob_arr[1],$dob_arr[2],$dob_arr[0]))
+        {
+            #error in one of the entries
+            require "pre_sign_up_page.html";
+            echo "ERROR: Date of Birth is not in correct format";
+            require "post_sign_up_page.html";
+        }
+        else
+        {
+            $sql = "insert into customers (c_first_name, c_last_name, c_street_addr_shipping, c_city_shipping, c_state_shipping, c_country_shipping, c_dob, c_credit_card, c_security_code, c_exp_month, c_exp_year, c_street_addr_billing, c_city_billing, c_state_billing, c_country_billing, c_phone, c_email, c_username, c_password) values ('".$fname."','".$lname."','".$addr_shipping."','".$city_shipping."','".$state_shipping."','".$country_shipping."','".$dob."','".$credit_card."','".$security_code."','".$exp_month."','".$exp_year."','".$addr_billing."','".$city_billing."','".$state_billing."','".$country_billing."','".$phone."','".$email."','".$username."',password('".$password."'))";
+            $res = mysql_query($sql);
+            if (!$res)
+            {
+                require "pre_sign_up_page.html";
+                echo "ERROR: Inserting new customer";
+                require "post_sign_up_page.html";
+            }
+            else
+            {
+                #Go to log in page
+                require "pre_sign_up_page.html";
+                echo "SUCCESS!!!";
+                require "post_sign_up_page.html";
+            }
+        }
+    }
+    else
+    {
+        require "pre_sign_up_page.html";
+        echo "ERROR: one of the entries is empty or not valid";
+        require "post_sign_up_page.html";
+    }
+    disconnectDB($conn);
+}
+
+
+/*Function to validate data*/
+function validate_data( $data, $type )
+{
+    $data = trim($data); //remove whitespaces
+    $data = stripslashes($data); //remove all backslashes
+    $data = htmlspecialchars($data);
+    if ($type == "first_name" || $type == "last_name" || $type == "city" || $type == "state" || $type == "country")
+    {
+        return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/\D+/")));
+    }
+    else if ($type == "address")
+    {
+        return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/([0-9])+\s+([A-Za-z])+.*/")));
+    }
+    else if ($type == "credit_card")
+    {
+        return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{16}/")));
+    }
+    else if ($type == "security_code")
+    {
+        return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{3}/")));
+    }
+    else if ($type == "exp_month")
+    {
+        return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{1,2}/")));
+    }
+    else if ($type == "exp_year")
+    {
+        return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{4}/")));
+    }
+    else if ($type == "phone")
+    {
+        return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{10}/")));
+    }
+    else if ($type == "email")
+    {
+        return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[A-Za-z0-9]+@[A-Za-z0-9]+\.[a-z]{2,3}$/")));
+    }
+    else if ($type == "username")
+    {
+        return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z0-9]+/")));
+    }
+    return $data;
+}
 ?>

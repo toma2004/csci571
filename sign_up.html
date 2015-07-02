@@ -45,15 +45,15 @@
         <label for="mycreditcard">Credit card number</label><span class="asterisk_red">*</span>
         <label for="mysecuritycode" style="position:relative; left: 80px;">Security Code</label><span style="position:relative; left: 80px;" class="asterisk_red">*</span><br>
 
-        <input type="text" id="mycreditcard" name="mycreditcard" pattern ="[0-9]+{16}" size="16" maxlength="16" required/>
-        <input type="text" id="mysecuritycode" name="mysecuritycode" pattern ="[0-9]+{3}" size="3" maxlength="3" style="position:relative; left: 80px;" required/><br><br>
+        <input type="text" id="mycreditcard" name="mycreditcard" pattern ="[0-9]{16}" size="16" maxlength="16" required/>
+        <input type="text" id="mysecuritycode" name="mysecuritycode" pattern ="[0-9]{3}" size="3" maxlength="3" style="position:relative; left: 80px;" required/><br><br>
 
         <!-- Expiration date -->
         <label for="myexpiredate_month">Expiration date month</label><span class="asterisk_red">*</span>
         <label for="myexpiredate_year" style="position:relative; left: 57px;">Expiration date year</label><span style="position:relative; left: 57px;" class="asterisk_red">*</span><br>
 
-        <input type="text" id="myexpiredate_month" name="myexpiredate_month" pattern ="[0-9]+{1,2}" size="2" maxlength="2" required/>
-        <input type="text" id="myexpiredate_year" name="myexpiredate_year" pattern ="[0-9]+{4}" size="4" maxlength="4" style="position:relative; left: 175px;" required/><br><br>
+        <input type="text" id="myexpiredate_month" name="myexpiredate_month" pattern ="[0-9]{1,2}" size="2" maxlength="2" required/>
+        <input type="text" id="myexpiredate_year" name="myexpiredate_year" pattern ="[0-9]{4}" size="4" maxlength="4" style="position:relative; left: 175px;" required/><br><br>
 
         <!-- BILLING ADDRESS INFO-->
         <p>Please enter your billing address</p>
@@ -68,22 +68,22 @@
         <input type="text" id="mycountry_billing" name="country_billing" maxlength="50" pattern="\D+" required/><br><br>
 
         <!--PHONE AND EMAIL -->
-        <label for="myphone">Phone number (all numbers please)</label><span class="asterisk_red">*</span>
+        <label for="myphone">Phone number (only numbers please)</label><span class="asterisk_red">*</span>
         <label for="myemail" style="position:relative; left: 40px;">Email</label><span style="position:relative; left: 40px;" class="asterisk_red">*</span><br>
 
-        <input type="tel" id="myphone" name="phone" maxlength="20" pattern="[0-9]+" required/>
-        <input type="email" id="myemail" name="email_addr" maxlength="40" style="position:relative; left: 100px;" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[a-z]{2,3}$" required/><br><br>
+        <input type="tel" id="myphone" name="phone" maxlength="10" size="10" pattern="[0-9]{10}" required/>
+        <input type="email" id="myemail" name="email_addr" maxlength="40" style="position:relative; left: 210px;" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[a-z]{2,3}$" required/><br><br>
 
         <!-- USER NAME AND PASSWORD -->
         <label for="username">User name</label><span class="asterisk_red">*</span>
         <label for="pwd" style="position:relative; left: 100px;">Password</label><span style="position:relative; left: 100px;" class="asterisk_red">*</span><br>
 
-        <input type="text" id="username" name="usr" maxlength="40" required />
+        <input type="text" id="username" name="usr" maxlength="40" pattern="[a-zA-Z0-9]+" required />
         <input type="password" id="pwd" name="pass" maxlength="20" required /> <br/><br/>
 
 
         <a href="main_webpage.html"><button type="button">Home</button></a>
-        <button type="submit" onclick="return validate_sign_up_page()">Submit</button>
+        <button type="submit" id="submit_sign_up_form">Submit</button>
 
     </form>
 
