@@ -36,7 +36,9 @@ else if (isset($_POST["dob"]))
 }
 else
 {
-    /*If user log in, launch main_webpage_logged_in.html*/
+    /*If user log in, launch main_webpage_logged_in.html
+    * Else, launch original main webpage
+    */
     if (!isset($_SESSION['last_activity']) || !isset($_SESSION['username']) || !isset($_SESSION['password']) || !isset($_SESSION['timeout']))
     {
         require "main_webpage.html";
@@ -343,9 +345,9 @@ function add_new_customer()
             else
             {
                 #Go to log in page
-                require "pre_sign_up_page.html";
-                echo "SUCCESS!!!";
-                require "post_sign_up_page.html";
+                require "pre_log_in_page.html";
+                echo "You have successfully signed up. Do you want to log in now?";
+                require "post_log_in_page.html";
             }
         }
     }

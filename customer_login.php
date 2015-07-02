@@ -9,6 +9,7 @@ session_start();
 
 $un = '';
 $pwd = '';
+$cus_id = '';
 if (isset($_POST['user_name']))
 {
     $un = $_POST['user_name']; #Need to validate input in php
@@ -57,6 +58,10 @@ if(strlen($un) > 0 && strlen($pwd) > 0)
     {
         $errmsg = "Invalid login";
     }
+    else
+    {
+        $cus_id = $row["customer_id"];
+    }
     #close db connection
     mysql_close($conn);
 }
@@ -72,6 +77,9 @@ else
     #store session info
     $_SESSION['username'] = $un;
     $_SESSION['password'] = $pwd;
+    $_SESSION['cus_id'] = $cus_id;
     $_SESSION['last_activity'] = time();
     $_SESSION['timeout'] = 0;
+
+    require "main_page.php";
 }

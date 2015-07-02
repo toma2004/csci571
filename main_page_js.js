@@ -23,8 +23,11 @@ function initializePage()
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("special_sale_display=1");
 
-    /*What to do when button is clicked*/
+    /*What to do when button is clicked on sign up page*/
     $("#submit_sign_up_form").click(validate_sign_up_page);
+
+    /*submit button on log-in page*/
+    $("#submit_log_in").click(validate_log_in_page);
 }
 
 /*function to receive response from server and display special sale on main page*/
@@ -234,4 +237,20 @@ function isUnique()
         }
         return true
     }
+}
+
+/*function to validate log in page*/
+function validate_log_in_page()
+{
+    var username = document.getElementById('usrname');
+    var password = document.getElementById('pwd');
+    var err_msg = document.getElementById('error_message_log_in_page');
+
+    err_msg.innerHTML = '';
+    if (username.checkValidity() == false || password.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Please enter user name and/or password. Note that user name cannot contain any special characters <br/>";
+        return false;
+    }
+    return true;
 }
