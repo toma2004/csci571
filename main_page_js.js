@@ -28,6 +28,9 @@ function initializePage()
 
     /*submit button on log-in page*/
     $("#submit_log_in").click(validate_log_in_page);
+
+    /*Submit button on edit profile page*/
+    $("#submit_edit_profile_form").click(validate_edit_profile_page);
 }
 
 /*function to receive response from server and display special sale on main page*/
@@ -253,4 +256,105 @@ function validate_log_in_page()
         return false;
     }
     return true;
+}
+
+/*Function to validate edit profile page*/
+function validate_edit_profile_page()
+{
+    var fname_element = $("#modified_first_name")[0]; /*return jQuery object. Need to get DOM object*/
+    var lname_element = $('#modified_last_name')[0];
+    var myaddr_shipping = $('#modified_street_addr_shipping')[0];
+    var mycity_shipping = $('#modified_city_shipping')[0];
+    var mystate_shipping = $('#modified_state_shipping')[0];
+    var mycountry_shipping = $('#modified_country_shipping')[0];
+
+    var mydob = $('#modified_dob')[0];
+
+    var mycredit_card = $('#modified_credit_card')[0];
+    var mysecurity_code = $('#modified_security_code')[0];
+
+    var exp_month = $('#modified_exp_month')[0];
+    var exp_year = $('#modified_exp_year')[0];
+
+    var myaddr_billing = $('#modified_street_addr_billing')[0];
+    var mycity_billing = $('#modified_city_billing')[0];
+    var mystate_billing = $('#modified_state_billing')[0];
+    var mycountry_billing = $('#modified_country_billing')[0];
+
+    var myphone = $('#modified_phone')[0];
+
+    var mypassword = $('#modified_password')[0];
+
+
+    var myerror = $('#err_msg_edit_profile')[0];
+    myerror.innerHTML = "";
+    var isTrue = true;
+
+    /*All blank case*/
+    if (fname_element.value == '' && lname_element.value == '' && myaddr_shipping.value == '' && mycity_shipping.value == '' && mystate_shipping.value == '' && mycountry_shipping.value == '' && mydob.value == '' && mycredit_card.value == '' && mysecurity_code.value == '' && exp_month.value == '' && exp_year.value == '' && myaddr_billing.value == '' && mycity_billing.value == '' && mystate_billing.value == '' && mycountry_billing.value == '' && myphone.value == '' && mypassword.value == '')
+    {
+        myerror.innerHTML += "You have not made any changes" + "<br/>";
+        isTrue = false;
+    }
+    else
+    {
+        if((fname_element.value != '' && fname_element.checkValidity() == false) || (lname_element.value != '' && lname_element.checkValidity() == false) || (mycity_shipping.value != '' && mycity_shipping.checkValidity() == false) || (mystate_shipping.value != '' && mystate_shipping.checkValidity() == false) || (mycity_billing.value != '' && mycity_billing.checkValidity() == false) || (mystate_billing.value != '' && mystate_billing.checkValidity() == false))
+        {
+            myerror.innerHTML += "First name/Last name/City/State can't contain number or State needs to be 2 characters" + "<br/>";
+            isTrue = false;
+        }
+
+        if((myaddr_shipping.value != '' && myaddr_shipping.checkValidity() == false) || (myaddr_billing.value != '' && myaddr_billing.checkValidity() == false))
+        {
+            myerror.innerHTML += "Please enter a correct address" + "<br/>";
+            isTrue = false;
+        }
+
+        if((mycountry_shipping.value != '' && mycountry_shipping.checkValidity() == false) || (mycountry_billing.value != '' && mycountry_billing.checkValidity() == false))
+        {
+            myerror.innerHTML += "Please enter a correct country name" + "<br/>";
+            isTrue = false;
+        }
+
+        if(myphone.value != '' && myphone.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct phone number" + "<br/>";
+            isTrue = false;
+        }
+
+        /*Check date of birth*/
+        if (mydob.value != '')
+        {
+            if(validate_dob(mydob) == false)
+            {
+                myerror.innerHTML += "Please enter a correct date of birth" + "<br/>";
+                isTrue = false;
+            }
+        }
+
+        if (mycredit_card.value != '' && mycredit_card.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct credit card number" + "<br/>";
+            isTrue = false;
+        }
+
+        if (mysecurity_code.value != '' && mysecurity_code.checkValidity() == false)
+        {
+            myerror.innerHTML += "Please enter a correct security code number" + "<br/>";
+            isTrue = false;
+        }
+
+        if (exp_month.value != '' && (exp_month.checkValidity() == false || exp_month.value < 1 || exp_month.value > 12))
+        {
+            myerror.innerHTML += "Please enter a correct expiration month" + "<br/>";
+            isTrue = false;
+        }
+
+        if (exp_year.value != '' && (exp_year.checkValidity() == false || exp_year.value < 2015 || exp_year.value > 2030))
+        {
+            myerror.innerHTML += "Please enter a correct expiration year" + "<br/>";
+            isTrue = false;
+        }
+    }
+    return isTrue;
 }
