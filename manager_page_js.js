@@ -134,6 +134,8 @@ function checkAll()
     $("#manager_homepage_product_search_clicked").click(transform_managerHomePage_productSearchPage);
     $("#manager_homepage_employee_search_clicked").click(transform_managerHomePage_employeeSearchPage);
     $("#manager_homepage_special_sale_search_clicked").click(transform_managerHomePage_specialsaleSearchPage);
+    $("#manager_homepage_order_search_clicked").click(transform_managerHomePage_orderSearchPage);
+
 
     /*All events in employee search homepage*/
     $("#back_homepage_from_employee_search").click(back_homepage);
@@ -147,6 +149,9 @@ function checkAll()
     $("#back_homepage_from_special_sale_search").click(back_homepage);
     $("#submit_special_sale_search").click(send_special_sale_search_data_to_server);
 
+    /*All events in order search homepage*/
+    $("#back_homepage_from_order_search").click(back_homepage);
+    //$("#submit_order_search").click(send_order_search_data_to_server);
 }
 
 /*Function to handle transform from manager homepage to employee search page*/
@@ -167,6 +172,11 @@ function transform_managerHomePage_specialsaleSearchPage()
     manager_transform('manager_homepage','manager_page_special_sale_search');
 }
 
+/*Function to handle transform from manager homepage to order search page*/
+function transform_managerHomePage_orderSearchPage()
+{
+    manager_transform('manager_homepage','manager_page_order_search');
+}
 /*Back to manager home page function*/
 function back_homepage()
 {
@@ -180,12 +190,14 @@ function manager_transform( wherefrom, whereto )
     var d2 = document.getElementById('manager_page_employee_search');
     var d3 = document.getElementById('manager_page_product_search');
     var d4 = document.getElementById('manager_page_special_sale_search');
+    var d5 = document.getElementById('manager_page_order_search');
 
     if (wherefrom == 'manager_homepage' && whereto == "manager_page_employee_search")
     {
         d1.style.display = "none";
         d3.style.display = "none";
         d4.style.display = "none";
+        d5.style.display = "none";
         d2.style.display = "block";
     }
     else if(wherefrom == "manager_homepage" && whereto == "manager_page_product_search")
@@ -193,6 +205,7 @@ function manager_transform( wherefrom, whereto )
         d1.style.display = "none";
         d2.style.display = "none";
         d4.style.display = "none";
+        d5.style.display = "none";
         d3.style.display = "block";
     }
     else if(wherefrom == "manager_homepage" && whereto == "manager_page_special_sale_search")
@@ -200,6 +213,7 @@ function manager_transform( wherefrom, whereto )
         d1.style.display = "none";
         d2.style.display = "none";
         d3.style.display = "none";
+        d5.style.display = "none";
         d4.style.display = "block";
     }
     else if(whereto == "manager_homepage")
@@ -207,7 +221,16 @@ function manager_transform( wherefrom, whereto )
         d2.style.display = "none";
         d3.style.display = "none";
         d4.style.display = "none";
+        d5.style.display = "none";
         d1.style.display = "block";
+    }
+    else if (whereto == "manager_page_order_search")
+    {
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d1.style.display = "none";
+        d5.style.display = "block";
     }
 }
 
@@ -566,4 +589,56 @@ function display_result_special_sale_search()
     {
         document.getElementById('manager_page_special_sale_search_display_search_result').innerHTML = xmlhttp.responseText;
     }
+}
+
+/*Function to validate order search page*/
+function validate_order_search()
+{
+    var product_name = document.getElementById('order_search_product_name');
+    var product_category = document.getElementById('order_search_product_category');
+
+    var start_date = document.getElementById('start_date_order');
+    var end_date = document.getElementById('end_date_order');
+
+    var err_msg = document.getElementById('err_msg_order_search');
+    err_msg.innerHTML = '';
+    var isTrue = true;
+
+    if(product_name.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Please enter a correct product name (no special characters)<br/>";
+        isTrue = false;
+    }
+    if(product_category.checkValidity() == false)
+    {
+        err_msg.innerHTML += "Please enter a correct product category (no special characters)<br/>";
+        isTrue = false;
+    }
+    if (!isTrue)
+    {
+        return false;
+    }
+
+
+    if(product_category.value == '' && product_name.value == '' && start_date.value == '' && end_date.value == '')
+    {
+        err_msg.innerHTML += "Please make a least 1 search criteria<br/>";
+        return false;
+    }
+
+
+    if(start_date.value == '' && end_date.value == '' && (product_category.value != '' || product_name.value != ''))
+    {
+        isTrue = true;
+    }
+    else if (start_date.value != '' || end_date.value != '')
+    {
+        /*validate dates*/
+        if (!check_date_before(start_date,end_date)) /*start date is after end date*/
+        {
+            err_msg.innerHTML += "Either start date can't be after end date or one of the dates you entered is invalid. Please double check your values<br/>";
+            return false;
+        }
+    }
+    return isTrue;
 }
