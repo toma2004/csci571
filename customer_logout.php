@@ -27,6 +27,38 @@ else
     $errmsg .= "You have successfully logged out";
 }
 
+/*As customer log out, we will save his/her shopping cart for next time visit*/
+if (isset($_SESSION["shopping_cart"]) && isset($_SESSION["username"]))
+{
+    $host = 'localhost';
+    $user = 'root';
+    $pass = 'ntcsci571hw2';
+
+    $conn = mysql_connect($host, $user, $pass);
+    if (!$conn)
+    {
+        die("Could not connect to database");
+    }
+    mysql_select_db('n2_internal_db',$conn);
+
+    /*Before saving new shopping cart for this customer, remove the old ones*/
+    $sql = "delete from shopping_cart where customer_id='".$_SESSION['cus_id']."'";
+    $res_delete = mysql_query($sql);
+    if ($res_delete)
+    {
+        /*Now insert shopping cart for this customer*/
+        foreach ($_SESSION["shopping_cart"] as $cart_items)
+        {
+            $sql = "insert into shopping_cart values ('".$_SESSION['cus_id']."','".$cart_items["pid"]."','".$cart_items["qty"]."')";
+            $res_insert = mysql_query($sql);
+        }
+    }
+
+    #close db connection
+    mysql_close($conn);
+}
+
+
 // Unset all of the session variables.
 $_SESSION = array();
 

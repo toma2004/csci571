@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 	`e_salary` INT(6) NOT NULL,
 	`e_email` VARCHAR(50) NOT NULL UNIQUE,
 	PRIMARY KEY (`employee_id`),
-	FOREIGN KEY (`userid`) REFERENCES Users(`userid`)
+	FOREIGN KEY (`userid`) REFERENCES users(`userid`)
 );
 
 INSERT INTO `employees` (`userid`,`e_first_name`,`e_last_name`,`e_street_addr`,`e_city`,`e_state`,`e_country`,`e_marriage_status`,`e_gender`,`e_dob`,`e_phone`,`e_salary`,`e_email`) 
@@ -123,8 +123,8 @@ CREATE TABLE IF NOT EXISTS `product_and_category` (
 	`product_id` INT(10) UNSIGNED NOT NULL,
 	`category_id` INT(10) UNSIGNED NOT NULL,
 	PRIMARY KEY (`product_id`,`category_id`),
-	FOREIGN KEY (`product_id`) REFERENCES Products(`product_id`),
-	FOREIGN KEY (`category_id`) REFERENCES Product_categories(`category_id`)
+	FOREIGN KEY (`product_id`) REFERENCES products(`product_id`),
+	FOREIGN KEY (`category_id`) REFERENCES product_categories(`category_id`)
 );
 INSERT INTO `product_and_category` VALUES ('1','1');
 INSERT INTO `product_and_category` VALUES ('2','1');
@@ -180,7 +180,8 @@ CREATE TABLE IF NOT EXISTS `special_sales_and_product` (
 	`special_sale_id` INT(10) UNSIGNED NOT NULL,
 	`product_id` INT(10) UNSIGNED NOT NULL UNIQUE,
 	PRIMARY KEY (`special_sale_id`,`product_id`),
-	FOREIGN KEY (`product_id`) REFERENCES Products(`product_id`)
+	FOREIGN KEY (`product_id`) REFERENCES products(`product_id`),
+	FOREIGN KEY (`special_sale_id`) REFERENCES special_sales(`special_sale_id`)
 );
 INSERT INTO `special_sales_and_product` VALUES ('1','1');
 INSERT INTO `special_sales_and_product` VALUES ('5','10');
@@ -213,3 +214,33 @@ CREATE TABLE IF NOT EXISTS `customers` (
 	PRIMARY KEY (`customer_id`)
 );
 
+CREATE TABLE IF NOT EXISTS `shopping_cart` (
+	`customer_id` INT(10) UNSIGNED,
+	`product_id` INT(10) UNSIGNED,
+	`quantity` INT(10) UNSIGNED NOT NULL,
+	PRIMARY KEY (`customer_id`,`product_id`),
+	FOREIGN KEY (`customer_id`) REFERENCES customers(`customer_id`),
+	FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+);
+
+CREATE TABLE IF NOT EXISTS `orders` (
+	`order_id` INT(10) UNSIGNED AUTO_INCREMENT,
+	`order_date` DATE NOT NULL,
+	`order_total_amount` DECIMAL(10,2) NOT NULL,
+	`order_total_tax` DECIMAL(10,2) NOT NULL,
+	`order_shipping_cost` DECIMAL(10,2) NOT NULL,
+	`customer_id` INT(10) UNSIGNED NOT NULL,
+	PRIMARY KEY (`order_id`),
+	FOREIGN KEY (`customer_id`) REFERENCES customers(`customer_id`)
+);
+
+CREATE TABLE IF NOT EXISTS `order_items` (
+	`order_id` INT(10) UNSIGNED,
+	`product_id` INT(10) UNSIGNED,
+	`order_quantity` INT(10) UNSIGNED NOT NULL,
+	`p_price` DECIMAL(10,2) NOT NULL,
+	`special_sale_id` INT(10) UNSIGNED NOT NULL,
+	PRIMARY KEY (`order_id`,`product_id`),
+	FOREIGN KEY (`order_id`) REFERENCES orders(`order_id`),
+	FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+);

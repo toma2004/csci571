@@ -33,6 +33,7 @@ header
     list-style: none;
     width: 100%;
     z-index: 1;
+    cursor: pointer;
 }
 
 #nav_bar li.first_tier
@@ -42,6 +43,18 @@ header
 
 /*make each item a block*/
 #nav_bar li a
+{
+    width: 100%;
+    height: 100%;
+    display:block;
+    text-decoration: none;
+    text-align: center;
+    background-color: #FF9900;
+    color: #fff;
+}
+
+/*make each item a block*/
+.replace_a
 {
     width: 100%;
     height: 100%;
@@ -72,6 +85,11 @@ header
 /*Change color when hover*/
 
 #nav_bar li a:hover
+{
+    background-color: #909090;
+}
+
+.replace_a:hover
 {
     background-color: #909090;
 }
@@ -118,4 +136,228 @@ header
     margin-right: auto;
     width: 40%;
     height: 90%;
+}
+
+/**************************************************************************************************
+*Shopping cart display style
+***************************************************************************************************/
+.delete_id
+{
+    position: absolute;
+    bottom: 0;
+    left: 105px;
+    /*make button look like text*/
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: blue;
+}
+
+.pname
+{
+    width: 400px;
+    float: left;
+    position: relative;
+    left: 5px;
+}
+
+.other_components
+{
+    float: left;
+}
+
+/**************************************************************************************************
+*Checkout page style
+***************************************************************************************************/
+#customer_shopping_cart_info
+{
+    float: left;
+    width: 50%;
+}
+
+#shipping_addr
+{
+    float: left;
+    width: 40%;
+    position: relative;
+    top: 5%;
+    left: 3%;
+}
+
+#billing_addr
+{
+    float: left;
+    width: 30%;
+    position: relative;
+    top: 5%;
+}
+
+#payment_method
+{
+    position: relative;
+    top: 5%;
+}
+
+#shopping_cart_info
+{
+    position: relative;
+    top: 20px;
+    border: solid 1px #909090;
+    background: #4c3100;
+}
+
+.img_product_cart
+{
+    position: absolute;
+    float: left;
+}
+
+.pname_cart
+{
+    width: 40%;
+    float: left;
+    position: absolute;
+    left: 105px;
+}
+
+.price_quantity_cart
+{
+    position: absolute;
+    left: 67%;
+    width: 10%;
+}
+
+#customer_info
+{
+    height: 130px;
+    border: solid 1px #909090;
+    background: #4c3100;
+}
+
+#order_summary
+{
+    position: absolute;
+    left: 60%;
+    border: solid 1px #909090;
+    width: 30%;
+    height: 170px;
+    background: #4c3100;
+}
+
+#edit_info
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6666ff;
+}
+
+#edit_cart_checkout
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6666ff;
+    position: absolute;
+    left: 20px;
+}
+
+#place_order_checkout
+{
+    background: orange;
+    border: orange;
+    width: 90%;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    left: 5%;
+    top: 5%;
+}
+
+.indent_left
+{
+    float: right;
+    position: relative;
+    right: 5%;
+    top: 5%;
+}
+
+/**************************************************************************************************
+*Past orders style
+***************************************************************************************************/
+.more_info_past_order
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: orange;
+    font-weight: bold;
+}
+
+#customer_info_order_summary
+{
+    border: solid 1px #909090;
+    position: absolute;
+    width: 60%;
+    height: 150px;
+    background: #4c3100;
+    left: 20%;
+}
+
+#shipping_addr_past_order
+{
+    float: left;
+    width: 25%;
+    position: relative;
+    top: 5%;
+    left: 2%;
+}
+
+#payment_method_past_order
+{
+    float: left;
+    width: 30%;
+    position: relative;
+    top: 5%;
+}
+
+#order_summary_past_order
+{
+    float: left;
+    width: 45%;
+    position: relative;
+    top: 5%;
+}
+
+#products_info
+{
+    position: relative;
+    top: 170px;
+    left: 20%;
+    width: 60%;
+    border: solid 1px #909090;
+    background: #4c3100;
+}
+
+.pname_past_order
+{
+    width: 50%;
+    height: 50px;
+    float: left;
+    position: absolute;
+    left: 105px;
+}
+
+.price_quantity_past_order
+{
+    position: absolute;
+    left: 75%;
+    width: 18%;
+}
+
+.shopping_cart_item_past_order
+{
+    position: relative;
+    left: 2%;
 }

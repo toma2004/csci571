@@ -51,7 +51,7 @@ else
 }
 
 /*Function to connect to DB*/
-function connectDB()
+function connectDB_ep()
 {
     $host = 'localhost';
     $user = 'root';
@@ -67,7 +67,7 @@ function connectDB()
 }
 
 /*Function to disconnect from db*/
-function disconnectDB($myconn)
+function disconnectDB_ep($myconn)
 {
     mysql_close($myconn);
 }
@@ -76,7 +76,7 @@ function disconnectDB($myconn)
 /*Function to display edit profile page*/
 function display_edit_profile_page()
 {
-    $conn = connectDB();
+    $conn = connectDB_ep();
     $sql = "select * from customers where customer_id='".$_SESSION["cus_id"]."'";
     $res = mysql_query($sql);
     if (!$res)
@@ -210,19 +210,19 @@ function display_edit_profile_page()
         <?php
         }
     }
-    disconnectDB($conn);
+    disconnectDB_ep($conn);
 }
 
 /*Function to modify profile*/
 function modify_profile()
 {
-    $conn = connectDB();
+    $conn = connectDB_ep();
     $cus_id = $_POST["hidden_cus_id"];
     $err_msg = "";
     if ($_POST["modified_first_name"] != '')
     {
         /*Need to validate data before making any changes*/
-        $fname = validate_data($_POST["modified_first_name"],"first_name");
+        $fname = validate_data_ep($_POST["modified_first_name"],"first_name");
         if ($fname == false)
         {
             $err_msg .= "First name is not in a right format\r\n";
@@ -240,7 +240,7 @@ function modify_profile()
     if ($_POST["modified_last_name"] != '')
     {
         /*Need to validate data before making any changes*/
-        $lname = validate_data($_POST["modified_last_name"],"last_name");
+        $lname = validate_data_ep($_POST["modified_last_name"],"last_name");
         if ($lname == false)
         {
             $err_msg .= "Last name is not in a right format\r\n";
@@ -258,7 +258,7 @@ function modify_profile()
     if ($_POST["modified_street_addr_shipping"] != '')
     {
         /*Need to validate data before making any changes*/
-        $addr_shipping = validate_data($_POST["modified_street_addr_shipping"],"address");
+        $addr_shipping = validate_data_ep($_POST["modified_street_addr_shipping"],"address");
         if ($addr_shipping == false)
         {
             $err_msg .= "Shipping street address is not in a right format\r\n";
@@ -276,7 +276,7 @@ function modify_profile()
     if ($_POST["modified_city_shipping"] != '')
     {
         /*Need to validate data before making any changes*/
-        $city_shipping = validate_data($_POST["modified_city_shipping"],"city");
+        $city_shipping = validate_data_ep($_POST["modified_city_shipping"],"city");
         if ($city_shipping == false)
         {
             $err_msg .= "Shipping city is not in a right format\r\n";
@@ -294,7 +294,7 @@ function modify_profile()
     if ($_POST["modified_state_shipping"] != '')
     {
         /*Need to validate data before making any changes*/
-        $state_shipping = validate_data($_POST["modified_state_shipping"],"state");
+        $state_shipping = validate_data_ep($_POST["modified_state_shipping"],"state");
         if ($state_shipping == false)
         {
             $err_msg .= "Shipping state is not in a right format\r\n";
@@ -312,7 +312,7 @@ function modify_profile()
     if ($_POST["modified_country_shipping"] != '')
     {
         /*Need to validate data before making any changes*/
-        $country_shipping = validate_data($_POST["modified_country_shipping"],"country");
+        $country_shipping = validate_data_ep($_POST["modified_country_shipping"],"country");
         if ($country_shipping == false)
         {
             $err_msg .= "Shipping country is not in a right format\r\n";
@@ -330,7 +330,7 @@ function modify_profile()
     if ($_POST["modified_dob"] != '')
     {
         /*Need to validate data before making any changes*/
-        $dob = validate_data($_POST["modified_dob"],"dob");
+        $dob = validate_data_ep($_POST["modified_dob"],"dob");
         if ($dob == false)
         {
             $err_msg .= "Date of birth is not in a right format\r\n";
@@ -348,7 +348,7 @@ function modify_profile()
     if ($_POST["modified_credit_card"] != '')
     {
         /*Need to validate data before making any changes*/
-        $credit_card = validate_data($_POST["modified_credit_card"],"credit_card");
+        $credit_card = validate_data_ep($_POST["modified_credit_card"],"credit_card");
         if ($credit_card == false)
         {
             $err_msg .= "Credit card number is not in a right format\r\n";
@@ -366,7 +366,7 @@ function modify_profile()
     if ($_POST["modified_security_code"] != '')
     {
         /*Need to validate data before making any changes*/
-        $security_code = validate_data($_POST["modified_security_code"],"security_code");
+        $security_code = validate_data_ep($_POST["modified_security_code"],"security_code");
         if ($security_code == false)
         {
             $err_msg .= "Security code is not in a right format\r\n";
@@ -384,7 +384,7 @@ function modify_profile()
     if ($_POST["modified_exp_month"] != '')
     {
         /*Need to validate data before making any changes*/
-        $exp_month = validate_data($_POST["modified_exp_month"],"exp_month");
+        $exp_month = validate_data_ep($_POST["modified_exp_month"],"exp_month");
         if ($exp_month == false)
         {
             $err_msg .= "Expiration month is not in a right format\r\n";
@@ -402,7 +402,7 @@ function modify_profile()
     if ($_POST["modified_exp_year"] != '')
     {
         /*Need to validate data before making any changes*/
-        $exp_year = validate_data($_POST["modified_exp_year"],"exp_year");
+        $exp_year = validate_data_ep($_POST["modified_exp_year"],"exp_year");
         if ($exp_year == false)
         {
             $err_msg .= "Expiration year is not in a right format\r\n";
@@ -420,7 +420,7 @@ function modify_profile()
     if ($_POST["modified_street_addr_billing"] != '')
     {
         /*Need to validate data before making any changes*/
-        $address_billing = validate_data($_POST["modified_street_addr_billing"],"address");
+        $address_billing = validate_data_ep($_POST["modified_street_addr_billing"],"address");
         if ($address_billing == false)
         {
             $err_msg .= "Billing street address is not in a right format\r\n";
@@ -438,7 +438,7 @@ function modify_profile()
     if ($_POST["modified_city_billing"] != '')
     {
         /*Need to validate data before making any changes*/
-        $city_billing = validate_data($_POST["modified_city_billing"],"city");
+        $city_billing = validate_data_ep($_POST["modified_city_billing"],"city");
         if ($city_billing == false)
         {
             $err_msg .= "Billing city is not in a right format\r\n";
@@ -456,7 +456,7 @@ function modify_profile()
     if ($_POST["modified_state_billing"] != '')
     {
         /*Need to validate data before making any changes*/
-        $state_billing = validate_data($_POST["modified_state_billing"],"state");
+        $state_billing = validate_data_ep($_POST["modified_state_billing"],"state");
         if ($state_billing == false)
         {
             $err_msg .= "Billing state is not in a right format\r\n";
@@ -474,7 +474,7 @@ function modify_profile()
     if ($_POST["modified_country_billing"] != '')
     {
         /*Need to validate data before making any changes*/
-        $country_billing = validate_data($_POST["modified_country_billing"],"country");
+        $country_billing = validate_data_ep($_POST["modified_country_billing"],"country");
         if ($country_billing == false)
         {
             $err_msg .= "Billing country is not in a right format\r\n";
@@ -492,7 +492,7 @@ function modify_profile()
     if ($_POST["modified_phone"] != '')
     {
         /*Need to validate data before making any changes*/
-        $phone = validate_data($_POST["modified_phone"],"phone");
+        $phone = validate_data_ep($_POST["modified_phone"],"phone");
         if ($phone == false)
         {
             $err_msg .= "Phone number is not in a right format\r\n";
@@ -510,7 +510,7 @@ function modify_profile()
     if ($_POST["modified_password"] != '')
     {
         /*Need to validate data before making any changes*/
-        $password = validate_data($_POST["modified_password"],"password");
+        $password = validate_data_ep($_POST["modified_password"],"password");
         if ($password == false)
         {
             $err_msg .= "password is not in a right format\r\n";
@@ -533,12 +533,12 @@ function modify_profile()
     {
         echo '<p style="color: blue">Successfully update your profile!</p>';
     }
-    disconnectDB($conn);
+    disconnectDB_ep($conn);
     display_edit_profile_page();
 }
 
 /*Function to validate data*/
-function validate_data( $data, $type )
+function validate_data_ep( $data, $type )
 {
     $data = trim($data); //remove whitespaces
     $data = stripslashes($data); //remove all backslashes

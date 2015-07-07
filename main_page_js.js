@@ -5,7 +5,6 @@
 /*jQuery ready function to be run when browser load the page*/
 $(document).ready(initializePage);
 var xmlhttp;
-
 /*function to initialize the page*/
 function initializePage()
 {
@@ -18,10 +17,17 @@ function initializePage()
     {// code for IE6, IE5
         xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
     }
+
     xmlhttp.onreadystatechange = display_result_special_sale_main_page;
-    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.open("POST","main_page.php",false);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("special_sale_display=1");
+
+    xmlhttp.onreadystatechange = display_result_list_category;
+    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("list_category_display=1");
+
 
     /*What to do when button is clicked on sign up page*/
     $("#submit_sign_up_form").click(validate_sign_up_page);
@@ -39,6 +45,15 @@ function display_result_special_sale_main_page()
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
     {
         document.getElementById('main_page_form').innerHTML = xmlhttp.responseText;
+    }
+}
+
+/*Function to receive response from server and display list of category*/
+function display_result_list_category()
+{
+    if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('display_list_category_id').innerHTML = xmlhttp.responseText;
     }
 }
 
@@ -357,4 +372,254 @@ function validate_edit_profile_page()
         }
     }
     return isTrue;
+}
+
+/*Function to display category*/
+function display_category ( my_category_id )
+{
+    xmlhttp.onreadystatechange = display_category_result;
+    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    var data = '';
+    data += "display_category_id="+my_category_id;
+    xmlhttp.send(data);
+}
+
+/*Function to handle response from server to display category*/
+function display_category_result()
+{
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('display_category_form').innerHTML = xmlhttp.responseText;
+        div_transform("display_category_div");
+    }
+}
+
+/*Function to navigate between div*/
+function div_transform( destination )
+{
+    var d1 = document.getElementById('form1');
+    var d2 = document.getElementById('display_category_div');
+    var d3 = document.getElementById('edit_shopping_cart_div');
+    var d4 = document.getElementById('checkout_summary_div');
+    var d5 = document.getElementById('past_orders_summary_div');
+    var d6 = document.getElementById('past_order_detail_div');
+
+    if (destination == "form1")
+    {
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d5.style.display = "none";
+        d6.style.display = "none";
+        d1.style.display = "block";
+    }
+    else if (destination == "display_category_div")
+    {
+        d1.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d5.style.display = "none";
+        d6.style.display = "none";
+        d2.style.display = "block";
+    }
+    else if (destination == "edit_shopping_cart_div")
+    {
+        d1.style.display = "none";
+        d2.style.display = "none";
+        d4.style.display = "none";
+        d5.style.display = "none";
+        d6.style.display = "none";
+        d3.style.display = "block";
+    }
+    else if (destination == "checkout_summary_div")
+    {
+        d1.style.display = "none";
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d5.style.display = "none";
+        d6.style.display = "none";
+        d4.style.display = "block";
+    }
+    else if (destination == "past_orders_summary_div")
+    {
+        d1.style.display = "none";
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d6.style.display = "none";
+        d5.style.display = "block";
+    }
+    else if (destination == "past_order_detail_div")
+    {
+        d1.style.display = "none";
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d5.style.display = "none";
+        d6.style.display = "block";
+    }
+}
+
+/*Function to request shopping cart info from server so that customers can see and edit*/
+function request_shopping_cart_info()
+{
+    /*Send AJAX request to server for shopping card info*/
+    xmlhttp.onreadystatechange = display_shopping_cart;
+    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("display_shopping_cart=1");
+}
+
+/*Function to handle reply from server to display shopping cart for edit*/
+function display_shopping_cart()
+{
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('edit_shopping_cart_form').innerHTML = xmlhttp.responseText;
+        div_transform("edit_shopping_cart_div");
+    }
+}
+
+/*Function to send request to server to change*/
+function change_quality( product_id, quantity_val)
+{
+    quantity_val += 1; /*This is needed since the parameter is an index*/
+    /*Send AJAX request to server to request quantity change of a product in shopping cart*/
+    xmlhttp.onreadystatechange = result_request_quantity_change;
+    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    var data = '';
+    data += 'change_shopping_cart_product_id='+product_id+'&quantity='+quantity_val;
+    xmlhttp.send(data);
+}
+
+/*Check result from server to see if we have successfully update quantity of a product in our cart*/
+function result_request_quantity_change()
+{
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        if (xmlhttp.responseText == 'fail')
+        {
+            document.getElementById('edit_shopping_cart_form').innerHTML = '<p style="color: red;">Failed to update shopping cart quantity</p>';
+        }
+    }
+}
+
+/*function to delete a product from shopping cart*/
+function delete_product_cart( product_id )
+{
+    /*Send AJAX request to server to remove an item from shopping cart*/
+    xmlhttp.onreadystatechange = result_request_remove_item;
+    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    var data = '';
+    data += 'remove_item_product_id='+product_id;
+    xmlhttp.send(data);
+}
+
+/*Check result from server to see if we have successfully delete a product from our cart*/
+function result_request_remove_item()
+{
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        if (xmlhttp.responseText == 'fail')
+        {
+            document.getElementById('edit_shopping_cart_form').innerHTML = '<p style="color: red;">Failed to remove product from shopping cart</p>';
+        }
+        else
+        {
+            /*success. Reload the shopping cart page for customer to see the change*/
+            request_shopping_cart_info();
+        }
+    }
+}
+
+/*Function to remove entire shopping cart*/
+function delete_entire_cart()
+{
+    /*Send AJAX request to server to remove entire shopping cart*/
+    xmlhttp.onreadystatechange = result_request_remove_entire_cart;
+    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("remove_entire_cart=1");
+}
+
+/*Function to check result from server if we have successfully remove entire cart*/
+function result_request_remove_entire_cart()
+{
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('edit_shopping_cart_form').innerHTML = xmlhttp.responseText;
+        if (xmlhttp.responseText == 'fail')
+        {
+            document.getElementById('edit_shopping_cart_form').innerHTML = '<p style="color: red;">Failed to remove entire shopping cart</p>';
+        }
+        else
+        {
+            document.getElementById('edit_shopping_cart_form').innerHTML = '<p style="color: red; font-weight: bold;">Your shopping cart is empty</p>';
+        }
+    }
+}
+
+/*Function to send request to server that customer wants to checkout*/
+function request_check_out()
+{
+    /*Send AJAX request to server to request checkout*/
+    xmlhttp.onreadystatechange = result_request_check_out;
+    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("request_for_checkout=1");
+}
+
+/*Function to receive reply from server and display checkout page*/
+function result_request_check_out()
+{
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('checkout_summary_form').innerHTML = xmlhttp.responseText;
+        div_transform("checkout_summary_div");
+    }
+}
+
+/*Function to request to server that customer wants to see all past orders*/
+function request_past_orders_info()
+{
+    /*Send AJAX request to server to request past orders*/
+    xmlhttp.onreadystatechange = result_request_past_order;
+    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("request_for_past_order=1");
+}
+
+/*Function to receive a reply from server and display past order page*/
+function result_request_past_order()
+{
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('past_orders_summary_form').innerHTML = xmlhttp.responseText;
+        div_transform("past_orders_summary_div");
+    }
+}
+
+/*Function to request to server detail past order*/
+function request_detail_past_order( order_id )
+{
+    /*Send AJAX request to server to request past order detail based on order id*/
+    xmlhttp.onreadystatechange = result_request_past_order_detail;
+    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    var data = "";
+    data += "request_past_order_detail="+order_id;
+    xmlhttp.send(data);
+}
+
+/*Function to receive reply from server and display detail of a past order*/
+function result_request_past_order_detail()
+{
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('past_order_detail_form').innerHTML = xmlhttp.responseText;
+        div_transform("past_order_detail_div");
+    }
 }

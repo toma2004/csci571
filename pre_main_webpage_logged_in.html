@@ -20,23 +20,24 @@
     </header>
     <nav id="nav_bar">
         <ul>
-            <li class="first_tier"><a href="#">Home &#9662;</a></li>
+            <li class="first_tier"><a href="main_webpage_logged_in.html">Home &#9662;</a></li>
             <li class="first_tier"><a href="#">Product Category &#9662;</a>
-                <ul>
-                    <li><a href="#">SouthEast Asian Cuisine</a> </li>
-                    <li><a href="#">European Cuisine</a></li>
-                    <li><a href="#">American Cuisine</a></li>
-                    <li><a href="#">NorthEast Asian Cuisine</a></li>
+                <ul id="display_list_category_id">
+
                 </ul>
             </li>
             <li class="first_tier"><a href="#">Your account &#9662;</a>
                 <ul>
-                    <li><a href="#">Edit profile</a></li>
-                    <li><a href="#">Past orders</a></li>
+                    <li><a href="edit_profile.php">Edit profile</a></li>
+                    <li onclick="request_past_orders_info()"><span class="replace_a">Past orders</span></li>
                     <li><a href="customer_logout.php">Log out</a></li>
                 </ul>
             </li>
             <li class="first_tier"><a href="#">Shopping Cart &#9662;</a>
+                <ul>
+                    <li onclick="request_shopping_cart_info()"><span class="replace_a">Edit your cart</span></li>
+                    <li onclick="request_check_out()"><span class="replace_a">Proceed to checkout</span></li>
+                </ul>
             </li>
             <li class="first_tier"><a href="#">Contact Us &#9662;</a></li>
         </ul>
@@ -45,4 +46,3 @@
 
 <div id="form1" style="position:absolute; top: 190px;">
     <h1 id="header_1" style="color: red">Special Sale Event!</h1>
-    <p id="error_msg" style="color: red">
