@@ -594,9 +594,6 @@ function display_result_special_sale_search()
 /*Function to validate order search page*/
 function validate_order_search()
 {
-    var product_name = document.getElementById('order_search_product_name');
-    var product_category = document.getElementById('order_search_product_category');
-
     var start_date = document.getElementById('start_date_order');
     var end_date = document.getElementById('end_date_order');
 
@@ -604,34 +601,7 @@ function validate_order_search()
     err_msg.innerHTML = '';
     var isTrue = true;
 
-    if(product_name.checkValidity() == false)
-    {
-        err_msg.innerHTML += "Please enter a correct product name (no special characters)<br/>";
-        isTrue = false;
-    }
-    if(product_category.checkValidity() == false)
-    {
-        err_msg.innerHTML += "Please enter a correct product category (no special characters)<br/>";
-        isTrue = false;
-    }
-    if (!isTrue)
-    {
-        return false;
-    }
-
-
-    if(product_category.value == '' && product_name.value == '' && start_date.value == '' && end_date.value == '')
-    {
-        err_msg.innerHTML += "Please make a least 1 search criteria<br/>";
-        return false;
-    }
-
-
-    if(start_date.value == '' && end_date.value == '' && (product_category.value != '' || product_name.value != ''))
-    {
-        isTrue = true;
-    }
-    else if (start_date.value != '' || end_date.value != '')
+    if (start_date.value != '' && end_date.value != '')
     {
         /*validate dates*/
         if (!check_date_before(start_date,end_date)) /*start date is after end date*/
@@ -639,6 +609,11 @@ function validate_order_search()
             err_msg.innerHTML += "Either start date can't be after end date or one of the dates you entered is invalid. Please double check your values<br/>";
             return false;
         }
+    }
+    else if ((start_date.value == '' && end_date.value != '') || (start_date.value != '' && end_date.value == ''))
+    {
+        err_msg.innerHTML += "Either start date or end date is missing. Please double check your values<br/>";
+        return false;
     }
     return isTrue;
 }

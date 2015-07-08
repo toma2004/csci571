@@ -121,12 +121,36 @@
         <span style="position:absolute; left: 330px">-</span>
         <input type="date" id="end_date_order" name="end_date_order" style="position:absolute; left: 340px"/><br><br>
 
-        <span>Product name</span>
-        <input type="text" id="order_search_product_name" name="order_search_product_name" style="position:absolute; left: 150px" pattern="([a-zA-Z0-9]+)\s*([a-zA-Z0-9])*" maxlength="255"/><br/><br/>
+        <span>Sold by:</span>
+        <input type="radio" id="sold_by_id1" name="sold_by" value="product" checked/>
+        <span>Product</span>
+        <input type="radio" id="sold_by_id2" name="sold_by" value="product_category"/>
+        <span>Product Category</span>
+        <input type="radio" id="sold_by_id3" name="sold_by" value="special_sale"/>
+        <span>Special Sale</span><br/><br/>
 
-        <span>Product category</span>
-        <input type="text" id="order_search_product_category" name="order_search_product_category" style="position:absolute; left: 150px" pattern="([a-zA-Z0-9]+)\s*([a-zA-Z0-9])*" maxlength="255"/><br/><br/>
+        <span>Sorted by:</span>
+        <input type="radio" id="sorted_by_id1" name="sorted_by" value="quantity" checked/>
+        <span>Total quantity Sold</span>
+        <input type="radio" id="sorted_by_id2" name="sorted_by" value="price"/>
+        <span>Total sales</span><br/><br/>
 
+        <span>Sort order:</span>
+        <input type="radio" id="sort_order_id1" name="sort_order" value="ascending" checked/>
+        <span>Ascending</span>
+        <input type="radio" id="sort_order_id2" name="sort_order" value="descending"/>
+        <span>Descending</span><br/><br/>
+
+        <span>Specific product category</span>
+        <select id="specific_pc">
+            <option value="--" selected="selected">--</option>
+            <option value="1">Southeast</option>
+            <option value="2">Europe</option>
+            <option value="3">America</option>
+            <option value="4">Northeast</option>
+        </select>
+
+        <br/><br/>
 
         <button type="button" id="back_homepage_from_order_search">Back</button>
         <button type="button" id="submit_order_search">Search</button><br/><br/>
