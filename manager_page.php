@@ -67,6 +67,11 @@ else
                 display_result_special_sale_search();
             }
         }
+        #check if manager sends request for order search
+        elseif (isset($_POST["start_date"]) || isset($_POST["end_date"]) || isset($_POST["sold_by"]) || isset($_POST["sorted_by"]) || isset($_POST["sort_order"]) || isset($_POST["specific_pc"]))
+        {
+            display_result_order_search();
+        }
         #For any thing else, back to Home employee page
         else
         {
@@ -646,5 +651,115 @@ function display_result_special_sale_search()
     }
     disconnectDB($conn);
 }
+
+/*Function to display result for order search*/
+function display_result_order_search()
+{
+    $conn = connectDB();
+
+    $sql = 'select';
+    if ($_POST["sold_by"] == 'product')
+    {
+        $sql .= ' p.product_id, product_name';
+    }
+    elseif ($_POST["sold_by"] == 'product_category')
+    {
+        $sql .= ' category_name';
+    }
+    elseif ($_POST["sold_by"] == 'special_sale')
+    {
+        $sql .= ' ss.special_sale_id';
+    }
+
+    /*sorted by following select*/
+    if ($_POST["sorted_by"] == 'quantity')
+    {
+        $sql .= ', sum(order_quantity) as mysum ';
+    }
+    else
+    {
+        $sql .= ', sum(p_price*order_quantity) as mysum ';
+    }
+
+    /*getting table based on sold by following from*/
+    $sql .= 'from orders as o, order_items as oi';
+    /*special sale on specific category*/
+    if ($_POST["sold_by"] == 'special_sale' && $_POST["specific_pc"] != '--')
+    {
+        $sql .= ', (select p.product_id from products as p, product_and_category as pac, product_categories as pc where p.product_id = pac.product_id and pac.category_id = pc.category_id and pc.category_id ="'.$_POST["specific_pc"].'") as p';
+    }
+    else
+    {
+        $sql .= ', products as p';
+    }
+
+    if ($_POST["sold_by"] == 'product_category')
+    {
+        $sql .= ', product_and_category as pac, product_categories as pc';
+    }
+    elseif ($_POST["sold_by"] == 'special_sale')
+    {
+        $sql .= ', special_sales as ss';
+    }
+
+    /*where clause based on many table needing to join*/
+    $sql .= ' where o.order_id = oi.order_id and p.product_id = oi.product_id';
+    if ($_POST["sold_by"] == 'product_category')
+    {
+        $sql .= ' and oi.product_id = pac.product_id and pac.category_id = pc.category_id';
+    }
+    elseif ($_POST["sold_by"] == 'special_sale')
+    {
+        $sql .= ' and oi.special_sale_id = ss.special_sale_id';
+    }
+    /*add date to where clause*/
+    if ($_POST["start_date"] != '' && $_POST["end_date"] != '')
+    {
+        //Need to validate date before doing query
+        $validate_start_date = explode('-',$_POST["start_date"]);
+        $validate_end_date = explode('-',$_POST["end_date"]);
+        if (checkdate($validate_start_date[1],$validate_start_date[2],$validate_start_date[0]) && checkdate($validate_end_date[1],$validate_end_date[2],$validate_end_date[0]))
+        {
+            $sql .= ' and order_date >="'.$_POST["start_date"].'" and order_date <="'.$_POST["end_date"].'"';
+        }
+    }
+    /*add to where clause specific category and if sold by product category*/
+    if ($_POST["sold_by"] == 'product_category' && $_POST["specific_pc"] != '--')
+    {
+        $sql .= ' and pc.category_id="'.$_POST["specific_pc"].'"';
+    }
+
+    /*follow by group by*/
+    $sql .= ' group by';
+    if ($_POST["sold_by"] == 'product')
+    {
+        $sql .= ' oi.product_id';
+    }
+    elseif ($_POST["sold_by"] == 'product_category')
+    {
+        $sql .= ' pc.category_id';
+    }
+    elseif ($_POST["sold_by"] == 'special_sale')
+    {
+        $sql .= ' ss.special_sale_id';
+    }
+
+    /*More complicated when manager need to */
+    if ($_POST["sold_by"] == 'product' && $_POST["specific_pc"] != '--')
+    {
+        $sql = 'select product_name, subtable.mysum as mysum from ('.$sql.') as subtable, product_and_category as pac, product_categories as pc where subtable.product_id = pac.product_id and pac.category_id = pc.category_id and pc.category_id ="'.$_POST["specific_pc"].'"';
+    }
+
+    /*order by clause*/
+    $sql .= ' order by mysum';
+    /*sorted by following select*/
+    if ($_POST["sort_order"] == 'descending')
+    {
+        $sql .= ' DESC';
+    }
+    echo $sql;
+    disconnectDB($conn);
+}
+
 
 ?>

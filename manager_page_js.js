@@ -151,7 +151,7 @@ function checkAll()
 
     /*All events in order search homepage*/
     $("#back_homepage_from_order_search").click(back_homepage);
-    //$("#submit_order_search").click(send_order_search_data_to_server);
+    $("#submit_order_search").click(send_order_search_data_to_server);
 }
 
 /*Function to handle transform from manager homepage to employee search page*/
@@ -616,4 +616,53 @@ function validate_order_search()
         return false;
     }
     return isTrue;
+}
+/*Function to send order search request to server with all data*/
+function send_order_search_data_to_server()
+{
+    if (validate_order_search())
+    {
+        var start_date = document.getElementById('start_date_order');
+        var end_date = document.getElementById('end_date_order');
+
+        var sold_by = document.getElementsByName('sold_by');
+        var sorted_by = document.getElementsByName('sorted_by');
+        var sort_order = document.getElementsByName('sort_order');
+
+        var specific_product_category = document.getElementById('specific_pc');
+
+        var value_sold_by = value_radio(sold_by);
+        var value_sorted_by = value_radio(sorted_by);
+        var value_sort_order = value_radio(sort_order);
+
+        var data_send = "";
+
+
+        /*Create AJAX XMLHttpRequest object*/
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = display_result_order_search;
+        xmlhttp.open("POST","manager_page.php",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+        /*Send data*/
+        data_send += "start_date="+start_date.value+"&end_date="+end_date.value+"&sold_by="+value_sold_by+"&sorted_by="+value_sorted_by+"&sort_order="+value_sort_order+"&specific_pc="+specific_product_category.value;
+        xmlhttp.send(data_send);
+    }
+}
+
+/*Function to receive reply from server and display order search result*/
+function display_result_order_search()
+{
+    /*Check status of responded data */
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+        document.getElementById('manager_page_order_display_search_result').innerHTML = xmlhttp.responseText;
+    }
 }
