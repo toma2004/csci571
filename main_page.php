@@ -217,6 +217,7 @@ function display_special_sale_main_page()
                         echo '<span class="caption"><span style="color: red">SALE: '.$row_special_sale["percentage_discount"].' %OFF</span><br/>';
                         echo 'Orig. price = '.$row_product["product_price"].'<br/>';
                         $discounted = (1 - ($row_special_sale["percentage_discount"] / 100)) * $row_product["product_price"];
+                        $discounted = number_format($discounted, 2, '.', ',');
                         echo '<span style="color: red">Discounted price = '.$discounted.'</span></span></div>';
                     }
                 }
@@ -564,6 +565,7 @@ function display_product_category()
                     {
                         echo 'Orig. price = '.$row_product["product_price"].'<br/>';
                         $discounted = (1 - ($row_special_sale["percentage_discount"] / 100)) * $row_product["product_price"];
+                        $discounted = number_format($discounted, 2, '.', ',');
                         echo '<span style="color: red">Discounted price = '.$discounted.'</span></span></div>';
                     }
                     else
@@ -753,6 +755,7 @@ function display_shopping_cart()
                                     if (check_my_date($row_special_sale["start_date"], "after") && check_my_date($row_special_sale["end_date"], "before"))
                                     {
                                         $discounted = (1 - ($row_special_sale["percentage_discount"] / 100)) * $row["product_price"];
+                                        $discounted = number_format($discounted, 2, '.', ',');
                                     }
                                 }
                             }
@@ -1014,6 +1017,7 @@ function display_checkout_summary()
                                                 {
                                                     $isSpecialSale = true;
                                                     $discounted = (1 - ($row_special_sale["percentage_discount"] / 100)) * $row["product_price"];
+                                                    $discounted = number_format($discounted, 2, '.', ',');
                                                 }
                                             }
                                         }
