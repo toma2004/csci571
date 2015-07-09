@@ -180,6 +180,11 @@ function transform_managerHomePage_orderSearchPage()
 /*Back to manager home page function*/
 function back_homepage()
 {
+    /*Clear all search result when user hit back homepage*/
+    document.getElementById('manager_page_employee_search_display_search_result').innerHTML ='';
+    document.getElementById('manager_page_product_search_display_search_result').innerHTML ='';
+    document.getElementById('manager_page_special_sale_search_display_search_result').innerHTML ='';
+    document.getElementById('manager_page_order_display_search_result').innerHTML ='';
     manager_transform('not matter','manager_homepage');
 }
 

@@ -24,67 +24,75 @@
     <favorites_list name="csci571" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.60572916">
+    <splitter split-orientation="horizontal" split-proportion="0.46302083">
       <split-first>
         <leaf>
           <file leaf-file-name="manager_page.php" pinned="false" current-in-tab="true">
-            <entry file="file://C:/xampp/htdocs/hw2/manager_page.php">
+            <entry file="file://D:/xampp/htdocs/hw2/manager_page.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.94905096" vertical-offset="13279" max-vertical-offset="14450">
-                  <caret line="841" column="13" selection-start-line="841" selection-start-column="13" selection-end-line="841" selection-end-column="13" />
+                <state vertical-scroll-proportion="0.4245176" vertical-offset="0" max-vertical-offset="14501">
+                  <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
                   <folding>
-                    <marker date="1436406458825" expanded="true" signature="5057:5090" placeholder="select useri..users..." />
-                    <marker date="1436406458825" expanded="true" signature="6045:6054" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="6296:6305" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="6986:7070" placeholder="select emplo..employees..." />
-                    <marker date="1436406458825" expanded="true" signature="7337:7346" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="8417:8633" placeholder="select emplo..employees..." />
-                    <marker date="1436406458825" expanded="true" signature="9385:9394" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="9795:9977" placeholder="select emplo..employees..." />
-                    <marker date="1436406458825" expanded="true" signature="10071:10080" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="10828:10837" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="12798:12920" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="13016:13201" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="13257:13502" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="13635:13644" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="14294:14303" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="14744:14890" placeholder="select categ..product_categories..." />
-                    <marker date="1436406458825" expanded="true" signature="15033:15042" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="15788:15797" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="15969:16115" placeholder="select categ..product_categories..." />
-                    <marker date="1436406458825" expanded="true" signature="16258:16267" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="16739:16826" placeholder="select produ..product_and_category..." />
-                    <marker date="1436406458825" expanded="true" signature="17283:17453" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="17700:17933" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="18053:18346" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="19446:19455" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="20274:20409" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="20631:20842" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="20898:21182" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="21312:21321" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="21802:21897" placeholder="select speci..special_sales_and_product..." />
-                    <marker date="1436406458825" expanded="true" signature="22236:22504" placeholder="select speci..special_sales..." />
-                    <marker date="1436406458825" expanded="true" signature="22608:22764" placeholder="select speci..special_sales..." />
-                    <marker date="1436406458825" expanded="true" signature="23637:23646" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="24135:24333" placeholder="select speci..special_sales..." />
-                    <marker date="1436406458825" expanded="true" signature="24452:24461" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="25276:25285" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="25643:25780" placeholder="select categ..product_categories..." />
-                    <marker date="1436406458825" expanded="true" signature="25900:25909" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="26463:26550" placeholder="select produ..product_and_category..." />
-                    <marker date="1436406458825" expanded="true" signature="27085:27271" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="27542:27804" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="28075:28410" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="28514:28627" placeholder="select produ..products..." />
-                    <marker date="1436406458825" expanded="true" signature="28847:28953" placeholder="select speci..special_sales_and_product..." />
-                    <marker date="1436406458825" expanded="true" signature="29325:29589" placeholder="select speci..special_sales..." />
-                    <marker date="1436406458825" expanded="true" signature="29725:29877" placeholder="select speci..special_sales..." />
-                    <marker date="1436406458825" expanded="true" signature="31121:31130" placeholder="..." />
-                    <marker date="1436406458825" expanded="true" signature="34414:34669" placeholder="select produ..subtable..." />
-                    <marker date="1436406458825" expanded="true" signature="34968:35010" placeholder="select sum(t..." />
-                    <marker date="1436406458825" expanded="true" signature="34968:35031" placeholder="select sum(t..totalSum..." />
-                    <marker date="1436406458825" expanded="true" signature="34968:35032" placeholder="select sum(t..." />
+                    <marker date="1436424983877" expanded="true" signature="5057:5090" placeholder="select useri..users..." />
+                    <marker date="1436424983877" expanded="true" signature="6045:6054" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="6296:6305" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="6986:7070" placeholder="select emplo..employees..." />
+                    <marker date="1436424983877" expanded="true" signature="7337:7346" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="8417:8633" placeholder="select emplo..employees..." />
+                    <marker date="1436424983877" expanded="true" signature="9385:9394" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="9795:9977" placeholder="select emplo..employees..." />
+                    <marker date="1436424983877" expanded="true" signature="10071:10080" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="10828:10837" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="12798:12920" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="13016:13201" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="13257:13502" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="13635:13644" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="14294:14303" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="14744:14890" placeholder="select categ..product_categories..." />
+                    <marker date="1436424983877" expanded="true" signature="15033:15042" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="15788:15797" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="15969:16115" placeholder="select categ..product_categories..." />
+                    <marker date="1436424983877" expanded="true" signature="16258:16267" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="16739:16826" placeholder="select produ..product_and_category..." />
+                    <marker date="1436424983877" expanded="true" signature="17283:17453" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="17700:17933" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="18053:18346" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="19446:19455" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="20274:20409" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="20631:20842" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="20898:21182" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="21312:21321" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="21802:21897" placeholder="select speci..special_sales_and_product..." />
+                    <marker date="1436424983877" expanded="true" signature="22236:22504" placeholder="select speci..special_sales..." />
+                    <marker date="1436424983877" expanded="true" signature="22608:22764" placeholder="select speci..special_sales..." />
+                    <marker date="1436424983877" expanded="true" signature="23637:23646" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="24135:24333" placeholder="select speci..special_sales..." />
+                    <marker date="1436424983877" expanded="true" signature="24452:24461" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="25276:25285" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="25643:25780" placeholder="select categ..product_categories..." />
+                    <marker date="1436424983877" expanded="true" signature="25900:25909" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="26463:26550" placeholder="select produ..product_and_category..." />
+                    <marker date="1436424983877" expanded="true" signature="27085:27271" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="27542:27804" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="28075:28410" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="28514:28627" placeholder="select produ..products..." />
+                    <marker date="1436424983877" expanded="true" signature="28847:28953" placeholder="select speci..special_sales_and_product..." />
+                    <marker date="1436424983877" expanded="true" signature="29325:29589" placeholder="select speci..special_sales..." />
+                    <marker date="1436424983877" expanded="true" signature="29725:29877" placeholder="select speci..special_sales..." />
+                    <marker date="1436424983877" expanded="true" signature="31121:31130" placeholder="..." />
+                    <marker date="1436424983877" expanded="true" signature="34414:34669" placeholder="select produ..subtable..." />
+                    <marker date="1436424983877" expanded="true" signature="34968:35031" placeholder="select sum(t..totalSum..." />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="manager_page_js.js" pinned="false" current-in-tab="false">
+            <entry file="file://D:/xampp/htdocs/hw2/manager_page_js.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="2353" max-vertical-offset="11492">
+                  <caret line="183" column="79" selection-start-line="183" selection-start-column="79" selection-end-line="183" selection-end-column="79" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -93,21 +101,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="manager_page_js.js" pinned="false" current-in-tab="false">
-            <entry file="file://C:/xampp/htdocs/hw2/manager_page_js.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="10312" max-vertical-offset="11407">
-                  <caret line="630" column="0" selection-start-line="630" selection-start-column="0" selection-end-line="630" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="manager_page.html" pinned="false" current-in-tab="true">
-            <entry file="file://C:/xampp/htdocs/hw2/manager_page.html">
+            <entry file="file://D:/xampp/htdocs/hw2/manager_page.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.62637365" vertical-offset="1753" max-vertical-offset="2924">
-                  <caret line="140" column="64" selection-start-line="140" selection-start-column="54" selection-end-line="140" selection-end-column="64" />
+                <state vertical-scroll-proportion="0.82860386" vertical-offset="2041" max-vertical-offset="2924">
+                  <caret line="163" column="6" selection-start-line="163" selection-start-column="6" selection-end-line="163" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -166,11 +164,11 @@
         <option value="D:/xampp/htdocs/employee_page_js.js" />
         <option value="D:/xampp/htdocs/employee_page.php" />
         <option value="D:/xampp/htdocs/hw2/employee_page.php" />
-        <option value="D:/xampp/htdocs/hw2/manager_page_js.js" />
-        <option value="D:/xampp/htdocs/hw2/manager_page.html" />
-        <option value="D:/xampp/htdocs/hw2/manager_page.php" />
         <option value="C:/xampp/htdocs/hw2/manager_page.html" />
         <option value="C:/xampp/htdocs/hw2/manager_page.php" />
+        <option value="D:/xampp/htdocs/hw2/manager_page.php" />
+        <option value="D:/xampp/htdocs/hw2/manager_page_js.js" />
+        <option value="D:/xampp/htdocs/hw2/manager_page.html" />
       </list>
     </option>
   </component>
@@ -182,7 +180,7 @@
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1176" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -287,8 +285,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -556,79 +554,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/xampp/htdocs/hw2/manager_page_js.js">
+    <entry file="file://D:/xampp/htdocs/hw2/manager_page_js.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="10312" max-vertical-offset="11407">
-          <caret line="630" column="0" selection-start-line="630" selection-start-column="0" selection-end-line="630" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2353" max-vertical-offset="11492">
+          <caret line="183" column="79" selection-start-line="183" selection-start-column="79" selection-end-line="183" selection-end-column="79" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/xampp/htdocs/hw2/manager_page.html">
+    <entry file="file://D:/xampp/htdocs/hw2/manager_page.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62637365" vertical-offset="1753" max-vertical-offset="2924">
-          <caret line="140" column="64" selection-start-line="140" selection-start-column="54" selection-end-line="140" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/xampp/htdocs/hw2/manager_page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.94905096" vertical-offset="13279" max-vertical-offset="14450">
-          <caret line="841" column="13" selection-start-line="841" selection-start-column="13" selection-end-line="841" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.4245176" vertical-offset="0" max-vertical-offset="14501">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding>
-            <marker date="1436406458825" expanded="true" signature="5057:5090" placeholder="select useri..users..." />
-            <marker date="1436406458825" expanded="true" signature="6045:6054" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="6296:6305" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="6986:7070" placeholder="select emplo..employees..." />
-            <marker date="1436406458825" expanded="true" signature="7337:7346" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="8417:8633" placeholder="select emplo..employees..." />
-            <marker date="1436406458825" expanded="true" signature="9385:9394" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="9795:9977" placeholder="select emplo..employees..." />
-            <marker date="1436406458825" expanded="true" signature="10071:10080" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="10828:10837" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="12798:12920" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="13016:13201" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="13257:13502" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="13635:13644" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="14294:14303" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="14744:14890" placeholder="select categ..product_categories..." />
-            <marker date="1436406458825" expanded="true" signature="15033:15042" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="15788:15797" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="15969:16115" placeholder="select categ..product_categories..." />
-            <marker date="1436406458825" expanded="true" signature="16258:16267" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="16739:16826" placeholder="select produ..product_and_category..." />
-            <marker date="1436406458825" expanded="true" signature="17283:17453" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="17700:17933" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="18053:18346" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="19446:19455" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="20274:20409" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="20631:20842" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="20898:21182" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="21312:21321" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="21802:21897" placeholder="select speci..special_sales_and_product..." />
-            <marker date="1436406458825" expanded="true" signature="22236:22504" placeholder="select speci..special_sales..." />
-            <marker date="1436406458825" expanded="true" signature="22608:22764" placeholder="select speci..special_sales..." />
-            <marker date="1436406458825" expanded="true" signature="23637:23646" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="24135:24333" placeholder="select speci..special_sales..." />
-            <marker date="1436406458825" expanded="true" signature="24452:24461" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="25276:25285" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="25643:25780" placeholder="select categ..product_categories..." />
-            <marker date="1436406458825" expanded="true" signature="25900:25909" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="26463:26550" placeholder="select produ..product_and_category..." />
-            <marker date="1436406458825" expanded="true" signature="27085:27271" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="27542:27804" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="28075:28410" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="28514:28627" placeholder="select produ..products..." />
-            <marker date="1436406458825" expanded="true" signature="28847:28953" placeholder="select speci..special_sales_and_product..." />
-            <marker date="1436406458825" expanded="true" signature="29325:29589" placeholder="select speci..special_sales..." />
-            <marker date="1436406458825" expanded="true" signature="29725:29877" placeholder="select speci..special_sales..." />
-            <marker date="1436406458825" expanded="true" signature="31121:31130" placeholder="..." />
-            <marker date="1436406458825" expanded="true" signature="34414:34669" placeholder="select produ..subtable..." />
-            <marker date="1436406458825" expanded="true" signature="34968:35010" placeholder="select sum(t..." />
-            <marker date="1436406458825" expanded="true" signature="34968:35031" placeholder="select sum(t..totalSum..." />
-            <marker date="1436406458825" expanded="true" signature="34968:35032" placeholder="select sum(t..." />
+            <marker date="1436424983877" expanded="true" signature="5057:5090" placeholder="select useri..users..." />
+            <marker date="1436424983877" expanded="true" signature="6045:6054" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="6296:6305" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="6986:7070" placeholder="select emplo..employees..." />
+            <marker date="1436424983877" expanded="true" signature="7337:7346" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="8417:8633" placeholder="select emplo..employees..." />
+            <marker date="1436424983877" expanded="true" signature="9385:9394" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="9795:9977" placeholder="select emplo..employees..." />
+            <marker date="1436424983877" expanded="true" signature="10071:10080" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="10828:10837" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="12798:12920" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="13016:13201" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="13257:13502" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="13635:13644" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="14294:14303" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="14744:14890" placeholder="select categ..product_categories..." />
+            <marker date="1436424983877" expanded="true" signature="15033:15042" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="15788:15797" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="15969:16115" placeholder="select categ..product_categories..." />
+            <marker date="1436424983877" expanded="true" signature="16258:16267" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="16739:16826" placeholder="select produ..product_and_category..." />
+            <marker date="1436424983877" expanded="true" signature="17283:17453" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="17700:17933" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="18053:18346" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="19446:19455" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="20274:20409" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="20631:20842" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="20898:21182" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="21312:21321" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="21802:21897" placeholder="select speci..special_sales_and_product..." />
+            <marker date="1436424983877" expanded="true" signature="22236:22504" placeholder="select speci..special_sales..." />
+            <marker date="1436424983877" expanded="true" signature="22608:22764" placeholder="select speci..special_sales..." />
+            <marker date="1436424983877" expanded="true" signature="23637:23646" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="24135:24333" placeholder="select speci..special_sales..." />
+            <marker date="1436424983877" expanded="true" signature="24452:24461" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="25276:25285" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="25643:25780" placeholder="select categ..product_categories..." />
+            <marker date="1436424983877" expanded="true" signature="25900:25909" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="26463:26550" placeholder="select produ..product_and_category..." />
+            <marker date="1436424983877" expanded="true" signature="27085:27271" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="27542:27804" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="28075:28410" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="28514:28627" placeholder="select produ..products..." />
+            <marker date="1436424983877" expanded="true" signature="28847:28953" placeholder="select speci..special_sales_and_product..." />
+            <marker date="1436424983877" expanded="true" signature="29325:29589" placeholder="select speci..special_sales..." />
+            <marker date="1436424983877" expanded="true" signature="29725:29877" placeholder="select speci..special_sales..." />
+            <marker date="1436424983877" expanded="true" signature="31121:31130" placeholder="..." />
+            <marker date="1436424983877" expanded="true" signature="34414:34669" placeholder="select produ..subtable..." />
+            <marker date="1436424983877" expanded="true" signature="34968:35031" placeholder="select sum(t..totalSum..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/hw2/manager_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.82860386" vertical-offset="2041" max-vertical-offset="2924">
+          <caret line="163" column="6" selection-start-line="163" selection-start-column="6" selection-end-line="163" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
