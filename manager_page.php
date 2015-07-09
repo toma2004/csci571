@@ -757,7 +757,91 @@ function display_result_order_search()
     {
         $sql .= ' DESC';
     }
+    /*Check to see if manager wants total*/
+    elseif ($_POST["sort_order"] == 'total_sale')
+    {
+        $sql = 'select sum(totalSum.mysum) as mysum from ('.$sql.') as totalSum';
+    }
     echo $sql;
+
+    $res = mysql_query($sql);
+    if ($res)
+    {
+        echo '<table id="order_search_table_id">';
+        $table_title_row = '';
+        if ($_POST["sort_order"] != 'total_sale')
+        {
+            /*Print out the title row based on manager's selection*/
+            if ($_POST["sold_by"] == 'product')
+            {
+                $table_title_row = '<tr><th>Product name</th>';
+            }
+            elseif ($_POST["sold_by"] == 'product_category')
+            {
+                $table_title_row = '<tr><th>Product category name</th>';
+            }
+            elseif ($_POST["sold_by"] == 'special_sale')
+            {
+                $table_title_row = '<tr><th>special sale id</th>';
+            }
+
+            if ($_POST["sorted_by"] == 'quantity')
+            {
+                $table_title_row .= '<th>Quantity</th></tr>';
+            }
+            elseif ($_POST["sorted_by"] == 'price')
+            {
+                $table_title_row .= '<th>Price (in dollars)</th></tr>';
+            }
+            echo $table_title_row;
+        }
+        while ($row = mysql_fetch_assoc($res))
+        {
+            $table_row = '';
+            if ($_POST["sort_order"] == 'total_sale')
+            {
+                $table_row .= 'Total ';
+                if ($_POST["sorted_by"] == 'quantity')
+                {
+                    $table_row .= 'quantity sold of';
+                }
+                elseif ($_POST["sorted_by"] == 'price')
+                {
+                    $table_row .= 'sales (in dollars) of';
+                }
+
+                if ($_POST["sold_by"] == 'product')
+                {
+                    $table_row .= 'product is: ';
+                }
+                elseif ($_POST["sold_by"] == 'product_category')
+                {
+                    $table_row .= 'product category is: ';
+                }
+                elseif ($_POST["sold_by"] == 'special_sale')
+                {
+                    $table_row .= 'special sale is: ';
+                }
+                $table_row .= $row["mysum"];
+                echo $table_row;
+            }
+            else
+            {
+                /*
+                 *                                echo '<tr><td>'.$row_product_info["product_id"].'</td>';
+                                echo '<td>'.$row_product_info["product_name"].'</td>';
+                                echo '<td>'.$row_product_info["product_price"].'</td>';
+                                echo '<td>'.$row["category_id"].'</td>';
+                                echo '<td>'.$row["category_name"].'</td>';
+                                echo '<td>'.$row_final["special_sale_id"].'</td>';
+                                echo '<td>'.$row_final["start_date"].'</td>';
+                                echo '<td>'.$row_final["end_date"].'</td>';
+                                echo '<td>'.$row_final["percentage_discount"].'</td></tr>';
+                */
+
+            }
+        }
+    }
     disconnectDB($conn);
 }
 
