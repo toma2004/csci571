@@ -287,7 +287,7 @@ function add_product()
     }
 
     #continue if everything is good
-    $file_upload = './hw2/'.$file_upload;
+    $file_upload = '../hw2/'.$file_upload;
     $sql = "insert into products (product_name,product_price,product_description,ingredients,recipe,product_image) values ('".$product_name."','".$price."','".$product_description."','".$ingredient."','".$recipe."','".$file_upload."')";
     $res = mysql_query($sql);
     if (!$res)

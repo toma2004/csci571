@@ -822,7 +822,15 @@ function display_result_order_search()
                 {
                     $table_row .= 'special sale is: ';
                 }
-                $table_row .= $row["mysum"];
+
+                if ($row["mysum"] == '')
+                {
+                    $table_row .= 0;
+                }
+                else
+                {
+                    $table_row .= $row["mysum"];
+                }
                 echo $table_row;
             }
             else
