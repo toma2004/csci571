@@ -404,6 +404,7 @@ function div_transform( destination )
     var d4 = document.getElementById('checkout_summary_div');
     var d5 = document.getElementById('past_orders_summary_div');
     var d6 = document.getElementById('past_order_detail_div');
+    var d7 = document.getElementById('contact_us_div');
 
     if (destination == "form1")
     {
@@ -412,6 +413,7 @@ function div_transform( destination )
         d4.style.display = "none";
         d5.style.display = "none";
         d6.style.display = "none";
+        d7.style.display = "none";
         d1.style.display = "block";
     }
     else if (destination == "display_category_div")
@@ -421,6 +423,7 @@ function div_transform( destination )
         d4.style.display = "none";
         d5.style.display = "none";
         d6.style.display = "none";
+        d7.style.display = "none";
         d2.style.display = "block";
     }
     else if (destination == "edit_shopping_cart_div")
@@ -430,6 +433,7 @@ function div_transform( destination )
         d4.style.display = "none";
         d5.style.display = "none";
         d6.style.display = "none";
+        d7.style.display = "none";
         d3.style.display = "block";
     }
     else if (destination == "checkout_summary_div")
@@ -439,6 +443,7 @@ function div_transform( destination )
         d3.style.display = "none";
         d5.style.display = "none";
         d6.style.display = "none";
+        d7.style.display = "none";
         d4.style.display = "block";
     }
     else if (destination == "past_orders_summary_div")
@@ -448,6 +453,7 @@ function div_transform( destination )
         d3.style.display = "none";
         d4.style.display = "none";
         d6.style.display = "none";
+        d7.style.display = "none";
         d5.style.display = "block";
     }
     else if (destination == "past_order_detail_div")
@@ -457,7 +463,18 @@ function div_transform( destination )
         d3.style.display = "none";
         d4.style.display = "none";
         d5.style.display = "none";
+        d7.style.display = "none";
         d6.style.display = "block";
+    }
+    else if (destination == "contact_us_div")
+    {
+        d1.style.display = "none";
+        d2.style.display = "none";
+        d3.style.display = "none";
+        d4.style.display = "none";
+        d5.style.display = "none";
+        d6.style.display = "none";
+        d7.style.display = "block";
     }
 }
 
@@ -622,4 +639,11 @@ function result_request_past_order_detail()
         document.getElementById('past_order_detail_form').innerHTML = xmlhttp.responseText;
         div_transform("past_order_detail_div");
     }
+}
+
+/*Function to display contact us info*/
+function request_contact()
+{
+    document.getElementById('contact_us_form').innerHTML = '<p>Email: trannk@usc.edu</p><p>Phone number: (123) 123-4567</p>';
+    div_transform('contact_us_div');
 }

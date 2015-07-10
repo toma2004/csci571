@@ -38,7 +38,7 @@
                     <li onclick="request_check_out()"><span class="replace_a">Proceed to checkout</span></li>
                 </ul>
             </li>
-            <li class="first_tier"><a href="#">Contact Us &#9662;</a></li>
+            <li class="first_tier" onclick="request_contact()"><span class="replace_a">Contact Us &#9662;</span></li>
         </ul>
     </nav>
 </div>
@@ -77,6 +77,12 @@
 <div id="past_order_detail_div" style="position:absolute; top: 190px; width: 90%; display: none;">
     <h1 id="header_6" style="color: #eeeeee">Review your order</h1>
     <form id="past_order_detail_form" action="main_page.php" method="POST">
+    </form>
+</div>
+
+<div id="contact_us_div" style="position:absolute; top: 190px; width: 90%; display: none;">
+    <h1 id="header_7" style="color: #eeeeee">Contact us:</h1>
+    <form id="contact_us_form" action="main_page.php" method="POST">
     </form>
 </div>
 

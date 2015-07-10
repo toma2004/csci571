@@ -1181,7 +1181,7 @@ function display_past_order()
     while ($row = mysql_fetch_assoc($res))
     {
         $counter += 1;
-        echo 'Order date: <span style="color: #6666ff">'.$row["order_date"].'</span>, order total amount: <span style="color: #6666ff">'.($row["order_total_amount"] + $row["order_shipping_cost"] + $row["order_total_tax"]).'</span>,...';
+        echo 'Order date: <span style="color: #6666ff">'.$row["order_date"].'</span>, order total amount: <span style="color: #6666ff">$'.($row["order_total_amount"] + $row["order_shipping_cost"] + $row["order_total_tax"]).'</span>,...';
         echo '<button type="button" class="more_info_past_order" onclick=request_detail_past_order("'.$row["order_id"].'");>(more)</button><br/><br/>';
     }
     if ($counter == 0)
