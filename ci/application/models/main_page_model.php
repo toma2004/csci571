@@ -15,16 +15,18 @@ class Main_page_model extends CI_Model {
         $sql = "select special_sale_id, product_id from special_sales_and_product";
         $res = $this->db->query($sql);
         $return_arr = array();
+        //Prepare sql statement to get product info for all product in special sale and product table
+        $sql = "select product_name,product_price,product_image from products where product_id=?";
+        //prepare sql statement to get special sale detail
+        $sql_special_sale = "select * from special_sales where special_sale_id=?";
         foreach ($res->result_array() as $row)
         {
-            $sql = "select product_name,product_price,product_image from products where product_id='".$row["product_id"]."'";
-            $res_product = $this->db->query($sql);
+            $res_product = $this->db->query($sql,$row["product_id"]);
             if ($res_product)
             {
                 $row_product = $res_product->row_array(); //Get only 1 row which is what expected
                 /*Getting special sale percentage discount*/
-                $sql = "select * from special_sales where special_sale_id='".$row["special_sale_id"]."'";
-                $res_special_sale = $this->db->query($sql);
+                $res_special_sale = $this->db->query($sql_special_sale, $row["special_sale_id"]);
                 if ($res_special_sale)
                 {
                     $row_special_sale = $res_special_sale->row_array();
@@ -137,5 +139,58 @@ class Main_page_model extends CI_Model {
             }
         }
         return true;
+    }
+
+    /*Function to validate data to avoid XSS attack*/
+    function validate_data( $data, $type )
+    {
+        $data = trim($data); //remove whitespaces
+        $data = stripslashes($data); //remove all backslashes
+        $data = htmlspecialchars($data);
+        if ($type == "first_name" || $type == "last_name" || $type == "city" || $type == "state" || $type == "country")
+        {
+            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/\D+/")));
+        }
+        else if ($type == "address")
+        {
+            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/([0-9])+\s+([A-Za-z])+.*/")));
+        }
+        else if ($type == "credit_card")
+        {
+            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{16}/")));
+        }
+        else if ($type == "security_code")
+        {
+            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{3}/")));
+        }
+        else if ($type == "exp_month")
+        {
+            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{1,2}/")));
+        }
+        else if ($type == "exp_year")
+        {
+            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{4}/")));
+        }
+        else if ($type == "phone")
+        {
+            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{10}/")));
+        }
+        else if ($type == "email")
+        {
+            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[A-Za-z0-9]+@[A-Za-z0-9]+\.[a-z]{2,3}$/")));
+        }
+        else if ($type == "username")
+        {
+            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[a-zA-Z0-9]+/")));
+        }
+        else if ($type == "int")
+        {
+            return filter_var($data,FILTER_VALIDATE_INT);
+        }
+        else if ($type == "float")
+        {
+            return filter_var($data,FILTER_VALIDATE_FLOAT);
+        }
+        return $data;
     }
 }

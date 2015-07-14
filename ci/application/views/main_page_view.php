@@ -29,17 +29,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </header>
     <nav id="nav_bar">
         <ul>
-            <li class="first_tier"><a href="#">Home &#9662;</a></li>
+            <li class="first_tier" onclick="div_transform('form1')"><span class="replace_a">Home &#9662;</span></li>
             <li class="first_tier"><a href="#">Product Category &#9662;</a>
                 <ul id="display_list_category_id">
                     <?php foreach ($category_list as $cl) {  ?>
-                    <li onclick="display_category('<?php echo $cl['category_id']; ?>')"><span class="replace_a"><?php echo $cl['category_name'];?></span></li>
+                    <li onclick="display_category('<?php echo $cl['category_id']; ?>')"><span class="replace_a"><?php echo htmlspecialchars($cl['category_name']);?></span></li>
                     <?php } //End foreach loop for category list?>
                 </ul>
             </li>
             <li class="first_tier"><a href="#">Log in/Sign up &#9662;</a>
                 <ul>
-                    <li><a href="#">Sign up</a></li>
+                    <li><a href="<?php echo base_url(); ?>html/sign_up.html">Sign up</a></li>
                     <li><a href="#">Log in</a></li>
                 </ul>
             </li>
@@ -71,11 +71,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         ?>
         <div class="image_block">
-            <input type="image" src="<?php echo base_url().$ss_display['product_image'];?>" alt="<?php echo $ss_display['product_name'];?>" style="width: 200px; height: 200px;" name="product_name_clicked" value="<?php echo $ss_display['product_id'];?>"/>
+            <input type="image" src="<?php echo base_url().$ss_display['product_image'];?>" alt="<?php echo htmlspecialchars($ss_display['product_name']);?>" style="width: 200px; height: 200px;" name="product_name_clicked" value="<?php echo $ss_display['product_id'];?>"/>
             <span class="caption">
-                <span style="color: red">SALE: <?php echo $ss_display['percentage_discount'];?>%OFF</span><br/>
-                Orig. price = <?php echo $ss_display['product_price'];?><br/>
-                <span style="color: red">Discounted price = <?php $ss_display['discounted'];?></span>
+                <span style="color: red">SALE: <?php echo htmlspecialchars($ss_display['percentage_discount']);?>%OFF</span><br/>
+                Orig. price = $<?php echo htmlspecialchars($ss_display['product_price']);?><br/>
+                <span style="color: red">Discounted price = $<?php echo htmlspecialchars($ss_display['discounted']);?></span>
             </span>
         </div>
         <?php } //end of foreach loop
@@ -87,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="display_category_div" style="position:absolute; top: 190px; display: none;">
     <h1 id="header_2" style="color: #eeeeee">Product Category</h1>
-    <form id="display_category_form" action="#" method="POST">
+    <form id="display_category_form" action="<?php echo base_url();?>index.php/main_webpage/get_product_detail" method="POST">
     </form>
 </div>
 

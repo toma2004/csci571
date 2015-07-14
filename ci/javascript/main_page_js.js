@@ -75,7 +75,7 @@ function validate_sign_up_page()
     {
         /*Send AJAX request to server to check if a user name is used*/
         xmlhttp.onreadystatechange = isUnique;
-        xmlhttp.open("POST","main_page.php",false);
+        xmlhttp.open("POST","http://localhost/ci/index.php/main_webpage/user_sign_up",false);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         data = "sign_up_user_name="+user_name.value;
         xmlhttp.send(data);
@@ -120,7 +120,7 @@ function validate_sign_up_page()
     {
         /*Send AJAX request to server to check if an email  is used*/
         xmlhttp.onreadystatechange = isUnique;
-        xmlhttp.open("POST","main_page.php",false);
+        xmlhttp.open("POST","http://localhost/ci/index.php/main_webpage/user_sign_up",false);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         data = "sign_up_email="+myemail.value;
         xmlhttp.send(data);
