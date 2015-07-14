@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li class="first_tier"><a href="#">Log in/Sign up &#9662;</a>
                 <ul>
                     <li><a href="<?php echo base_url(); ?>html/sign_up.html">Sign up</a></li>
-                    <li><a href="#">Log in</a></li>
+                    <li><a href="<?php echo base_url(); ?>html/log_in_page.html">Log in</a></li>
                 </ul>
             </li>
             <li class="first_tier"><a href="#">Shopping Cart &#9662;</a>

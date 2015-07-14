@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     ?>
     ACT FAST and ORDER YOURS TODAY WHILE SUPPLIES LAST!<br/><br/>
-    <a href="http://localhost/ci/index.php/main_webpage"><button type="button">Home</button></a>
+    <a href="<?php echo base_url();?>index.php/main_webpage"><button type="button">Home</button></a>
     <button type="submit" name="add_to_cart" value="add_to_cart" style="position:relative; left:15px;">Add to Cart</button>
 </form>
 </body>

@@ -55,23 +55,27 @@ class Main_webpage extends CI_Controller {
     public function user_sign_up()
     {
         $this->load->model('user_account_model');
+        $data_pass_to_view = array();
         if ($this->input->post('sign_up_user_name') != NULL)
         {
             //AJAX request to check if user name is OK with no duplicate in our database
             $data_pass_to_view['username_check'] = $this->user_account_model->checkUnique($this->input->post('sign_up_user_name'), 'user_name');
-            $this->load->view('ajax_response_sign_up_form',$data_pass_to_view);
         }
         if ($this->input->post('sign_up_email') != NULL)
         {
             //AJAX request to check if user name is OK with no duplicate in our database
             $data_pass_to_view['email_check'] = $this->user_account_model->checkUnique($this->input->post('sign_up_email'), 'email');
-            $this->load->view('ajax_response_sign_up_form',$data_pass_to_view);
         }
         if ($this->input->post('submit_sign_up_form') != NULL)
         {
             $data_pass_to_view['result_add_new_user'] = $this->user_account_model->add_new_customer($this->input->post('first_name'), $this->input->post('last_name'),$this->input->post('addr_shipping'),$this->input->post('city_shipping'),$this->input->post('state_shipping'),$this->input->post('country_shipping'),$this->input->post('dob'),$this->input->post('mycreditcard'),$this->input->post('mysecuritycode'),$this->input->post('myexpiredate_month'),$this->input->post('myexpiredate_year'),$this->input->post('addr_billing'),$this->input->post('city_billing'),$this->input->post('state_billing'), $this->input->post('country_billing'), $this->input->post('phone'), $this->input->post('email_addr'), $this->input->post('usr'), $this->input->post('pass'));
-            echo $data_pass_to_view['result_add_new_user'];
         }
+        $this->load->view('ajax_response_sign_up_form',$data_pass_to_view);
+    }
+
+    /*Function to handle log in*/
+    public function log_in()
+    {
 
     }
 }

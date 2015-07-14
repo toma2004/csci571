@@ -16,5 +16,19 @@ if (isset($email_check))
     echo $email_check;
 }
 
+if (isset($result_add_new_user))
+{
+    $data_arr['from_signup'] = '1';
+    if ($result_add_new_user == 'true')
+    {
+        #Go to log in page
+        $this->load->view('log_in_form_view', $data_arr);
+    }
+    else
+    {
+        #error, back to sign up page
+        $this->load->view('sign_up_form_view', $data_arr);
+    }
+}
 
 ?>
