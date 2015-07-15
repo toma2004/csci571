@@ -191,6 +191,18 @@ class Main_page_model extends CI_Model {
         {
             return filter_var($data,FILTER_VALIDATE_FLOAT);
         }
+        else if ($type == "dob")
+        {
+            $check_format = filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}/")));
+            if ($check_format == false)
+            {
+                return false;
+            }
+            else
+            {
+                return $this->check_my_date($check_format, 'before');
+            }
+        }
         return $data;
     }
 }

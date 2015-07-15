@@ -19,6 +19,11 @@ class Main_webpage extends CI_Controller {
         $this->load->model('products_model');
         $this->load->model('user_account_model');
         $this->load->model('shopping_cart_model');
+        /*Establish session with username and password*/
+        if(!isset($_SESSION))
+        {
+            session_start();
+        }
     }
 
     /*Default function to display main webpage when customer connects to the site*/
@@ -43,6 +48,10 @@ class Main_webpage extends CI_Controller {
     /*Function to response from Add_To_Cart button*/
     public function response_product_detail_page()
     {
+        if ($this->input->post('to_home') != NULL)
+        {
+            $this->index();
+        }
         //need to handle add to cart
     }
 
@@ -87,11 +96,6 @@ class Main_webpage extends CI_Controller {
             $data_to_view["log_in_check"] = $this->user_account_model->check_log_in($un,$pwd);
             if ($data_to_view["log_in_check"] != 'false')
             {
-                /*Establish session with username and password*/
-                if(!isset($_SESSION))
-                {
-                    session_start();
-                }
                 #store session info
                 $_SESSION['username'] = $un;
                 $_SESSION['password'] = $pwd;
@@ -175,11 +179,6 @@ class Main_webpage extends CI_Controller {
     /*Function to log out*/
     public function log_out()
     {
-        if(!isset($_SESSION))
-        {
-            session_start();
-        }
-
         $data_to_view['errmsg_logout'] = '';
         if (isset($_SESSION['timeout']))
         {
@@ -252,5 +251,74 @@ class Main_webpage extends CI_Controller {
             }
         }
         return false;
+    }
+
+    /*Function to edit profile*/
+    public function display_profile_to_edit()
+    {
+        if (!$this->has_session_timeout())
+        {
+            //Check if user log in properly
+            if (isset($_SESSION["log_in_successfully"]) && isset($_SESSION["username"]) && isset($_SESSION["password"]))
+            {
+                //Getting info from model/server to display
+                $data_to_view['customer_info'] = $this->user_account_model->get_customer_info($_SESSION["cus_id"]);
+                if ($data_to_view['customer_info'] == 'false')
+                {
+                    $data_to_main_page_view['special_sale_display'] = $this->main_page_model->get_special_sale_display();
+                    $data_to_main_page_view['category_list'] = $this->main_page_model->get_category_dropDown_list();
+                    $data_to_main_page_view['fail_edit'] = '1';
+                    //Load view
+                    $this->load->view('main_page_view', $data_to_main_page_view);
+                }
+                else
+                {
+                    //everything goes well
+                    $this->load->view('edit_profile_view', $data_to_view);
+                }
+            }
+            else
+            {
+                //Redirect to log in with error
+                $data_to_view['try_edit_profile'] = '1';
+                $this->load->view('log_in_form_view', $data_to_view);
+            }
+        }
+    }
+
+    /*Function to edit profile*/
+    public function edit_profile()
+    {
+        if (!$this->has_session_timeout())
+        {
+            //Check if user log in properly
+            if (isset($_SESSION["log_in_successfully"]) && isset($_SESSION["username"]) && isset($_SESSION["password"]))
+            {
+                if ($this->input->post('submit_edit_profile_form') != NULL)
+                {
+                    $result = $this->user_account_model->customer_edit_profile( $_SESSION['cus_id'],$this->input->post('modified_first_name'), $this->input->post('modified_last_name'),$this->input->post('modified_street_addr_shipping'),$this->input->post('modified_city_shipping'),$this->input->post('modified_state_shipping'),$this->input->post('modified_country_shipping'),$this->input->post('modified_dob'),$this->input->post('modified_credit_card'),$this->input->post('modified_security_code'),$this->input->post('modified_exp_month'),$this->input->post('modified_exp_year'),$this->input->post('modified_street_addr_billing'),$this->input->post('modified_city_billing'),$this->input->post('modified_state_billing'), $this->input->post('modified_country_billing'), $this->input->post('modified_phone'), $this->input->post('modified_email'), $this->input->post('modified_password'));
+                    if ($result == 'false')
+                    {
+                        $data_to_view['customer_edit_profile'] = 'ERROR: retrieving info';
+                    }
+                    elseif ($result == 'true')
+                    {
+                        $data_to_view['customer_edit_profile'] = 'Successfully update your profile!';
+                    }
+                    else
+                    {
+                        $data_to_view['customer_edit_profile'] = $result;
+                    }
+                    $data_to_view['customer_info'] = $this->user_account_model->get_customer_info($_SESSION["cus_id"]);
+                    $this->load->view('edit_profile_view', $data_to_view);
+                }
+            }
+            else
+            {
+                //Redirect to log in with error
+                $data_to_view['try_edit_profile'] = '1';
+                $this->load->view('log_in_form_view', $data_to_view);
+            }
+        }
     }
 }

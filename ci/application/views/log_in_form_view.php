@@ -37,6 +37,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             {
                 echo "Invalid login";
             }
+            elseif (isset($try_edit_profile))
+            {
+                echo "Please log in first before you can edit your profile";
+            }
             ?>
         </p>
 

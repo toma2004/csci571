@@ -270,6 +270,7 @@ function validate_edit_profile_page()
     var mycountry_billing = $('#modified_country_billing')[0];
 
     var myphone = $('#modified_phone')[0];
+    var myemail = $('#modified_email')[0];
 
     var mypassword = $('#modified_password')[0];
 
@@ -279,7 +280,7 @@ function validate_edit_profile_page()
     var isTrue = true;
 
     /*All blank case*/
-    if (fname_element.value == '' && lname_element.value == '' && myaddr_shipping.value == '' && mycity_shipping.value == '' && mystate_shipping.value == '' && mycountry_shipping.value == '' && mydob.value == '' && mycredit_card.value == '' && mysecurity_code.value == '' && exp_month.value == '' && exp_year.value == '' && myaddr_billing.value == '' && mycity_billing.value == '' && mystate_billing.value == '' && mycountry_billing.value == '' && myphone.value == '' && mypassword.value == '')
+    if (fname_element.value == '' && lname_element.value == '' && myaddr_shipping.value == '' && mycity_shipping.value == '' && mystate_shipping.value == '' && mycountry_shipping.value == '' && mydob.value == '' && mycredit_card.value == '' && mysecurity_code.value == '' && exp_month.value == '' && exp_year.value == '' && myaddr_billing.value == '' && mycity_billing.value == '' && mystate_billing.value == '' && mycountry_billing.value == '' && myphone.value == '' && myemail.value == '' && mypassword.value == '')
     {
         myerror.innerHTML += "You have not made any changes" + "<br/>";
         isTrue = false;
@@ -310,6 +311,29 @@ function validate_edit_profile_page()
             isTrue = false;
         }
 
+        if (myemail.value != '')
+        {
+            if(myemail.checkValidity() == false)
+            {
+                myerror.innerHTML += "Please enter a correct email address" + "<br/>";
+                isTrue = false;
+            }
+            else
+            {
+                /*Send AJAX request to server to check if an email  is used*/
+                xmlhttp.onreadystatechange = isUnique;
+                xmlhttp.open("POST","http://localhost/ci/index.php/main_webpage/user_sign_up",false);
+                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                var data = "sign_up_email="+myemail.value;
+                xmlhttp.send(data);
+
+                if (isUnique() == false)
+                {
+                    myerror.innerHTML += "The email you entered has been used. Please choose another one" + "<br/>";
+                    isTrue = false;
+                }
+            }
+        }
         /*Check date of birth*/
         if (mydob.value != '')
         {

@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             ?>
             <li class="first_tier"><a href="#">Your account &#9662;</a>
                 <ul>
-                    <li><a href="#">Edit profile</a></li>
+                    <li><a href="<?php echo base_url();?>index.php/main_webpage/display_profile_to_edit">Edit profile</a></li>
                     <li onclick="request_past_orders_info()"><span class="replace_a">Past orders</span></li>
                     <li><a href="<?php echo base_url();?>index.php/main_webpage/log_out">Log out</a></li>
                 </ul>
@@ -79,6 +79,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if (isset ($errmsg_logout))
         {
             echo $errmsg_logout;
+        }
+        elseif (isset ($fail_edit))
+        {
+            echo 'ERROR: retrieving your info';
         }
         ?>
     </p>
