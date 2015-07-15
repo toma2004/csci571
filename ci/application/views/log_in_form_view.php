@@ -33,11 +33,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             {
                 echo "You have successfully signed up. Do you want to log in now?";
             }
-
+            elseif (isset($failed_log_in))
+            {
+                echo "Invalid login";
+            }
             ?>
         </p>
 
-        <form id="mylogin_form1" action="#" method="POST">
+        <form id="mylogin_form1" action="<?php echo base_url();?>index.php/main_webpage/log_in" method="POST">
             <label for="usrname">User Name</label><span style="color: red">*</span>
             <input type="text" id="usrname" name="user_name" maxlength="30" pattern="[a-zA-z0-9]+" required/><br/>
 
@@ -45,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <input type="password" id="pwd" name="pass_word" maxlength="30" required style="position:relative; left:11px;"/><br/><br/>
 
             <a href="<?php echo base_url();?>index.php/main_webpage"><button type="button">Home</button></a>
-            <button type="submit" id="submit_log_in" style="position: relative; left: 10px">Submit</button>
+            <button type="submit" id="submit_log_in" name="submit_log_in" value="submit_log_in" style="position: relative; left: 10px">Submit</button>
 
         </form>
 

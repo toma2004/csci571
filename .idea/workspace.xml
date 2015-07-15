@@ -24,65 +24,85 @@
     <favorites_list name="csci571" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.41510418">
+    <splitter split-orientation="horizontal" split-proportion="0.49270833">
       <split-first>
         <leaf>
-          <file leaf-file-name="user_account_model.php" pinned="false" current-in-tab="false">
-            <entry file="file://D:/xampp/htdocs/ci/application/models/user_account_model.php">
+          <file leaf-file-name="main_page_model.php" pinned="false" current-in-tab="false">
+            <entry file="file://C:/xampp/htdocs/ci/application/models/main_page_model.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-16.23077" vertical-offset="938" max-vertical-offset="1870">
-                  <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+                <state vertical-scroll-proportion="-8.423077" vertical-offset="2416" max-vertical-offset="3417">
+                  <caret line="155" column="129" selection-start-line="155" selection-start-column="129" selection-end-line="155" selection-end-column="129" />
                   <folding>
-                    <marker date="1436853015022" expanded="true" signature="763:805" placeholder="select * fro..customers..." />
-                    <marker date="1436853015022" expanded="true" signature="897:936" placeholder="select * fro..customers..." />
-                    <marker date="1436853015022" expanded="true" signature="4723:5089" placeholder="insert into ..." />
+                    <marker date="1436917290716" expanded="true" signature="332:397" placeholder="select speci..special_sales_and_product..." />
+                    <marker date="1436917290716" expanded="true" signature="588:668" placeholder="select produ..products..." />
+                    <marker date="1436917290716" expanded="true" signature="759:810" placeholder="select * fro..special_sales..." />
+                    <marker date="1436917290716" expanded="true" signature="2769:2826" placeholder="select categ..product_categories..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="log_in_form_view.php" pinned="false" current-in-tab="false">
+            <entry file="file://C:/xampp/htdocs/ci/application/views/log_in_form_view.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-27.461538" vertical-offset="0" max-vertical-offset="1088">
+                  <caret line="42" column="88" selection-start-line="42" selection-start-column="88" selection-end-line="42" selection-end-column="88" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="user_account_model.php" pinned="false" current-in-tab="false">
+            <entry file="file://C:/xampp/htdocs/ci/application/models/user_account_model.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-18.884615" vertical-offset="1311" max-vertical-offset="2312">
+                  <caret line="106" column="11" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="11" />
+                  <folding>
+                    <marker date="1436919915685" expanded="true" signature="763:805" placeholder="select * fro..customers..." />
+                    <marker date="1436919915685" expanded="true" signature="897:936" placeholder="select * fro..customers..." />
+                    <marker date="1436919915685" expanded="true" signature="4723:5089" placeholder="insert into ..." />
+                    <marker date="1436919915685" expanded="true" signature="6092:6161" placeholder="select * fro..customers..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="shopping_cart_model.php" pinned="false" current-in-tab="false">
+            <entry file="file://C:/xampp/htdocs/ci/application/models/shopping_cart_model.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-33.26923" vertical-offset="529" max-vertical-offset="1547">
+                  <caret line="82" column="26" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
+                  <folding>
+                    <marker date="1436923291478" expanded="true" signature="157:232" placeholder="select * fro..customers..." />
+                    <marker date="1436923291478" expanded="true" signature="760:807" placeholder="select * fro..shopping_cart..." />
+                    <marker date="1436923291478" expanded="true" signature="1769:1814" placeholder="delete from ..." />
+                    <marker date="1436923291478" expanded="true" signature="2220:2260" placeholder="insert into ..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="main_page_view.php" pinned="false" current-in-tab="true">
+            <entry file="file://C:/xampp/htdocs/ci/application/views/main_page_view.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.6523476" vertical-offset="231" max-vertical-offset="2635">
+                  <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+                  <folding>
+                    <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#h1#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#p#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#p#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file leaf-file-name="main_page.php" pinned="false" current-in-tab="false">
-            <entry file="file://D:/xampp/htdocs/main_page.php">
+            <entry file="file://C:/xampp/htdocs/main_page.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-8.254545" vertical-offset="7009" max-vertical-offset="21964">
-                  <caret line="444" column="51" selection-start-line="444" selection-start-column="22" selection-end-line="444" selection-end-column="51" />
+                <state vertical-scroll-proportion="-28.115385" vertical-offset="1581" max-vertical-offset="21964">
+                  <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="142" selection-end-column="48" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main_page_view.php" pinned="false" current-in-tab="false">
-            <entry file="file://D:/xampp/htdocs/ci/application/views/main_page_view.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-19.615385" vertical-offset="204" max-vertical-offset="2210">
-                  <caret line="42" column="79" selection-start-line="42" selection-start-column="79" selection-end-line="42" selection-end-column="79" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ajax_response_sign_up_form.php" pinned="false" current-in-tab="false">
-            <entry file="file://D:/xampp/htdocs/ci/application/views/ajax_response_sign_up_form.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-20.923077" vertical-offset="0" max-vertical-offset="663">
-                  <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="log_in_form_view.php" pinned="false" current-in-tab="true">
-            <entry file="file://D:/xampp/htdocs/ci/application/views/log_in_form_view.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6367764" vertical-offset="51" max-vertical-offset="1037">
-                  <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
-                  <folding>
-                    <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#span#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#span#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#input#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -91,42 +111,56 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="main_webpage.php" pinned="false" current-in-tab="false">
-            <entry file="file://D:/xampp/htdocs/ci/application/controllers/main_webpage.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-29.307692" vertical-offset="530" max-vertical-offset="1462">
-                  <caret line="76" column="26" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="26" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="log_in_page.html" pinned="false" current-in-tab="true">
-            <entry file="file://D:/xampp/htdocs/ci/html/log_in_page.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.51342285" vertical-offset="0" max-vertical-offset="894">
-                  <caret line="27" column="63" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="sign_up.html" pinned="false" current-in-tab="false">
-            <entry file="file://D:/xampp/htdocs/ci/html/sign_up.html">
+            <entry file="file://C:/xampp/htdocs/ci/html/sign_up.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-24.076923" vertical-offset="802" max-vertical-offset="1683">
-                  <caret line="84" column="59" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="59" />
+                <state vertical-scroll-proportion="-28.115385" vertical-offset="357" max-vertical-offset="1683">
+                  <caret line="64" column="126" selection-start-line="64" selection-start-column="113" selection-end-line="64" selection-end-column="126" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="product_detail_view.php" pinned="false" current-in-tab="false">
-            <entry file="file://D:/xampp/htdocs/ci/application/views/product_detail_view.php">
+          <file leaf-file-name="log_in_page.html" pinned="false" current-in-tab="false">
+            <entry file="file://C:/xampp/htdocs/ci/html/log_in_page.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-31.384615" vertical-offset="0" max-vertical-offset="918">
-                  <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+                <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="714">
+                  <caret line="20" column="84" selection-start-line="20" selection-start-column="84" selection-end-line="20" selection-end-column="84" />
+                  <folding>
+                    <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="main_webpage.php" pinned="false" current-in-tab="false">
+            <entry file="file://C:/xampp/htdocs/ci/application/controllers/main_webpage.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-7.418182" vertical-offset="0" max-vertical-offset="4437">
+                  <caret line="24" column="25" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="25" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="product_detail_view.php" pinned="false" current-in-tab="true">
+            <entry file="file://C:/xampp/htdocs/ci/application/views/product_detail_view.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.74725276" vertical-offset="0" max-vertical-offset="1001">
+                  <caret line="44" column="59" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="customer_logout.php" pinned="false" current-in-tab="false">
+            <entry file="file://C:/xampp/htdocs/customer_logout.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-32.615383" vertical-offset="359" max-vertical-offset="1411">
+                  <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="18" />
+                  <folding>
+                    <marker date="1436290513308" expanded="true" signature="907:976" placeholder="delete from ..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -145,16 +179,10 @@
         <option value="D:/xampp/htdocs/ci/application/config/config.php" />
         <option value="D:/xampp/htdocs/ci/javascript/main_page_js.js" />
         <option value="$PROJECT_DIR$/main_css.css" />
-        <option value="C:/xampp/htdocs/ci/application/models/main_page_model.php" />
         <option value="C:/xampp/htdocs/ci/application/models/products_model.php" />
         <option value="C:/xampp/htdocs/ci/application/views/products_in_category_div.php" />
-        <option value="C:/xampp/htdocs/ci/application/views/main_page_view.php" />
         <option value="C:/xampp/htdocs/ci/javascript/main_page_js.js" />
         <option value="C:/xampp/htdocs/ci/application/views/ajax_response_sign_up_form.php" />
-        <option value="C:/xampp/htdocs/ci/application/views/product_detail_view.php" />
-        <option value="C:/xampp/htdocs/ci/application/models/user_account_model.php" />
-        <option value="C:/xampp/htdocs/ci/application/controllers/main_webpage.php" />
-        <option value="C:/xampp/htdocs/ci/html/sign_up.html" />
         <option value="D:/xampp/htdocs/ci/html/pre_sign_up_page.html" />
         <option value="D:/xampp/htdocs/ci/html/post_sign_up_page.html" />
         <option value="D:/xampp/htdocs/ci/application/views/product_detail_view.php" />
@@ -164,6 +192,18 @@
         <option value="D:/xampp/htdocs/ci/application/views/main_page_view.php" />
         <option value="D:/xampp/htdocs/ci/application/controllers/main_webpage.php" />
         <option value="D:/xampp/htdocs/ci/html/log_in_page.html" />
+        <option value="C:/xampp/htdocs/ci/html/sign_up.html" />
+        <option value="C:/xampp/htdocs/ci/application/views/sign_up_form_view.php" />
+        <option value="C:/xampp/htdocs/ci/application/models/main_page_model.php" />
+        <option value="C:/xampp/htdocs/ci/application/models/user_account_model.php" />
+        <option value="C:/xampp/htdocs/ci/application/controllers/log_in.php" />
+        <option value="C:/xampp/htdocs/ci/application/models/shopping_cart_model.php" />
+        <option value="C:/xampp/htdocs/ci/application/controllers/log_out.php" />
+        <option value="C:/xampp/htdocs/ci/application/views/main_page_view.php" />
+        <option value="C:/xampp/htdocs/ci/application/views/log_in_form_view.php" />
+        <option value="C:/xampp/htdocs/ci/html/log_in_page.html" />
+        <option value="C:/xampp/htdocs/ci/application/controllers/main_webpage.php" />
+        <option value="C:/xampp/htdocs/ci/application/views/product_detail_view.php" />
       </list>
     </option>
   </component>
@@ -175,7 +215,7 @@
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -280,8 +320,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -329,7 +369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -337,9 +376,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="8687" max-vertical-offset="11526">
           <caret line="511" column="5" selection-start-line="511" selection-start-column="5" selection-end-line="511" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -354,7 +390,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -362,9 +397,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="8704" max-vertical-offset="11543">
           <caret line="512" column="5" selection-start-line="512" selection-start-column="5" selection-end-line="512" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -379,7 +411,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -387,9 +418,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7157" max-vertical-offset="11492">
           <caret line="512" column="27" selection-start-line="512" selection-start-column="27" selection-end-line="512" selection-end-column="27" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -404,7 +432,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1785">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -412,9 +439,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11492">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -429,7 +453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1615" max-vertical-offset="1717">
           <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -437,9 +460,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10897">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -454,7 +474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1377" max-vertical-offset="1479">
           <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -462,9 +481,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10200">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -479,7 +495,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1445">
           <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="50" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -487,9 +502,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6494">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -504,7 +516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1513">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -519,7 +530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="1445">
           <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -534,7 +544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1513">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -549,9 +558,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="8687" max-vertical-offset="11526">
           <caret line="511" column="5" selection-start-line="511" selection-start-column="5" selection-end-line="511" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -559,124 +565,145 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="1785">
           <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/xampp/htdocs/ci/application/views/sign_up_form_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3076923" vertical-offset="153" max-vertical-offset="2006">
+          <caret line="86" column="119" selection-start-line="86" selection-start-column="119" selection-end-line="86" selection-end-column="119" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/models/user_account_model.php">
+    <entry file="file://C:/xampp/htdocs/customer_login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.23077" vertical-offset="938" max-vertical-offset="1870">
-          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+        <state vertical-scroll-proportion="-21.576923" vertical-offset="1377" max-vertical-offset="2805">
+          <caret line="118" column="16" selection-start-line="118" selection-start-column="16" selection-end-line="118" selection-end-column="16" />
           <folding>
-            <marker date="1436853015022" expanded="true" signature="763:805" placeholder="select * fro..customers..." />
-            <marker date="1436853015022" expanded="true" signature="897:936" placeholder="select * fro..customers..." />
-            <marker date="1436853015022" expanded="true" signature="4723:5089" placeholder="insert into ..." />
+            <marker date="1436290513306" expanded="true" signature="-1:-1" placeholder="select * fro..customers..." />
+            <marker date="1436290513306" expanded="true" signature="-1:-1" placeholder="select * fro..shopping_cart..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/xampp/htdocs/main_page.php">
+    <entry file="file://C:/xampp/htdocs/ci/application/models/user_account_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.254545" vertical-offset="7009" max-vertical-offset="21964">
-          <caret line="444" column="51" selection-start-line="444" selection-start-column="22" selection-end-line="444" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/sign_up_form_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.9875141" vertical-offset="0" max-vertical-offset="2006">
-          <caret line="103" column="41" selection-start-line="103" selection-start-column="41" selection-end-line="103" selection-end-column="41" />
+        <state vertical-scroll-proportion="-18.884615" vertical-offset="1311" max-vertical-offset="2312">
+          <caret line="106" column="11" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="11" />
           <folding>
-            <element signature="n#style#0;n#p#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#4;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#4;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#5;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#5;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#8;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#8;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#8;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#10;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#10;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#10;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#12;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#12;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#13;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#13;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#14;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#14;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#16;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#16;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#16;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#18;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#18;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1436919915685" expanded="true" signature="763:805" placeholder="select * fro..customers..." />
+            <marker date="1436919915685" expanded="true" signature="897:936" placeholder="select * fro..customers..." />
+            <marker date="1436919915685" expanded="true" signature="4723:5089" placeholder="insert into ..." />
+            <marker date="1436919915685" expanded="true" signature="6092:6161" placeholder="select * fro..customers..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/ajax_response_sign_up_form.php">
+    <entry file="file://C:/xampp/htdocs/ci/application/models/shopping_cart_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.923077" vertical-offset="0" max-vertical-offset="663">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/main_page_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.615385" vertical-offset="204" max-vertical-offset="2210">
-          <caret line="42" column="79" selection-start-line="42" selection-start-column="79" selection-end-line="42" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/log_in_form_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6367764" vertical-offset="51" max-vertical-offset="1037">
-          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
+        <state vertical-scroll-proportion="-33.26923" vertical-offset="529" max-vertical-offset="1547">
+          <caret line="82" column="26" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
           <folding>
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1436923291478" expanded="true" signature="157:232" placeholder="select * fro..customers..." />
+            <marker date="1436923291478" expanded="true" signature="760:807" placeholder="select * fro..shopping_cart..." />
+            <marker date="1436923291478" expanded="true" signature="1769:1814" placeholder="delete from ..." />
+            <marker date="1436923291478" expanded="true" signature="2220:2260" placeholder="insert into ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/xampp/htdocs/ci/application/models/main_page_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.423077" vertical-offset="2416" max-vertical-offset="3417">
+          <caret line="155" column="129" selection-start-line="155" selection-start-column="129" selection-end-line="155" selection-end-column="129" />
+          <folding>
+            <marker date="1436917290716" expanded="true" signature="332:397" placeholder="select speci..special_sales_and_product..." />
+            <marker date="1436917290716" expanded="true" signature="588:668" placeholder="select produ..products..." />
+            <marker date="1436917290716" expanded="true" signature="759:810" placeholder="select * fro..special_sales..." />
+            <marker date="1436917290716" expanded="true" signature="2769:2826" placeholder="select categ..product_categories..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/xampp/htdocs/main_webpage_logged_in.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.469428" vertical-offset="0" max-vertical-offset="1632">
+          <caret line="28" column="59" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/xampp/htdocs/ci/application/views/log_in_form_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-27.461538" vertical-offset="0" max-vertical-offset="1088">
+          <caret line="42" column="88" selection-start-line="42" selection-start-column="88" selection-end-line="42" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/xampp/htdocs/ci/html/log_in_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="714">
+          <caret line="20" column="84" selection-start-line="20" selection-start-column="84" selection-end-line="20" selection-end-column="84" />
+          <folding>
             <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/product_detail_view.php">
+    <entry file="file://C:/xampp/htdocs/ci/html/sign_up.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.384615" vertical-offset="0" max-vertical-offset="918">
-          <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+        <state vertical-scroll-proportion="-28.115385" vertical-offset="357" max-vertical-offset="1683">
+          <caret line="64" column="126" selection-start-line="64" selection-start-column="113" selection-end-line="64" selection-end-column="126" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/controllers/main_webpage.php">
+    <entry file="file://C:/xampp/htdocs/customer_logout.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-29.307692" vertical-offset="530" max-vertical-offset="1462">
-          <caret line="76" column="26" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="26" />
+        <state vertical-scroll-proportion="-32.615383" vertical-offset="359" max-vertical-offset="1411">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="18" />
+          <folding>
+            <marker date="1436290513308" expanded="true" signature="907:976" placeholder="delete from ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/xampp/htdocs/main_page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-28.115385" vertical-offset="1581" max-vertical-offset="21964">
+          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="142" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/xampp/htdocs/ci/html/sign_up.html">
+    <entry file="file://C:/xampp/htdocs/ci/application/controllers/main_webpage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.076923" vertical-offset="802" max-vertical-offset="1683">
-          <caret line="84" column="59" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="59" />
+        <state vertical-scroll-proportion="-7.418182" vertical-offset="0" max-vertical-offset="4437">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/xampp/htdocs/ci/html/log_in_page.html">
+    <entry file="file://C:/xampp/htdocs/ci/application/views/product_detail_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51342285" vertical-offset="0" max-vertical-offset="894">
-          <caret line="27" column="63" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.74725276" vertical-offset="0" max-vertical-offset="1001">
+          <caret line="44" column="59" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/xampp/htdocs/ci/application/views/main_page_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6523476" vertical-offset="231" max-vertical-offset="2635">
+          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

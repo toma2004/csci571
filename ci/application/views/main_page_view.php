@@ -37,12 +37,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php } //End foreach loop for category list?>
                 </ul>
             </li>
+            <?php
+            if (isset($_SESSION['log_in_successfully'])) {
+
+            ?>
+            <li class="first_tier"><a href="#">Your account &#9662;</a>
+                <ul>
+                    <li><a href="#">Edit profile</a></li>
+                    <li onclick="request_past_orders_info()"><span class="replace_a">Past orders</span></li>
+                    <li><a href="<?php echo base_url();?>index.php/main_webpage/log_out">Log out</a></li>
+                </ul>
+            </li>
+            <?php
+            }
+            else{
+            ?>
             <li class="first_tier"><a href="#">Log in/Sign up &#9662;</a>
                 <ul>
                     <li><a href="<?php echo base_url(); ?>html/sign_up.html">Sign up</a></li>
                     <li><a href="<?php echo base_url(); ?>html/log_in_page.html">Log in</a></li>
+
                 </ul>
             </li>
+            <?php }//end of else statement ?>
+
             <li class="first_tier"><a href="#">Shopping Cart &#9662;</a>
                 <ul>
                     <li onclick="request_shopping_cart_info()"><span class="replace_a">Edit your cart</span></li>
@@ -56,7 +74,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="form1" style="position:absolute; top: 190px;">
     <h1 id="header_1" style="color: red">Special Sale Event!</h1>
-    <p id="error_msg" style="color: red"></p>
+    <p id="error_msg" style="color: red">
+        <?php
+        if (isset ($errmsg_logout))
+        {
+            echo $errmsg_logout;
+        }
+        ?>
+    </p>
     <form id="main_page_form" action="<?php echo base_url();?>index.php/main_webpage/get_product_detail" method="POST">
         <?php
         if (count($special_sale_display) == 0)

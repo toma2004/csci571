@@ -102,4 +102,30 @@ class User_account_model extends CI_Model {
             return 'false';
         }
     }
+
+    /*Function to check if user's credential is correct to log in*/
+    public function check_log_in( $usr,$pass )
+    {
+        /*Validate user's input*/
+        $usr = $this->main_page_model->validate_data($usr, "username");
+        $pass = $this->main_page_model->validate_data($pass, "password");
+        if ($usr == false || $pass == false)
+        {
+            return 'false';
+        }
+        else
+        {
+            $sql = "select * from customers where c_username=? and c_password=password(?)";
+            $res = $this->db->query($sql, array($usr,$pass));
+            if ($res->num_rows() > 0)
+            {
+                $row = $res->row_array();
+                return $row["customer_id"];
+            }
+            else
+            {
+                return 'false';
+            }
+        }
+    }
 }

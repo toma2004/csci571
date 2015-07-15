@@ -153,7 +153,7 @@ class Main_page_model extends CI_Model {
         }
         else if ($type == "address")
         {
-            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/([0-9])+\s+([A-Za-z])+.*/")));
+            return filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/([0-9])+\s+([A-Za-z])+\s*[a-zA-Z]*$/")));
         }
         else if ($type == "credit_card")
         {

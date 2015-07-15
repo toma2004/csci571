@@ -51,10 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <label for="mystate_shipping" style="position:relative; left: 210px;">State</label><span style="position:relative; left: 210px;" class="asterisk_red">*</span>
         <label for="mycountry_shipping" style="position:relative; left: 230px;">Country</label><span style="position:relative; left: 230px;" class="asterisk_red">*</span><br>
 
-        <input type="text" id="myaddr_shipping" name="addr_shipping" maxlength="50" pattern="([0-9])+\s+([A-Za-z])+.*" required/>
-        <input type="text" id="mycity_shipping" name="city_shipping" maxlength="20" pattern="\D+" required/>
+        <input type="text" id="myaddr_shipping" name="addr_shipping" maxlength="50" pattern="([0-9])+\s+([A-Za-z])+\s*[a-zA-Z]*$" required/>
+        <input type="text" id="mycity_shipping" name="city_shipping" maxlength="20" pattern="[a-zA-Z]+\s*[a-zA-Z]*$" required/>
         <input type="text" id="mystate_shipping" name="state_shipping" maxlength="2" size="2" pattern="[A-Za-z]{2}" required/>
-        <input type="text" id="mycountry_shipping" name="country_shipping" maxlength="50" pattern="\D+" required/><br><br>
+        <input type="text" id="mycountry_shipping" name="country_shipping" maxlength="50" pattern="[a-zA-Z]+\s*[a-zA-Z]*$" required/><br><br>
 
         <!-- DOB -->
         <label for="mydob">Date of birth</label><span class="asterisk_red">*</span><br>
@@ -81,10 +81,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <label for="mystate_billing" style="position:relative; left: 210px;">State</label><span style="position:relative; left: 210px;" class="asterisk_red">*</span>
         <label for="mycountry_billing" style="position:relative; left: 230px;">Country</label><span style="position:relative; left: 230px;" class="asterisk_red">*</span><br>
 
-        <input type="text" id="myaddr_billing" name="addr_billing" maxlength="50" pattern="([0-9])+\s+([A-Za-z])+.*" required/>
-        <input type="text" id="mycity_billing" name="city_billing" maxlength="20" pattern="\D+" required/>
+        <input type="text" id="myaddr_billing" name="addr_billing" maxlength="50" pattern="([0-9])+\s+([A-Za-z])+\s*[a-zA-Z]*$" required/>
+        <input type="text" id="mycity_billing" name="city_billing" maxlength="20" pattern="[a-zA-Z]+\s*[a-zA-Z]*$" required/>
         <input type="text" id="mystate_billing" name="state_billing" maxlength="2" size="2" pattern="[A-Za-z]{2}" required/>
-        <input type="text" id="mycountry_billing" name="country_billing" maxlength="50" pattern="\D+" required/><br><br>
+        <input type="text" id="mycountry_billing" name="country_billing" maxlength="50" pattern="[a-zA-Z]+\s*[a-zA-Z]*$" required/><br><br>
 
         <!--PHONE AND EMAIL -->
         <label for="myphone">Phone number (only numbers please)</label><span class="asterisk_red">*</span>
