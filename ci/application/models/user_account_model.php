@@ -289,7 +289,7 @@ class User_account_model extends CI_Model {
                 $dob = $this->main_page_model->validate_data($dob,"dob");
                 if ($dob == false)
                 {
-                    $err_msg .= "Date of Birth is not in a right format\r\n";
+                    $err_msg .= "Date of Birth is not in a right format or it is later than today date\r\n";
                 }
                 else
                 {

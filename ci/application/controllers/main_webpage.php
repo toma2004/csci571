@@ -27,10 +27,14 @@ class Main_webpage extends CI_Controller {
     }
 
     /*Default function to display main webpage when customer connects to the site*/
-    public function index()
+    public function index( $err_msg='none' )
     {
         $data_to_main_page_view['special_sale_display'] = $this->main_page_model->get_special_sale_display();
         $data_to_main_page_view['category_list'] = $this->main_page_model->get_category_dropDown_list();
+        if ($err_msg != 'none')
+        {
+            $data_to_main_page_view['err_msg'] = $err_msg;
+        }
         //Load view
         $this->load->view('main_page_view', $data_to_main_page_view);
     }
@@ -53,6 +57,242 @@ class Main_webpage extends CI_Controller {
             $this->index();
         }
         //need to handle add to cart
+        else if ($this->input->post('add_to_cart') != NULL)
+        {
+            /*Check if there is a session array*/
+            if (isset($_SESSION))
+            {
+                //Go to model to get all info about the product being added
+                $product_info = $this->shopping_cart_model->get_product_info_being_addedToCart($this->input->post('hidden_add_to_cart_pid'));
+                if ($product_info == 'false')
+                {
+                    $this->index('ERROR: adding product to your cart');
+                }
+                else
+                {
+                    /*Check if a shopping cart already exists. If not create one*/
+                    if (isset($_SESSION["shopping_cart"]))
+                    {
+                        $index = -1;
+                        #There is a shopping card.
+                        #Now check if this product already exists in the cart
+                        foreach ($_SESSION["shopping_cart"] as $i => $cart_items)
+                        {
+                            if ($cart_items["pid"] == $this->input->post('hidden_add_to_cart_pid'))
+                            {
+                                $index = $i;
+                                break;
+                            }
+                        }
+                        /*If the product does not exist, add this new product to our shopping cart array*/
+                        if ($index == -1)
+                        {
+                            array_push($_SESSION["shopping_cart"], array("qty" => "1",
+                                                                         "pid" => $this->input->post('hidden_add_to_cart_pid'),
+                                                                         "product_name" => $product_info['product_name'],
+                                                                         "product_price" => $product_info['product_price'],
+                                                                         "product_image" => $product_info['product_image'],
+                                                                         "isOnSale" => $product_info['isOnSale'],
+                                                                         "special_sale_id" => $product_info['special_sale_id'],
+                                                                         "discounted" => $product_info['discounted']));
+                        }
+                        else
+                        {
+                            /*Product already exists. Update the quantity*/
+                            $_SESSION["shopping_cart"][$index]["qty"] += 1;
+                        }
+                    }
+                    else
+                    {
+                        #This is the first time user add a product to a cart. Create shopping cart
+                        $_SESSION["shopping_cart"][] = array("qty" => "1",
+                                                             "pid" => $this->input->post('hidden_add_to_cart_pid'),
+                                                             "product_name" => $product_info['product_name'],
+                                                             "product_price" => $product_info['product_price'],
+                                                             "product_image" => $product_info['product_image'],
+                                                             "isOnSale" => $product_info['isOnSale'],
+                                                             "special_sale_id" => $product_info['special_sale_id'],
+                                                             "discounted" => $product_info['discounted']);
+                    }
+                    $this->index('Successfully added item to your cart');
+                }
+            }
+        }
+    }
+
+    /*Function to display shopping cart*/
+    public function display_shopping_cart()
+    {
+        if ($this->input->post('display_shopping_cart') != NULL)
+        {
+            //Load view to display cart info
+            $this->load->view('ajax_response_cart_info', $_SESSION);
+        }
+    }
+
+    /*Function to change quantity of products in cart*/
+    public function change_quantity_product_cart()
+    {
+        if ($this->input->post('change_shopping_cart_product_id') != NULL && $this->input->post('quantity') != NULL)
+        {
+            $product_id = $this->main_page_model->validate_data($this->input->post('change_shopping_cart_product_id'), "int");
+            $qty = $this->main_page_model->validate_data($this->input->post('quantity'), "int");
+            if ($product_id == false || $qty == false)
+            {
+                $data_to_view['change_quantity_product_cart'] = 'fail';
+            }
+            else
+            {
+                if (isset($_SESSION["shopping_cart"]))
+                {
+                    $index = $this->index_productID_shopping_cart ($product_id);
+                    if ($index == -1)
+                    {
+                        /*Strange error where we could not find the product in our shopping cart*/
+                        $data_to_view['change_quantity_product_cart'] = 'fail';
+                    }
+                    else
+                    {
+                        $_SESSION["shopping_cart"][$index]["qty"] = $qty;
+                        $data_to_view['change_quantity_product_cart'] = 'true';
+                    }
+                }
+                else
+                {
+                    $data_to_view['change_quantity_product_cart'] = 'fail';
+                }
+            }
+            $this->load->view('ajax_response_cart_info', $data_to_view);
+        }
+    }
+
+    /*Function to remove a product in shopping cart*/
+    public function delete_product_cart()
+    {
+        if ($this->input->post('remove_item_product_id') != NULL)
+        {
+            $remove_pid = $this->main_page_model->validate_data($this->input->post('remove_item_product_id'), "int");
+            if ($remove_pid == false)
+            {
+                $data_to_view['delete_product_cart'] = 'fail';
+            }
+            else
+            {
+                if (isset($_SESSION["shopping_cart"]))
+                {
+                    $index = $this->index_productID_shopping_cart ($remove_pid);
+                    if ($index == -1)
+                    {
+                        /*Strange error where we could not find the product in our shopping cart*/
+                        $data_to_view['delete_product_cart'] = 'fail';
+                    }
+                    else
+                    {
+                        /*remove this product id from our shopping cart*/
+                        unset($_SESSION["shopping_cart"][$index]);
+                        $data_to_view['delete_product_cart'] = 'success';
+                    }
+                }
+                else
+                {
+                    $data_to_view['delete_product_cart'] = 'fail';
+                }
+            }
+            $this->load->view('ajax_response_cart_info', $data_to_view);
+        }
+    }
+
+    /*Function to remove entire shopping cart*/
+    public function remove_entire_shopping_cart()
+    {
+        if ($this->input->post('remove_entire_cart') != NULL)
+        {
+            $remove_cart = $this->main_page_model->validate_data($this->input->post('remove_entire_cart'), "int");
+            if ($remove_cart == false)
+            {
+                $data_to_view['delete_cart'] = 'fail';
+            }
+            else
+            {
+                if (isset($_SESSION["shopping_cart"]))
+                {
+                    foreach ($_SESSION["shopping_cart"] as $i => $cart_items)
+                    {
+                        unset ($cart_items["pid"]);
+                        unset ($cart_items["qty"]);
+                        unset ($cart_items["product_name"]);
+                        unset ($cart_items["product_price"]);
+                        unset ($cart_items["product_image"]);
+                        unset ($cart_items["isOnSale"]);
+                        unset ($cart_items["discounted"]);
+                        unset ($_SESSION["shopping_cart"][$i]);
+                    }
+                    $data_to_view['delete_cart'] = 'success';
+                }
+                else
+                {
+                    $data_to_view['delete_cart'] = 'fail';
+                }
+            }
+            $this->load->view('ajax_response_cart_info', $data_to_view);
+        }
+    }
+
+    /*Function to check out cart*/
+    public function check_out_cart()
+    {
+        if ($this->input->post('request_for_checkout') != NULL)
+        {
+            $sanity_check = $this->main_page_model->validate_data($this->input->post('request_for_checkout'), "int"); //should be equal to 1 and hence it's an integer
+            if ($sanity_check != false)
+            {
+                //check if customer logs in. They need to log in before checking out
+                if (isset($_SESSION["username"]) && isset($_SESSION["password"]) && isset($_SESSION["log_in_successfully"]))
+                {
+                    if (isset($_SESSION["shopping_cart"]) && count($_SESSION["shopping_cart"]) > 0)
+                    {
+                        $hasGotInfo = $this->user_account_model->get_customer_info( $_SESSION['cus_id'] );
+                        if ($hasGotInfo != 'false')
+                        {
+                            $data_to_view['customer_info_checkout'] = $hasGotInfo;
+                            $data_to_view['shopping_cart_info_checkout'] = $_SESSION["shopping_cart"];
+                        }
+                    }
+                    else
+                    {
+                        $data_to_view['cart_empty_checkout'] = '1';
+                    }
+                    $this->load->view('check_out_summary', $data_to_view);
+                }
+                else
+                {
+                    $data_to_view['need_log_in_before_checkout'] = '1';
+                    $this->load->view('check_out_summary', $data_to_view);
+                }
+            }
+        }
+    }
+
+    /*Function to return an index of array that contain the product id we are looking for in a shopping cart*/
+    protected function index_productID_shopping_cart ( $product_id )
+    {
+        if (isset($_SESSION["shopping_cart"]))
+        {
+            $index = -1;
+            foreach ($_SESSION["shopping_cart"] as $i => $cart_items)
+            {
+                if ($cart_items["pid"] == $product_id)
+                {
+                    $index = $i;
+                    break;
+                }
+            }
+            return $index;
+        }
+        else
+        {
+            return -1;
+        }
     }
 
     /*Function to display all products under a category*/
@@ -138,7 +378,16 @@ class Main_webpage extends CI_Controller {
                             /*If the product does not exist, add this new product to our shopping cart array*/
                             if ($index == -1)
                             {
-                                array_push($_SESSION["shopping_cart"], array("qty" => $stored_cart_item["quantity"], "pid" => $stored_cart_item["product_id"]));
+                                //Get product info to add to cart
+                                $product_info = $this->shopping_cart_model->get_product_info_being_addedToCart($stored_cart_item["product_id"]);
+                                array_push($_SESSION["shopping_cart"], array("qty" => $stored_cart_item["quantity"],
+                                                                             "pid" => $stored_cart_item["product_id"],
+                                                                             "product_name" => $product_info['product_name'],
+                                                                             "product_price" => $product_info['product_price'],
+                                                                             "product_image" => $product_info['product_image'],
+                                                                             "isOnSale" => $product_info['isOnSale'],
+                                                                             "special_sale_id" => $product_info['special_sale_id'],
+                                                                             "discounted" => $product_info['discounted']));
                             }
                             else
                             {
@@ -149,14 +398,29 @@ class Main_webpage extends CI_Controller {
                         /*Case where customer has NOT done anything before logging in*/
                         else
                         {
+                            $product_info = $this->shopping_cart_model->get_product_info_being_addedToCart($stored_cart_item["product_id"]);
                             if ($isFirst == 0)
                             {
-                                $_SESSION["shopping_cart"][] = array("qty" => $stored_cart_item["quantity"], "pid" => $stored_cart_item["product_id"]);
+                                $_SESSION["shopping_cart"][] = array("qty" => $stored_cart_item["quantity"],
+                                                                     "pid" => $stored_cart_item["product_id"],
+                                                                     "product_name" => $product_info['product_name'],
+                                                                     "product_price" => $product_info['product_price'],
+                                                                     "product_image" => $product_info['product_image'],
+                                                                     "isOnSale" => $product_info['isOnSale'],
+                                                                     "special_sale_id" => $product_info['special_sale_id'],
+                                                                     "discounted" => $product_info['discounted']);
                                 $isFirst += 1;
                             }
                             else
                             {
-                                array_push($_SESSION["shopping_cart"], array("qty" => $stored_cart_item["quantity"], "pid" => $stored_cart_item["product_id"]));
+                                array_push($_SESSION["shopping_cart"], array("qty" => $stored_cart_item["quantity"],
+                                                                             "pid" => $stored_cart_item["product_id"],
+                                                                             "product_name" => $product_info['product_name'],
+                                                                             "product_price" => $product_info['product_price'],
+                                                                             "product_image" => $product_info['product_image'],
+                                                                             "isOnSale" => $product_info['isOnSale'],
+                                                                             "special_sale_id" => $product_info['special_sale_id'],
+                                                                             "discounted" => $product_info['discounted']));
                             }
                         }
                     }
@@ -234,7 +498,7 @@ class Main_webpage extends CI_Controller {
     */
     protected function has_session_timeout()
     {
-        if (isset($S_SESSION['last_activity']) && isset($_SESSION['timeout']))
+        if (isset($_SESSION['last_activity']) && isset($_SESSION['timeout']))
         {
             $t = time();
             if (($t - $_SESSION['last_activity']) > 1800)
@@ -250,7 +514,10 @@ class Main_webpage extends CI_Controller {
                 return false;
             }
         }
-        return false;
+        else
+        {
+            return false;
+        }
     }
 
     /*Function to edit profile*/

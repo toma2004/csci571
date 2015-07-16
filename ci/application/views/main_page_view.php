@@ -84,6 +84,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         {
             echo 'ERROR: retrieving your info';
         }
+        elseif (isset($err_msg))
+        {
+            echo $err_msg;
+        }
         ?>
     </p>
     <form id="main_page_form" action="<?php echo base_url();?>index.php/main_webpage/get_product_detail" method="POST">

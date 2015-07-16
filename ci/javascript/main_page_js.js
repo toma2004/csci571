@@ -480,7 +480,7 @@ function request_shopping_cart_info()
 {
     /*Send AJAX request to server for shopping card info*/
     xmlhttp.onreadystatechange = display_shopping_cart;
-    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.open("POST","http://localhost/ci/index.php/main_webpage/display_shopping_cart",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("display_shopping_cart=1");
 }
@@ -501,7 +501,7 @@ function change_quality( product_id, quantity_val)
     quantity_val += 1; /*This is needed since the parameter is an index*/
     /*Send AJAX request to server to request quantity change of a product in shopping cart*/
     xmlhttp.onreadystatechange = result_request_quantity_change;
-    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.open("POST","http://localhost/ci/index.php/main_webpage/change_quantity_product_cart",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     var data = '';
     data += 'change_shopping_cart_product_id='+product_id+'&quantity='+quantity_val;
@@ -525,7 +525,7 @@ function delete_product_cart( product_id )
 {
     /*Send AJAX request to server to remove an item from shopping cart*/
     xmlhttp.onreadystatechange = result_request_remove_item;
-    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.open("POST","http://localhost/ci/index.php/main_webpage/delete_product_cart",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     var data = '';
     data += 'remove_item_product_id='+product_id;
@@ -554,7 +554,7 @@ function delete_entire_cart()
 {
     /*Send AJAX request to server to remove entire shopping cart*/
     xmlhttp.onreadystatechange = result_request_remove_entire_cart;
-    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.open("POST","http://localhost/ci/index.php/main_webpage/remove_entire_shopping_cart",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("remove_entire_cart=1");
 }
@@ -564,7 +564,6 @@ function result_request_remove_entire_cart()
 {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
     {
-        document.getElementById('edit_shopping_cart_form').innerHTML = xmlhttp.responseText;
         if (xmlhttp.responseText == 'fail')
         {
             document.getElementById('edit_shopping_cart_form').innerHTML = '<p style="color: red;">Failed to remove entire shopping cart</p>';
@@ -581,7 +580,7 @@ function request_check_out()
 {
     /*Send AJAX request to server to request checkout*/
     xmlhttp.onreadystatechange = result_request_check_out;
-    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.open("POST","http://localhost/ci/index.php/main_webpage/check_out_cart",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("request_for_checkout=1");
 }

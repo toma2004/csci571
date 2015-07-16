@@ -110,7 +110,7 @@ class Main_page_model extends CI_Model {
                 }
                 else if ($m == 0)
                 {
-                    if ($d < 0)
+                    if ($d <= 0)
                     {
                         return false;
                     }
@@ -131,7 +131,7 @@ class Main_page_model extends CI_Model {
                 }
                 else if ($m == 0)
                 {
-                    if ($d > 0)
+                    if ($d >= 0)
                     {
                         return false;
                     }
@@ -193,14 +193,17 @@ class Main_page_model extends CI_Model {
         }
         else if ($type == "dob")
         {
-            $check_format = filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}/")));
+            $check_format = filter_var($data,FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>"/^\d{4}-\d{1,2}-\d{1,2}$/")));
             if ($check_format == false)
             {
                 return false;
             }
             else
             {
-                return $this->check_my_date($check_format, 'before');
+                 if($this->check_my_date($check_format, 'before')) //if current date is before birth date that user enters, return false
+                 {
+                     return false;
+                 }
             }
         }
         return $data;

@@ -83,4 +83,64 @@ class Shopping_cart_model extends CI_Model {
             return 'true';
         }
     }
+
+    /*Function to retrieve all info about the product being added to cart*/
+    public function get_product_info_being_addedToCart( $product_id )
+    {
+        $product_id = $this->main_page_model->validate_data($product_id, "int");
+        if ($product_id == false)
+        {
+            return 'false';
+        }
+        else
+        {
+            $sql = "select product_name, product_price, product_image from products where product_id=?";
+            $res = $this->db->query($sql, $product_id);
+            if ($res->num_rows() > 0)
+            {
+                $row_product = $res->row_array();
+                $return_array = array(
+                    'product_name' => $row_product["product_name"],
+                    'product_price' => $row_product["product_price"],
+                    'product_image' => $row_product["product_image"]
+                );
+
+                $isOnSale = 0; //default is not on sale
+                $discounted = $row_product["product_price"];
+
+                $sql = "select special_sale_id from special_sales_and_product where product_id=?";
+                $res_special_sale_id = $this->db->query($sql,$product_id);
+                if ($res_special_sale_id->num_rows() > 0)
+                {
+                    //this product is on sale. Check if this sale event is still valid based on today date
+                    $row_special_sale_id = $res_special_sale_id->row_array();
+
+                    $sql = "select * from special_sales where special_sale_id=?";
+                    $res_special_sale = $this->db->query($sql, $row_special_sale_id["special_sale_id"]);
+                    if ($res_special_sale->num_rows() > 0)
+                    {
+                        $row_special_sale = $res_special_sale->row_array();
+                        if ($this->main_page_model->check_my_date($row_special_sale["start_date"], "after") && $this->main_page_model->check_my_date($row_special_sale["end_date"], "before"))
+                        {
+                            $isOnSale = 1;
+                            $discounted = (1 - ($row_special_sale["percentage_discount"] / 100)) * $row_product["product_price"];
+                            $discounted = number_format($discounted, 2, '.', ',');
+                            $return_array['special_sale_id'] = $row_special_sale["special_sale_id"];
+                        }
+                    }
+                }
+                $return_array['discounted'] = $discounted;
+                $return_array['isOnSale'] = $isOnSale;
+                if (!$isOnSale)
+                {
+                    $return_array['special_sale_id'] = '0';
+                }
+                return $return_array;
+            }
+            else
+            {
+                return 'false';
+            }
+        }
+    }
 }
