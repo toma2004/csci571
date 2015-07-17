@@ -15,6 +15,7 @@ class Order_model extends CI_Model {
         parent::__construct();
         //load main_page_model to use functions in that class
         $this->load->model('main_page_model');
+        $this->load->model('products_model');
     }
 
     /*Function to place an order*/
@@ -140,10 +141,10 @@ class Order_model extends CI_Model {
             {
                 $row_order_id = $res_order_id->row_array();
                 return array('order_date' => $row_order_id['order_date'],
-                                      'order_total_amount' => $row_order_id['order_total_amount'],
-                                      'order_total_tax' => $row_order_id['order_total_tax'],
-                                      'order_shipping_cost' => $row_order_id['order_shipping_cost'],
-                                      'order_id' => $row_order_id['order_id']);
+                              'order_total_amount' => $row_order_id['order_total_amount'],
+                              'order_total_tax' => $row_order_id['order_total_tax'],
+                              'order_shipping_cost' => $row_order_id['order_shipping_cost'],
+                              'order_id' => $row_order_id['order_id']);
             }
             else
             {
@@ -164,15 +165,19 @@ class Order_model extends CI_Model {
         {
             $sql = "select * from order_items where order_id=?";
             $res_order_item = $this->db->query($sql,$order_id);
+            $products_in_order = $res_order_item->num_rows();
             if ($res_order_item->num_rows() > 0)
             {
-                $return_array = array();
+                $return_array['order_items'] = array();
                 foreach ($res_order_item->result_array() as $row_order_item)
                 {
-                    array_push($return_array, array('product_id' => $row_order_item['product_id'],
-                                                    'order_quantity' => $row_order_item['order_quantity'],
-                                                    'p_price' => $row_order_item['p_price'],
-                                                    'special_sale_id' => $row_order_item['special_sale_id']));
+                    $product_info = $this->products_model->get_product_detail($row_order_item['product_id']);
+                    array_push($return_array['order_items'], array('product_id' => $row_order_item['product_id'],
+                                                                    'order_quantity' => $row_order_item['order_quantity'],
+                                                                    'p_price' => $row_order_item['p_price'],
+                                                                    'special_sale_id' => $row_order_item['special_sale_id'],
+                                                                    'product_image' => $product_info['product_image'],
+                                                                    'product_name' => $product_info['product_name']));
                 }
                 if (count($return_array) == 0)
                 {
@@ -180,6 +185,7 @@ class Order_model extends CI_Model {
                 }
                 else
                 {
+                    $return_array['total_products_in_order'] = $products_in_order;
                     return $return_array;
                 }
             }

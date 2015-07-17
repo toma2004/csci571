@@ -13,21 +13,21 @@ if (isset($customer_info_checkout) && isset($shopping_cart_info_checkout))
     echo '<div id="customer_info">';
     echo '<div id="shipping_addr">';
     echo '<span>Shipping address</span><br/>';
-    echo '<span>'.$customer_info_checkout["c_first_name"].' '.$customer_info_checkout["c_last_name"].'</span><br/>';
-    echo '<span>'.$customer_info_checkout["c_street_addr_shipping"].'</span><br/>';
-    echo '<span>'.$customer_info_checkout["c_city_shipping"].', '.$customer_info_checkout["c_state_shipping"].'</span><br/>';
-    echo '<span>'.$customer_info_checkout["c_country_shipping"].'</span><br/>';
-    echo '<span>Phone: '.$customer_info_checkout["c_phone"].'</span></div>';
+    echo '<span>'.htmlspecialchars($customer_info_checkout["c_first_name"]).' '.htmlspecialchars($customer_info_checkout["c_last_name"]).'</span><br/>';
+    echo '<span>'.htmlspecialchars($customer_info_checkout["c_street_addr_shipping"]).'</span><br/>';
+    echo '<span>'.htmlspecialchars($customer_info_checkout["c_city_shipping"]).', '.htmlspecialchars($customer_info_checkout["c_state_shipping"]).'</span><br/>';
+    echo '<span>'.htmlspecialchars($customer_info_checkout["c_country_shipping"]).'</span><br/>';
+    echo '<span>Phone: '.htmlspecialchars($customer_info_checkout["c_phone"]).'</span></div>';
 
     echo '<div id="billing_addr">';
     echo '<span>Billing address</span><br/>';
-    echo '<span>'.$customer_info_checkout["c_first_name"].' '.$customer_info_checkout["c_last_name"].'</span><br/>';
-    echo '<span>'.$customer_info_checkout["c_street_addr_billing"].'</span><br/>';
-    echo '<span>'.$customer_info_checkout["c_city_billing"].', '.$customer_info_checkout["c_state_billing"].'</span><br/>';
-    echo '<span>'.$customer_info_checkout["c_country_billing"].'</span></div>';
+    echo '<span>'.htmlspecialchars($customer_info_checkout["c_first_name"]).' '.htmlspecialchars($customer_info_checkout["c_last_name"]).'</span><br/>';
+    echo '<span>'.htmlspecialchars($customer_info_checkout["c_street_addr_billing"]).'</span><br/>';
+    echo '<span>'.htmlspecialchars($customer_info_checkout["c_city_billing"]).', '.htmlspecialchars($customer_info_checkout["c_state_billing"]).'</span><br/>';
+    echo '<span>'.htmlspecialchars($customer_info_checkout["c_country_billing"]).'</span></div>';
 
     echo '<div id="payment_method">';
-    echo '<span>Credit card ending in '.substr($customer_info_checkout["c_credit_card"],-4).'</span><br/>';
+    echo '<span>Credit card ending in '.htmlspecialchars(substr($customer_info_checkout["c_credit_card"],-4)).'</span><br/>';
     echo '<button type="submit" id="edit_info" name="edit_profile_from_checkout" value="edit_profile_from_checkout">Edit info</button><br/></div></div>'; //End div customer_info
 
     #Start of div=shopping_cart_info
@@ -59,10 +59,10 @@ if (isset($customer_info_checkout) && isset($shopping_cart_info_checkout))
         echo '<div class="img_product_cart">';
         echo '<img src="'.base_url().$cart_items["product_image"].'" height="100px" width="100px"></div>';
         echo '<div class="pname_cart">';
-        echo '<span>'.$cart_items["product_name"].'</span></div>';
+        echo '<span>'.htmlspecialchars($cart_items["product_name"]).'</span></div>';
         echo '<div class="price_quantity_cart">';
-        echo '<span style="color: red">'.$cart_items["discounted"].'</span>';
-        echo '<span style="position: absolute; left: 100%;">'.$cart_items["qty"].'</span></div></div>'; //End div=shopping_cart_item
+        echo '<span style="color: red">'.htmlspecialchars($cart_items["discounted"]).'</span>';
+        echo '<span style="position: absolute; left: 100%;">'.htmlspecialchars($cart_items["qty"]).'</span></div></div>'; //End div=shopping_cart_item
     }
     $myheight += 120;
     echo '<button type="button" onclick="request_shopping_cart_info()" id="edit_cart_checkout" style="top: '.$myheight.'px;">Edit cart</button></div></div>'; //End div=shooping_cart_info and div=customer_shopping_cart_info
@@ -71,22 +71,22 @@ if (isset($customer_info_checkout) && isset($shopping_cart_info_checkout))
     echo '<div id="order_summary">';
     echo '<button type="submit" id="place_order_checkout" name="place_order" value="place_order">Place your order</button><br/>';
     echo '<span style="font-weight: bold; color: orange; position: relative; left: 5%; top: 5%">Order summary</span><br/>';
-    echo '<span style="position: relative; left: 5%; top: 5%">Item ('.count($shopping_cart_info_checkout).'):</span>';
+    echo '<span style="position: relative; left: 5%; top: 5%">Item ('.htmlspecialchars(count($shopping_cart_info_checkout)).'):</span>';
     $total_amount = number_format($total_amount, 2, '.', ',');
-    echo '<span class="indent_left">$'.$total_amount.'</span><br/>';
+    echo '<span class="indent_left">$'.htmlspecialchars($total_amount).'</span><br/>';
     echo '<span style="position: relative; left: 5%; top: 5%">Shipping & handling:</span>';
     echo '<span class="indent_left">$5.99</span><br/>';
     echo '<span style="position: relative; left: 5%; top: 5%">Total before tax:</span>';
     $total_and_shipping = $total_amount + 5.99;
-    echo '<span class="indent_left">$'.$total_and_shipping.'</span><br/>';
+    echo '<span class="indent_left">$'.htmlspecialchars($total_and_shipping).'</span><br/>';
     echo '<span style="position: relative; left: 5%; top: 5%">Estimated tax to be collected:</span>';
     $tax = 0.0875 * $total_amount;
     $tax = number_format($tax, 2, '.', ',');
-    echo '<span class="indent_left">$'.$tax.'</span><br/>';
+    echo '<span class="indent_left">$'.htmlspecialchars($tax).'</span><br/>';
     echo '<span style="font-weight: bold; color: red; position: relative; left: 5%; top: 5%">Order total:</span>';
     $grand_total = $tax + $total_and_shipping;
     $grand_total = number_format($grand_total, 2, '.', ',');
-    echo '<span class="indent_left" style="font-weight: bold; color: red">$'.$grand_total.'</span></div>'; //End div=order_summary
+    echo '<span class="indent_left" style="font-weight: bold; color: red">$'.htmlspecialchars($grand_total).'</span></div>'; //End div=order_summary
     echo '<input type="hidden" name="hidden_order_total_amount" value="'.$total_amount.'"/>';
     echo '<input type="hidden" name="hidden_order_total_tax" value="'.$tax.'"/>';
     echo '<input type="hidden" name="hidden_order_total_shipping" value="5.99"/>';

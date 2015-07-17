@@ -60,69 +60,72 @@ class Main_webpage extends CI_Controller {
     /*Function to response from Add_To_Cart button*/
     public function response_product_detail_page()
     {
-        if ($this->input->post('to_home') != NULL)
+        if (!$this->has_session_timeout())
         {
-            $this->index();
-        }
-        //need to handle add to cart
-        else if ($this->input->post('add_to_cart') != NULL)
-        {
-            /*Check if there is a session array*/
-            if (isset($_SESSION))
+            if ($this->input->post('to_home') != NULL)
             {
-                //Go to model to get all info about the product being added
-                $product_info = $this->shopping_cart_model->get_product_info_being_addedToCart($this->input->post('hidden_add_to_cart_pid'));
-                if ($product_info == 'false')
+                $this->index();
+            }
+            //need to handle add to cart
+            else if ($this->input->post('add_to_cart') != NULL)
+            {
+                /*Check if there is a session array*/
+                if (isset($_SESSION))
                 {
-                    $this->index('ERROR: adding product to your cart');
-                }
-                else
-                {
-                    /*Check if a shopping cart already exists. If not create one*/
-                    if (isset($_SESSION["shopping_cart"]))
+                    //Go to model to get all info about the product being added
+                    $product_info = $this->shopping_cart_model->get_product_info_being_addedToCart($this->input->post('hidden_add_to_cart_pid'));
+                    if ($product_info == 'false')
                     {
-                        $index = -1;
-                        #There is a shopping card.
-                        #Now check if this product already exists in the cart
-                        foreach ($_SESSION["shopping_cart"] as $i => $cart_items)
-                        {
-                            if ($cart_items["pid"] == $this->input->post('hidden_add_to_cart_pid'))
-                            {
-                                $index = $i;
-                                break;
-                            }
-                        }
-                        /*If the product does not exist, add this new product to our shopping cart array*/
-                        if ($index == -1)
-                        {
-                            array_push($_SESSION["shopping_cart"], array("qty" => "1",
-                                                                         "pid" => $this->input->post('hidden_add_to_cart_pid'),
-                                                                         "product_name" => $product_info['product_name'],
-                                                                         "product_price" => $product_info['product_price'],
-                                                                         "product_image" => $product_info['product_image'],
-                                                                         "isOnSale" => $product_info['isOnSale'],
-                                                                         "special_sale_id" => $product_info['special_sale_id'],
-                                                                         "discounted" => $product_info['discounted']));
-                        }
-                        else
-                        {
-                            /*Product already exists. Update the quantity*/
-                            $_SESSION["shopping_cart"][$index]["qty"] += 1;
-                        }
+                        $this->index('ERROR: adding product to your cart');
                     }
                     else
                     {
-                        #This is the first time user add a product to a cart. Create shopping cart
-                        $_SESSION["shopping_cart"][] = array("qty" => "1",
-                                                             "pid" => $this->input->post('hidden_add_to_cart_pid'),
-                                                             "product_name" => $product_info['product_name'],
-                                                             "product_price" => $product_info['product_price'],
-                                                             "product_image" => $product_info['product_image'],
-                                                             "isOnSale" => $product_info['isOnSale'],
-                                                             "special_sale_id" => $product_info['special_sale_id'],
-                                                             "discounted" => $product_info['discounted']);
+                        /*Check if a shopping cart already exists. If not create one*/
+                        if (isset($_SESSION["shopping_cart"]))
+                        {
+                            $index = -1;
+                            #There is a shopping card.
+                            #Now check if this product already exists in the cart
+                            foreach ($_SESSION["shopping_cart"] as $i => $cart_items)
+                            {
+                                if ($cart_items["pid"] == $this->input->post('hidden_add_to_cart_pid'))
+                                {
+                                    $index = $i;
+                                    break;
+                                }
+                            }
+                            /*If the product does not exist, add this new product to our shopping cart array*/
+                            if ($index == -1)
+                            {
+                                array_push($_SESSION["shopping_cart"], array("qty" => "1",
+                                    "pid" => $this->input->post('hidden_add_to_cart_pid'),
+                                    "product_name" => $product_info['product_name'],
+                                    "product_price" => $product_info['product_price'],
+                                    "product_image" => $product_info['product_image'],
+                                    "isOnSale" => $product_info['isOnSale'],
+                                    "special_sale_id" => $product_info['special_sale_id'],
+                                    "discounted" => $product_info['discounted']));
+                            }
+                            else
+                            {
+                                /*Product already exists. Update the quantity*/
+                                $_SESSION["shopping_cart"][$index]["qty"] += 1;
+                            }
+                        }
+                        else
+                        {
+                            #This is the first time user add a product to a cart. Create shopping cart
+                            $_SESSION["shopping_cart"][] = array("qty" => "1",
+                                "pid" => $this->input->post('hidden_add_to_cart_pid'),
+                                "product_name" => $product_info['product_name'],
+                                "product_price" => $product_info['product_price'],
+                                "product_image" => $product_info['product_image'],
+                                "isOnSale" => $product_info['isOnSale'],
+                                "special_sale_id" => $product_info['special_sale_id'],
+                                "discounted" => $product_info['discounted']);
+                        }
+                        $this->index('Successfully added item to your cart');
                     }
-                    $this->index('Successfully added item to your cart');
                 }
             }
         }
@@ -258,20 +261,23 @@ class Main_webpage extends CI_Controller {
                 //check if customer logs in. They need to log in before checking out
                 if (isset($_SESSION["username"]) && isset($_SESSION["password"]) && isset($_SESSION["log_in_successfully"]))
                 {
-                    if (isset($_SESSION["shopping_cart"]) && count($_SESSION["shopping_cart"]) > 0)
+                    if (!$this->has_session_timeout())
                     {
-                        $hasGotInfo = $this->user_account_model->get_customer_info( $_SESSION['cus_id'] );
-                        if ($hasGotInfo != 'false')
+                        if (isset($_SESSION["shopping_cart"]) && count($_SESSION["shopping_cart"]) > 0)
                         {
-                            $data_to_view['customer_info_checkout'] = $hasGotInfo;
-                            $data_to_view['shopping_cart_info_checkout'] = $_SESSION["shopping_cart"];
+                            $hasGotInfo = $this->user_account_model->get_customer_info( $_SESSION['cus_id'] );
+                            if ($hasGotInfo != 'false')
+                            {
+                                $data_to_view['customer_info_checkout'] = $hasGotInfo;
+                                $data_to_view['shopping_cart_info_checkout'] = $_SESSION["shopping_cart"];
+                            }
                         }
+                        else
+                        {
+                            $data_to_view['cart_empty_checkout'] = '1';
+                        }
+                        $this->load->view('check_out_summary', $data_to_view);
                     }
-                    else
-                    {
-                        $data_to_view['cart_empty_checkout'] = '1';
-                    }
-                    $this->load->view('check_out_summary', $data_to_view);
                 }
                 else
                 {
@@ -379,12 +385,23 @@ class Main_webpage extends CI_Controller {
             {
                 $order_detail = $this->order_model->get_order_detail($this->input->post('request_past_order_detail'));
                 $order_detail_item = $this->order_model->get_order_items_detail($this->input->post('request_past_order_detail'));
-                //Need to check error
+                $customer_info = $this->user_account_model->get_customer_info($_SESSION['cus_id']);
+                if ($order_detail == 'fail' || $order_detail_item == 'fail' || $customer_info == 'false')
+                {
+                    $data_to_view['err'] = 'fail';
+                }
+                else
+                {
+                    $data_to_view['order_detail'] = $order_detail;
+                    $data_to_view['order_detail_item'] = $order_detail_item;
+                    $data_to_view['customer_info'] = $customer_info;
+                }
+                $this->load->view('ajax_response_past_order_view', $data_to_view);
             }
         }
     }
 
-    /*Function to return an index of array that contain the product id we are looking for in a shopping cart*/
+    /*Function to return an index in array that contain the product id we are looking for in a shopping cart*/
     protected function index_productID_shopping_cart ( $product_id )
     {
         if (isset($_SESSION["shopping_cart"]))

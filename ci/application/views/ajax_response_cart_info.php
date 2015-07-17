@@ -29,10 +29,10 @@ if (isset($shopping_cart))
         echo '<img src="'.base_url().$cart_items["product_image"].'" height="100px" width="100px"></div>';
 
         echo '<div class="pname">';
-        echo '<span>'.$cart_items["product_name"].'</span></div>';
+        echo '<span>'.htmlspecialchars($cart_items["product_name"]).'</span></div>';
 
         echo '<div class="other_components">';
-        echo '<span style="position: absolute; left: 550px; color: red;">'.$cart_items["discounted"].'</span>';
+        echo '<span style="position: absolute; left: 550px; color: red;">'.htmlspecialchars($cart_items["discounted"]).'</span>';
         echo '<select style="position: absolute; left: 690px;" onchange=change_quality("'.$cart_items["pid"].'",this.selectedIndex);>';
         /*Set default selected based on product quantity in the cart*/
         echo '<option value="1">1</option>';

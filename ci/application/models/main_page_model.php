@@ -110,7 +110,7 @@ class Main_page_model extends CI_Model {
                 }
                 else if ($m == 0)
                 {
-                    if ($d <= 0)
+                    if ($d < 0)
                     {
                         return false;
                     }
@@ -131,7 +131,7 @@ class Main_page_model extends CI_Model {
                 }
                 else if ($m == 0)
                 {
-                    if ($d >= 0)
+                    if ($d > 0)
                     {
                         return false;
                     }
@@ -200,7 +200,7 @@ class Main_page_model extends CI_Model {
             }
             else
             {
-                 if($this->check_my_date($check_format, 'before')) //if current date is before birth date that user enters, return false
+                 if(!$this->check_my_date($check_format, 'after')) //if current date is before birth date that user enters, return false
                  {
                      return false;
                  }

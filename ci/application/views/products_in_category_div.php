@@ -16,16 +16,16 @@ else
     foreach ($products_in_category as $myproducts)
     {
         echo '<div class="image_block">';
-        echo '<input type="image" src="'.base_url().$myproducts["product_image"].'" alt="'.$myproducts["product_name"].'" style="width: 200px; height: 200px;" name="product_name_clicked" value="'.$myproducts["product_id"].'">';
+        echo '<input type="image" src="'.base_url().$myproducts["product_image"].'" alt="'.htmlspecialchars($myproducts["product_name"]).'" style="width: 200px; height: 200px;" name="product_name_clicked" value="'.$myproducts["product_id"].'">';
         if ($myproducts["isOnSale"] == 1)
         {
-            echo '<span class="caption"><span style="color: red">SALE: '.$myproducts["percentage_discount"].' %OFF</span><br/>';
-            echo 'Orig. price = $'.$myproducts["product_price"].'<br/>';
-            echo '<span style="color: red">Discounted price = $'.$myproducts["discounted"].'</span></span></div>';
+            echo '<span class="caption"><span style="color: red">SALE: '.htmlspecialchars($myproducts["percentage_discount"]).' %OFF</span><br/>';
+            echo 'Orig. price = $'.htmlspecialchars($myproducts["product_price"]).'<br/>';
+            echo '<span style="color: red">Discounted price = $'.htmlspecialchars($myproducts["discounted"]).'</span></span></div>';
         }
         else
         {
-            echo 'Orig. price = $'.$myproducts["product_price"].'</div>';
+            echo 'Orig. price = $'.htmlspecialchars($myproducts["product_price"]).'</div>';
         }
 
     }

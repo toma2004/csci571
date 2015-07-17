@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     if (isset($customer_edit_profile))
     {
         ?>
-        <p id="err_msg_edit_profile" style="color: red"><?php echo $customer_edit_profile;?></p>
+        <p id="err_msg_edit_profile" style="color: red"><?php echo htmlspecialchars($customer_edit_profile);?></p>
     <?php
     }
     else
