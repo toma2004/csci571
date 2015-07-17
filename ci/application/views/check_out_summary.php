@@ -44,7 +44,7 @@ if (isset($customer_info_checkout) && isset($shopping_cart_info_checkout))
     foreach ($shopping_cart_info_checkout as $i => $cart_items)
     {
         //update total amount
-        $total_amount += (intval($cart_items["discounted"]) * intval($cart_items["qty"]));
+        $total_amount += ((float)$cart_items["discounted"] * (float)$cart_items["qty"]);
         if ($counter == 0)
         {
             $myheight = 10;
@@ -72,6 +72,7 @@ if (isset($customer_info_checkout) && isset($shopping_cart_info_checkout))
     echo '<button type="submit" id="place_order_checkout" name="place_order" value="place_order">Place your order</button><br/>';
     echo '<span style="font-weight: bold; color: orange; position: relative; left: 5%; top: 5%">Order summary</span><br/>';
     echo '<span style="position: relative; left: 5%; top: 5%">Item ('.count($shopping_cart_info_checkout).'):</span>';
+    $total_amount = number_format($total_amount, 2, '.', ',');
     echo '<span class="indent_left">$'.$total_amount.'</span><br/>';
     echo '<span style="position: relative; left: 5%; top: 5%">Shipping & handling:</span>';
     echo '<span class="indent_left">$5.99</span><br/>';
@@ -79,11 +80,15 @@ if (isset($customer_info_checkout) && isset($shopping_cart_info_checkout))
     $total_and_shipping = $total_amount + 5.99;
     echo '<span class="indent_left">$'.$total_and_shipping.'</span><br/>';
     echo '<span style="position: relative; left: 5%; top: 5%">Estimated tax to be collected:</span>';
-    echo '<span class="indent_left">$0.00</span><br/>';
+    $tax = 0.0875 * $total_amount;
+    $tax = number_format($tax, 2, '.', ',');
+    echo '<span class="indent_left">$'.$tax.'</span><br/>';
     echo '<span style="font-weight: bold; color: red; position: relative; left: 5%; top: 5%">Order total:</span>';
-    echo '<span class="indent_left" style="font-weight: bold; color: red">$'.$total_and_shipping.'</span></div>'; //End div=order_summary
+    $grand_total = $tax + $total_and_shipping;
+    $grand_total = number_format($grand_total, 2, '.', ',');
+    echo '<span class="indent_left" style="font-weight: bold; color: red">$'.$grand_total.'</span></div>'; //End div=order_summary
     echo '<input type="hidden" name="hidden_order_total_amount" value="'.$total_amount.'"/>';
-    echo '<input type="hidden" name="hidden_order_total_tax" value="0"/>';
+    echo '<input type="hidden" name="hidden_order_total_tax" value="'.$tax.'"/>';
     echo '<input type="hidden" name="hidden_order_total_shipping" value="5.99"/>';
 }
 else if (isset($need_log_in_before_checkout))
@@ -96,8 +101,8 @@ else if (isset($need_log_in_before_checkout))
     echo '<input type="text" id="usrname" name="user_name" maxlength="30" pattern="[a-zA-z0-9]+" required/><br/>';
     echo '<label for="pwd">Password</label><span style="color: red">*</span>';
     echo '<input type="password" id="pwd" name="pass_word" maxlength="30" required style="position:relative; left:11px;"/><br/><br/>';
-    echo '<a href="main_webpage.html"><button type="button">Home</button></a>';
-    echo '<button type="submit" onclick="validate_log_in_page()" name="customer_log_in_to_checkout" value="customer_log_in_to_checkout" style="position: relative; left: 10px">Submit</button></div></div>'; //End div=outer_box_login and div=login_form1
+    echo '<button type="button" onclick=div_transform("form1");>Home</button>';
+    echo '<button type="submit" onclick="validate_log_in_page()" name="submit_log_in" value="submit_log_in" style="position: relative; left: 10px">Submit</button></div></div>'; //End div=outer_box_login and div=login_form1
 }
 else if (isset($cart_empty_checkout))
 {

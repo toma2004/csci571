@@ -90,6 +90,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
         ?>
     </p>
+    <p style="color: green; font-weight: bold; font-size: 200%;">
+    <?php
+    if (isset($place_order_successful))
+    {
+        echo $place_order_successful;
+    }
+
+    ?>
+    </p>
+
+
     <form id="main_page_form" action="<?php echo base_url();?>index.php/main_webpage/get_product_detail" method="POST">
         <?php
         if (count($special_sale_display) == 0)
@@ -132,7 +143,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="checkout_summary_div" style="position:absolute; top: 190px; width: 90%; display: none;">
     <h1 id="header_4" style="color: #eeeeee">Review your order</h1>
-    <form id="checkout_summary_form" action="#" method="POST">
+    <form id="checkout_summary_form" action="<?php echo base_url();?>index.php/main_webpage/place_order" method="POST">
     </form>
 </div>
 

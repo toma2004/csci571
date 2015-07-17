@@ -600,7 +600,7 @@ function request_past_orders_info()
 {
     /*Send AJAX request to server to request past orders*/
     xmlhttp.onreadystatechange = result_request_past_order;
-    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.open("POST","http://localhost/ci/index.php/main_webpage/display_past_order",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("request_for_past_order=1");
 }
@@ -620,7 +620,7 @@ function request_detail_past_order( order_id )
 {
     /*Send AJAX request to server to request past order detail based on order id*/
     xmlhttp.onreadystatechange = result_request_past_order_detail;
-    xmlhttp.open("POST","main_page.php",true);
+    xmlhttp.open("POST","http://localhost/ci/index.php/main_webpage/display_detail_past_order",true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     var data = "";
     data += "request_past_order_detail="+order_id;

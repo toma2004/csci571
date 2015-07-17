@@ -19,6 +19,7 @@ class Main_webpage extends CI_Controller {
         $this->load->model('products_model');
         $this->load->model('user_account_model');
         $this->load->model('shopping_cart_model');
+        $this->load->model('order_model');
         /*Establish session with username and password*/
         if(!isset($_SESSION))
         {
@@ -33,7 +34,14 @@ class Main_webpage extends CI_Controller {
         $data_to_main_page_view['category_list'] = $this->main_page_model->get_category_dropDown_list();
         if ($err_msg != 'none')
         {
-            $data_to_main_page_view['err_msg'] = $err_msg;
+            if ($err_msg == 'Your order has been placed successfully. Thank you very much!')
+            {
+                $data_to_main_page_view['place_order_successful'] = $err_msg;
+            }
+            else
+            {
+                $data_to_main_page_view['err_msg'] = $err_msg;
+            }
         }
         //Load view
         $this->load->view('main_page_view', $data_to_main_page_view);
@@ -225,6 +233,7 @@ class Main_webpage extends CI_Controller {
                         unset ($cart_items["product_image"]);
                         unset ($cart_items["isOnSale"]);
                         unset ($cart_items["discounted"]);
+                        unset ($cart_items["special_sale_id"]);
                         unset ($_SESSION["shopping_cart"][$i]);
                     }
                     $data_to_view['delete_cart'] = 'success';
@@ -269,6 +278,108 @@ class Main_webpage extends CI_Controller {
                     $data_to_view['need_log_in_before_checkout'] = '1';
                     $this->load->view('check_out_summary', $data_to_view);
                 }
+            }
+        }
+    }
+
+    /*Function to place order*/
+    public function place_order()
+    {
+        //Check if customer tries to log in before checking out
+        if ($this->input->post('submit_log_in') != NULL)
+        {
+            $this->log_in();
+        }
+        //Customer wants to edit profile before checking out
+        else if ($this->input->post('edit_profile_from_checkout') != NULL)
+        {
+            if (!$this->has_session_timeout())
+            {
+                $this->display_profile_to_edit();
+            }
+        }
+        //Customer want to edit cart before placing order
+        else if ($this->input->post('edit_profile_from_checkout') != NULL)
+        {
+            $this->display_shopping_cart();
+        }
+        //Most important action, customer actually placed the order
+        else if ($this->input->post('place_order'))
+        {
+            if (!$this->has_session_timeout())
+            {
+                //check to see if we have total amount numbers
+                $order_total_amount = $this->input->post('hidden_order_total_amount');
+                $order_total_tax = $this->input->post('hidden_order_total_tax');
+                $order_total_shipping = $this->input->post('hidden_order_total_shipping');
+                if ($order_total_amount == NULL || $order_total_tax == NULL || $order_total_shipping == NULL)
+                {
+                    $this->index('ERROR: placing your order. Please try again');
+                }
+                else
+                {
+                    $hasPlacedOrder = $this->order_model->place_order($_SESSION["shopping_cart"], $order_total_amount, $order_total_tax, $order_total_shipping, $_SESSION["cus_id"]);
+                    if ($hasPlacedOrder == 'success')
+                    {
+                        //placing order successfully. Clear shopping cart
+                        foreach ($_SESSION["shopping_cart"] as $i => $cart_items)
+                        {
+                            unset ($cart_items["pid"]);
+                            unset ($cart_items["qty"]);
+                            unset ($cart_items["product_name"]);
+                            unset ($cart_items["product_price"]);
+                            unset ($cart_items["product_image"]);
+                            unset ($cart_items["isOnSale"]);
+                            unset ($cart_items["discounted"]);
+                            unset ($cart_items["special_sale_id"]);
+                            unset ($_SESSION["shopping_cart"][$i]);
+                        }
+                        $this->index('Your order has been placed successfully. Thank you very much!');
+                    }
+                    else
+                    {
+                        $this->index('ERROR: placing your order. Please try again');
+                    }
+                }
+            }
+        }
+    }
+
+    /*Function to display past order*/
+    public function display_past_order()
+    {
+        if (!$this->has_session_timeout())
+        {
+            if ($this->input->post('request_for_past_order') != NULL)
+            {
+                $hasGotOrderInfo =  $this->order_model->get_all_orders_info($_SESSION['cus_id']);
+                if ($hasGotOrderInfo == 'fail')
+                {
+                    $data_to_view['err'] = 'fail';
+                }
+                else if ($hasGotOrderInfo == 'no_order')
+                {
+                    $data_to_view['no_order'] = 'no_order';
+                }
+                else
+                {
+                    $data_to_view['order_info'] = $hasGotOrderInfo;
+                }
+                $this->load->view('ajax_response_past_order_view', $data_to_view);
+            }
+        }
+    }
+
+    /*Function to display detail of a specific past order*/
+    public function display_detail_past_order()
+    {
+        if (!$this->has_session_timeout())
+        {
+            if ($this->input->post('request_past_order_detail') != NULL)
+            {
+                $order_detail = $this->order_model->get_order_detail($this->input->post('request_past_order_detail'));
+                $order_detail_item = $this->order_model->get_order_items_detail($this->input->post('request_past_order_detail'));
+                //Need to check error
             }
         }
     }
