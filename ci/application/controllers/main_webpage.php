@@ -256,6 +256,7 @@ class Main_webpage extends CI_Controller {
         if ($this->input->post('request_for_checkout') != NULL)
         {
             $sanity_check = $this->main_page_model->validate_data($this->input->post('request_for_checkout'), "int"); //should be equal to 1 and hence it's an integer
+            $data_to_view = array();
             if ($sanity_check != false)
             {
                 //check if customer logs in. They need to log in before checking out
@@ -285,6 +286,10 @@ class Main_webpage extends CI_Controller {
                     $this->load->view('check_out_summary', $data_to_view);
                 }
             }
+            else
+            {
+                $this->load->view('check_out_summary', $data_to_view);
+            }
         }
     }
 
@@ -312,7 +317,7 @@ class Main_webpage extends CI_Controller {
         //Most important action, customer actually placed the order
         else if ($this->input->post('place_order'))
         {
-            if (!$this->has_session_timeout())
+            if (!$this->has_session_timeout('from_place_order'))
             {
                 //check to see if we have total amount numbers
                 $order_total_amount = $this->input->post('hidden_order_total_amount');
@@ -358,18 +363,25 @@ class Main_webpage extends CI_Controller {
         {
             if ($this->input->post('request_for_past_order') != NULL)
             {
-                $hasGotOrderInfo =  $this->order_model->get_all_orders_info($_SESSION['cus_id']);
-                if ($hasGotOrderInfo == 'fail')
+                if (isset($_SESSION['cus_id']))
                 {
-                    $data_to_view['err'] = 'fail';
-                }
-                else if ($hasGotOrderInfo == 'no_order')
-                {
-                    $data_to_view['no_order'] = 'no_order';
+                    $hasGotOrderInfo =  $this->order_model->get_all_orders_info($_SESSION['cus_id']);
+                    if ($hasGotOrderInfo == 'fail')
+                    {
+                        $data_to_view['err'] = 'fail';
+                    }
+                    else if ($hasGotOrderInfo == 'no_order')
+                    {
+                        $data_to_view['no_order'] = 'no_order';
+                    }
+                    else
+                    {
+                        $data_to_view['order_info'] = $hasGotOrderInfo;
+                    }
                 }
                 else
                 {
-                    $data_to_view['order_info'] = $hasGotOrderInfo;
+                    $data_to_view['err'] = 'fail';
                 }
                 $this->load->view('ajax_response_past_order_view', $data_to_view);
             }
@@ -569,14 +581,16 @@ class Main_webpage extends CI_Controller {
     }
 
     /*Function to log out*/
-    public function log_out()
+    public function log_out( $call_from = 'none' )
     {
         $data_to_view['errmsg_logout'] = '';
+        $isTimeOut = 0;
         if (isset($_SESSION['timeout']))
         {
             if ($_SESSION['timeout'] == "1")
             {
-                $data_to_view['errmsg_logout'] .= "Your session is timeout. Please log back in";
+                $data_to_view['time_out'] = "Your session is timeout. Please log back in";
+                $isTimeOut = 1;
             }
             else
             {
@@ -614,25 +628,39 @@ class Main_webpage extends CI_Controller {
         }
 
         session_destroy();
-
-        $data_to_view['special_sale_display'] = $this->main_page_model->get_special_sale_display();
-        $data_to_view['category_list'] = $this->main_page_model->get_category_dropDown_list();
-        $this->load->view('main_page_view', $data_to_view);
+        if ($isTimeOut)
+        {
+            if ($call_from == 'none') //response for AJAX request
+            {
+                $this->load->view('ajax_response_time_out', $data_to_view);
+            }
+            else
+            {
+                //response for submit button - either for edit profile or place order
+                $this->load->view('log_in_form_view', $data_to_view);
+            }
+        }
+        else
+        {
+            $data_to_view['special_sale_display'] = $this->main_page_model->get_special_sale_display();
+            $data_to_view['category_list'] = $this->main_page_model->get_category_dropDown_list();
+            $this->load->view('main_page_view', $data_to_view);
+        }
     }
 
     /*Function to check if session is time out.
     * If yes, automatically log out
     * If no, reset time out
     */
-    protected function has_session_timeout()
+    protected function has_session_timeout( $call_from='none' )
     {
         if (isset($_SESSION['last_activity']) && isset($_SESSION['timeout']))
         {
             $t = time();
-            if (($t - $_SESSION['last_activity']) > 1800)
+            if (($t - $_SESSION['last_activity']) > 900)
             {
                 $_SESSION['timeout'] = 1;
-                $this->log_out();
+                $this->log_out($call_from);
                 return true;
             }
             else
@@ -651,7 +679,7 @@ class Main_webpage extends CI_Controller {
     /*Function to edit profile*/
     public function display_profile_to_edit()
     {
-        if (!$this->has_session_timeout())
+        if (!$this->has_session_timeout('from_edit_profile'))
         {
             //Check if user log in properly
             if (isset($_SESSION["log_in_successfully"]) && isset($_SESSION["username"]) && isset($_SESSION["password"]))
@@ -684,7 +712,7 @@ class Main_webpage extends CI_Controller {
     /*Function to edit profile*/
     public function edit_profile()
     {
-        if (!$this->has_session_timeout())
+        if (!$this->has_session_timeout('from_edit_profile'))
         {
             //Check if user log in properly
             if (isset($_SESSION["log_in_successfully"]) && isset($_SESSION["username"]) && isset($_SESSION["password"]))
@@ -706,6 +734,10 @@ class Main_webpage extends CI_Controller {
                     }
                     $data_to_view['customer_info'] = $this->user_account_model->get_customer_info($_SESSION["cus_id"]);
                     $this->load->view('edit_profile_view', $data_to_view);
+                }
+                else if ($this->input->post('to_home') != NULL)
+                {
+                    $this->index();
                 }
             }
             else

@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Time: 12:10 AM
  */
 
+
 if (count($products_in_category) <= 0)
 {
     echo '<p style="color: red">ERROR: retrieving products for given product category</p>';

@@ -128,9 +128,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         #Password
         echo 'Change your password: ';
         echo '<input type="password" id="modified_password" name="modified_password" maxlength="20" style="position:absolute; left: 30%"/><br/><br/><br/>';
-        ?>
-        <a href="<?php echo base_url();?>index.php/main_webpage"><button type="button">Home</button></a>
-        <?php
+
+        #Buttons
+        echo '<button type="submit" name="to_home" value="to_home">Home</button>';
         echo '<button type="submit" name="submit_edit_profile_form" value="submit_edit_profile_form" id="submit_edit_profile_form" style="position: relative; left: 10px">Submit</button>';
         ?>
     </form>

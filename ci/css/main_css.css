@@ -6,27 +6,52 @@ body, html
     background-size: cover;
 }
 
+
+#my_header
+{
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background-color: #313131;
+}
+
 header
 {
-    width:100%;
     height: 25%;
-    background-color: #313131;
     text-align: center;
     color: #fff;
     line-height: 120px;
 }
 
+#container
+{
+    margin-right: 10%;
+    margin-left: 10%;
+    padding-bottom: 2%;
+}
+
+.toggle-nav
+{
+    color: #fff;
+    font-size: 700%;
+    position: absolute;
+    top: 50%;
+}
+
+
 /**************************************************************************************************
 *My navigation bar style starts here
 ***************************************************************************************************/
 
-#nav_bar *
+#nav *
 {
     margin: 0;
     padding: 0;
 }
+
 /*transform a list*/
-#nav_bar li
+#nav li
 {
     position: relative;
     float: left;
@@ -36,13 +61,13 @@ header
     cursor: pointer;
 }
 
-#nav_bar li.first_tier
+#nav li.first_tier
 {
     width: 20%;
 }
 
 /*make each item a block*/
-#nav_bar li a
+#nav li a
 {
     width: 100%;
     height: 100%;
@@ -66,37 +91,49 @@ header
 }
 
 /*hide those that are not in first tier unordered list */
-#nav_bar ul ul
+#nav ul ul
 {
     /*Align item under one another */
     position: absolute;
     top: 100%;
     width: 100%;
     /*hide it*/
-    visibility: hidden;
+    display: none;
 }
 
 /*visible when hover*/
-#nav_bar li:hover > ul
+#nav li:hover > ul
 {
-    visibility:visible;
+    display: block;
 }
 
 /*Change color when hover*/
 
-#nav_bar li a:hover
+#nav li a:hover
 {
     background-color: #909090;
+
 }
 
 .replace_a:hover
 {
     background-color: #909090;
+
 }
+
 
 /**************************************************************************************************
 *Displaying special sale on main web page
 ***************************************************************************************************/
+.main_div
+{
+    position:relative;
+    top: 3%;
+    margin-right: 10%;
+    margin-left: 10%;
+    width: 90%;
+}
+
 .asterisk_red
 {
     color: red;
@@ -106,17 +143,59 @@ header
 {
     vertical-align: top;
     display: inline-block;
-    text-align: center;
     width: 220px;
 }
 
 .caption
 {
     display: block;
+    text-align: center;
 }
 
 .display_product_info * {
     vertical-align: top;
+}
+
+/**************************************************************************************************
+*Displaying detail of a product page
+***************************************************************************************************/
+.product_detail_container
+{
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+#product_image
+{
+    float: left;
+}
+
+.image_info
+{
+    overflow: hidden;
+    padding-bottom: 1%;
+}
+
+#add_to_cart_button
+{
+    vertical-align: bottom;
+    bottom: auto;
+    width: 200px;
+    background: orange;
+    border: orange;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    left: 2%;
+}
+
+#sale_text_product_detail
+{
+    vertical-align: top;
+    display: block;
+    position: relative;
+    left: 2%;
 }
 
 /**************************************************************************************************
@@ -360,4 +439,121 @@ header
 {
     position: relative;
     left: 2%;
+}
+/**************************************************************************************************
+*Responsive web design for phone
+*Start with iphone 5s and 6
+***************************************************************************************************/
+@media only screen and (max-device-width: 667px),only screen and (max-width: 667px)
+{
+    #my_header
+    {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        position: absolute;
+        top: 0;
+    }
+    header
+    {
+        width: 90%;
+        float: right;
+        line-height: 120px;
+        font-size: 60px;
+        margin: 0;
+        padding: 0;
+    }
+    #container
+    {
+        width: 100%;
+        height: 100vh; /*Size of element will be relative to size of viewport*/
+        position: absolute;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        top: 0;
+        left: 0;
+    }
+    /*div of forms*/
+    .main_div
+    {
+        position:relative;
+        top: 400px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #canvas
+    {
+        width: 100%;
+        height: 100%;
+        padding: 5.5% 0;
+        position: relative;
+
+        -webkit-transform:translateX(0);
+        -moz-transform:translateX(0);
+        -ms-transform:translateX(0);
+        -o-transform:translateX(0);
+        transform:translateX(0);
+
+        -webkit-transition:.5s ease all;
+        -moz-transition:.5s ease all;
+        -o-transition:.5s ease all;
+        transition:.5s ease all;
+    }
+    #nav {
+        width: 900px;
+        height: 100%;
+        background: #38935f;
+        position: absolute;
+        left: -900px;
+        top: 0;
+
+        -webkit-transition:.5s ease all;
+        -moz-transition:.5s ease all;
+        -o-transition:.5s ease all;
+        transition:.5s ease all;
+
+        /* By default, rotate the menu 90deg inwards */
+        -webkit-transform:rotateY(-90deg);
+        -moz-transform:rotateY(-90deg);
+        -ms-transform:rotateY(-90deg);
+        -o-transform:rotateY(-90deg);
+        transform:rotateY(-90deg);
+    }
+    #container.display-nav #canvas {
+        -webkit-transform:translateX(900px);
+        -moz-transform:translateX(900px);
+        -ms-transform:translateX(900px);
+        -o-transform:translateX(900px);
+        transform:translateX(900px);
+    }
+
+    /* transition the menu with perspective on "show-nav" */
+    #container.display-nav #nav {
+        -webkit-transform-origin:100% 50%;
+        -moz-transform-origin:100% 50%;
+        -ms-transform-origin:100% 50%;
+        -o-transform-origin:100% 50%;
+        transform-origin:100% 50%;
+
+        -webkit-transform:perspective(600px) rotateY(0deg);
+        -moz-transform:perspective(600px) rotateY(0deg);
+        -ms-transform:perspective(600px) rotateY(0deg);
+        -o-transform:perspective(600px) rotateY(0deg);
+        transform:perspective(600px) rotateY(0deg);
+    }
+    /*changing list style of nav bar*/
+    #nav li.first_tier
+    {
+        width: 100%;
+    }
+    #nav ul ul
+    {
+        /*Reset values for vertical drop-down list*/
+        position: static;
+        top: auto;
+        width: auto;
+
+    }
 }

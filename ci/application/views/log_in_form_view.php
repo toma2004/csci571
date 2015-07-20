@@ -41,6 +41,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             {
                 echo "Please log in first before you can edit your profile";
             }
+            elseif (isset($time_out))
+            {
+                echo "Your session is timeout. Please log back in";
+            }
             ?>
         </p>
 

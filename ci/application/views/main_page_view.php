@@ -6,7 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Date: 7/12/2015
  * Time: 12:10 AM
  */
-
 ?><!DOCTYPE html>
 <html>
 <head lang="en">
@@ -23,62 +22,67 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<div class="container">
+<div id="my_header">
     <header>
         <h1 id="main_header">Welcome to N2 Food Catering</h1>
     </header>
-    <nav id="nav_bar">
-        <ul>
-            <li class="first_tier" onclick="div_transform('form1')"><span class="replace_a">Home &#9662;</span></li>
-            <li class="first_tier"><a href="#">Product Category &#9662;</a>
-                <ul id="display_list_category_id">
-                    <?php foreach ($category_list as $cl) {  ?>
-                    <li onclick="display_category('<?php echo $cl['category_id']; ?>')"><span class="replace_a"><?php echo htmlspecialchars($cl['category_name']);?></span></li>
-                    <?php } //End foreach loop for category list?>
-                </ul>
-            </li>
-            <?php
-            if (isset($_SESSION['log_in_successfully'])) {
-
-            ?>
-            <li class="first_tier"><a href="#">Your account &#9662;</a>
-                <ul>
-                    <li><a href="<?php echo base_url();?>index.php/main_webpage/display_profile_to_edit">Edit profile</a></li>
-                    <li onclick="request_past_orders_info()"><span class="replace_a">Past orders</span></li>
-                    <li><a href="<?php echo base_url();?>index.php/main_webpage/log_out">Log out</a></li>
-                </ul>
-            </li>
-            <?php
-            }
-            else{
-            ?>
-            <li class="first_tier"><a href="#">Log in/Sign up &#9662;</a>
-                <ul>
-                    <li><a href="<?php echo base_url(); ?>html/sign_up.html">Sign up</a></li>
-                    <li><a href="<?php echo base_url(); ?>html/log_in_page.html">Log in</a></li>
-
-                </ul>
-            </li>
-            <?php }//end of else statement ?>
-
-            <li class="first_tier"><a href="#">Shopping Cart &#9662;</a>
-                <ul>
-                    <li onclick="request_shopping_cart_info()"><span class="replace_a">Edit your cart</span></li>
-                    <li onclick="request_check_out()"><span class="replace_a">Proceed to checkout</span></li>
-                </ul>
-            </li>
-            <li class="first_tier" onclick="request_contact()"><span class="replace_a">Contact Us &#9662;</span></li>
-        </ul>
-    </nav>
 </div>
 
-<div id="form1" style="position:absolute; top: 190px;">
+<div id="container">
+    <div id="canvas">
+        <div id="nav">
+            <ul id="toggle">
+                <li class="first_tier" onclick="div_transform('form1')"><span class="replace_a">Home &#9662;</span></li>
+                <li class="first_tier"><a href="#">Product Category &#9662;</a>
+                    <ul id="display_list_category_id">
+                        <?php foreach ($category_list as $cl) {  ?>
+                        <li onclick="display_category('<?php echo $cl['category_id']; ?>')"><span class="replace_a"><?php echo htmlspecialchars($cl['category_name']);?></span></li>
+                        <?php } //End foreach loop for category list?>
+                    </ul>
+                </li>
+                <?php
+                if (isset($_SESSION['log_in_successfully'])) {
+
+                ?>
+                <li class="first_tier"><a href="#">Your account &#9662;</a>
+                    <ul>
+                        <li><a href="<?php echo base_url();?>index.php/main_webpage/display_profile_to_edit">Edit profile</a></li>
+                        <li onclick="request_past_orders_info()"><span class="replace_a">Past orders</span></li>
+                        <li><a href="<?php echo base_url();?>index.php/main_webpage/log_out">Log out</a></li>
+                    </ul>
+                </li>
+                <?php
+                }
+                else{
+                ?>
+                <li class="first_tier"><a href="#">Log in/Sign up &#9662;</a>
+                    <ul>
+                        <li><a href="<?php echo base_url(); ?>html/sign_up.html">Sign up</a></li>
+                        <li><a href="<?php echo base_url(); ?>html/log_in_page.html">Log in</a></li>
+
+                    </ul>
+                </li>
+                <?php }//end of else statement ?>
+
+                <li class="first_tier"><a href="#">Shopping Cart &#9662;</a>
+                    <ul>
+                        <li onclick="request_shopping_cart_info()"><span class="replace_a">Edit your cart</span></li>
+                        <li onclick="request_check_out()"><span class="replace_a">Proceed to checkout</span></li>
+                    </ul>
+                </li>
+                <li class="first_tier" onclick="request_contact()"><span class="replace_a">Contact Us &#9662;</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="form1" class="main_div">
     <h1 id="header_1" style="color: red">Special Sale Event!</h1>
     <p id="error_msg" style="color: red">
         <?php
-        if (isset ($errmsg_logout))
+        if (isset ($time_out))
         {
-            echo $errmsg_logout;
+            echo htmlspecialchars($time_out);
         }
         elseif (isset ($fail_edit))
         {
@@ -86,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
         elseif (isset($err_msg))
         {
-            echo $err_msg;
+            echo htmlspecialchars($err_msg);
         }
         ?>
     </p>
@@ -129,37 +133,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </form>
 </div>
 
-<div id="display_category_div" style="position:absolute; top: 190px; display: none;">
+<div id="display_category_div" class="main_div" style="display: none;">
     <h1 id="header_2" style="color: #eeeeee">Product Category</h1>
     <form id="display_category_form" action="<?php echo base_url();?>index.php/main_webpage/get_product_detail" method="POST">
     </form>
 </div>
 
-<div id="edit_shopping_cart_div" style="position:absolute; top: 190px; display: none;">
+<div id="edit_shopping_cart_div" class="main_div" style="display: none;">
     <h1 id="header_3" style="color: #eeeeee">Your shopping cart:</h1>
     <form id="edit_shopping_cart_form" action="#" method="POST">
     </form>
 </div>
 
-<div id="checkout_summary_div" style="position:absolute; top: 190px; width: 90%; display: none;">
+<div id="checkout_summary_div" class="main_div" style="display: none;">
     <h1 id="header_4" style="color: #eeeeee">Review your order</h1>
     <form id="checkout_summary_form" action="<?php echo base_url();?>index.php/main_webpage/place_order" method="POST">
     </form>
 </div>
 
-<div id="past_orders_summary_div" style="position:absolute; top: 190px; width: 90%; display: none;">
+<div id="past_orders_summary_div" class="main_div" style="display: none;">
     <h1 id="header_5" style="color: #eeeeee">Your past orders:</h1>
     <form id="past_orders_summary_form" action="#" method="POST">
     </form>
 </div>
 
-<div id="past_order_detail_div" style="position:absolute; top: 190px; width: 90%; display: none;">
+<div id="past_order_detail_div" class="main_div" style="display: none;">
     <h1 id="header_6" style="color: #eeeeee">Review your order</h1>
     <form id="past_order_detail_form" action="#" method="POST">
     </form>
 </div>
 
-<div id="contact_us_div" style="position:absolute; top: 190px; width: 90%; display: none;">
+<div id="contact_us_div" class="main_div" style="display: none;">
     <h1 id="header_7" style="color: #eeeeee">Contact us:</h1>
     <form id="contact_us_form" action="#" method="POST">
     </form>

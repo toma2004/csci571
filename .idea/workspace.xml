@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://D:/xampp/htdocs/ci/css/main_css.css" line="460" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cad3300f-c120-45ae-adba-d9f223dcd561" name="Default" comment="" />
     <ignored path="csci571.iws" />
@@ -24,32 +27,61 @@
     <favorites_list name="csci571" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.53333336">
+    <splitter split-orientation="horizontal" split-proportion="0.47239584">
       <split-first>
         <leaf>
-          <file leaf-file-name="shopping_cart_model.php" pinned="false" current-in-tab="false">
-            <entry file="file://D:/xampp/htdocs/ci/application/models/shopping_cart_model.php">
+          <file leaf-file-name="products_in_category_div.php" pinned="false" current-in-tab="false">
+            <entry file="file://D:/xampp/htdocs/ci/application/views/products_in_category_div.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="25.5" vertical-offset="663" max-vertical-offset="2567">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="714">
+                  <caret line="36" column="2" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="2" />
                   <folding>
-                    <marker date="1437030300258" expanded="true" signature="760:807" placeholder="select * fro..shopping_cart..." />
-                    <marker date="1437030300258" expanded="true" signature="1769:1814" placeholder="delete from ..." />
-                    <marker date="1437030300258" expanded="true" signature="2220:2260" placeholder="insert into ..." />
-                    <marker date="1437030300258" expanded="true" signature="2850:2932" placeholder="select produ..products..." />
-                    <marker date="1437030300258" expanded="true" signature="3501:3573" placeholder="select speci..special_sales_and_product..." />
-                    <marker date="1437030300258" expanded="true" signature="3941:3992" placeholder="select * fro..special_sales..." />
+                    <marker date="1437262753253" expanded="true" signature="222:232" placeholder="..." />
+                    <marker date="1437262753253" expanded="true" signature="753:763" placeholder="..." />
+                    <marker date="1437262753253" expanded="true" signature="969:979" placeholder="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="main_webpage.php" pinned="false" current-in-tab="true">
-            <entry file="file://D:/xampp/htdocs/ci/application/controllers/main_webpage.php">
+          <file leaf-file-name="main_page_view.php" pinned="false" current-in-tab="true">
+            <entry file="file://D:/xampp/htdocs/ci/application/views/main_page_view.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2860386" vertical-offset="11427" max-vertical-offset="12308">
-                  <caret line="687" column="9" selection-start-line="687" selection-start-column="9" selection-end-line="687" selection-end-column="9" />
+                <state vertical-scroll-proportion="3.2031782" vertical-offset="0" max-vertical-offset="3026">
+                  <caret line="166" column="18" selection-start-line="166" selection-start-column="18" selection-end-line="166" selection-end-column="18" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="product_detail_view.php" pinned="false" current-in-tab="false">
+            <entry file="file://D:/xampp/htdocs/ci/application/views/product_detail_view.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="122" max-vertical-offset="1003">
+                  <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+            <entry file="file://D:/xampp/htdocs/style.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="2650" max-vertical-offset="3723">
+                  <caret line="207" column="37" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="37" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="custom.js" pinned="false" current-in-tab="false">
+            <entry file="file://D:/xampp/htdocs/custom.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="731">
+                  <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+                  <folding>
+                    <element signature="e#0#46#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -58,71 +90,47 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="main_page_js.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="main_page_js.js" pinned="false" current-in-tab="true">
             <entry file="file://D:/xampp/htdocs/ci/javascript/main_page_js.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="9724" max-vertical-offset="11016">
-                  <caret line="599" column="1" selection-start-line="599" selection-start-column="1" selection-end-line="599" selection-end-column="1" />
+                <state vertical-scroll-proportion="8.367145" vertical-offset="146" max-vertical-offset="13022">
+                  <caret line="457" column="60" selection-start-line="457" selection-start-column="60" selection-end-line="457" selection-end-column="60" />
                   <folding>
-                    <marker date="1437116454832" expanded="true" signature="18488:18499" placeholder="..." />
-                    <marker date="1437116454832" expanded="true" signature="19406:19417" placeholder="..." />
-                    <marker date="1437116454832" expanded="true" signature="20426:20437" placeholder="..." />
-                    <marker date="1437116454832" expanded="true" signature="20602:20632" placeholder="..." />
+                    <marker date="1437377866812" expanded="true" signature="21462:21473" placeholder="..." />
+                    <marker date="1437377866812" expanded="true" signature="22380:22391" placeholder="..." />
+                    <marker date="1437377866812" expanded="true" signature="23400:23411" placeholder="..." />
+                    <marker date="1437377866812" expanded="true" signature="23576:23606" placeholder="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="products_model.php" pinned="false" current-in-tab="false">
-            <entry file="file://D:/xampp/htdocs/ci/application/models/products_model.php">
+          <file leaf-file-name="main_css.css" pinned="false" current-in-tab="false">
+            <entry file="file://D:/xampp/htdocs/ci/css/main_css.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-19.5" vertical-offset="428" max-vertical-offset="2686">
-                  <caret line="55" column="83" selection-start-line="55" selection-start-column="83" selection-end-line="55" selection-end-column="83" />
-                  <folding>
-                    <marker date="1436853015021" expanded="true" signature="720:822" placeholder="select produ..products..." />
-                    <marker date="1436853015021" expanded="true" signature="991:1056" placeholder="select categ..product_and_category..." />
-                    <marker date="1436853015021" expanded="true" signature="1262:1328" placeholder="select categ..product_categories..." />
-                    <marker date="1436853015021" expanded="true" signature="2452:2526" placeholder="select speci..special_sales_and_product..." />
-                    <marker date="1436853015021" expanded="true" signature="2844:2937" placeholder="select start..special_sales..." />
-                    <marker date="1436853015021" expanded="true" signature="4506:4569" placeholder="select produ..product_and_category..." />
-                    <marker date="1436853015021" expanded="true" signature="4704:4745" placeholder="select * fro..products..." />
-                    <marker date="1436853015021" expanded="true" signature="4788:4860" placeholder="select speci..special_sales_and_product..." />
-                    <marker date="1436853015021" expanded="true" signature="4900:4951" placeholder="select * fro..special_sales..." />
-                  </folding>
+                <state vertical-scroll-proportion="0.0" vertical-offset="8493" max-vertical-offset="9588">
+                  <caret line="506" column="28" selection-start-line="506" selection-start-column="28" selection-end-line="506" selection-end-column="28" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="user_account_model.php" pinned="false" current-in-tab="true">
-            <entry file="file://D:/xampp/htdocs/ci/application/models/user_account_model.php">
+          <file leaf-file-name="off_canvas_menu.html" pinned="false" current-in-tab="false">
+            <entry file="file://D:/xampp/htdocs/off_canvas_menu.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-2.3616319" vertical-offset="4386" max-vertical-offset="8602">
-                  <caret line="132" column="37" selection-start-line="132" selection-start-column="20" selection-end-line="132" selection-end-column="37" />
-                  <folding>
-                    <marker date="1437008313898" expanded="true" signature="763:805" placeholder="select * fro..customers..." />
-                    <marker date="1437008313898" expanded="true" signature="897:936" placeholder="select * fro..customers..." />
-                    <marker date="1437008313898" expanded="true" signature="4527:4893" placeholder="insert into ..." />
-                    <marker date="1437008313898" expanded="true" signature="5896:5965" placeholder="select * fro..customers..." />
-                    <marker date="1437008313898" expanded="true" signature="6571:6614" placeholder="select * fro..customers..." />
-                    <marker date="1437008313898" expanded="true" signature="8878:8933" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="9560:9614" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="10284:10349" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="11028:11086" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="11761:11820" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="12509:12570" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="13235:13283" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="13946:14002" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="14690:14748" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="15416:15470" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="16124:16177" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="16844:16908" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="17573:17630" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="18298:18356" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="19038:19098" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="19739:19789" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="20418:20468" placeholder="update custo..." />
-                    <marker date="1437008313898" expanded="true" signature="21113:21176" placeholder="update custo..." />
-                  </folding>
+                <state vertical-scroll-proportion="0.0" vertical-offset="498" max-vertical-offset="1445">
+                  <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="main_webpage.php" pinned="false" current-in-tab="false">
+            <entry file="file://D:/xampp/htdocs/ci/application/controllers/main_webpage.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="10834" max-vertical-offset="12852">
+                  <caret line="659" column="55" selection-start-line="659" selection-start-column="55" selection-end-line="659" selection-end-column="55" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -156,10 +164,7 @@
         <option value="C:/xampp/htdocs/ci/application/views/log_in_form_view.php" />
         <option value="C:/xampp/htdocs/ci/html/log_in_page.html" />
         <option value="C:/xampp/htdocs/ci/application/views/product_detail_view.php" />
-        <option value="D:/xampp/htdocs/ci/application/views/product_detail_view.php" />
-        <option value="D:/xampp/htdocs/ci/application/views/log_in_form_view.php" />
         <option value="D:/xampp/htdocs/ci/application/models/user_account_model.php" />
-        <option value="D:/xampp/htdocs/ci/application/views/main_page_view.php" />
         <option value="D:/xampp/htdocs/main_page.php" />
         <option value="D:/xampp/htdocs/ci/application/models/shopping_cart_model.php" />
         <option value="C:/xampp/htdocs/ci/application/views/main_page_view.php" />
@@ -170,14 +175,24 @@
         <option value="C:/xampp/htdocs/ci/application/models/order_model.php" />
         <option value="C:/xampp/htdocs/ci/application/controllers/main_webpage.php" />
         <option value="D:/xampp/htdocs/ci/application/models/order_model.php" />
-        <option value="D:/xampp/htdocs/ci/javascript/main_page_js.js" />
         <option value="D:/xampp/htdocs/ci/application/models/main_page_model.php" />
         <option value="D:/xampp/htdocs/ci/application/views/ajax_response_past_order_view.php" />
         <option value="D:/xampp/htdocs/ci/application/views/ajax_response_cart_info.php" />
-        <option value="D:/xampp/htdocs/ci/application/views/edit_profile_view.php" />
         <option value="D:/xampp/htdocs/ci/application/views/check_out_summary.php" />
         <option value="D:/xampp/htdocs/ci/application/views/products_in_category_div.php" />
+        <option value="D:/xampp/htdocs/ci/html/log_in_page_time_out.html" />
+        <option value="D:/xampp/htdocs/ci/application/views/log_in_form_view.php" />
+        <option value="D:/xampp/htdocs/ci/application/views/ajax_response_time_out.php" />
+        <option value="D:/xampp/htdocs/ci/application/views/edit_profile_view.php" />
         <option value="D:/xampp/htdocs/ci/application/controllers/main_webpage.php" />
+        <option value="D:/xampp/htdocs/ci/application/views/product_detail_view.php" />
+        <option value="D:/xampp/htdocs/ci/css/off_canvas_menu.html" />
+        <option value="D:/xampp/htdocs/off_canvas_menu.html" />
+        <option value="D:/xampp/htdocs/custom.js" />
+        <option value="D:/xampp/htdocs/ci/application/views/main_page_view.php" />
+        <option value="D:/xampp/htdocs/style.css" />
+        <option value="D:/xampp/htdocs/ci/javascript/main_page_js.js" />
+        <option value="D:/xampp/htdocs/ci/css/main_css.css" />
       </list>
     </option>
   </component>
@@ -266,6 +281,9 @@
       <BehatRunner />
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -273,9 +291,6 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -295,7 +310,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -309,13 +324,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -339,20 +354,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main_css.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js_function.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8687" max-vertical-offset="11526">
-          <caret line="511" column="5" selection-start-line="511" selection-start-column="5" selection-end-line="511" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main_webpage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1312" max-vertical-offset="5015">
@@ -542,121 +543,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/xampp/htdocs/ci/javascript/main_page_js.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="9724" max-vertical-offset="11016">
-          <caret line="599" column="1" selection-start-line="599" selection-start-column="1" selection-end-line="599" selection-end-column="1" />
-          <folding>
-            <marker date="1437116454832" expanded="true" signature="18488:18499" placeholder="..." />
-            <marker date="1437116454832" expanded="true" signature="19406:19417" placeholder="..." />
-            <marker date="1437116454832" expanded="true" signature="20426:20437" placeholder="..." />
-            <marker date="1437116454832" expanded="true" signature="20602:20632" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/ajax_response_sign_up_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="920">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/xampp/htdocs/ci/application/views/ajax_response_cart_info.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.33144155" vertical-offset="887" max-vertical-offset="1768">
           <caret line="35" column="85" selection-start-line="35" selection-start-column="85" selection-end-line="35" selection-end-column="85" />
-          <folding>
-            <marker date="1437118821413" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821413" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821413" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821413" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821413" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/edit_profile_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1418842" vertical-offset="1567" max-vertical-offset="2448">
-          <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
-          <folding>
-            <element signature="n#style#0;n#p#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/check_out_summary.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5175936" vertical-offset="1057" max-vertical-offset="2040">
-          <caret line="89" column="93" selection-start-line="89" selection-start-column="93" selection-end-line="89" selection-end-column="93" />
-          <folding>
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118821416" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/log_in_form_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.17114094" vertical-offset="153" max-vertical-offset="1156">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -664,58 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.2735528" vertical-offset="1122" max-vertical-offset="2006">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/products_in_category_div.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52099884" vertical-offset="0" max-vertical-offset="881">
-          <caret line="27" column="81" selection-start-line="27" selection-start-column="81" selection-end-line="27" selection-end-column="81" />
-          <folding>
-            <marker date="1437119203009" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437119203009" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437119203009" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/ajax_response_past_order_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07718502" vertical-offset="561" max-vertical-offset="1479">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437118422275" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/product_detail_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.961538" vertical-offset="0" max-vertical-offset="918">
-          <caret line="29" column="110" selection-start-line="29" selection-start-column="94" selection-end-line="29" selection-end-column="110" />
-          <folding>
-            <element signature="n#style#0;n#button#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/views/main_page_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6333712" vertical-offset="445" max-vertical-offset="2958">
-          <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -723,7 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2765" max-vertical-offset="3672">
           <caret line="202" column="21" selection-start-line="202" selection-start-column="21" selection-end-line="202" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -731,40 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2482" max-vertical-offset="3451">
           <caret line="177" column="64" selection-start-line="177" selection-start-column="64" selection-end-line="177" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/models/products_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.5" vertical-offset="428" max-vertical-offset="2686">
-          <caret line="55" column="83" selection-start-line="55" selection-start-column="83" selection-end-line="55" selection-end-column="83" />
-          <folding>
-            <marker date="1436853015021" expanded="true" signature="720:822" placeholder="select produ..products..." />
-            <marker date="1436853015021" expanded="true" signature="991:1056" placeholder="select categ..product_and_category..." />
-            <marker date="1436853015021" expanded="true" signature="1262:1328" placeholder="select categ..product_categories..." />
-            <marker date="1436853015021" expanded="true" signature="2452:2526" placeholder="select speci..special_sales_and_product..." />
-            <marker date="1436853015021" expanded="true" signature="2844:2937" placeholder="select start..special_sales..." />
-            <marker date="1436853015021" expanded="true" signature="4506:4569" placeholder="select produ..product_and_category..." />
-            <marker date="1436853015021" expanded="true" signature="4704:4745" placeholder="select * fro..products..." />
-            <marker date="1436853015021" expanded="true" signature="4788:4860" placeholder="select speci..special_sales_and_product..." />
-            <marker date="1436853015021" expanded="true" signature="4900:4951" placeholder="select * fro..special_sales..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/xampp/htdocs/ci/application/models/shopping_cart_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="25.5" vertical-offset="663" max-vertical-offset="2567">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1437030300258" expanded="true" signature="760:807" placeholder="select * fro..shopping_cart..." />
-            <marker date="1437030300258" expanded="true" signature="1769:1814" placeholder="delete from ..." />
-            <marker date="1437030300258" expanded="true" signature="2220:2260" placeholder="insert into ..." />
-            <marker date="1437030300258" expanded="true" signature="2850:2932" placeholder="select produ..products..." />
-            <marker date="1437030300258" expanded="true" signature="3501:3573" placeholder="select speci..special_sales_and_product..." />
-            <marker date="1437030300258" expanded="true" signature="3941:3992" placeholder="select * fro..special_sales..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -772,135 +575,159 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-67.42308" vertical-offset="19939" max-vertical-offset="21964">
           <caret line="1281" column="29" selection-start-line="1281" selection-start-column="29" selection-end-line="1281" selection-end-column="29" />
-          <folding>
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select speci..special_sales_and_product..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select produ..products..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..special_sales..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select produ..products..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select categ..product_and_category..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select categ..product_categories..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select speci..special_sales_and_product..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select start..special_sales..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..customers..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..customers..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select produ..product_and_category..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..products..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select speci..special_sales_and_product..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..special_sales..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select categ..product_categories..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select produ..products..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select speci..special_sales_and_product..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..special_sales..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..customers..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select produ..products..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select speci..special_sales_and_product..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..special_sales..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select order..orders..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..orders..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..orders..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..customers..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..order_items..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select count..order_items..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="select * fro..products..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437030300227" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/views/ajax_response_sign_up_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="920">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/html/log_in_page_time_out.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36129755" vertical-offset="0" max-vertical-offset="894">
+          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://D:/xampp/htdocs/ci/application/models/user_account_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.3616319" vertical-offset="4386" max-vertical-offset="8602">
-          <caret line="132" column="37" selection-start-line="132" selection-start-column="20" selection-end-line="132" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.36662883" vertical-offset="4386" max-vertical-offset="8602">
+          <caret line="277" column="17" selection-start-line="277" selection-start-column="17" selection-end-line="277" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/models/products_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5754824" vertical-offset="428" max-vertical-offset="2686">
+          <caret line="55" column="83" selection-start-line="55" selection-start-column="83" selection-end-line="55" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/views/log_in_form_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.90692395" vertical-offset="102" max-vertical-offset="1224">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/models/shopping_cart_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.75255394" vertical-offset="663" max-vertical-offset="2567">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/views/ajax_response_time_out.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26621923" vertical-offset="0" max-vertical-offset="894">
+          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/views/check_out_summary.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.88422245" vertical-offset="1159" max-vertical-offset="2040">
+          <caret line="114" column="2" selection-start-line="114" selection-start-column="2" selection-end-line="114" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/views/edit_profile_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.90351874" vertical-offset="1550" max-vertical-offset="2448">
+          <caret line="138" column="7" selection-start-line="138" selection-start-column="7" selection-end-line="138" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/views/ajax_response_past_order_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.061294" vertical-offset="0" max-vertical-offset="1479">
+          <caret line="55" column="68" selection-start-line="55" selection-start-column="68" selection-end-line="55" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/views/products_in_category_div.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="714">
+          <caret line="36" column="2" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="2" />
           <folding>
-            <marker date="1437008313898" expanded="true" signature="763:805" placeholder="select * fro..customers..." />
-            <marker date="1437008313898" expanded="true" signature="897:936" placeholder="select * fro..customers..." />
-            <marker date="1437008313898" expanded="true" signature="4527:4893" placeholder="insert into ..." />
-            <marker date="1437008313898" expanded="true" signature="5896:5965" placeholder="select * fro..customers..." />
-            <marker date="1437008313898" expanded="true" signature="6571:6614" placeholder="select * fro..customers..." />
-            <marker date="1437008313898" expanded="true" signature="8878:8933" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="9560:9614" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="10284:10349" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="11028:11086" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="11761:11820" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="12509:12570" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="13235:13283" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="13946:14002" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="14690:14748" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="15416:15470" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="16124:16177" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="16844:16908" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="17573:17630" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="18298:18356" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="19038:19098" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="19739:19789" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="20418:20468" placeholder="update custo..." />
-            <marker date="1437008313898" expanded="true" signature="21113:21176" placeholder="update custo..." />
+            <marker date="1437262753253" expanded="true" signature="222:232" placeholder="..." />
+            <marker date="1437262753253" expanded="true" signature="753:763" placeholder="..." />
+            <marker date="1437262753253" expanded="true" signature="969:979" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://D:/xampp/htdocs/ci/application/controllers/main_webpage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2860386" vertical-offset="11427" max-vertical-offset="12308">
-          <caret line="687" column="9" selection-start-line="687" selection-start-column="9" selection-end-line="687" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="10834" max-vertical-offset="12852">
+          <caret line="659" column="55" selection-start-line="659" selection-start-column="55" selection-end-line="659" selection-end-column="55" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/off_canvas_menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="498" max-vertical-offset="1445">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/views/product_detail_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="122" max-vertical-offset="1003">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
+          <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#46#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2650" max-vertical-offset="3723">
+          <caret line="207" column="37" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/application/views/main_page_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.2031782" vertical-offset="0" max-vertical-offset="3026">
+          <caret line="166" column="18" selection-start-line="166" selection-start-column="18" selection-end-line="166" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/css/main_css.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8493" max-vertical-offset="9588">
+          <caret line="506" column="28" selection-start-line="506" selection-start-column="28" selection-end-line="506" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/xampp/htdocs/ci/javascript/main_page_js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.367145" vertical-offset="146" max-vertical-offset="13022">
+          <caret line="457" column="60" selection-start-line="457" selection-start-column="60" selection-end-line="457" selection-end-column="60" />
+          <folding>
+            <marker date="1437377866812" expanded="true" signature="21462:21473" placeholder="..." />
+            <marker date="1437377866812" expanded="true" signature="22380:22391" placeholder="..." />
+            <marker date="1437377866812" expanded="true" signature="23400:23411" placeholder="..." />
+            <marker date="1437377866812" expanded="true" signature="23576:23606" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -5,6 +5,7 @@
 /*jQuery ready function to be run when browser load the page*/
 $(document).ready(initializePage);
 var xmlhttp;
+var last_destination='form1';
 /*function to initialize the page*/
 function initializePage()
 {
@@ -17,7 +18,7 @@ function initializePage()
     {// code for IE6, IE5
         xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
     }
-
+    check_size();
 
     /*What to do when button is clicked on sign up page*/
     $("#submit_sign_up_form").click(validate_sign_up_page);
@@ -27,6 +28,18 @@ function initializePage()
 
     /*Submit button on edit profile page*/
     $("#submit_edit_profile_form").click(validate_edit_profile_page);
+
+    /*User tap on button icon in mobile mode*/
+    $(".toggle-nav").click(toggleNavigation_helper);
+}
+
+function check_size()
+{
+    if ($(window).width()<= 1000)
+    {
+        $("#my_header").hide();
+        $("#canvas").append("<div id='my_header'><a href='#' class='toggle-nav' id='bars'>☰</a><header><h1 id='main_header'>Welcome to N2 Food Catering</h1></header></div>");
+    }
 }
 
 
@@ -224,9 +237,12 @@ function isUnique()
         var response = xmlhttp.responseText;
         if (response == "false")
         {
-            return false
+            return false;
         }
-        return true
+        else
+        {
+            return true;
+        }
     }
 }
 
@@ -387,11 +403,92 @@ function display_category_result()
 {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
     {
-        document.getElementById('display_category_form').innerHTML = xmlhttp.responseText;
-        div_transform("display_category_div");
+        if (xmlhttp.responseText == 'time_out')
+        {
+            window.location.replace("http://localhost/ci/html/log_in_page_time_out.html");
+        }
+        else
+        {
+            document.getElementById('display_category_form').innerHTML = xmlhttp.responseText;
+            div_transform("display_category_div");
+        }
     }
 }
-
+/*function toggle navigation helper*/
+function toggleNavigation_helper()
+{
+    toggleNavigation('none');
+}
+/*Function to toggle navigation side bar*/
+function toggleNavigation( destination )
+{
+    var div_name;
+    if ($('#container').hasClass('display-nav'))
+    {
+        // Close Nav
+        $('#container').removeClass('display-nav');
+        //$("#form1").show();
+        if (destination == 'none')
+        {
+            div_name = "#"+last_destination;
+            $(div_name).show();
+        }
+        else
+        {
+            div_name = "#"+destination;
+            $(div_name).show();
+        }
+    }
+    else
+    {
+        // Open Nav
+        if (destination != 'none')
+        {
+            div_name = "#"+destination;
+            $(div_name).hide();
+            last_destination = destination;
+        }
+        else
+        {
+            if ($("#form1").is(':visible'))
+            {
+                $("#form1").hide();
+                last_destination = "form1";
+            }
+            else if ($("#display_category_div").is(':visible'))
+            {
+                $("#display_category_div").hide();
+                last_destination = "display_category_div";
+            }
+            else if ($("#edit_shopping_cart_div").is(':visible'))
+            {
+                $("#edit_shopping_cart_div").hide();
+                last_destination = "edit_shopping_cart_div";
+            }
+            else if ($("#checkout_summary_div").is(':visible'))
+            {
+                $("#checkout_summary_div").hide();
+                last_destination = "checkout_summary_div";
+            }
+            else if ($("#past_orders_summary_div").is(':visible'))
+            {
+                $("#past_orders_summary_div").hide();
+                last_destination = "past_orders_summary_div";
+            }
+            else if ($("#past_order_detail_div").is(':visible'))
+            {
+                $("#past_order_detail_div").hide();
+                last_destination = "past_order_detail_div";
+            }
+            else if ($("#contact_us_div").is(':visible'))
+            {
+                $("#contact_us_div").hide();
+                last_destination = "contact_us_div";
+            }
+        }
+        $('#container').addClass('display-nav');
+    }
+}
 /*Function to navigate between div*/
 function div_transform( destination )
 {
@@ -402,7 +499,7 @@ function div_transform( destination )
     var d5 = document.getElementById('past_orders_summary_div');
     var d6 = document.getElementById('past_order_detail_div');
     var d7 = document.getElementById('contact_us_div');
-
+    toggleNavigation( destination );
     if (destination == "form1")
     {
         d2.style.display = "none";
@@ -590,8 +687,15 @@ function result_request_check_out()
 {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
     {
-        document.getElementById('checkout_summary_form').innerHTML = xmlhttp.responseText;
-        div_transform("checkout_summary_div");
+        if (xmlhttp.responseText == 'time_out')
+        {
+            window.location.replace("http://localhost/ci/html/log_in_page_time_out.html");
+        }
+        else
+        {
+            document.getElementById('checkout_summary_form').innerHTML = xmlhttp.responseText;
+            div_transform("checkout_summary_div");
+        }
     }
 }
 
@@ -610,8 +714,15 @@ function result_request_past_order()
 {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
     {
-        document.getElementById('past_orders_summary_form').innerHTML = xmlhttp.responseText;
-        div_transform("past_orders_summary_div");
+        if (xmlhttp.responseText == 'time_out')
+        {
+            window.location.replace("http://localhost/ci/html/log_in_page_time_out.html");
+        }
+        else
+        {
+            document.getElementById('past_orders_summary_form').innerHTML = xmlhttp.responseText;
+            div_transform("past_orders_summary_div");
+        }
     }
 }
 
@@ -632,8 +743,15 @@ function result_request_past_order_detail()
 {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
     {
-        document.getElementById('past_order_detail_form').innerHTML = xmlhttp.responseText;
-        div_transform("past_order_detail_div");
+        if (xmlhttp.responseText == 'time_out')
+        {
+            window.location.replace("http://localhost/ci/html/log_in_page_time_out.html");
+        }
+        else
+        {
+            document.getElementById('past_order_detail_form').innerHTML = xmlhttp.responseText;
+            div_transform("past_order_detail_div");
+        }
     }
 }
 
