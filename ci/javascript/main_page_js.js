@@ -6,6 +6,15 @@
 $(document).ready(initializePage);
 var xmlhttp;
 var last_destination='form1';
+
+/*jquery to check if window resize - then refresh page*/
+$(window).bind('resize', function()
+{
+   // this.location.reload(false);
+    initializePage();
+});
+
+
 /*function to initialize the page*/
 function initializePage()
 {
@@ -38,7 +47,18 @@ function check_size()
     if ($(window).width()<= 1000)
     {
         $("#my_header").hide();
-        $("#canvas").append("<div id='my_header'><a href='#' class='toggle-nav' id='bars'>☰</a><header><h1 id='main_header'>Welcome to N2 Food Catering</h1></header></div>");
+        if (!$("#my_header1").length)
+        {
+            $("#canvas").append("<div id='my_header1'><a href='#' class='toggle-nav' id='bars'>☰</a><header><h1 id='main_header'>Welcome to N2 Food Catering</h1></header></div>");
+        }
+   }
+    else
+    {
+        if ($("#my_header1").length)
+        {
+            $("#my_header1").remove();
+            $("#my_header").show();
+        }
     }
 }
 
@@ -249,8 +269,8 @@ function isUnique()
 /*function to validate log in page*/
 function validate_log_in_page()
 {
-    var username = document.getElementById('usrname');
-    var password = document.getElementById('pwd');
+    var username = document.getElementById('usrname_login');
+    var password = document.getElementById('pwd_login');
     var err_msg = document.getElementById('error_message_log_in_page');
 
     err_msg.innerHTML = '';
@@ -441,52 +461,57 @@ function toggleNavigation( destination )
     }
     else
     {
-        // Open Nav
-        if (destination != 'none')
+        if ($(window).width()<= 1000)
+
         {
-            div_name = "#"+destination;
-            $(div_name).hide();
-            last_destination = destination;
+            // Open Nav
+            if (destination != 'none')
+            {
+                div_name = "#"+destination;
+                $(div_name).hide();
+                last_destination = destination;
+            }
+            else
+            {
+                if ($("#form1").is(':visible'))
+                {
+                    $("#form1").hide();
+                    last_destination = "form1";
+                }
+                else if ($("#display_category_div").is(':visible'))
+                {
+                    $("#display_category_div").hide();
+                    last_destination = "display_category_div";
+                }
+                else if ($("#edit_shopping_cart_div").is(':visible'))
+                {
+                    $("#edit_shopping_cart_div").hide();
+                    last_destination = "edit_shopping_cart_div";
+                }
+                else if ($("#checkout_summary_div").is(':visible'))
+                {
+                    $("#checkout_summary_div").hide();
+                    last_destination = "checkout_summary_div";
+                }
+                else if ($("#past_orders_summary_div").is(':visible'))
+                {
+                    $("#past_orders_summary_div").hide();
+                    last_destination = "past_orders_summary_div";
+                }
+                else if ($("#past_order_detail_div").is(':visible'))
+                {
+                    $("#past_order_detail_div").hide();
+                    last_destination = "past_order_detail_div";
+                }
+                else if ($("#contact_us_div").is(':visible'))
+                {
+                    $("#contact_us_div").hide();
+                    last_destination = "contact_us_div";
+                }
+            }
+            $('#container').addClass('display-nav');
         }
-        else
-        {
-            if ($("#form1").is(':visible'))
-            {
-                $("#form1").hide();
-                last_destination = "form1";
-            }
-            else if ($("#display_category_div").is(':visible'))
-            {
-                $("#display_category_div").hide();
-                last_destination = "display_category_div";
-            }
-            else if ($("#edit_shopping_cart_div").is(':visible'))
-            {
-                $("#edit_shopping_cart_div").hide();
-                last_destination = "edit_shopping_cart_div";
-            }
-            else if ($("#checkout_summary_div").is(':visible'))
-            {
-                $("#checkout_summary_div").hide();
-                last_destination = "checkout_summary_div";
-            }
-            else if ($("#past_orders_summary_div").is(':visible'))
-            {
-                $("#past_orders_summary_div").hide();
-                last_destination = "past_orders_summary_div";
-            }
-            else if ($("#past_order_detail_div").is(':visible'))
-            {
-                $("#past_order_detail_div").hide();
-                last_destination = "past_order_detail_div";
-            }
-            else if ($("#contact_us_div").is(':visible'))
-            {
-                $("#contact_us_div").hide();
-                last_destination = "contact_us_div";
-            }
-        }
-        $('#container').addClass('display-nav');
+
     }
 }
 /*Function to navigate between div*/
@@ -500,6 +525,7 @@ function div_transform( destination )
     var d6 = document.getElementById('past_order_detail_div');
     var d7 = document.getElementById('contact_us_div');
     toggleNavigation( destination );
+
     if (destination == "form1")
     {
         d2.style.display = "none";

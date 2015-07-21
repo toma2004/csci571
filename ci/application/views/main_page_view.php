@@ -32,11 +32,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div id="canvas">
         <div id="nav">
             <ul id="toggle">
-                <li class="first_tier" onclick="div_transform('form1')"><span class="replace_a">Home &#9662;</span></li>
+                <li class="first_tier" onclick="div_transform('form1')">
+                    <div class="border">
+                        <span class="replace_a">Home &#9662;</span>
+                    </div>
+                </li>
                 <li class="first_tier"><a href="#">Product Category &#9662;</a>
                     <ul id="display_list_category_id">
                         <?php foreach ($category_list as $cl) {  ?>
-                        <li onclick="display_category('<?php echo $cl['category_id']; ?>')"><span class="replace_a"><?php echo htmlspecialchars($cl['category_name']);?></span></li>
+                            <li onclick="display_category('<?php echo $cl['category_id']; ?>')">
+                                    <span class="replace_a"><?php echo htmlspecialchars($cl['category_name']);?></span>
+                            </li>
                         <?php } //End foreach loop for category list?>
                     </ul>
                 </li>
@@ -46,9 +52,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 ?>
                 <li class="first_tier"><a href="#">Your account &#9662;</a>
                     <ul>
-                        <li><a href="<?php echo base_url();?>index.php/main_webpage/display_profile_to_edit">Edit profile</a></li>
-                        <li onclick="request_past_orders_info()"><span class="replace_a">Past orders</span></li>
-                        <li><a href="<?php echo base_url();?>index.php/main_webpage/log_out">Log out</a></li>
+                        <li>
+                            <a href="<?php echo base_url();?>index.php/main_webpage/display_profile_to_edit">Edit profile</a>
+                        </li>
+                        <li onclick="request_past_orders_info()">
+                            <span class="replace_a">Past orders</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url();?>index.php/main_webpage/log_out">Log out</a>
+                        </li>
                     </ul>
                 </li>
                 <?php
@@ -57,8 +69,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 ?>
                 <li class="first_tier"><a href="#">Log in/Sign up &#9662;</a>
                     <ul>
-                        <li><a href="<?php echo base_url(); ?>html/sign_up.html">Sign up</a></li>
-                        <li><a href="<?php echo base_url(); ?>html/log_in_page.html">Log in</a></li>
+                        <li>
+                            <a href="<?php echo base_url(); ?>html/sign_up.html">Sign up</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(); ?>html/log_in_page.html">Log in</a>
+                        </li>
 
                     </ul>
                 </li>
@@ -92,6 +108,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         {
             echo htmlspecialchars($err_msg);
         }
+        elseif (isset ($errmsg_logout))
+        {
+            echo htmlspecialchars($errmsg_logout);
+        }
         ?>
     </p>
     <p style="color: green; font-weight: bold; font-size: 200%;">
@@ -119,11 +139,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         ?>
         <div class="image_block">
-            <input type="image" src="<?php echo base_url().$ss_display['product_image'];?>" alt="<?php echo htmlspecialchars($ss_display['product_name']);?>" style="width: 200px; height: 200px;" name="product_name_clicked" value="<?php echo $ss_display['product_id'];?>"/>
+            <input type="image" class="my_image" src="<?php echo base_url().$ss_display['product_image'];?>" alt="<?php echo htmlspecialchars($ss_display['product_name']);?>" name="product_name_clicked" value="<?php echo $ss_display['product_id'];?>"/>
             <span class="caption">
-                <span style="color: red">SALE: <?php echo htmlspecialchars($ss_display['percentage_discount']);?>%OFF</span><br/>
-                Orig. price = $<?php echo htmlspecialchars($ss_display['product_price']);?><br/>
-                <span style="color: red">Discounted price = $<?php echo htmlspecialchars($ss_display['discounted']);?></span>
+                <span class="special_sale_ad">SALE: <?php echo htmlspecialchars($ss_display['percentage_discount']);?>%OFF</span><br/>
+                <span class="orig_ad">Orig. price = $<?php echo htmlspecialchars($ss_display['product_price']);?></span><br/>
+                <span class="special_sale_ad">Discounted price = $<?php echo htmlspecialchars($ss_display['discounted']);?></span>
             </span>
         </div>
         <?php } //end of foreach loop

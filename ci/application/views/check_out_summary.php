@@ -98,9 +98,9 @@ else if (isset($need_log_in_before_checkout))
     echo '<div class="login_form1">';
     echo '<p id="error_message_log_in_page" style="color: red">Please log in before proceeding to check out</p>';
     echo '<label for="usrname">User Name</label><span style="color: red">*</span>';
-    echo '<input type="text" id="usrname" name="user_name" maxlength="30" pattern="[a-zA-z0-9]+" required/><br/>';
+    echo '<input type="text" id="usrname_login" name="user_name" maxlength="30" pattern="[a-zA-z0-9]+" required/><br/>';
     echo '<label for="pwd">Password</label><span style="color: red">*</span>';
-    echo '<input type="password" id="pwd" name="pass_word" maxlength="30" required style="position:relative; left:11px;"/><br/><br/>';
+    echo '<input type="password" id="pwd_login" name="pass_word" maxlength="30" required style="position:relative; left:11px;"/><br/><br/>';
     echo '<button type="button" onclick=div_transform("form1");>Home</button>';
     echo '<button type="submit" onclick="validate_log_in_page()" name="submit_log_in" value="submit_log_in" style="position: relative; left: 10px">Submit</button></div></div>'; //End div=outer_box_login and div=login_form1
 }
