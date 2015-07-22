@@ -1,0 +1,56 @@
+Link to customer-side page (HW4): http://cs-server.usc.edu:23322/hw4/index.php/main_webpage
+
+All tests have been done using Chrome browser version: 43.0.2357.130
+
+_For customer-side, if you don't want to sign up and have your own credential, you can use these account:
+username: jdoe, pass: 123
+username: nstamp, pass: 123
+
+Database:
+I have included the mydatabase.sql file along with HW2 submission that shows clearly field names, types, and sizes. Please refer to that file for database
+
+Database notes:
+I have decided that in my database, a product can be in multiple categories and a category can have multiple products (that's why I created an extra table product_and_category).
+Also, I decided to have a special sale event can be applied to multiple products, but a product can have ONLY 1 special sale event (UNIQUE constrain in database). 
+
+There is a customer table to store customer's info. There is "shopping_cart" table to store shopping cart of user who logs in and then logs out without placing order.
+
+There is orders table to store all orders and order_items table to store all items purchased in 1 order.
+
+_Feature on shopping cart:
+Customer can see my products and add to his/her cart without logging in. However, when they want to check out, they will be prompted to log in.
+>>>If they already have some products in their cart in prior log-in, those product will be merged with the ones currently in the cart. For example, if the same product
+>>>is in the cart and the database, then quantity will be increased accordingly. Else, shopping cart will be added new products.
+
+Shopping cart won't be saved if customer does NOT log in and close browser.
+
+Include names and descriptions of each HTML page and PHP script:
+Controller:
+_Main_webpage.php: main controller to get data from model and pass them to view for user to see
+
+Models:
+_Main_page_model.php: get data for main page display
+_User_account_model.php: get data about customer
+_Products_model.php: get data about products to display
+_Order_model.php: get data about order and order items
+_Shopping_cart.php: get data about shopping cart
+
+Views:
+_ajax_response_cart_info.php: response to ajax request to get shopping cart info
+_ajax_response_past_order_view.php: response to ajax request to get past order info
+_ajax_response_sign_up_form.php: response for success or failure
+_ajax_response_time_out.php: response if time out
+_check_out_summary.php: display checkout summary
+_edit_profile_view.php: display customer info for editing
+_log_in_form_view.php: display log in form
+_main_page_view.php: display main webpage
+_product_detail_view.php: display a detail of a product for add to cart
+_products_in_category_div.php: display all products in a category
+_sign_up_form_view.php: display sign up form
+
+
+css:
+_main_css.css: all style and also code for media query for responsive web design
+
+javascript:
+_main_page_js.js: handle all data validation on client side and also AJAX requests
