@@ -19,13 +19,13 @@
         <p id="error_message_log_in_page" style="color: red"></p>
 
         <form id="mylogin_form1" action="http://localhost/ci/index.php/main_webpage/log_in" method="POST">
-            <label for="usrname">User Name</label><span style="color: red">*</span>
-            <input type="text" id="usrname" name="user_name" maxlength="30" pattern="[a-zA-z0-9]+" required/><br/>
+            <span class="login_label">User Name</span><span style="color: red">*</span>
+            <input type="text" id="usrname_login" name="user_name" maxlength="30" pattern="[a-zA-z0-9]+" required/><br/>
 
-            <label for="pwd">Password</label><span style="color: red">*</span>
-            <input type="password" id="pwd" name="pass_word" maxlength="30" required style="position:relative; left:11px;"/><br/><br/>
+            <span class="login_label">Password</span><span style="color: red">*</span>
+            <input type="password" id="pwd_login" name="pass_word" maxlength="30" required style="position:relative; left:11px;"/><br/><br/>
 
-            <a href="http://localhost/ci/index.php/main_webpage"><button type="button">Home</button></a>
+            <a href="http://localhost/ci/index.php/main_webpage"><button type="button" id="to_home_from_login">Home</button></a>
             <button type="submit" id="submit_log_in" name="submit_log_in" value="submit_log_in" style="position: relative; left: 10px">Submit</button>
 
         </form>

@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="UTF-8">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript"/>
     <meta name="author" content="Nguyen Tran"/>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="<?php echo base_url(); ?>javascript/jquery-1.11.3.min.js"></script>
     <script src="<?php echo base_url(); ?>javascript/main_page_js.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/main_css.css"/> <!-- link to external css file -->
@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span class="login_label">Password</span><span style="color: red">*</span>
             <input type="password" id="pwd_login" name="pass_word" maxlength="30" required /><br/><br/>
 
-            <a href="<?php echo base_url();?>index.php/main_webpage"><button type="button">Home</button></a>
+            <a href="<?php echo base_url();?>index.php/main_webpage"><button type="button" id="to_home_from_login">Home</button></a>
             <button type="submit" id="submit_log_in" name="submit_log_in" value="submit_log_in" style="position: relative; left: 10px">Submit</button>
 
         </form>

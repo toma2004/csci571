@@ -2,7 +2,12 @@ body, html
 {
     font-family: "Trebuchet MS", "Georgia", serif;
     color: #ffffff;
-    background: url("background_image_resize.jpg") no-repeat fixed center;
+    min-height: 100%;
+    min-width: 100%;
+    background: url("background_image_resize.jpg") no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
 }
 
@@ -43,7 +48,7 @@ header
 .toggle-nav
 {
     color: #fff;
-    font-size: 700%;
+    font-size: 350%;
     position: absolute;
     top: 50%;
 }
@@ -177,6 +182,7 @@ header
 {
     color: red;
 }
+
 /**************************************************************************************************
 *Displaying detail of a product page
 ***************************************************************************************************/
@@ -186,15 +192,30 @@ header
     margin-left: 10%;
 }
 
-#product_image
+#my_image
 {
+    width: 400px;
     float: left;
 }
 
+#product_image
+{
+    width: 400px;
+}
+
+#sale_text
+{
+    position: relative;
+    left: 2%;
+    padding-bottom: 1%;
+    font-size: 150%;
+
+}
 .image_info
 {
     overflow: hidden;
     padding-bottom: 1%;
+    width: 100%;
 }
 
 #add_to_cart_button
@@ -207,17 +228,9 @@ header
     height: 30px;
     cursor: pointer;
     text-align: center;
-    position: relative;
-    left: 2%;
 }
 
-#sale_text_product_detail
-{
-    vertical-align: top;
-    display: block;
-    position: relative;
-    left: 2%;
-}
+
 
 /**************************************************************************************************
 *Log in page style
@@ -478,6 +491,10 @@ header
 ***************************************************************************************************/
 @media only screen and (max-device-width: 667px)
 {
+    body,html
+    {
+        background: url("foodblogbackground.jpg") fixed center center;
+    }
     #my_header1
     {
         margin: 0;
@@ -490,11 +507,21 @@ header
     {
         width: 90%;
         float: right;
-        line-height: 120px;
-        font-size: 60px;
+        line-height: 45px;
+        font-size: 25px;
         margin: 0;
         padding: 0;
     }
+    /*div of forms*/
+    .main_div
+    {
+        position:relative;
+        top: 200px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
     #container
     {
         width: 100%;
@@ -502,19 +529,11 @@ header
         position: absolute;
         overflow: hidden;
         margin: 0;
-        padding: 0;
+        padding-bottom: 0;
         top: 0;
         left: 0;
     }
-    /*div of forms*/
-    .main_div
-    {
-        position:relative;
-        top: 400px;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
+
     #canvas
     {
         width: 100%;
@@ -534,11 +553,11 @@ header
         transition:.5s ease all;
     }
     #nav {
-        width: 850px;
+        width: 250px;
         height: 100%;
         background: #313131;
         position: absolute;
-        left: -850px;
+        left: -250px;
         top: 0;
 
         -webkit-transition:.5s ease all;
@@ -554,11 +573,11 @@ header
         transform:rotateY(-90deg);
     }
     #container.display-nav #canvas {
-        -webkit-transform:translateX(850px);
-        -moz-transform:translateX(850px);
-        -ms-transform:translateX(850px);
-        -o-transform:translateX(850px);
-        transform:translateX(850px);
+        -webkit-transform:translateX(250px);
+        -moz-transform:translateX(250px);
+        -ms-transform:translateX(250);
+        -o-transform:translateX(250px);
+        transform:translateX(250px);
     }
 
     /* transition the menu with perspective on "show-nav" */
@@ -592,8 +611,8 @@ header
     /*transform a list*/
     #toggle li a, .replace_a
     {
-        height: 220px;
-        font-size: 60px;
+        height: 60px;
+        font-size: 25px;
 
     }
     .border
@@ -610,26 +629,22 @@ header
         background-color: #909090;
     }
     /*Bigger header and images*/
-    #header_1, #header_2, #header_3, #header_4, #header_5, #header_6, #header_7
-    {
-        font-size: 100px;
-    }
     .image_block
     {
-        width: 420px;
+        width: 280px;
     }
     .caption
     {
-        width: 400px;
+        width: 260px;
     }
     .my_image
     {
-        width: 400px;
-        height: 400px;
+        width: 260px;
+        height: 260px;
     }
     .special_sale_ad, .orig_ad
     {
-        font-size: 40px;
+        font-size: 20px;
     }
     /**************************************************************************************************
     *Log in page style
@@ -653,6 +668,14 @@ header
     #header_login
     {
         font-size: 120px;
+    }
+    .login_label
+    {
+        font-size: 60px;
+    }
+    #usrname_login, #pwd_login, #submit_log_in, #to_home_from_login
+    {
+        font-size: 35px;
     }
 }
 
@@ -682,10 +705,10 @@ header
     {
         width: 100%;
         height: 100vh; /*Size of element will be relative to size of viewport*/
-        position: absolute;
         overflow: hidden;
         margin: 0;
         padding: 0;
+        position: absolute;
         top: 0;
         left: 0;
     }
@@ -693,7 +716,7 @@ header
     .main_div
     {
         position:absolute;
-        top: 45%;
+        top: 320px;
         width: 100%;
         margin: 0;
         padding: 0;
@@ -704,6 +727,7 @@ header
         height: 100%;
         padding: 5.5% 0;
         position: relative;
+        border: solid;
 
         -webkit-transform:translateX(0);
         -moz-transform:translateX(0);
@@ -723,7 +747,6 @@ header
         position: absolute;
         left: -500px;
         top: 0;
-
         -webkit-transition:.5s ease all;
         -moz-transition:.5s ease all;
         -o-transition:.5s ease all;
@@ -809,5 +832,50 @@ header
         margin-right: auto;
         width: 70%;
         height: 90%;
+    }
+    /**************************************************************************************************
+    *Displaying detail of a product page
+    ***************************************************************************************************/
+    .product_detail_container
+    {
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .image_info
+    {
+        padding-bottom: 1%;
+        width: 100%;
+        background-color: #000;
+    }
+    #product_image
+    {
+        width: 100%;
+        height: 400px;
+    }
+    #my_image
+    {
+        width: 100%;
+    }
+
+    #sale_text
+    {
+        position: relative;
+        left: 0;
+        padding-bottom: 1%;
+
+    }
+
+    #add_to_cart_button
+    {
+        vertical-align: bottom;
+        bottom: auto;
+        width: 200px;
+        background: orange;
+        border: orange;
+        height: 30px;
+        cursor: pointer;
+        text-align: center;
     }
 }

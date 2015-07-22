@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="description" content="Food Catering"/>
     <meta name="keywords" content="HTML,CSS,XML,JavaScript"/>
     <meta name="author" content="Nguyen Tran"/>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <?php echo link_tag('css/main_css.css'); ?> <!-- Include css style sheet from folder /css -->
     <!--<link rel="shortcut icon" type="image/jpg" href="flower_crown1.jpg"></link> -->
     <script src="<?php echo base_url(); ?>javascript/jquery-1.11.3.min.js"></script>
