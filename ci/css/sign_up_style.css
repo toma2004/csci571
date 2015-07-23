@@ -1,0 +1,32 @@
+.first_box_element_signup_page, .second_box_element_signup_page
+{
+    float: left;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+#security_signup_page
+{
+    position: relative;
+    left: 20px;
+}
+
+@media only screen and (max-width: 650px)
+{
+    .first_box_element_signup_page
+    {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 450px)
+{
+    .second_box_element_signup_page
+    {
+        width: 100%;
+    }
+    #security_signup_page
+    {
+        left: 0;
+    }
+}
