@@ -19,6 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url(); ?>javascript/jquery-1.11.3.min.js"></script>
     <script src="<?php echo base_url(); ?>javascript/main_page_js.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/main_css.css"/> <!-- link to external css file -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/login_style.css"/> <!-- link to external css file -->
 
     <title>N2 customer log-in</title>
 </head>
@@ -48,11 +49,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             ?>
         </p>
         <form id="mylogin_form1" action="<?php echo base_url();?>index.php/main_webpage/log_in" method="POST">
-            <span class="login_label">User Name</span><span style="color: red">*</span>
-            <input type="text" id="usrname_login" name="user_name" maxlength="30" pattern="[a-zA-z0-9]+" required/><br/>
+            <div id="usr_box">
+                <div id="on_side_usr">
+                    <label for="usrname_login">User Name</label><span style="color: red">*</span>
+                </div>
+                <input type="text" id="usrname_login" name="user_name" maxlength="30" pattern="[a-zA-z0-9]+" required/>
+            </div>
 
-            <span class="login_label">Password</span><span style="color: red">*</span>
-            <input type="password" id="pwd_login" name="pass_word" maxlength="30" required /><br/><br/>
+            <div id="pwd_box">
+                <div id="on_side_pwd">
+                    <label for="pwd_login">Password</label><span style="color: red">*</span>
+                </div>
+                <input type="password" id="pwd_login" name="pass_word" maxlength="30" required/>
+            </div>
 
             <a href="<?php echo base_url();?>index.php/main_webpage"><button type="button" id="to_home_from_login">Home</button></a>
             <button type="submit" id="submit_log_in" name="submit_log_in" value="submit_log_in" style="position: relative; left: 10px">Submit</button>

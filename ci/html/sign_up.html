@@ -5,6 +5,7 @@
     <meta name="description" content="Food Catering"/>
     <meta name="keywords" content="HTML,CSS,XML,JavaScript"/>
     <meta name="author" content="Nguyen Tran"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="stylesheet" type="text/css" href="../css/main_css.css"/> <!-- link to external css file -->
     <link rel="stylesheet" type="text/css" href="../css/sign_up_style.css"/> <!-- link to external css file -->
@@ -134,19 +135,34 @@
         </div>
 
         <!--PHONE AND EMAIL -->
-        <label for="myphone">Phone number (only numbers please)</label><span class="asterisk_red">*</span>
-        <label for="myemail" style="position:relative; left: 40px;">Email</label><span style="position:relative; left: 40px;" class="asterisk_red">*</span><br>
+        <div class="first_box_element_signup_page">
+            <div class="on_top">
+                <label for="myphone">Phone number (only numbers please)</label><span class="asterisk_red">*</span>
+            </div>
+            <input type="tel" id="myphone" name="phone" maxlength="10" size="10" pattern="[0-9]{10}" required/>
+        </div>
 
-        <input type="tel" id="myphone" name="phone" maxlength="10" size="10" pattern="[0-9]{10}" required/>
-        <input type="email" id="myemail" name="email_addr" maxlength="40" style="position:relative; left: 210px;" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[a-z]{2,3}$" required/><br><br>
+        <div id="email_signup_page">
+            <div class="on_top">
+                <label for="myemail">Email</label><span class="asterisk_red">*</span><br>
+            </div>
+            <input type="email" id="myemail" name="email_addr" maxlength="40" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[a-z]{2,3}$" required/><br><br>
+        </div>
 
         <!-- USER NAME AND PASSWORD -->
-        <label for="username">User name</label><span class="asterisk_red">*</span>
-        <label for="pwd" style="position:relative; left: 100px;">Password</label><span style="position:relative; left: 100px;" class="asterisk_red">*</span><br>
+        <div class="first_box_element_signup_page">
+            <div class="on_top">
+                <label for="username">User name</label><span class="asterisk_red">*</span>
+            </div>
+            <input type="text" id="username" name="usr" maxlength="40" pattern="[a-zA-Z0-9]+" required />
+        </div>
 
-        <input type="text" id="username" name="usr" maxlength="40" pattern="[a-zA-Z0-9]+" required />
-        <input type="password" id="pwd" name="pass" maxlength="20" required /> <br/><br/>
-
+        <div id="pwd_signup_page">
+            <div class="on_top">
+                <label for="pwd">Password</label><span class="asterisk_red">*</span><br>
+            </div>
+            <input type="password" id="pwd" name="pass" maxlength="20" required /> <br/><br/>
+        </div>
 
         <a href="http://localhost/ci/index.php/main_webpage"><button type="button">Home</button></a>
         <button type="submit" id="submit_sign_up_form" name="submit_sign_up_form" value="submit_sign_up_form">Submit</button>

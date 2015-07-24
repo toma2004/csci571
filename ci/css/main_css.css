@@ -228,33 +228,6 @@ header
     text-align: center;
 }
 
-
-
-/**************************************************************************************************
-*Log in page style
-***************************************************************************************************/
-.outer_box_login
-{
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-    background-color: #313131;
-}
-
-.login_form1
-{
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-    height: 90%;
-}
-
-#pwd_login
-{
-    position:relative;
-    left:11px;
-}
-
 /**************************************************************************************************
 *Shopping cart display style
 ***************************************************************************************************/
@@ -483,11 +456,238 @@ header
 {
     background-color: #313131;
 }
+
+
+/**************************************************************************************************
+*Responsive web design for desktop browser
+***************************************************************************************************/
+@media only screen and (min-device-width: 668px) and (max-width: 1018px)
+{
+    #my_header1
+    {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    header
+    {
+        width: 90%;
+        float: right;
+        line-height: 110px;
+        font-size: 35px;
+        margin: 0;
+        padding: 0;
+    }
+    #container
+    {
+        width: 100%;
+        height: 100vh; /*Size of element will be relative to size of viewport*/
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    /*div of forms*/
+    .main_div
+    {
+        position:relative;
+        top: 300px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #canvas
+    {
+        width: 100%;
+        height: 100%;
+        padding: 5.5% 0;
+        position: relative;
+
+        -webkit-transform:translateX(0);
+        -moz-transform:translateX(0);
+        -ms-transform:translateX(0);
+        -o-transform:translateX(0);
+        transform:translateX(0);
+
+        -webkit-transition:.5s ease all;
+        -moz-transition:.5s ease all;
+        -o-transition:.5s ease all;
+        transition:.5s ease all;
+    }
+    #nav {
+        width: 500px;
+        height: 100%;
+        background: #313131;
+        position: absolute;
+        left: -500px;
+        top: 0;
+        -webkit-transition:.5s ease all;
+        -moz-transition:.5s ease all;
+        -o-transition:.5s ease all;
+        transition:.5s ease all;
+
+        /* By default, rotate the menu 90deg inwards */
+        -webkit-transform:rotateY(-90deg);
+        -moz-transform:rotateY(-90deg);
+        -ms-transform:rotateY(-90deg);
+        -o-transform:rotateY(-90deg);
+        transform:rotateY(-90deg);
+    }
+    #container.display-nav #canvas {
+        -webkit-transform:translateX(500px);
+        -moz-transform:translateX(500px);
+        -ms-transform:translateX(500px);
+        -o-transform:translateX(500px);
+        transform:translateX(500px);
+    }
+
+    /* transition the menu with perspective on "show-nav" */
+    #container.display-nav #nav {
+        -webkit-transform-origin:100% 50%;
+        -moz-transform-origin:100% 50%;
+        -ms-transform-origin:100% 50%;
+        -o-transform-origin:100% 50%;
+        transform-origin:100% 50%;
+
+        -webkit-transform:perspective(600px) rotateY(0deg);
+        -moz-transform:perspective(600px) rotateY(0deg);
+        -ms-transform:perspective(600px) rotateY(0deg);
+        -o-transform:perspective(600px) rotateY(0deg);
+        transform:perspective(600px) rotateY(0deg);
+    }
+    /*changing list style of nav bar*/
+    #nav li.first_tier
+    {
+        width: 100%;
+        border-bottom: 1px solid #313131;
+    }
+    #nav ul ul
+    {
+        /*Reset values for vertical drop-down list*/
+        position: static;
+        top: auto;
+        width: auto;
+
+    }
+    /*transform a list*/
+    #toggle li a, .replace_a
+    {
+        height: 90px;
+
+    }
+    .border
+    {
+        border-top: 1px solid #313131;
+    }
+    #toggle ul li a, #toggle ul li .replace_a
+    {
+        background-color: #995300;
+        border-top: 1px solid #313131;
+    }
+    #toggle ul li .replace_a:hover
+    {
+        background-color: #909090;
+    }
+
+    /**************************************************************************************************
+    *Displaying detail of a product page
+    ***************************************************************************************************/
+    .product_detail_container
+    {
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .image_info
+    {
+        padding-bottom: 1%;
+        width: 100%;
+        background-color: #000;
+    }
+    #product_image
+    {
+        width: 100%;
+        height: 400px;
+    }
+    #my_image
+    {
+        width: 100%;
+    }
+
+    #sale_text
+    {
+        position: relative;
+        left: 0;
+        padding-bottom: 1%;
+
+    }
+
+    #add_to_cart_button
+    {
+        vertical-align: bottom;
+        bottom: auto;
+        width: 200px;
+        background: orange;
+        border: orange;
+        height: 30px;
+        cursor: pointer;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 571px) and (max-width: 600px)
+{
+    /*div of forms*/
+    .main_div
+    {
+        position: relative;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        top: 300px;
+    }
+}
+
+@media only screen and (min-width: 416px) and (max-width: 570px)
+{
+    /*div of forms*/
+    .main_div
+    {
+        position: relative;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        top: 400px;
+    }
+}
+
+@media only screen and (max-width: 415px)
+{
+    /*div of forms*/
+    .main_div
+    {
+        position: relative;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        top: 520px;
+    }
+}
+
 /**************************************************************************************************
 *Responsive web design for phone
 *Start with iphone 5s and 6
 ***************************************************************************************************/
-@media only screen and (max-device-width: 667px)
+@media only screen and (min-device-width: 320px)
+and (max-device-width: 667px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: portrait)
 {
     body,html
     {
@@ -643,237 +843,5 @@ header
     .special_sale_ad, .orig_ad
     {
         font-size: 20px;
-    }
-    /**************************************************************************************************
-    *Log in page style
-    ***************************************************************************************************/
-    .outer_box_login
-    {
-        margin-left: auto;
-        margin-right: auto;
-        width: 90%;
-        background-color: #313131;
-        height: 1000px;
-    }
-
-    .login_form1
-    {
-        margin-left: auto;
-        margin-right: auto;
-        width: 85%;
-        height: 100%;
-    }
-    #header_login
-    {
-        font-size: 120px;
-    }
-    .login_label
-    {
-        font-size: 60px;
-    }
-    #usrname_login, #pwd_login, #submit_log_in, #to_home_from_login
-    {
-        font-size: 35px;
-    }
-}
-
-/**************************************************************************************************
-*Responsive web design for desktop browser
-***************************************************************************************************/
-@media only screen and (min-device-width: 668px) and (max-width: 1024px)
-{
-    #my_header1
-    {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        position: absolute;
-        top: 0;
-    }
-    header
-    {
-        width: 90%;
-        float: right;
-        line-height: 110px;
-        font-size: 35px;
-        margin: 0;
-        padding: 0;
-    }
-    #container
-    {
-        width: 100%;
-        height: 100vh; /*Size of element will be relative to size of viewport*/
-        overflow: hidden;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    /*div of forms*/
-    .main_div
-    {
-        position:absolute;
-        top: 320px;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    #canvas
-    {
-        width: 100%;
-        height: 100%;
-        padding: 5.5% 0;
-        position: relative;
-        border: solid;
-
-        -webkit-transform:translateX(0);
-        -moz-transform:translateX(0);
-        -ms-transform:translateX(0);
-        -o-transform:translateX(0);
-        transform:translateX(0);
-
-        -webkit-transition:.5s ease all;
-        -moz-transition:.5s ease all;
-        -o-transition:.5s ease all;
-        transition:.5s ease all;
-    }
-    #nav {
-        width: 500px;
-        height: 100%;
-        background: #313131;
-        position: absolute;
-        left: -500px;
-        top: 0;
-        -webkit-transition:.5s ease all;
-        -moz-transition:.5s ease all;
-        -o-transition:.5s ease all;
-        transition:.5s ease all;
-
-        /* By default, rotate the menu 90deg inwards */
-        -webkit-transform:rotateY(-90deg);
-        -moz-transform:rotateY(-90deg);
-        -ms-transform:rotateY(-90deg);
-        -o-transform:rotateY(-90deg);
-        transform:rotateY(-90deg);
-    }
-    #container.display-nav #canvas {
-        -webkit-transform:translateX(500px);
-        -moz-transform:translateX(500px);
-        -ms-transform:translateX(500px);
-        -o-transform:translateX(500px);
-        transform:translateX(500px);
-    }
-
-    /* transition the menu with perspective on "show-nav" */
-    #container.display-nav #nav {
-        -webkit-transform-origin:100% 50%;
-        -moz-transform-origin:100% 50%;
-        -ms-transform-origin:100% 50%;
-        -o-transform-origin:100% 50%;
-        transform-origin:100% 50%;
-
-        -webkit-transform:perspective(600px) rotateY(0deg);
-        -moz-transform:perspective(600px) rotateY(0deg);
-        -ms-transform:perspective(600px) rotateY(0deg);
-        -o-transform:perspective(600px) rotateY(0deg);
-        transform:perspective(600px) rotateY(0deg);
-    }
-    /*changing list style of nav bar*/
-    #nav li.first_tier
-    {
-        width: 100%;
-        border-bottom: 1px solid #313131;
-    }
-    #nav ul ul
-    {
-        /*Reset values for vertical drop-down list*/
-        position: static;
-        top: auto;
-        width: auto;
-
-    }
-    /*transform a list*/
-    #toggle li a, .replace_a
-    {
-        height: 90px;
-
-    }
-    .border
-    {
-        border-top: 1px solid #313131;
-    }
-    #toggle ul li a, #toggle ul li .replace_a
-    {
-        background-color: #995300;
-        border-top: 1px solid #313131;
-    }
-    #toggle ul li .replace_a:hover
-    {
-        background-color: #909090;
-    }
-    /**************************************************************************************************
-    *Log in page style
-    ***************************************************************************************************/
-    .outer_box_login
-    {
-        margin-left: auto;
-        margin-right: auto;
-        width: 90%;
-        background-color: #313131;
-        height: 200px;
-    }
-
-    .login_form1
-    {
-        margin-left: auto;
-        margin-right: auto;
-        width: 70%;
-        height: 90%;
-    }
-    /**************************************************************************************************
-    *Displaying detail of a product page
-    ***************************************************************************************************/
-    .product_detail_container
-    {
-        margin: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    .image_info
-    {
-        padding-bottom: 1%;
-        width: 100%;
-        background-color: #000;
-    }
-    #product_image
-    {
-        width: 100%;
-        height: 400px;
-    }
-    #my_image
-    {
-        width: 100%;
-    }
-
-    #sale_text
-    {
-        position: relative;
-        left: 0;
-        padding-bottom: 1%;
-
-    }
-
-    #add_to_cart_button
-    {
-        vertical-align: bottom;
-        bottom: auto;
-        width: 200px;
-        background: orange;
-        border: orange;
-        height: 30px;
-        cursor: pointer;
-        text-align: center;
     }
 }

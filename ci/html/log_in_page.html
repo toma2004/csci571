@@ -5,10 +5,11 @@
     <meta name="keywords" content="HTML,CSS,XML,JavaScript"/>
     <meta name="author" content="Nguyen Tran"/>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="../javascript/jquery-1.11.3.min.js"></script>
     <script src="../javascript/main_page_js.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/main_css.css"/> <!-- link to external css file -->
-
+    <link rel="stylesheet" type="text/css" href="../css/login_style.css"/> <!-- link to external css file -->
     <title>N2 customer log-in</title>
 </head>
 <body>
@@ -19,11 +20,19 @@
         <p id="error_message_log_in_page" style="color: red"></p>
 
         <form id="mylogin_form1" action="http://localhost/ci/index.php/main_webpage/log_in" method="POST">
-            <span class="login_label">User Name</span><span style="color: red">*</span>
-            <input type="text" id="usrname_login" name="user_name" maxlength="30" pattern="[a-zA-z0-9]+" required/><br/>
+            <div id="usr_box">
+                <div id="on_side_usr">
+                    <label for="usrname_login">User Name</label><span style="color: red">*</span>
+                </div>
+                <input type="text" id="usrname_login" name="user_name" maxlength="30" pattern="[a-zA-z0-9]+" required/>
+            </div>
 
-            <span class="login_label">Password</span><span style="color: red">*</span>
-            <input type="password" id="pwd_login" name="pass_word" maxlength="30" required style="position:relative; left:11px;"/><br/><br/>
+            <div id="pwd_box">
+                <div id="on_side_pwd">
+                    <label for="pwd_login">Password</label><span style="color: red">*</span>
+                </div>
+                <input type="password" id="pwd_login" name="pass_word" maxlength="30" required/>
+            </div>
 
             <a href="http://localhost/ci/index.php/main_webpage"><button type="button" id="to_home_from_login">Home</button></a>
             <button type="submit" id="submit_log_in" name="submit_log_in" value="submit_log_in" style="position: relative; left: 10px">Submit</button>
