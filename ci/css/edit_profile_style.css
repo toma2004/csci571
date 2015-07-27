@@ -1,0 +1,46 @@
+.first_box_element_edit_page, .second_box_element_edit_page
+{
+    float: left;
+    padding-left: 5px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    width: 255px;
+    word-wrap: break-word;
+}
+
+.first_box_element_edit_page
+{
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.outer_box_edit_element
+{
+    overflow: hidden;
+}
+
+#outer_form_box
+{
+    background-color: #4c3100;
+}
+
+@media only screen and (max-width: 790px)
+{
+    .first_box_element_edit_page
+    {
+        width: 100%;
+        font-size: 1.2em;
+    }
+    .outer_box_edit_element
+    {
+        border-bottom: solid 1px;
+    }
+}
+
+@media only screen and (max-width: 500px)
+{
+    .second_box_element_edit_page
+    {
+        width: 100%;
+    }
+}

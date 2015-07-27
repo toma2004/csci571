@@ -46,7 +46,7 @@ else if (isset($order_detail) && isset($order_detail_item) && isset($customer_in
     echo '<span class="indent_left">$'.htmlspecialchars($order_detail["order_shipping_cost"]).'</span><br/>';
     echo '<span >Total before tax:</span>';
     echo '<span class="indent_left">$'.htmlspecialchars(($order_detail["order_total_amount"]+$order_detail["order_shipping_cost"])).'</span><br/>';
-    echo '<span>Estimated tax to be collected:</span>';
+    echo '<span id="tax_to_be_collected">Estimated tax to be collected:</span>';
     echo '<span class="indent_left">'.htmlspecialchars($order_detail["order_total_tax"]).'</span><br/>';
     echo '<span style="font-weight: bold; color: red">Grand total:</span>';
     echo '<span class="indent_left" style="font-weight: bold; color: red">$'.htmlspecialchars(($order_detail["order_total_amount"]+$order_detail["order_shipping_cost"]+$order_detail["order_total_tax"])).'</span><br/>';
@@ -55,8 +55,8 @@ else if (isset($order_detail) && isset($order_detail_item) && isset($customer_in
 
     $mydiv_height = $order_detail_item["total_products_in_order"] * 120 + 20;
     echo '<div id="products_info" style="height: '.$mydiv_height.'px;">';
-    echo '<span style="position: absolute; left: 77%">Price</span>';
-    echo '<span style="position: relative; float: right; right: 2.5%;">Quantity</span><br/>';
+    echo '<span id="price_tag">Price</span>';
+    echo '<span id="qty_tag">Quantity</span><br/>';
     $item_div_height = 0;
     foreach ($order_detail_item['order_items'] as $row_order_item)
     {
@@ -79,6 +79,6 @@ else if (isset($order_detail) && isset($order_detail_item) && isset($customer_in
         echo '<span style="color: red">$'.htmlspecialchars($row_order_item["p_price"]).'</span>';
         echo '<span style="position: relative; float: right; right: 2.5%;">'.htmlspecialchars($row_order_item["order_quantity"]).'</span></div></div>'; //End div=price_quantity_past_order and div=shopping_cart_item_past_order
     }
-    echo '<button type="button" style="position: absolute; top: '.($mydiv_height).'px;" onclick=div_transform("past_orders_summary_div");>Back</button></div>'; //End div=products_info
+    echo '<button type="button" style="position: absolute; top: '.($mydiv_height).'px;" onclick=div_transform("back_to_past_orders_summary_div");>Back</button></div>'; //End div=products_info
 }
 ?>

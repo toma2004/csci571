@@ -1,0 +1,187 @@
+/**************************************************************************************************
+*Past orders style
+***************************************************************************************************/
+.more_info_past_order
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: orange;
+    font-weight: bold;
+}
+
+#customer_info_order_summary
+{
+    border: solid 1px #909090;
+    position: absolute;
+    width: 70%;
+    height: 200px;
+    background: #4c3100;
+    left: 10%;
+}
+
+#shipping_addr_past_order
+{
+    float: left;
+    width: 25%;
+    position: relative;
+    top: 5%;
+    left: 2%;
+}
+
+#payment_method_past_order
+{
+    float: left;
+    width: 30%;
+    position: relative;
+    top: 5%;
+}
+
+#order_summary_past_order
+{
+    float: left;
+    width: 45%;
+    position: relative;
+    top: 5%;
+}
+
+#products_info
+{
+    position: relative;
+    top: 230px;
+    left: 10%;
+    width: 70%;
+    border: solid 1px #909090;
+    background: #4c3100;
+}
+
+.pname_past_order
+{
+    width: 50%;
+    height: 50px;
+    float: left;
+    position: absolute;
+    left: 105px;
+}
+
+.price_quantity_past_order
+{
+    position: absolute;
+    left: 75%;
+    width: 18%;
+}
+
+.shopping_cart_item_past_order
+{
+    position: relative;
+    left: 2%;
+}
+
+#past_order_info
+{
+    background-color: #313131;
+}
+
+#tax_to_be_collected
+{
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+#price_tag
+{
+    position: absolute;
+    left: 77%;
+}
+
+#qty_tag
+{
+    position: relative;
+    float: right;
+    right: 2.5%;
+}
+
+@media only screen and (max-width: 1140px)
+{
+    #tax_to_be_collected
+    {
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 780px)
+{
+    #shipping_addr_past_order
+    {
+        width: 60%;
+    }
+    #customer_info_order_summary
+    {
+        height: 280px;
+    }
+    #order_summary_past_order
+    {
+        top: 7%;
+        left: 2%;
+        width: 100%;
+    }
+    #products_info
+    {
+        top: 310px;
+    }
+    #price_tag
+    {
+        left: 67%;
+    }
+    #qty_tag
+    {
+        right: 5%;
+    }
+    .price_quantity_past_order
+    {
+        left: 65%;
+        width: 20%;
+    }
+}
+
+@media only screen and (max-width: 570px)
+{
+    #customer_info_order_summary, #products_info
+    {
+        left: 5%;
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 450px)
+{
+    #customer_info_order_summary, #products_info
+    {
+        left: 0;
+        padding: 0;
+        margin: 0;
+        right: 0;
+        width: 100%;
+    }
+    .pname_past_order
+    {
+        width: 25%;
+        word-wrap: break-word;
+    }
+}
+
+@media only screen and (max-width: 320px)
+{
+    #price_tag
+    {
+        left: 75%;
+    }
+    .price_quantity_past_order
+    {
+        left: 67%;
+    }
+    #qty_tag
+    {
+        right: 3%;
+    }
+}

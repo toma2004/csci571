@@ -60,6 +60,18 @@ function check_size()
             $("#my_header").show();
         }
     }
+
+    /*Change price and quantity tag in past order detail*/
+    if ($(window).width()<= 390)
+    {
+        $("#price_tag").html("$");
+        $("#qty_tag").html("Qty");
+    }
+    else
+    {
+        $("#price_tag").html("Price");
+        $("#qty_tag").html("Quantity");
+    }
 }
 
 
@@ -524,7 +536,15 @@ function div_transform( destination )
     var d5 = document.getElementById('past_orders_summary_div');
     var d6 = document.getElementById('past_order_detail_div');
     var d7 = document.getElementById('contact_us_div');
-    toggleNavigation( destination );
+    if (destination != "past_order_detail_div" && destination != "back_to_past_orders_summary_div")
+    {
+        toggleNavigation( destination );
+    }
+
+    if (destination == "back_to_past_orders_summary_div")
+    {
+        destination = "past_orders_summary_div";
+    }
 
     if (destination == "form1")
     {
