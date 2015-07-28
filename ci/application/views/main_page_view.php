@@ -17,6 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php echo link_tag('css/main_css.css'); ?> <!-- Include css style sheet from folder /css -->
     <?php echo link_tag('css/login_style.css'); ?> <!-- Include css style sheet from folder /css -->
     <?php echo link_tag('css/past_order_detail_style.css'); ?> <!-- Include css style sheet from folder /css -->
+    <?php echo link_tag('css/cart_info_style.css'); ?> <!-- Include css style sheet from folder /css -->
     <!--<link rel="shortcut icon" type="image/jpg" href="flower_crown1.jpg"></link> -->
     <script src="<?php echo base_url(); ?>javascript/jquery-1.11.3.min.js"></script>
     <script src="<?php echo base_url(); ?>javascript/main_page_js.js"></script>

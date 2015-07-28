@@ -11,8 +11,12 @@ if (isset($shopping_cart))
 {
     $counter = 0;
     $px_from_top = 100;
-    echo '<span style="position: absolute; left: 550px;">Price</span>';
-    echo '<span style="position: absolute; left: 680px;">Quantity</span><br/>';
+    echo '<div id="outer_box_cart_info">';
+
+    echo '<div id="title_bar_cart_info">';
+    echo '<span id="price_cart_info">Price</span>';
+    echo '<span id="qty_cart_info">Quantity</span><br/>';
+    echo '</div>'; //end div title_bar
     foreach ($shopping_cart as $cart_items)
     {
         if ($counter == 0)
@@ -21,8 +25,15 @@ if (isset($shopping_cart))
         }
         else
         {
-            $px_from_top += 120;
-            echo '<div class="shopping_cart_item" style="position: absolute; top: '.$px_from_top.'px;">';
+            if ($counter == 1)
+            {
+                $px_from_top += 100;
+            }
+            else
+            {
+                $px_from_top += 120;
+            }
+            echo '<div class="shopping_cart_item">';
         }
         $counter += 1;
         echo '<div class="other_components">';
@@ -31,9 +42,9 @@ if (isset($shopping_cart))
         echo '<div class="pname">';
         echo '<span>'.htmlspecialchars($cart_items["product_name"]).'</span></div>';
 
-        echo '<div class="other_components">';
-        echo '<span style="position: absolute; left: 550px; color: red;">'.htmlspecialchars($cart_items["discounted"]).'</span>';
-        echo '<select style="position: absolute; left: 690px;" onchange=change_quality("'.$cart_items["pid"].'",this.selectedIndex);>';
+        echo '<div class="price_qty_cart_info">';
+        echo '<span id="price_cart_info" style="color: red;">'.htmlspecialchars($cart_items["discounted"]).'</span>';
+        echo '<select id="qty_cart_info" onchange=change_quality("'.$cart_items["pid"].'",this.selectedIndex);>';
         /*Set default selected based on product quantity in the cart*/
         echo '<option value="1">1</option>';
         if ($cart_items["qty"] == 2)
@@ -77,8 +88,9 @@ if (isset($shopping_cart))
     else
     {
         $px_from_top += 120;
-        echo '<button type="button" style="position: absolute; top: '.$px_from_top.'px; left: 0;" onclick=delete_entire_cart();>Remove cart</button>';
+        echo '<button type="button" style="position: relative; bottom: 5px; left: 3px;" onclick=delete_entire_cart();>Remove cart</button>';
     }
+    echo '</div>'; //end outer_box div
 }
 else if (isset($change_quantity_product_cart))
 {

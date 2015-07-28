@@ -1,0 +1,112 @@
+/**************************************************************************************************
+*Shopping cart display style
+***************************************************************************************************/
+.delete_id
+{
+    left: -380px;
+    position: relative;
+    top: 90px;
+    /*make button look like text*/
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: blue;
+}
+
+.pname
+{
+    width: 200px;
+    float: left;
+    position: relative;
+    left: 25px;
+    word-wrap: break-word;
+    border: solid;
+}
+
+.other_components
+{
+    float: left;
+    border: solid;
+    position: relative;
+    left: 20px;
+}
+
+.shopping_cart_item
+{
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.price_qty_cart_info
+{
+    float: left;
+}
+
+#outer_box_cart_info
+{
+    background-color: #4c3100;
+}
+
+#price_cart_info
+{
+    position: absolute;
+    left: 600px;
+}
+
+#qty_cart_info
+{
+    position: absolute;
+    left: 730px;
+}
+
+@media only screen and (max-width: 800px)
+{
+    #price_cart_info
+    {
+        left: 400px;
+    }
+
+    #qty_cart_info
+    {
+        left: 530px;
+    }
+}
+
+@media only screen and (max-width: 615px)
+{
+    #price_cart_info
+    {
+        left: 300px;
+    }
+
+    #qty_cart_info
+    {
+        left: 350px;
+    }
+    .pname
+    {
+        width: 100px;
+    }
+
+}
+
+@media only screen and (max-width: 450px)
+{
+    #price_cart_info
+    {
+        left: 220px;
+    }
+
+    #qty_cart_info
+    {
+        left: 280px;
+    }
+    .pname
+    {
+        width: 80px;
+    }
+    #outer_box_cart_info
+    {
+        width: 375px;
+    }
+}
